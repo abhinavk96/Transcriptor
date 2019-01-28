@@ -50,6 +50,7 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
+    "ember-browserify": "^1.2.2",
     "waveform-playlist": "^3.0.4"
   }
 }
