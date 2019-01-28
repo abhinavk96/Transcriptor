@@ -8,7 +8,7 @@ export default Component.extend({
       container: document.getElementById("playlist"),
       state: 'cursor',
       colors: {
-        waveOutlineColor: '#E0EFF1',
+        waveOutlineColor: 'black',
         timeColor: 'grey',
         fadeColor: 'black'
       },
@@ -34,13 +34,13 @@ export default Component.extend({
         "cuein": 5.918,
         "cueout": 14.5,
         "customClass": "vocals",
-        "waveOutlineColor": '#c0dce0'
+        "waveOutlineColor": 'white'
       }
     ]).then(function() {
       //can do stuff with the playlist.
 
       //initialize the WAV exporter.
-      console.log('hello')
+      console.log('Player initialised successfully.')
       playlist.initExporter();
       var ee = playlist.getEventEmitter();
       var $container = $("body");
