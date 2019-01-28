@@ -1,1 +1,120 @@
-{{yield}}
+<div class="container">
+  <div class="wrapper">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">Full Waveform Editor</h1>
+        <p class="lead">Every control and state available.</p>
+      </header>
+      <div class="post-content">
+        <div id="top-bar" class="playlist-top-bar">
+          <div class="playlist-toolbar">
+            <div class="btn-group">
+      <span class="btn-pause ui icon button">
+        <i class="ui pause icon"></i>
+      </span>
+              <span class="btn-play ui icon button">
+        <i class="play icon"></i>
+      </span>
+              <span class="btn-stop btn ui icon button">
+        <i class="ui stop icon"></i>
+      </span>
+              <span class="btn-rewind btn ui icon button">
+        <i class="ui backward icon"></i>
+      </span>
+              <span class="btn-fast-forward btn ui icon button">
+        <i class="ui fast forward icon"></i>
+      </span>
+            </div>
+            <div class="btn-group">
+      <span title="zoom in" class="btn-zoom-in btn ui icon button">
+        <i class="ui zoom-in icon"></i>
+      </span>
+              <span title="zoom out" class="btn-zoom-out btn ui icon button">
+        <i class="ui zoom-out icon"></i>
+      </span>
+            </div>
+            <div class="btn-group btn-playlist-state-group">
+      <span class="btn-cursor btn btn-default active" title="select cursor">
+        <i class="fa fa-headphones"></i>
+      </span>
+              <span class="btn-select btn btn-default" title="select audio region">
+        <i class="fa fa-italic"></i>
+      </span>
+              <span class="btn-shift btn btn-default" title="shift audio in time">
+        <i class="fa fa-arrows-h"></i>
+      </span>
+              <span class="btn-fadein btn btn-default" title="set audio fade in">
+        <i class="fa fa-long-arrow-left"></i>
+      </span>
+              <span class="btn-fadeout btn btn-default" title="set audio fade out">
+        <i class="fa fa-long-arrow-right"></i>
+      </span>
+            </div>
+            <div class="btn-group btn-fade-state-group">
+              <span class="btn btn-default btn-logarithmic active">logarithmic</span>
+              <span class="btn btn-default btn-linear">linear</span>
+              <span class="btn btn-default btn-exponential">exponential</span>
+              <span class="btn btn-default btn-scurve">s-curve</span>
+            </div>
+            <div class="btn-group btn-select-state-group">
+      <span class="btn-loop btn btn-success disabled" title="loop a selected segment of audio">
+        <i class="fa fa-repeat"></i>
+      </span>
+              <span title="keep only the selected audio region for a track"
+                    class="btn-trim-audio btn btn-primary disabled">Trim</span>
+            </div>
+            <div class="btn-group">
+      <span title="Prints playlist info to console"
+            class="btn btn-info">Print</span>
+              <span title="Clear the playlist's tracks" class="btn btn-clear btn-danger">Clear</span>
+            </div>
+            <div class="btn-group">
+      <span title="Download the current work as Wav file" class="btn btn-download btn-primary">
+        <i class="fa fa-download"></i>
+      </span>
+            </div>
+          </div>
+        </div>
+        <div id="playlist"></div>
+        <div class="playlist-bottom-bar">
+          <form class="form-inline">
+            <select class="time-format form-control">
+              <option value="seconds">seconds</option>
+              <option value="thousandths">thousandths</option>
+              <option value="hh:mm:ss">hh:mm:ss</option>
+              <option value="hh:mm:ss.u">hh:mm:ss + tenths</option>
+              <option value="hh:mm:ss.uu">hh:mm:ss + hundredths</option>
+              <option value="hh:mm:ss.uuu" selected="selected">hh:mm:ss + milliseconds</option>
+            </select>
+            <input type="text" class="audio-start input-small form-control">
+            <input type="text" class="audio-end form-control">
+            <label class="audio-pos">00:00:00.0</label>
+          </form>
+
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="master-gain">Master Volume</label>
+              <input type="range" min="0" max="100" value="100" class="master-gain form-control" id="master-gain">
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" class="automatic-scroll"> Automatic Scroll
+              </label>
+            </div>
+          </form>
+          <form class="form-inline">
+            <div class="control-group">
+              <label for="time">Seek to time :</label>
+              <input type="number" class="form-control" value="14" id="seektime"/>
+              <span class="btn btn-primary btn-seektotime">Seek !</span>
+            </div>
+          </form>
+          <div class="sound-status"></div>
+          <div class="track-drop"></div>
+          <div class="loading-data"></div>
+        </div>
+
+      </div>
+    </article>
+  </div>
+</div>
