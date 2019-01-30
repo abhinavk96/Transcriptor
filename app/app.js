@@ -6,8 +6,11 @@ import config from './config/environment';
 const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver
-});
+  Resolver,
+  customEvents: {
+    // add support for the paste event
+    play: 'play'
+  }});
 
 loadInitializers(App, config.modulePrefix);
 
