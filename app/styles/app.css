@@ -1,15 +1,9 @@
-.channel-wrapper.vocals{
-  height: 110px !important;
-}
-.waveform {
-  height: 105px !important;
-}
 .playlist {
   margin: 2em 0; }
 .playlist .playlist-time-scale {
   height: 30px; }
 .playlist .playlist-tracks {
-  background: lightgray; }
+  background: #E0EFF1; }
 .playlist .channel {
   background: grey; }
 .playlist .channel-progress {
@@ -124,7 +118,7 @@
   font-size: 19px;
   font-weight: 300;
   margin-top: 1em;
-  /*height: 1600px;*/
+  height: 160px;
   overflow-x: hidden;
   overflow-y: auto; }
 .playlist .annotations .annotations-text .annotation {
@@ -164,9 +158,7 @@
   background-color: #EBF4F6; }
 
 .playlist .vocals {
-  background-color: white;
-  border: 1px solid black;
-}
+  background-color: #c0dce0; }
 .playlist .vocals header {
   background-color: green; }
 

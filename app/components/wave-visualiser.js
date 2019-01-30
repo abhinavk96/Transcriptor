@@ -232,7 +232,7 @@ export default Component.extend({
     ];
     var actions = [
       {
-        class: 'fa.fa-minus',
+        class: '.red.minus.icon',
         title: 'Reduce annotation end by 0.010s',
         action: (annotation, i, annotations, opts) => {
           var next;
@@ -246,7 +246,7 @@ export default Component.extend({
         }
       },
       {
-        class: 'fa.fa-plus',
+        class: '.green.plus.icon',
         title: 'Increase annotation end by 0.010s',
         action: (annotation, i, annotations, opts) => {
           var next;
@@ -286,8 +286,9 @@ export default Component.extend({
     ];
 
     var playlist = WaveformPlaylist.init({
-      samplesPerPixel: 3000,
+      samplesPerPixel: 1000,
       waveHeight: 100,
+      // isAutomaticScroll: true,
       container: document.getElementById("playlist"),
       state: 'cursor',
       colors: {
@@ -297,7 +298,7 @@ export default Component.extend({
       },
       timescale: true,
       controls: {
-        show: true, //whether or not to include the track controls
+        // show: true, //whether or not to include the track controls
         width: 200 //width of controls in pixels
       },
       annotationList: {
@@ -308,12 +309,16 @@ export default Component.extend({
         linkEndpoints: true
       },
       seekStyle : 'line',
-      zoomLevels: [25, 50, 100, 500, 1000, 3000, 5000]
+      zoomLevels: [100, 500, 1000, 3000, 5000],
+      // isAutomaticScroll: true,
+      options: {
+        isAutomaticScroll: true
+      }
     });
     console.log('playlist defined', playlist);
     playlist.load([
       {
-        "src": 'https://raw.githubusercontent.com/naomiaro/waveform-playlist/master/dist/waveform-playlist/media/audio/Vocals30.mp3',
+        "src": 'https://raw.githubusercontent.com/CosmicCoder96/Transcriptor/master/media/Singapores%2021st-Century.mp3?token=AQdBxSzDkE281WqFUVqTWkUBhRevWdtVks5cWUNCwA%3D%3D',
         "name": "Vocals",
         "fadeIn": {
           "duration": 0.5
@@ -322,7 +327,7 @@ export default Component.extend({
           "duration": 0.5
         },
         "cuein": 5.918,
-        "cueout": 14.5,
+        // "cueout": 14.5,
         "customClass": "vocals",
         "waveOutlineColor": 'white'
       }
@@ -456,6 +461,7 @@ export default Component.extend({
 
       $container.on("click", ".btn-play", function() {
         ee.emit("play");
+
       });
 
       $container.on("click", ".btn-pause", function() {
@@ -537,6 +543,7 @@ export default Component.extend({
 //zoom buttons
       $container.on("click", ".btn-zoom-in", function() {
         ee.emit("zoomin");
+        console.log('you clicked zoom');
       });
 
       $container.on("click", ".btn-zoom-out", function() {
@@ -600,6 +607,7 @@ export default Component.extend({
 
       $container.on("input change", ".master-gain", function(e){
         ee.emit("mastervolumechange", e.target.value);
+
       });
 
       $container.on("change", ".continuous-play", function(e){
