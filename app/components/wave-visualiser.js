@@ -9,7 +9,7 @@ export default Component.extend({
           "end": "5.09",
           "id":"0",
           "language":"eng",
-          "lines":["a senior this important to make school"]
+          "lines":["a <span style='color:yellow'>senior </span>this important to make school"]
         },{
         "begin": "5.53",
         "children": [],
@@ -260,7 +260,7 @@ export default Component.extend({
         }
       },
       {
-        class: 'fa.fa-scissors',
+        class: '.red.scissors',
         title: 'Split annotation in half',
         action: (annotation, i, annotations) => {
           const halfDuration = (annotation.end - annotation.start) / 2;
@@ -721,5 +721,13 @@ export default Component.extend({
       });
     })
       .catch(e=>{console.log('e')});
+
+    var re = new RegExp('&lt;', 'g');
+    var re2 = new RegExp('&gt;', 'g');
+    var annotationLines = $('.annotation-lines');
+    console.log(annotationLines);
+    annotationLines.each(index => {
+      annotationLines[index].innerHTML=annotationLines[index].innerHTML.replace(re, '<').replace(re2,'>')
+    });
   }
 });

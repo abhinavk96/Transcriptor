@@ -4,7 +4,10 @@
       {{wave-visualiser}}
     </div>
     <div class="ui segment">
-      {{video-player currentTime=currentTime}}
+      {{currentTime}}
+      {{video-player onplay=(action 'play')
+                      ontimeupdate=(action 'timeupdate')
+      }}
     </div>
   </div>
 </div>

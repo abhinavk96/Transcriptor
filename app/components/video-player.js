@@ -6,28 +6,16 @@ import { on } from '@ember/object/evented';
 export default Component.extend({
   tagName: 'video',
   classNames: 'videoPlayer',
-  attributeBindings: ['width', 'height', 'controls', 'currentTime'],
+  attributeBindings: ['width', 'height', 'controls'],
   width: 320,
   height: 176,
   controls: true,
-  currentTime: function(){
-    console.log('hello');
-  },
-
   init() {
     this._super(...arguments);
   },
   didInsertElement() {
-    console.log(this.element);
-    this.element.on('play', Ember.run.bind(this,this.currentTime))
-
-  },
-  actions: {
-
-    gi() {
-      console.log(this.element.currentTime);
-      this.set('currentTime', this.element.currentTime)
-
-    }
+    console.log(this);
+    this.element.onplay=this.onplay;
+    this.element.ontimeupdate=this.ontimeupdate;
   }
 });

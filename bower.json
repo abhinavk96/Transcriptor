@@ -1,0 +1,6 @@
+{
+  "name": "transcriptor",
+  "dependencies": {
+    "video.js": "~5.12"
+  }
+}
