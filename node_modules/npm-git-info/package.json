@@ -1,0 +1,31 @@
+{
+  "name": "npm-git-info",
+  "version": "1.0.3",
+  "description": "Retrieves git information from package that installed as NPM package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha && jshint index.js test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tricknotes/npm-git-info.git"
+  },
+  "keywords": [
+    "npm",
+    "package.json"
+  ],
+  "author": "Ryunosuke SATO",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tricknotes/npm-git-info/issues"
+  },
+  "homepage": "https://github.com/tricknotes/npm-git-info#readme",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.3"
+  },
+  "directories": {
+    "test": "test"
+  }
+}

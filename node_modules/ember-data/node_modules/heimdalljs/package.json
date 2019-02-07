@@ -1,0 +1,58 @@
+{
+  "name": "heimdalljs",
+  "version": "0.3.3",
+  "description": "Structured instrumentation library",
+  "main": "dist/heimdalljs.cjs.js",
+  "jsnext:main": "dist/heimdalljs.es.js",
+  "scripts": {
+    "build": "npm run build:node && npm run build:browser && npm run build:test",
+    "build:node": "rollup --no-strict -c node.config.js",
+    "build:browser": "rollup --no-strict -c browser.config.js",
+    "build:test": "rollup --no-strict -c test.config.js",
+    "test": "mocha dist/tests/bundle.cjs --scenario=default && mocha dist/tests/bundle.cjs --scenario=array-fallback",
+    "test:debug": "mocha --no-timeouts debug dist/tests/bundle.cjs",
+    "build_and_test": "npm run build:test && npm run test",
+    "tslint": "tslint -c tslint.json --project tsconfig.json",
+    "trace": "node --trace-hydrogen --trace_phase=Z --trace_deopt --code_comments --hydrogen_track_positions --redirect_code_traces bench/ ",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heimdalljs/heimdalljs-lib.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hjdivad/heimdalljs-lib/issues"
+  },
+  "homepage": "https://github.com/hjdivad/heimdalljs-lib#readme",
+  "keywords": [
+    "javascript"
+  ],
+  "files": [
+    "dist/heimdalljs.cjs.js",
+    "dist/heimdalljs.es.js",
+    "dist/heimdalljs.iife.js",
+    "dist/heimdalljs.umd.js",
+    "heimdall.js"
+  ],
+  "devDependencies": {
+    "@types/node": "^7.0.5",
+    "chai": "^3.2.0",
+    "chai-as-promised": "^5.1.0",
+    "chai-files": "^1.2.0",
+    "do-you-even-bench": "^1.0.2",
+    "mocha": "^2.2.5",
+    "mocha-jshint": "~2.2.3",
+    "rollup": "^0.34.1",
+    "rollup-plugin-commonjs": "^3.3.1",
+    "rollup-plugin-node-resolve": "^1.7.1",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-typescript": "^0.8.1",
+    "tslint": "^4.4.2",
+    "typescript": "^2.2"
+  },
+  "dependencies": {
+    "rsvp": "~3.2.1"
+  }
+}
