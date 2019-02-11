@@ -3,443 +3,289 @@ import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
   disablePlay: true,
   loadProgress: 0,
+  notes: [],
   didInsertElement(){
-    var notes = [
-        {
-          "begin": "2.29",
-          "children": [],
-          "end": "5.09",
-          "id":"0",
-          "language":"eng",
-          "lines":["a <span style='color:yellow'>senior </span>this important to make school"]
-        },{
-        "begin": "5.53",
-        "children": [],
-        "end": "10.92",
-        "id":"1",
-        "language":"eng",
-        "lines":["and when school is fun you don't get kids waking up in the morning i say i'll do i have to come to school"]
-      },{
-        "begin": "11.01",
-        "children": [],
-        "end": "16.35",
-        "id":"2",
-        "language":"eng",
-        "lines":["so we embrace technology because it helps us make learning more"]
-      },{
-        "begin": "16.48",
-        "children": [],
-        "end": "21.57",
-        "id":"3",
-        "language":"eng",
-        "lines":["i believe that when kids are engaged when kids are interested that's where learning takes"]
-      },{
-        "begin": "23.09",
-        "children": [],
-        "end": "24.76",
-        "id":"4",
-        "language":"eng",
-        "lines":[""]
-      },{
-        "begin": "24.76",
-        "children": [],
-        "end": "35.26",
-        "id":"5",
-        "language":"eng",
-        "lines":["<unk> kits are relieved from a very different world now i really to reach out to the kids you need to be savvy with technology if you're not savvy with technology you're going to lose to kids in the"]
-      },{
-        "begin": "35.28",
-        "children": [],
-        "end": "38.79",
-        "id":"6",
-        "language":"eng",
-        "lines":[""]
-      },{
-        "begin": "38.79",
-        "children": [],
-        "end": "50.62",
-        "id":"7",
-        "language":"eng",
-        "lines":["yeah secondary school is a typical school in singapore where we take in students with different academic abilities and uh we have about one thousand five hundred and twelve students into"]
-      },{
-        "begin": "51.06",
-        "children": [],
-        "end": "66.13",
-        "id":"8",
-        "language":"eng",
-        "lines":["and i and they all come from the neighbourhood we get students from the age of thirteen to about sixteen many students want to come to this school because of its strong a programme especially in the use of i c t infocomm"]
-      },{
-        "begin": "66.45",
-        "children": [],
-        "end": "70.73",
-        "id":"9",
-        "language":"eng",
-        "lines":["and the teachers here are known to produce a very good teaching"]
-      },{
-        "begin": "70.96",
-        "children": [],
-        "end": "75.5",
-        "id":"10",
-        "language":"eng",
-        "lines":["and a very innovative teaching ideas to engage the students in the"]
-      },{
-        "begin": "75.5",
-        "children": [],
-        "end": "79.9",
-        "id":"11",
-        "language":"eng",
-        "lines":[""]
-      },{
-        "begin": "79.9",
-        "children": [],
-        "end": "98.68",
-        "id":"12",
-        "language":"eng",
-        "lines":["in the early nineteen nineties the teachers really are the monopoly of knowledge and they are the one that comes to the glass to deliver that knowledge so that the students can acquire them but today knowledge is no more a monopoly amanda details because students can get knowledge from a myriad of"]
-      },{
-        "begin": "98.68",
-        "children": [],
-        "end": "102.15",
-        "id":"13",
-        "language":"eng",
-        "lines":["and hence the role of the teacher"]
-      },{
-        "begin": "102.15",
-        "children": [],
-        "end": "105.42",
-        "id":"14",
-        "language":"eng",
-        "lines":["facilitation dummies facilitate"]
-      },{
-        "begin": "105.42",
-        "children": [],
-        "end": "112.27",
-        "id":"15",
-        "language":"eng",
-        "lines":["where they could get the right knowledge how they could synthesize them how they could discern the information that they"]
-      },{
-        "begin": "112.27",
-        "children": [],
-        "end": "120.55",
-        "id":"16",
-        "language":"eng",
-        "lines":["velocity defies the rate of change of distance with time is it true or false <v-noise> so i want you to treat me so this is how you do it this is a format they need to"]
-      },{
-        "begin": "120.62",
-        "children": [],
-        "end": "123.83",
-        "id":"17",
-        "language":"eng",
-        "lines":["so you what is at sign vote by to eat"]
-      },{
-        "begin": "123.83",
-        "children": [],
-        "end": "133.0",
-        "id":"18",
-        "language":"eng",
-        "lines":["we look at technology very meaningful and we see how can we leverage this technology to make a very significant impact in the classroom"]
-      },{
-        "begin": "133.0",
-        "children": [],
-        "end": "144.68",
-        "id":"19",
-        "language":"eng",
-        "lines":["i give you an example in a classroom of forty it is really impossible to get forty students to us forty questions at one gulp when we use the instant messaging tool we opened forty windows to faulty"]
-      },{
-        "begin": "144.68",
-        "children": [],
-        "end": "153.3",
-        "id":"20",
-        "language":"eng",
-        "lines":["they could ask forty questions at the same time and a teacher could see their thinking on uh on the technology to that they use and kids getting what excited because they are"]
-      },{
-        "begin": "153.3",
-        "children": [],
-        "end": "158.48",
-        "id":"21",
-        "language":"eng",
-        "lines":["the tools that they are very very good in using not just a pen and"]
-      },{
-        "begin": "158.48",
-        "children": [],
-        "end": "168.02",
-        "id":"22",
-        "language":"eng",
-        "lines":["okay so since then we will have a two students were avid let me know if you have any issues or that the meals raise your hand right yeah okay let's"]
-      },{
-        "begin": "168.02",
-        "children": [],
-        "end": "183.65",
-        "id":"23",
-        "language":"eng",
-        "lines":["what the students are doing is currently exploring this second life art gallery which to swear set up and the works that are shown in this together he is actually made up of our local works they have been done by local"]
-      },{
-        "begin": "183.65",
-        "children": [],
-        "end": "189.63",
-        "id":"24",
-        "language":"eng",
-        "lines":[""]
-      },{
-        "begin": "189.63",
-        "children": [],
-        "end": "208.18",
-        "id":"25",
-        "language":"eng",
-        "lines":["because of all the online platform is very very useful because uh it's something that really engaging the students they will be chatting with one another i care about the works using the enemies of our principles of design as well as a reading other students comments as well if you'd like to decay actually leave notes for other students should"]
-      },{
-        "begin": "208.18",
-        "children": [],
-        "end": "212.33",
-        "id":"26",
-        "language":"eng",
-        "lines":[""]
-      },{
-        "begin": "214.68",
-        "children": [],
-        "end": "229.67",
-        "id":"27",
-        "language":"eng",
-        "lines":["web two point zero worked with wiki with your facebook your blocks you find that uh that is a very participate tree culture it calls for a lot of collaboration they no longer become just a consumer of knowledge they actually produce"]
-      },{
-        "begin": "229.91",
-        "children": [],
-        "end": "236.87",
-        "id":"28",
-        "language":"eng",
-        "lines":["discovered so"]
-      },{
-        "begin": "236.87",
-        "children": [],
-        "end": "251.9",
-        "id":"29",
-        "language":"eng",
-        "lines":["i find that students themselves are often on facebook so instead of looking at them and at looking at facebook s with destruction i would rather use it to engage them they even like when they're stuck with southern question daily pulls up the question to the class and you see"]
-      },{
-        "begin": "252.07",
-        "children": [],
-        "end": "259.81",
-        "id":"30",
-        "language":"eng",
-        "lines":["and they are learning from each other which i think it's better because this more motivation intrinsic motivation for them to learn from"]
-      },{
-        "begin": "263.32",
-        "children": [],
-        "end": "270.43",
-        "id":"31",
-        "language":"eng",
-        "lines":["i would say that the teachers in the school myself included we we scanned the globe for best"]
-      }
+    var _this = this;
+    var $container = $("body");
 
-    ];
-    notes = [{"begin":"8.95","children":[],"end":"9.84","id":"0","language":"eng","lines":["<span class='transcriptor' style='color:black'>charlene</span>"]},{"begin":"16.90","children":[],"end":"17.63","id":"1","language":"eng","lines":["<span class='transcriptor' style='color:black'>um</span>"]},{"begin":"25.42","children":[],"end":"26.46","id":"2","language":"eng","lines":["<span class='transcriptor' style='color:black'>v-noise</span>"]},{"begin":"28.29","children":[],"end":"29.369999999999997","id":"3","language":"eng","lines":["<span class='transcriptor' style='color:green'>okay</span>"]},{"begin":"36.93","children":[],"end":"38.14","id":"4","language":"eng","lines":[" <span class='transcriptor' style='color:black'>how</span> <span class='transcriptor' style='color:green'>one</span>"]},{"begin":"39.85","children":[],"end":"43.980000000000004","id":"5","language":"eng","lines":[" <span class='transcriptor' style='color:black'>i'm</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:black'>being</span> <span class='transcriptor' style='color:green'>here</span> <span class='transcriptor' style='color:green'>for</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>long</span> <span class='transcriptor' style='color:green'>haul</span> <span class='transcriptor' style='color:green'>one</span> <span class='transcriptor' style='color:black'>s</span>"]},{"begin":"44.01","children":[],"end":"45.809999999999995","id":"6","language":"eng","lines":[" <span class='transcriptor' style='color:green'>actually</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>also</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:green'>sure</span> <span class='transcriptor' style='color:black'>as</span> <span class='transcriptor' style='color:black'>one</span>"]},{"begin":"46.30","children":[],"end":"49.589999999999996","id":"7","language":"eng","lines":[" <span class='transcriptor' style='color:black'>actually</span> <span class='transcriptor' style='color:red'>should</span> <span class='transcriptor' style='color:red'>know</span> <span class='transcriptor' style='color:black'>in</span> <span class='transcriptor' style='color:black'>jazz</span> <span class='transcriptor' style='color:black'>that's</span> <span class='transcriptor' style='color:green'>how</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>horse</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>idea</span>"]},{"begin":"49.62","children":[],"end":"50.65","id":"8","language":"eng","lines":[" <span class='transcriptor' style='color:black'>ya</span> <span class='transcriptor' style='color:green'>loh</span>"]},{"begin":"53.74","children":[],"end":"55.36","id":"9","language":"eng","lines":[" <span class='transcriptor' style='color:black'>north</span> <span class='transcriptor' style='color:black'>spine</span>"]},{"begin":"55.54","children":[],"end":"56.64","id":"10","language":"eng","lines":[" <span class='transcriptor' style='color:green'>that's</span> <span class='transcriptor' style='color:green'>very</span> <span class='transcriptor' style='color:green'>far</span>"]},{"begin":"56.99","children":[],"end":"57.59","id":"11","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"57.86","children":[],"end":"62.98","id":"12","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:black'>ah</span> <span class='transcriptor' style='color:black'>no</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>from</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>high</span> <span class='transcriptor' style='color:black'>highway</span> <span class='transcriptor' style='color:red'>note</span> <span class='transcriptor' style='color:green'>from</span> <span class='transcriptor' style='color:green'>kofu</span>"]},{"begin":"63.12","children":[],"end":"73.87","id":"13","language":"eng","lines":[" <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>upstairs</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>straight</span> <span class='transcriptor' style='color:green'>passage</span> <span class='transcriptor' style='color:green'>through</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>car</span> <span class='transcriptor' style='color:green'>park</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>way</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>north</span> <span class='transcriptor' style='color:green'>spine</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>car</span> <span class='transcriptor' style='color:black'>park</span> <span class='transcriptor' style='color:green'>when</span> <span class='transcriptor' style='color:green'>walk</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>straight</span> <span class='transcriptor' style='color:green'>line</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>way</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>north</span> <span class='transcriptor' style='color:green'>spine</span>"]},{"begin":"75.36","children":[],"end":"76.99","id":"14","language":"eng","lines":["<span class='transcriptor' style='color:green'>lift</span>"]},{"begin":"77.05","children":[],"end":"81.92","id":"15","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"82.12","children":[],"end":"83.86","id":"16","language":"eng","lines":[" <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:black'>is</span> <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:green'>one</span> <span class='transcriptor' style='color:green'>live</span> <span class='transcriptor' style='color:green'>there</span>"]},{"begin":"87.14","children":[],"end":"89.47","id":"17","language":"eng","lines":[" <span class='transcriptor' style='color:black'>was</span> <span class='transcriptor' style='color:green'>it</span> <span class='transcriptor' style='color:black'>flow</span> <span class='transcriptor' style='color:green'>one</span>"]},{"begin":"90.28","children":[],"end":"95.03","id":"18","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i'm</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:green'>sure</span> <span class='transcriptor' style='color:black'>from</span> <span class='transcriptor' style='color:green'>everybody</span> <span class='transcriptor' style='color:green'>everybody</span> <span class='transcriptor' style='color:green'>gets</span> <span class='transcriptor' style='color:black'>off</span> <span class='transcriptor' style='color:black'>the</span> <span class='transcriptor' style='color:black'>suggests</span> <span class='transcriptor' style='color:red'>cannot</span> <span class='transcriptor' style='color:green'>for</span> <span class='transcriptor' style='color:green'>everyone</span> <span class='transcriptor' style='color:black'>gets</span> <span class='transcriptor' style='color:black'>hor</span>"]},{"begin":"95.38","children":[],"end":"96.11999999999999","id":"19","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"99.57","children":[],"end":"104.11999999999999","id":"20","language":"eng","lines":[" <span class='transcriptor' style='color:red'>cause</span> <span class='transcriptor' style='color:black'>shape</span> <span class='transcriptor' style='color:black'>cousin</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>whole</span> <span class='transcriptor' style='color:green'>area</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>north</span> <span class='transcriptor' style='color:green'>spine</span> <span class='transcriptor' style='color:green'>depends</span> <span class='transcriptor' style='color:black'>on</span> <span class='transcriptor' style='color:green'>where</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>want</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:black'>and</span> <span class='transcriptor' style='color:black'>not</span> <span class='transcriptor' style='color:black'>as</span> <span class='transcriptor' style='color:green'>fun</span> <span class='transcriptor' style='color:green'>isn't</span> <span class='transcriptor' style='color:green'>it</span>"]},{"begin":"104.56","children":[],"end":"109.09","id":"21","language":"eng","lines":[" <span class='transcriptor' style='color:black'>what</span> <span class='transcriptor' style='color:black'>luck</span> <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:green'>that's</span> <span class='transcriptor' style='color:green'>what</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>say</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>every</span> <span class='transcriptor' style='color:green'>time</span> <span class='transcriptor' style='color:green'>we</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>north</span> <span class='transcriptor' style='color:green'>are</span> <span class='transcriptor' style='color:green'>going</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>eat</span>"]},{"begin":"109.16","children":[],"end":"110.08","id":"22","language":"eng","lines":["<span class='transcriptor' style='color:black'>services</span>"]},{"begin":"117.63","children":[],"end":"118.42999999999999","id":"23","language":"eng","lines":[" <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>it</span>"]},{"begin":"118.53","children":[],"end":"121.63","id":"24","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:green'>come</span> <span class='transcriptor' style='color:green'>out</span>"]},{"begin":"121.82","children":[],"end":"125.63","id":"25","language":"eng","lines":[" <span class='transcriptor' style='color:green'>turn</span> <span class='transcriptor' style='color:green'>right</span> <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>walk</span> <span class='transcriptor' style='color:green'>straight</span> <span class='transcriptor' style='color:green'>again</span>"]},{"begin":"125.93","children":[],"end":"126.64","id":"26","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"129.10","children":[],"end":"131.69","id":"27","language":"eng","lines":[" <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>see</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>shops</span> <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:black'>is</span> <span class='transcriptor' style='color:green'>probably</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:black'>spend</span> <span class='transcriptor' style='color:green'>already</span> <span class='transcriptor' style='color:green'>ah</span>"]},{"begin":"132.30","children":[],"end":"133.19","id":"28","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"133.23","children":[],"end":"134.54","id":"29","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"134.73","children":[],"end":"137.07","id":"30","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:black'>er</span> <span class='transcriptor' style='color:black'>now</span>"]},{"begin":"137.23","children":[],"end":"138.97","id":"31","language":"eng","lines":[" <span class='transcriptor' style='color:black'>she</span> <span class='transcriptor' style='color:green'>ask</span> <span class='transcriptor' style='color:green'>me</span> <span class='transcriptor' style='color:black'>that's</span> <span class='transcriptor' style='color:black'>what</span> <span class='transcriptor' style='color:green'>i'm</span> <span class='transcriptor' style='color:green'>here</span> <span class='transcriptor' style='color:green'>for</span>"]},{"begin":"139.04","children":[],"end":"140.66","id":"32","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"140.99","children":[],"end":"144.38","id":"33","language":"eng","lines":[" <span class='transcriptor' style='color:green'>see</span> <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:black'>bookshelf</span> <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>bread</span> <span class='transcriptor' style='color:green'>shop</span>"]},{"begin":"144.68","children":[],"end":"150.20000000000002","id":"34","language":"eng","lines":[" <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:black'>uh</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>their</span> <span class='transcriptor' style='color:black'>students</span> <span class='transcriptor' style='color:black'>service</span> <span class='transcriptor' style='color:green'>center</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:black'>it</span> <span class='transcriptor' style='color:black'>some</span> <span class='transcriptor' style='color:red'>straight</span> <span class='transcriptor' style='color:green'>there</span>"]},{"begin":"150.49","children":[],"end":"151.22","id":"35","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"151.30","children":[],"end":"153.03","id":"36","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:green'>the</span>"]},{"begin":"153.55","children":[],"end":"154.73000000000002","id":"37","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"154.81","children":[],"end":"159.55","id":"38","language":"eng","lines":[" <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:black'>there</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:green'>shop</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>sells</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>n</span> <span class='transcriptor' style='color:black'>t</span> <span class='transcriptor' style='color:black'>u</span> <span class='transcriptor' style='color:green'>much</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:red'>the</span> <span class='transcriptor' style='color:black'>hoodie</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>shells</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>everything</span>"]},{"begin":"159.62","children":[],"end":"162.84","id":"39","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:black'>when</span> <span class='transcriptor' style='color:black'>that</span> <span class='transcriptor' style='color:green'>food</span> <span class='transcriptor' style='color:black'>as</span> <span class='transcriptor' style='color:green'>food</span>"]},{"begin":"163.15","children":[],"end":"163.82","id":"40","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"164.78","children":[],"end":"166.55","id":"41","language":"eng","lines":[" <span class='transcriptor' style='color:green'>um</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>lost</span> <span class='transcriptor' style='color:black'>v-noise</span>"]},{"begin":"169.82","children":[],"end":"170.57999999999998","id":"42","language":"eng","lines":["<span class='transcriptor' style='color:black'>uh-huh</span>"]},{"begin":"170.73","children":[],"end":"171.53","id":"43","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"184.08","children":[],"end":"185.06","id":"44","language":"eng","lines":["<span class='transcriptor' style='color:green'>um</span>"]},{"begin":"185.08","children":[],"end":"187.51000000000002","id":"45","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>fast</span> <span class='transcriptor' style='color:green'>foods</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"187.90","children":[],"end":"191.55","id":"46","language":"eng","lines":[" <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>mcdonald's</span> <span class='transcriptor' style='color:green'>at</span> <span class='transcriptor' style='color:green'>north</span> <span class='transcriptor' style='color:green'>spine</span> <span class='transcriptor' style='color:green'>then</span>"]},{"begin":"191.82","children":[],"end":"194.2","id":"47","language":"eng","lines":[" <span class='transcriptor' style='color:black'>so</span> <span class='transcriptor' style='color:black'>the</span> <span class='transcriptor' style='color:green'>subway</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:black'>that</span> <span class='transcriptor' style='color:green'>was</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:black'>subway</span> <span class='transcriptor' style='color:black'>that</span> <span class='transcriptor' style='color:green'>also</span>"]},{"begin":"194.67","children":[],"end":"195.78","id":"48","language":"eng","lines":[" <span class='transcriptor' style='color:green'>as</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>kofu</span>"]},{"begin":"196.10","children":[],"end":"199.37","id":"49","language":"eng","lines":[" <span class='transcriptor' style='color:green'>which</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>near</span> <span class='transcriptor' style='color:green'>here</span> <span class='transcriptor' style='color:black'>which</span> <span class='transcriptor' style='color:black'>is</span> <span class='transcriptor' style='color:green'>why</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>north</span> <span class='transcriptor' style='color:black'>fine</span>"]},{"begin":"199.68","children":[],"end":"201.66","id":"50","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:green'>is</span>"]},{"begin":"202.57","children":[],"end":"203.32999999999998","id":"51","language":"eng","lines":["<span class='transcriptor' style='color:black'>um</span>"]},{"begin":"206.70","children":[],"end":"208.29","id":"52","language":"eng","lines":[" <span class='transcriptor' style='color:green'>japanese</span> <span class='transcriptor' style='color:green'>food</span>"]},{"begin":"210.39","children":[],"end":"214.10999999999999","id":"53","language":"eng","lines":[" <span class='transcriptor' style='color:green'>usually</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>eat</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>japanese</span> <span class='transcriptor' style='color:green'>osaka</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>expensive</span>"]},{"begin":"214.81","children":[],"end":"215.59","id":"54","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"215.93","children":[],"end":"219.49","id":"55","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>friend</span> <span class='transcriptor' style='color:green'>who</span> <span class='transcriptor' style='color:green'>says</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:black'>it's</span> <span class='transcriptor' style='color:green'>overrated</span> <span class='transcriptor' style='color:green'>south</span>"]},{"begin":"219.68","children":[],"end":"221.39000000000001","id":"56","language":"eng","lines":[" <span class='transcriptor' style='color:green'>she</span> <span class='transcriptor' style='color:green'>doesn't</span> <span class='transcriptor' style='color:green'>let</span> <span class='transcriptor' style='color:green'>me</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>there</span>"]},{"begin":"221.91","children":[],"end":"223.81","id":"57","language":"eng","lines":[" <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:black'>just</span> <span class='transcriptor' style='color:black'>eat</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>chicken</span> <span class='transcriptor' style='color:green'>rice</span> <span class='transcriptor' style='color:black'>stall</span>"]},{"begin":"223.90","children":[],"end":"225.52","id":"58","language":"eng","lines":[" <span class='transcriptor' style='color:green'>which</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>nice</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>cheap</span>"]},{"begin":"225.95","children":[],"end":"226.64999999999998","id":"59","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"228.99","children":[],"end":"232.57000000000002","id":"60","language":"eng","lines":[" <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>char</span> <span class='transcriptor' style='color:green'>siew</span> <span class='transcriptor' style='color:green'>rice</span> <span class='transcriptor' style='color:green'>also</span>"]},{"begin":"233.35","children":[],"end":"238.07","id":"61","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>other</span> <span class='transcriptor' style='color:green'>than</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>i've</span> <span class='transcriptor' style='color:green'>only</span> <span class='transcriptor' style='color:green'>ever</span> <span class='transcriptor' style='color:green'>eaten</span> <span class='transcriptor' style='color:black'>at</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>indian</span> <span class='transcriptor' style='color:green'>stall</span> <span class='transcriptor' style='color:black'>just</span> <span class='transcriptor' style='color:green'>next</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>chicken</span> <span class='transcriptor' style='color:green'>rice</span> <span class='transcriptor' style='color:green'>stall</span>"]},{"begin":"239.89","children":[],"end":"243.51","id":"62","language":"eng","lines":[" <span class='transcriptor' style='color:black'>disa</span> <span class='transcriptor' style='color:green'>potah</span> <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:black'>fry</span> <span class='transcriptor' style='color:green'>maggie</span>"]},{"begin":"243.81","children":[],"end":"244.75","id":"63","language":"eng","lines":["<span class='transcriptor' style='color:green'>and</span>"]},{"begin":"244.90","children":[],"end":"248.87","id":"64","language":"eng","lines":[" <span class='transcriptor' style='color:green'>lots</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:black'>sides</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>chicken</span> <span class='transcriptor' style='color:green'>curry</span>"]},{"begin":"250.43","children":[],"end":"251.52","id":"65","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>so</span>"]},{"begin":"251.87","children":[],"end":"252.56","id":"66","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"253.25","children":[],"end":"256.99","id":"67","language":"eng","lines":[" <span class='transcriptor' style='color:black'>and</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:black'>lot</span> <span class='transcriptor' style='color:black'>of</span> <span class='transcriptor' style='color:black'>mike</span> <span class='transcriptor' style='color:black'>three</span> <span class='transcriptor' style='color:green'>limited</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>things</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>do</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>n</span> <span class='transcriptor' style='color:green'>t</span> <span class='transcriptor' style='color:green'>u</span>"]},{"begin":"257.33","children":[],"end":"258.77","id":"68","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"259.04","children":[],"end":"260.92","id":"69","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:green'>three</span> <span class='transcriptor' style='color:green'>days</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>week</span>"]},{"begin":"262.09","children":[],"end":"266.59999999999997","id":"70","language":"eng","lines":[" <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>only</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>lunch</span> <span class='transcriptor' style='color:green'>on</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>school</span> <span class='transcriptor' style='color:green'>on</span> <span class='transcriptor' style='color:green'>wednesdays</span>"]},{"begin":"267.13","children":[],"end":"267.75","id":"71","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"268.54","children":[],"end":"273.25","id":"72","language":"eng","lines":[" <span class='transcriptor' style='color:green'>chicken</span> <span class='transcriptor' style='color:green'>rice</span> <span class='transcriptor' style='color:green'>ah</span> <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>mind</span> <span class='transcriptor' style='color:green'>eating</span> <span class='transcriptor' style='color:black'>chicken</span> <span class='transcriptor' style='color:green'>rice</span> <span class='transcriptor' style='color:green'>every</span> <span class='transcriptor' style='color:green'>week</span>"]},{"begin":"277.81","children":[],"end":"278.45","id":"73","language":"eng","lines":["<span class='transcriptor' style='color:green'>um</span>"]},{"begin":"280.60","children":[],"end":"282.01000000000005","id":"74","language":"eng","lines":[" <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>mcdonald's</span>"]},{"begin":"282.69","children":[],"end":"283.96","id":"75","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"284.04","children":[],"end":"286.56","id":"76","language":"eng","lines":[" <span class='transcriptor' style='color:green'>such</span> <span class='transcriptor' style='color:green'>as</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>fast</span> <span class='transcriptor' style='color:green'>food</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>get</span>"]},{"begin":"286.58","children":[],"end":"287.63","id":"77","language":"eng","lines":["<span class='transcriptor' style='color:red'>brenda</span>"]},{"begin":"288.95","children":[],"end":"292.62","id":"78","language":"eng","lines":[" <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>lot</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:green'>people</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>buy</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>waffles</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:black'>you</span> <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>workforce</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>nice</span>"]},{"begin":"293.39","children":[],"end":"297.09999999999997","id":"79","language":"eng","lines":[" <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:black'>that</span> <span class='transcriptor' style='color:green'>place</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>usually</span> <span class='transcriptor' style='color:green'>crowded</span> <span class='transcriptor' style='color:green'>ah</span> <span class='transcriptor' style='color:green'>then</span>"]},{"begin":"297.28","children":[],"end":"298.28999999999996","id":"80","language":"eng","lines":["<span class='transcriptor' style='color:black'>yes</span>"]},{"begin":"298.71","children":[],"end":"299.88","id":"81","language":"eng","lines":[" <span class='transcriptor' style='color:green'>oh</span> <span class='transcriptor' style='color:green'>now</span>"]},{"begin":"300.71","children":[],"end":"301.84999999999997","id":"82","language":"eng","lines":[" <span class='transcriptor' style='color:black'>oh</span> <span class='transcriptor' style='color:black'>now</span>"]},{"begin":"302.14","children":[],"end":"304.02","id":"83","language":"eng","lines":[" <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:red'>no</span> <span class='transcriptor' style='color:black'>know</span> <span class='transcriptor' style='color:green'>anymore</span> <span class='transcriptor' style='color:black'>ah</span>"]},{"begin":"305.49","children":[],"end":"306.23","id":"84","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"307.60","children":[],"end":"308.35","id":"85","language":"eng","lines":["<span class='transcriptor' style='color:black'>now</span>"]},{"begin":"308.56","children":[],"end":"311.93","id":"86","language":"eng","lines":[" <span class='transcriptor' style='color:black'>v-noise</span> <span class='transcriptor' style='color:black'>no</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>when</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:black'>t</span> <span class='transcriptor' style='color:green'>just</span>"]},{"begin":"312.53","children":[],"end":"315.66999999999996","id":"87","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>prefer</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>travel</span> <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>stay</span> <span class='transcriptor' style='color:green'>hall</span>"]},{"begin":"316.89","children":[],"end":"325.53","id":"88","language":"eng","lines":[" <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>cause</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>stories</span> <span class='transcriptor' style='color:green'>are</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>wow</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>was</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>giant</span> <span class='transcriptor' style='color:green'>monitor</span> <span class='transcriptor' style='color:green'>lizard</span> <span class='transcriptor' style='color:green'>outside</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>toilet</span> <span class='transcriptor' style='color:green'>oh</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>was</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>spider</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>my</span> <span class='transcriptor' style='color:green'>room</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:green'>are</span> <span class='transcriptor' style='color:green'>plenty</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:green'>lizards</span> <span class='transcriptor' style='color:black'>that</span> <span class='transcriptor' style='color:green'>most</span> <span class='transcriptor' style='color:black'>kilos</span>"]},{"begin":"325.61","children":[],"end":"326.8","id":"89","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:green'>stay</span> <span class='transcriptor' style='color:green'>at</span> <span class='transcriptor' style='color:green'>home</span>"]},{"begin":"328.88","children":[],"end":"330.37","id":"90","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"333.21","children":[],"end":"334","id":"91","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"345.92","children":[],"end":"347.02000000000004","id":"92","language":"eng","lines":[" <span class='transcriptor' style='color:black'>two</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>eat</span>"]},{"begin":"347.55","children":[],"end":"351.12","id":"93","language":"eng","lines":[" <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:green'>pretty</span> <span class='transcriptor' style='color:green'>sure</span> <span class='transcriptor' style='color:green'>as</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>human</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>do</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:red'>bailey</span>"]},{"begin":"351.44","children":[],"end":"354.91","id":"94","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:black'>you</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:black'>to</span> <span class='transcriptor' style='color:green'>boon</span> <span class='transcriptor' style='color:green'>lay</span> <span class='transcriptor' style='color:black'>effort</span>"]},{"begin":"358.07","children":[],"end":"359.64","id":"95","language":"eng","lines":[" <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>lot</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:green'>stuff</span>"]},{"begin":"360.88","children":[],"end":"362.08","id":"96","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>mean</span> <span class='transcriptor' style='color:green'>i</span>"]},{"begin":"362.56","children":[],"end":"367.4","id":"97","language":"eng","lines":[" <span class='transcriptor' style='color:green'>because</span> <span class='transcriptor' style='color:green'>technically</span> <span class='transcriptor' style='color:green'>boonlay</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:black'>the</span> <span class='transcriptor' style='color:red'>layers</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>boon</span> <span class='transcriptor' style='color:green'>lay</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>clementi</span> <span class='transcriptor' style='color:green'>mall</span>"]},{"begin":"367.57","children":[],"end":"369.52","id":"98","language":"eng","lines":[" <span class='transcriptor' style='color:green'>because</span> <span class='transcriptor' style='color:green'>clementi</span> <span class='transcriptor' style='color:green'>mall</span> <span class='transcriptor' style='color:green'>has</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>lot</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:green'>food</span>"]},{"begin":"371.33","children":[],"end":"375.74","id":"99","language":"eng","lines":[" <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>lot</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:green'>stuff</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>vietnamese</span> <span class='transcriptor' style='color:green'>food</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>korean</span> <span class='transcriptor' style='color:green'>food</span> <span class='transcriptor' style='color:black'>that's</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"376.94","children":[],"end":"379.46999999999997","id":"100","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:black'>don't</span> <span class='transcriptor' style='color:black'>know</span> <span class='transcriptor' style='color:black'>there's</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"380.10","children":[],"end":"381.93","id":"101","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>how</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>pronounce</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>word</span>"]},{"begin":"382.56","children":[],"end":"383.38","id":"102","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"384.03","children":[],"end":"384.80999999999995","id":"103","language":"eng","lines":["<span class='transcriptor' style='color:black'>really</span>"]},{"begin":"385.88","children":[],"end":"392.14","id":"104","language":"eng","lines":[" <span class='transcriptor' style='color:black'>for</span> <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:green'>which</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>when</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:black'>say</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>too</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>mean</span> <span class='transcriptor' style='color:green'>i've</span> <span class='transcriptor' style='color:green'>seen</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>menu</span> <span class='transcriptor' style='color:green'>which</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>expensive</span>"]},{"begin":"393.96","children":[],"end":"394.68","id":"105","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"395.11","children":[],"end":"398.82","id":"106","language":"eng","lines":[" <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:black'>am</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>broke</span> <span class='transcriptor' style='color:green'>student</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"400.67","children":[],"end":"401.53000000000003","id":"107","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"401.94","children":[],"end":"405.27","id":"108","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:black'>is</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:black'>called</span> <span class='transcriptor' style='color:green'>cafe</span> <span class='transcriptor' style='color:black'>ma</span> <span class='transcriptor' style='color:black'>ma</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"405.85","children":[],"end":"408.36","id":"109","language":"eng","lines":[" <span class='transcriptor' style='color:green'>really</span> <span class='transcriptor' style='color:green'>nice</span> <span class='transcriptor' style='color:green'>place</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>eat</span> <span class='transcriptor' style='color:black'>foods</span>"]},{"begin":"408.48","children":[],"end":"410.05","id":"110","language":"eng","lines":[" <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"410.31","children":[],"end":"414.34","id":"111","language":"eng","lines":[" <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>ramen</span> <span class='transcriptor' style='color:green'>which</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>give</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>those</span> <span class='transcriptor' style='color:green'>those</span> <span class='transcriptor' style='color:green'>metal</span> <span class='transcriptor' style='color:black'>balls</span>"]},{"begin":"414.47","children":[],"end":"422.34000000000003","id":"112","language":"eng","lines":[" <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:black'>and</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>rice</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>thing</span> <span class='transcriptor' style='color:green'>with</span> <span class='transcriptor' style='color:red'>we</span> <span class='transcriptor' style='color:black'>roles</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>too</span>"]},{"begin":"422.42","children":[],"end":"423.17","id":"113","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"423.95","children":[],"end":"427.83","id":"114","language":"eng","lines":[" <span class='transcriptor' style='color:green'>usually</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>rice</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>crab</span> <span class='transcriptor' style='color:black'>steaks</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>eggs</span>"]},{"begin":"428.25","children":[],"end":"429.74","id":"115","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>kind</span>"]},{"begin":"430.39","children":[],"end":"437.15999999999997","id":"116","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>will</span> <span class='transcriptor' style='color:green'>allow</span> <span class='transcriptor' style='color:green'>usually</span> <span class='transcriptor' style='color:green'>allow</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:black'>put</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>your</span> <span class='transcriptor' style='color:green'>noodles</span> <span class='transcriptor' style='color:green'>right</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>allow</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>put</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>add</span> <span class='transcriptor' style='color:black'>on</span> <span class='transcriptor' style='color:black'>off</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>cheese</span> <span class='transcriptor' style='color:black'>or</span> <span class='transcriptor' style='color:black'>egg</span>"]},{"begin":"437.59","children":[],"end":"438.60999999999996","id":"117","language":"eng","lines":[" <span class='transcriptor' style='color:green'>that's</span> <span class='transcriptor' style='color:green'>quite</span> <span class='transcriptor' style='color:green'>nice</span>"]},{"begin":"438.79","children":[],"end":"443.28000000000003","id":"118","language":"eng","lines":[" <span class='transcriptor' style='color:black'>and</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>best</span> <span class='transcriptor' style='color:green'>thing</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>play</span> <span class='transcriptor' style='color:black'>er</span> <span class='transcriptor' style='color:green'>korean</span> <span class='transcriptor' style='color:green'>music</span> <span class='transcriptor' style='color:green'>k</span> <span class='transcriptor' style='color:green'>pop</span>"]},{"begin":"443.93","children":[],"end":"445.58","id":"119","language":"eng","lines":[" <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>huge</span> <span class='transcriptor' style='color:green'>t</span> <span class='transcriptor' style='color:green'>v</span>"]},{"begin":"446.20","children":[],"end":"449.63","id":"120","language":"eng","lines":[" <span class='transcriptor' style='color:green'>right</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:black'>now</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>specifically</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>k</span> <span class='transcriptor' style='color:green'>pop</span>"]},{"begin":"449.80","children":[],"end":"450.54","id":"121","language":"eng","lines":["<span class='transcriptor' style='color:black'>haze</span>"]},{"begin":"451.04","children":[],"end":"452.1","id":"122","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:black'>live</span>"]},{"begin":"452.79","children":[],"end":"454.45000000000005","id":"123","language":"eng","lines":[" <span class='transcriptor' style='color:black'>it's</span> <span class='transcriptor' style='color:green'>fine</span>"]},{"begin":"462.25","children":[],"end":"463.32","id":"124","language":"eng","lines":[" <span class='transcriptor' style='color:black'>two</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:black'>friend</span>"]},{"begin":"463.82","children":[],"end":"465.3","id":"125","language":"eng","lines":["<span class='transcriptor' style='color:black'>mm</span>"]},{"begin":"465.81","children":[],"end":"467.35","id":"126","language":"eng","lines":[" <span class='transcriptor' style='color:red'>and</span> <span class='transcriptor' style='color:black'>not</span> <span class='transcriptor' style='color:green'>sheltered</span> <span class='transcriptor' style='color:black'>kit</span>"]},{"begin":"467.99","children":[],"end":"471.42","id":"127","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>usually</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>with</span> <span class='transcriptor' style='color:green'>my</span> <span class='transcriptor' style='color:green'>cousins</span> <span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"473.13","children":[],"end":"477","id":"128","language":"eng","lines":[" <span class='transcriptor' style='color:black'>um</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:black'>we've</span> <span class='transcriptor' style='color:green'>gone</span> <span class='transcriptor' style='color:black'>on</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:green'>picnic</span> <span class='transcriptor' style='color:green'>sometimes</span> <span class='transcriptor' style='color:green'>we</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>to</span>"]},{"begin":"477.07","children":[],"end":"477.71","id":"129","language":"eng","lines":["<span class='transcriptor' style='color:red'>uh-huh</span>"]},{"begin":"477.73","children":[],"end":"479.54","id":"130","language":"eng","lines":[" <span class='transcriptor' style='color:green'>what</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>ah</span> <span class='transcriptor' style='color:green'>the</span>"]},{"begin":"479.95","children":[],"end":"481.21","id":"131","language":"eng","lines":[" <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:green'>those</span> <span class='transcriptor' style='color:green'>gardens</span>"]},{"begin":"482.10","children":[],"end":"484.89000000000004","id":"132","language":"eng","lines":[" <span class='transcriptor' style='color:black'>that's</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>forgot</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>name</span>"]},{"begin":"486.19","children":[],"end":"488.12","id":"133","language":"eng","lines":[" <span class='transcriptor' style='color:black'>new</span> <span class='transcriptor' style='color:black'>sideways</span>"]},{"begin":"488.29","children":[],"end":"492.27000000000004","id":"134","language":"eng","lines":[" <span class='transcriptor' style='color:green'>mrt</span> <span class='transcriptor' style='color:green'>still</span> <span class='transcriptor' style='color:black'>is</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:black'>in</span> <span class='transcriptor' style='color:black'>my</span> <span class='transcriptor' style='color:red'>view</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span> <span class='transcriptor' style='color:black'>ya</span>"]},{"begin":"492.81","children":[],"end":"493.69","id":"135","language":"eng","lines":["<span class='transcriptor' style='color:green'>blue</span>"]},{"begin":"494.30","children":[],"end":"498.88","id":"136","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>cause</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>on</span> <span class='transcriptor' style='color:green'>saturdays</span> <span class='transcriptor' style='color:green'>saturday</span> <span class='transcriptor' style='color:green'>evenings</span> <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>free</span> <span class='transcriptor' style='color:green'>concerts</span>"]},{"begin":"498.92","children":[],"end":"500.40000000000003","id":"137","language":"eng","lines":[" <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>big</span> <span class='transcriptor' style='color:black'>field</span>"]},{"begin":"502.75","children":[],"end":"504.54","id":"138","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>from</span> <span class='transcriptor' style='color:green'>n</span> <span class='transcriptor' style='color:green'>t</span> <span class='transcriptor' style='color:green'>u</span> <span class='transcriptor' style='color:black'>lor</span>"]},{"begin":"507.40","children":[],"end":"508.56","id":"139","language":"eng","lines":[" <span class='transcriptor' style='color:green'>uh</span> <span class='transcriptor' style='color:black'>huh</span>"]},{"begin":"509.15","children":[],"end":"512.9399999999999","id":"140","language":"eng","lines":[" <span class='transcriptor' style='color:black'>can</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>transfer</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>blue</span> <span class='transcriptor' style='color:green'>line</span>"]},{"begin":"514.82","children":[],"end":"515.6600000000001","id":"141","language":"eng","lines":["<span class='transcriptor' style='color:green'>oh</span>"]},{"begin":"516.19","children":[],"end":"518.62","id":"142","language":"eng","lines":[" <span class='transcriptor' style='color:green'>oh</span> <span class='transcriptor' style='color:green'>okay</span>"]},{"begin":"518.79","children":[],"end":"520.03","id":"143","language":"eng","lines":[" <span class='transcriptor' style='color:green'>oh</span> <span class='transcriptor' style='color:green'>now</span>"]},{"begin":"521.05","children":[],"end":"525.9499999999999","id":"144","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:black'>am</span> <span class='transcriptor' style='color:black'>equally</span> <span class='transcriptor' style='color:black'>lost</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:green'>keep</span> <span class='transcriptor' style='color:black'>mrt</span> <span class='transcriptor' style='color:black'>wherever</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>want</span> <span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"526.08","children":[],"end":"527.64","id":"145","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"527.80","children":[],"end":"528.4699999999999","id":"146","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"529.12","children":[],"end":"530.27","id":"147","language":"eng","lines":["<span class='transcriptor' style='color:green'>address</span>"]},{"begin":"531.41","children":[],"end":"533.66","id":"148","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:black'>wah</span> <span class='transcriptor' style='color:black'>i'm</span> <span class='transcriptor' style='color:black'>just</span> <span class='transcriptor' style='color:green'>very</span> <span class='transcriptor' style='color:black'>lost</span>"]},{"begin":"535.61","children":[],"end":"541.26","id":"149","language":"eng","lines":[" <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>usually</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>people</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:black'>away</span> <span class='transcriptor' style='color:black'>are</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>people</span> <span class='transcriptor' style='color:green'>who</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>directions</span> <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:black'>stare</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>i'll</span> <span class='transcriptor' style='color:green'>follow</span> <span class='transcriptor' style='color:green'>you</span>"]},{"begin":"541.65","children":[],"end":"543.13","id":"150","language":"eng","lines":[" <span class='transcriptor' style='color:green'>oh</span> <span class='transcriptor' style='color:black'>yea</span>"]},{"begin":"543.32","children":[],"end":"547.4200000000001","id":"151","language":"eng","lines":[" <span class='transcriptor' style='color:green'>okay</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>from</span> <span class='transcriptor' style='color:green'>here</span> <span class='transcriptor' style='color:green'>ah</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>outside</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>hive</span>"]},{"begin":"547.61","children":[],"end":"548.57","id":"152","language":"eng","lines":["<span class='transcriptor' style='color:red'>place</span>"]},{"begin":"548.71","children":[],"end":"549.87","id":"153","language":"eng","lines":[" <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>bus</span> <span class='transcriptor' style='color:green'>stop</span>"]},{"begin":"550.22","children":[],"end":"556.74","id":"154","language":"eng","lines":[" <span class='transcriptor' style='color:green'>take</span> <span class='transcriptor' style='color:green'>one</span> <span class='transcriptor' style='color:green'>seven</span> <span class='transcriptor' style='color:green'>nine</span> <span class='transcriptor' style='color:green'>doesn't</span> <span class='transcriptor' style='color:green'>matter</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>say</span> <span class='transcriptor' style='color:green'>your</span> <span class='transcriptor' style='color:black'>norway</span> <span class='transcriptor' style='color:green'>stick</span> <span class='transcriptor' style='color:green'>one</span> <span class='transcriptor' style='color:green'>seven</span> <span class='transcriptor' style='color:green'>nine</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>way</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>end</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>already</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"557.65","children":[],"end":"558.87","id":"155","language":"eng","lines":["<span class='transcriptor' style='color:red'>it</span>"]},{"begin":"559.20","children":[],"end":"561.0200000000001","id":"156","language":"eng","lines":[" <span class='transcriptor' style='color:green'>boon</span> <span class='transcriptor' style='color:green'>lay</span> <span class='transcriptor' style='color:green'>mrt</span> <span class='transcriptor' style='color:green'>station</span>"]},{"begin":"561.65","children":[],"end":"564.16","id":"157","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>mean</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>get</span> <span class='transcriptor' style='color:black'>at</span> <span class='transcriptor' style='color:green'>pioneer</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>pioneer</span>"]},{"begin":"565.34","children":[],"end":"567.82","id":"158","language":"eng","lines":[" <span class='transcriptor' style='color:green'>uh</span> <span class='transcriptor' style='color:black'>it's</span> <span class='transcriptor' style='color:green'>always</span> <span class='transcriptor' style='color:green'>crowded</span> <span class='transcriptor' style='color:green'>there</span>"]},{"begin":"569.37","children":[],"end":"571.05","id":"159","language":"eng","lines":[" <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>everyone</span> <span class='transcriptor' style='color:green'>gets</span> <span class='transcriptor' style='color:black'>down</span> <span class='transcriptor' style='color:green'>there</span>"]},{"begin":"572.28","children":[],"end":"573.99","id":"160","language":"eng","lines":[" <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:black'>will</span> <span class='transcriptor' style='color:green'>be</span> <span class='transcriptor' style='color:green'>different</span>"]},{"begin":"574.98","children":[],"end":"580.69","id":"161","language":"eng","lines":[" <span class='transcriptor' style='color:black'>wait</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:black'>am</span> <span class='transcriptor' style='color:black'>i</span> <span class='transcriptor' style='color:black'>so</span> <span class='transcriptor' style='color:black'>i'm</span> <span class='transcriptor' style='color:green'>at</span> <span class='transcriptor' style='color:green'>boon</span> <span class='transcriptor' style='color:green'>lay</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>then</span>"]},{"begin":"582.26","children":[],"end":"582.99","id":"162","language":"eng","lines":["<span class='transcriptor' style='color:green'>okay</span>"]},{"begin":"583.07","children":[],"end":"584.1400000000001","id":"163","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"584.43","children":[],"end":"588.53","id":"164","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:green'>erm</span> <span class='transcriptor' style='color:green'>boon</span> <span class='transcriptor' style='color:green'>lay</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>take</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>train</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>way</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>buona</span> <span class='transcriptor' style='color:green'>vista</span>"]},{"begin":"589.57","children":[],"end":"592.7900000000001","id":"165","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>from</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:green'>change</span> <span class='transcriptor' style='color:black'>at</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>blue</span> <span class='transcriptor' style='color:green'>line</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:black'>to</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span>"]},{"begin":"596.24","children":[],"end":"597.07","id":"166","language":"eng","lines":["<span class='transcriptor' style='color:green'>no</span>"]},{"begin":"598.93","children":[],"end":"601.9899999999999","id":"167","language":"eng","lines":[" <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>it</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>yellow</span> <span class='transcriptor' style='color:green'>or</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>it</span> <span class='transcriptor' style='color:green'>too</span> <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:black'>sian</span> <span class='transcriptor' style='color:black'>loh</span>"]},{"begin":"602.12","children":[],"end":"604.09","id":"168","language":"eng","lines":[" <span class='transcriptor' style='color:black'>there's</span> <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:black'>color</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>know</span>"]},{"begin":"604.78","children":[],"end":"606.97","id":"169","language":"eng","lines":[" <span class='transcriptor' style='color:black'>v-noise</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>still</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:black'>at</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span> <span class='transcriptor' style='color:green'>from</span> <span class='transcriptor' style='color:green'>there</span>"]},{"begin":"607.14","children":[],"end":"607.86","id":"170","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"608.35","children":[],"end":"612.19","id":"171","language":"eng","lines":[" <span class='transcriptor' style='color:green'>buona</span> <span class='transcriptor' style='color:green'>vista</span> <span class='transcriptor' style='color:green'>yellow</span> <span class='transcriptor' style='color:black'>line</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>holland</span> <span class='transcriptor' style='color:green'>village</span> <span class='transcriptor' style='color:black'>farrer</span> <span class='transcriptor' style='color:green'>park</span> <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span> <span class='transcriptor' style='color:green'>already</span>"]},{"begin":"613.97","children":[],"end":"616.5500000000001","id":"172","language":"eng","lines":[" <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:green'>change</span> <span class='transcriptor' style='color:green'>once</span> <span class='transcriptor' style='color:green'>at</span> <span class='transcriptor' style='color:green'>buona</span> <span class='transcriptor' style='color:green'>vista</span>"]},{"begin":"618.54","children":[],"end":"619.8199999999999","id":"173","language":"eng","lines":[" <span class='transcriptor' style='color:black'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>yellow</span> <span class='transcriptor' style='color:green'>line</span>"]},{"begin":"620.20","children":[],"end":"622.2","id":"174","language":"eng","lines":[" <span class='transcriptor' style='color:green'>ten</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>straight</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span> <span class='transcriptor' style='color:green'>already</span>"]},{"begin":"628.65","children":[],"end":"630.8299999999999","id":"175","language":"eng","lines":[" <span class='transcriptor' style='color:green'>maps</span> <span class='transcriptor' style='color:green'>maps</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:black'>kuwait</span>"]},{"begin":"637.52","children":[],"end":"639.3299999999999","id":"176","language":"eng","lines":[" <span class='transcriptor' style='color:black'>mushroom</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>best</span> <span class='transcriptor' style='color:green'>place</span> <span class='transcriptor' style='color:black'>tay</span>"]},{"begin":"641.05","children":[],"end":"642.42","id":"177","language":"eng","lines":[" <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:green'>got</span> <span class='transcriptor' style='color:green'>vouchers</span>"]},{"begin":"642.59","children":[],"end":"643.44","id":"178","language":"eng","lines":[" <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>stuff</span>"]},{"begin":"644.09","children":[],"end":"646.12","id":"179","language":"eng","lines":[" <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>lot</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:green'>chicken</span> <span class='transcriptor' style='color:green'>places</span> <span class='transcriptor' style='color:green'>in</span> <span class='transcriptor' style='color:green'>jurong</span>"]},{"begin":"646.58","children":[],"end":"648.74","id":"180","language":"eng","lines":[" <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>four</span> <span class='transcriptor' style='color:green'>fingers</span>"]},{"begin":"648.84","children":[],"end":"651.2900000000001","id":"181","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:black'>exactly</span> <span class='transcriptor' style='color:green'>four</span> <span class='transcriptor' style='color:green'>fingers</span> <span class='transcriptor' style='color:black'>is</span> <span class='transcriptor' style='color:black'>lah</span>"]},{"begin":"651.94","children":[],"end":"654.19","id":"182","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>recent</span> <span class='transcriptor' style='color:black'>pay</span> <span class='transcriptor' style='color:black'>law</span> <span class='transcriptor' style='color:green'>ten</span> <span class='transcriptor' style='color:black'>dollar</span> <span class='transcriptor' style='color:black'>chair</span>"]},{"begin":"655.03","children":[],"end":"656.8","id":"183","language":"eng","lines":[" <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>nms</span> <span class='transcriptor' style='color:black'>pack</span>"]},{"begin":"657.78","children":[],"end":"658.98","id":"184","language":"eng","lines":[" <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>welfare</span> <span class='transcriptor' style='color:green'>pack</span>"]},{"begin":"659.88","children":[],"end":"665.03","id":"185","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>when</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:black'>when</span> <span class='transcriptor' style='color:black'>you</span> <span class='transcriptor' style='color:red'>are</span> <span class='transcriptor' style='color:black'>there</span> <span class='transcriptor' style='color:green'>should</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>been</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>sad</span>"]},{"begin":"665.15","children":[],"end":"667.25","id":"186","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"668.43","children":[],"end":"671.18","id":"187","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>sad</span> <span class='transcriptor' style='color:red'>that</span> <span class='transcriptor' style='color:black'>gamers</span> <span class='transcriptor' style='color:black'>to</span> <span class='transcriptor' style='color:red'>attend</span> <span class='transcriptor' style='color:black'>or</span> <span class='transcriptor' style='color:green'>larger</span>"]},{"begin":"671.54","children":[],"end":"672.55","id":"188","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"674.71","children":[],"end":"676.0500000000001","id":"189","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:black'>ah</span>"]},{"begin":"676.75","children":[],"end":"678.93","id":"190","language":"eng","lines":[" <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>there</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>usually</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"679.03","children":[],"end":"681.66","id":"191","language":"eng","lines":[" <span class='transcriptor' style='color:red'>has</span> <span class='transcriptor' style='color:black'>hm</span> <span class='transcriptor' style='color:black'>special</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:green'>long</span> <span class='transcriptor' style='color:green'>time</span> <span class='transcriptor' style='color:green'>since</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>went</span> <span class='transcriptor' style='color:black'>up</span>"]},{"begin":"682.43","children":[],"end":"685.38","id":"192","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>am</span> <span class='transcriptor' style='color:green'>very</span> <span class='transcriptor' style='color:green'>pathetic</span> <span class='transcriptor' style='color:green'>lah</span> <span class='transcriptor' style='color:green'>okay</span> <span class='transcriptor' style='color:green'>never</span> <span class='transcriptor' style='color:green'>mind</span>"]},{"begin":"686.91","children":[],"end":"690.88","id":"193","language":"eng","lines":[" <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>sometimes</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>food</span> <span class='transcriptor' style='color:green'>court</span>"]},{"begin":"691.07","children":[],"end":"691.9200000000001","id":"194","language":"eng","lines":[" <span class='transcriptor' style='color:green'>then</span> <span class='transcriptor' style='color:green'>just</span>"]},{"begin":"693.13","children":[],"end":"693.93","id":"195","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span>"]},{"begin":"694.85","children":[],"end":"695.51","id":"196","language":"eng","lines":[" <span class='transcriptor' style='color:black'>why</span> <span class='transcriptor' style='color:green'>ah</span>"]},{"begin":"696.14","children":[],"end":"698.4399999999999","id":"197","language":"eng","lines":[" <span class='transcriptor' style='color:green'>okay</span> <span class='transcriptor' style='color:green'>very</span> <span class='transcriptor' style='color:black'>confused</span> <span class='transcriptor' style='color:green'>within</span> <span class='transcriptor' style='color:green'>jem</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>westgate</span>"]},{"begin":"698.92","children":[],"end":"700.04","id":"198","language":"eng","lines":["<span class='transcriptor' style='color:black'>um</span>"]},{"begin":"701.10","children":[],"end":"701.91","id":"199","language":"eng","lines":["<span class='transcriptor' style='color:green'>indoors</span>"]},{"begin":"702.19","children":[],"end":"702.9100000000001","id":"200","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"704.57","children":[],"end":"711.98","id":"201","language":"eng","lines":[" <span class='transcriptor' style='color:green'>actually</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>really</span> <span class='transcriptor' style='color:green'>care</span> <span class='transcriptor' style='color:green'>already</span> <span class='transcriptor' style='color:green'>leh</span> <span class='transcriptor' style='color:black'>cause</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:green'>randomly</span> <span class='transcriptor' style='color:black'>walking</span> <span class='transcriptor' style='color:black'>ah</span> <span class='transcriptor' style='color:black'>c</span> <span class='transcriptor' style='color:green'>f</span> <span class='transcriptor' style='color:black'>will</span> <span class='transcriptor' style='color:green'>play</span> <span class='transcriptor' style='color:black'>some</span> <span class='transcriptor' style='color:green'>expensive</span> <span class='transcriptor' style='color:green'>okay</span> <span class='transcriptor' style='color:green'>let's</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>eat</span> <span class='transcriptor' style='color:green'>there</span>"]},{"begin":"712.60","children":[],"end":"713.9300000000001","id":"202","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:black'>now</span> <span class='transcriptor' style='color:black'>v-noise</span>"]},{"begin":"719.55","children":[],"end":"723.2099999999999","id":"203","language":"eng","lines":[" <span class='transcriptor' style='color:black'>for</span> <span class='transcriptor' style='color:green'>lazy</span> <span class='transcriptor' style='color:green'>people</span> <span class='transcriptor' style='color:green'>convincing</span> <span class='transcriptor' style='color:green'>my</span> <span class='transcriptor' style='color:black'>cousin</span> <span class='transcriptor' style='color:black'>sugar</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"724.37","children":[],"end":"727.07","id":"204","language":"eng","lines":[" <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>jurong</span> <span class='transcriptor' style='color:green'>we</span> <span class='transcriptor' style='color:green'>watch</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>movie</span>"]},{"begin":"727.20","children":[],"end":"730.2800000000001","id":"205","language":"eng","lines":[" <span class='transcriptor' style='color:green'>provided</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>student</span> <span class='transcriptor' style='color:green'>price</span> <span class='transcriptor' style='color:green'>if</span> <span class='transcriptor' style='color:black'>not</span> <span class='transcriptor' style='color:green'>again</span> <span class='transcriptor' style='color:green'>too</span> <span class='transcriptor' style='color:green'>expensive</span>"]},{"begin":"730.40","children":[],"end":"735.18","id":"206","language":"eng","lines":[" <span class='transcriptor' style='color:green'>or</span> <span class='transcriptor' style='color:green'>we</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>on</span> <span class='transcriptor' style='color:green'>free</span> <span class='transcriptor' style='color:black'>eggs</span> <span class='transcriptor' style='color:green'>or</span> <span class='transcriptor' style='color:green'>we</span> <span class='transcriptor' style='color:green'>play</span> <span class='transcriptor' style='color:green'>ball</span> <span class='transcriptor' style='color:green'>games</span> <span class='transcriptor' style='color:green'>at</span> <span class='transcriptor' style='color:green'>home</span>"]},{"begin":"736.64","children":[],"end":"739.16","id":"207","language":"eng","lines":[" <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:green'>because</span> <span class='transcriptor' style='color:green'>we</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>money</span>"]},{"begin":"742.48","children":[],"end":"743.35","id":"208","language":"eng","lines":["<span class='transcriptor' style='color:black'>ah</span>"]},{"begin":"744.46","children":[],"end":"746.2800000000001","id":"209","language":"eng","lines":[" <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>very</span> <span class='transcriptor' style='color:green'>limited</span> <span class='transcriptor' style='color:green'>friends</span>"]},{"begin":"746.67","children":[],"end":"750.2299999999999","id":"210","language":"eng","lines":[" <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:black'>in</span> <span class='transcriptor' style='color:green'>now</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:black'>think</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>make</span> <span class='transcriptor' style='color:green'>more</span> <span class='transcriptor' style='color:green'>friends</span>"]},{"begin":"750.45","children":[],"end":"752.46","id":"211","language":"eng","lines":[" <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:black'>they</span> <span class='transcriptor' style='color:black'>are</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>reach</span> <span class='transcriptor' style='color:black'>of</span> <span class='transcriptor' style='color:green'>friends</span>"]},{"begin":"752.51","children":[],"end":"756.0699999999999","id":"212","language":"eng","lines":[" <span class='transcriptor' style='color:green'>who</span> <span class='transcriptor' style='color:green'>are</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>hey</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>three</span> <span class='transcriptor' style='color:green'>day</span> <span class='transcriptor' style='color:black'>very</span> <span class='transcriptor' style='color:green'>let's</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>overseas</span>"]},{"begin":"756.61","children":[],"end":"759.09","id":"213","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:black'>they</span> <span class='transcriptor' style='color:green'>can't</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>overseas</span> <span class='transcriptor' style='color:green'>so</span>"]},{"begin":"761.64","children":[],"end":"763.63","id":"214","language":"eng","lines":[" <span class='transcriptor' style='color:black'>then</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>my</span> <span class='transcriptor' style='color:green'>phone</span>"]},{"begin":"763.81","children":[],"end":"764.41","id":"215","language":"eng","lines":["<span class='transcriptor' style='color:black'>v-noise</span>"]},{"begin":"766.74","children":[],"end":"769.41","id":"216","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>that's</span> <span class='transcriptor' style='color:green'>how</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>feel</span> <span class='transcriptor' style='color:black'>like</span> <span class='transcriptor' style='color:green'>three</span> <span class='transcriptor' style='color:green'>or</span> <span class='transcriptor' style='color:green'>four</span> <span class='transcriptor' style='color:red'>v-noise</span>"]},{"begin":"776.61","children":[],"end":"777.8100000000001","id":"217","language":"eng","lines":[" <span class='transcriptor' style='color:black'>the</span> <span class='transcriptor' style='color:green'>stress</span>"]},{"begin":"778.49","children":[],"end":"779.63","id":"218","language":"eng","lines":[" <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>park</span>"]},{"begin":"779.95","children":[],"end":"781.35","id":"219","language":"eng","lines":[" <span class='transcriptor' style='color:black'>go</span> <span class='transcriptor' style='color:green'>at</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>movies</span>"]},{"begin":"784.27","children":[],"end":"786.06","id":"220","language":"eng","lines":[" <span class='transcriptor' style='color:green'>um</span> <span class='transcriptor' style='color:black'>library</span> <span class='transcriptor' style='color:green'>park</span> <span class='transcriptor' style='color:black'>s</span> <span class='transcriptor' style='color:red'>nah</span>"]},{"begin":"786.44","children":[],"end":"787.1500000000001","id":"221","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"788.24","children":[],"end":"790.02","id":"222","language":"eng","lines":[" <span class='transcriptor' style='color:black'>um</span> <span class='transcriptor' style='color:green'>oh</span> <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>again</span> <span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"790.52","children":[],"end":"795","id":"223","language":"eng","lines":[" <span class='transcriptor' style='color:green'>v-noise</span> <span class='transcriptor' style='color:black'>no</span> <span class='transcriptor' style='color:black'>idea</span> <span class='transcriptor' style='color:red'>already</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>okay</span> <span class='transcriptor' style='color:green'>erm</span> <span class='transcriptor' style='color:black'>there</span> <span class='transcriptor' style='color:green'>should</span> <span class='transcriptor' style='color:green'>be</span> <span class='transcriptor' style='color:red'>an</span> <span class='transcriptor' style='color:green'>mrt</span> <span class='transcriptor' style='color:green'>station</span> <span class='transcriptor' style='color:green'>leh</span>"]},{"begin":"797.00","children":[],"end":"798.92","id":"224","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:black'>v-noise</span>"]},{"begin":"799.45","children":[],"end":"800.84","id":"225","language":"eng","lines":[" <span class='transcriptor' style='color:black'>v-noise</span> <span class='transcriptor' style='color:green'>oh</span> <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"802.49","children":[],"end":"804.38","id":"226","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:black'>wah</span> <span class='transcriptor' style='color:black'>eh</span> <span class='transcriptor' style='color:green'>is</span> <span class='transcriptor' style='color:green'>it</span> <span class='transcriptor' style='color:green'>like</span>"]},{"begin":"804.65","children":[],"end":"806.76","id":"227","language":"eng","lines":[" <span class='transcriptor' style='color:green'>ah</span> <span class='transcriptor' style='color:green'>oh</span>"]},{"begin":"807.24","children":[],"end":"809.26","id":"228","language":"eng","lines":[" <span class='transcriptor' style='color:black'>k</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>idea</span>"]},{"begin":"809.94","children":[],"end":"812.34","id":"229","language":"eng","lines":[" <span class='transcriptor' style='color:black'>yeah</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>from</span>"]},{"begin":"812.36","children":[],"end":"814.95","id":"230","language":"eng","lines":[" <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>fab</span> <span class='transcriptor' style='color:green'>park</span> <span class='transcriptor' style='color:green'>mrt</span>"]},{"begin":"815.66","children":[],"end":"818.42","id":"231","language":"eng","lines":[" <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>walk</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>entire</span> <span class='transcriptor' style='color:green'>business</span> <span class='transcriptor' style='color:green'>labrador</span> <span class='transcriptor' style='color:green'>park</span>"]},{"begin":"818.78","children":[],"end":"820.25","id":"232","language":"eng","lines":[" <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>connected</span>"]},{"begin":"820.48","children":[],"end":"823.2","id":"233","language":"eng","lines":[" <span class='transcriptor' style='color:black'>price</span> <span class='transcriptor' style='color:black'>five</span> <span class='transcriptor' style='color:black'>lah</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>such</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>long</span> <span class='transcriptor' style='color:green'>walk</span>"]},{"begin":"823.87","children":[],"end":"827.23","id":"234","language":"eng","lines":[" <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:black'>um</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>nice</span> <span class='transcriptor' style='color:black'>have</span> <span class='transcriptor' style='color:green'>seen</span> <span class='transcriptor' style='color:green'>pictures</span>"]},{"begin":"834.25","children":[],"end":"834.91","id":"235","language":"eng","lines":["<span class='transcriptor' style='color:red'>uh-huh</span>"]},{"begin":"835.39","children":[],"end":"837.08","id":"236","language":"eng","lines":["<span class='transcriptor' style='color:black'>tampa</span>"]},{"begin":"837.61","children":[],"end":"840.13","id":"237","language":"eng","lines":[" <span class='transcriptor' style='color:black'>kao</span> <span class='transcriptor' style='color:black'>chih</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:black'>spare</span> <span class='transcriptor' style='color:green'>culture</span>"]},{"begin":"840.23","children":[],"end":"841.8100000000001","id":"238","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"842.15","children":[],"end":"844.6","id":"239","language":"eng","lines":[" <span class='transcriptor' style='color:black'>lot</span> <span class='transcriptor' style='color:black'>of</span> <span class='transcriptor' style='color:green'>culture</span> <span class='transcriptor' style='color:black'>intervals</span>"]},{"begin":"846.23","children":[],"end":"849.86","id":"240","language":"eng","lines":[" <span class='transcriptor' style='color:green'>museums</span> <span class='transcriptor' style='color:green'>singapore</span> <span class='transcriptor' style='color:green'>doesn't</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>very</span> <span class='transcriptor' style='color:green'>nice</span> <span class='transcriptor' style='color:black'>museum</span>"]},{"begin":"850.62","children":[],"end":"851.51","id":"241","language":"eng","lines":["<span class='transcriptor' style='color:green'>yes</span>"]},{"begin":"851.66","children":[],"end":"853.3399999999999","id":"242","language":"eng","lines":[" <span class='transcriptor' style='color:green'>throughout</span> <span class='transcriptor' style='color:green'>primary</span> <span class='transcriptor' style='color:green'>school</span>"]},{"begin":"853.91","children":[],"end":"855.55","id":"243","language":"eng","lines":[" <span class='transcriptor' style='color:green'>it</span> <span class='transcriptor' style='color:green'>was</span> <span class='transcriptor' style='color:green'>boring</span>"]},{"begin":"856.22","children":[],"end":"858.5600000000001","id":"244","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>didn't</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>museum</span>"]},{"begin":"858.81","children":[],"end":"859.6199999999999","id":"245","language":"eng","lines":["<span class='transcriptor' style='color:black'>uh-huh</span>"]},{"begin":"861.86","children":[],"end":"863.03","id":"246","language":"eng","lines":["<span class='transcriptor' style='color:black'>libraries</span>"]},{"begin":"866.26","children":[],"end":"868.33","id":"247","language":"eng","lines":[" <span class='transcriptor' style='color:black'>i'm</span> <span class='transcriptor' style='color:black'>going</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>bukit</span> <span class='transcriptor' style='color:green'>panjang</span> <span class='transcriptor' style='color:black'>ah</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>quite</span> <span class='transcriptor' style='color:green'>nice</span>"]},{"begin":"869.26","children":[],"end":"875.89","id":"248","language":"eng","lines":[" <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:black'>the</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>big</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>like</span> <span class='transcriptor' style='color:green'>between</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>bookshelves</span> <span class='transcriptor' style='color:green'>are</span> <span class='transcriptor' style='color:green'>spaces</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>sit</span> <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:black'>mee</span> <span class='transcriptor' style='color:black'>laksa</span> <span class='transcriptor' style='color:black'>and</span> <span class='transcriptor' style='color:green'>study</span>"]},{"begin":"876.17","children":[],"end":"881.62","id":"249","language":"eng","lines":[" <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>there's</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:black'>hole</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>when</span> <span class='transcriptor' style='color:black'>the</span> <span class='transcriptor' style='color:green'>entire</span> <span class='transcriptor' style='color:green'>conference</span> <span class='transcriptor' style='color:green'>room</span> <span class='transcriptor' style='color:green'>where</span> <span class='transcriptor' style='color:green'>people</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>study</span>"]},{"begin":"882.00","children":[],"end":"883.77","id":"250","language":"eng","lines":[" <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>always</span> <span class='transcriptor' style='color:black'>quite</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:black'>bit</span> <span class='transcriptor' style='color:green'>because</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>bet</span>"]},{"begin":"884.00","children":[],"end":"885.74","id":"251","language":"eng","lines":[" <span class='transcriptor' style='color:green'>because</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>lot</span> <span class='transcriptor' style='color:green'>of</span> <span class='transcriptor' style='color:green'>people</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>study</span> <span class='transcriptor' style='color:green'>leh</span>"]},{"begin":"885.90","children":[],"end":"889.12","id":"252","language":"eng","lines":[" <span class='transcriptor' style='color:red'>so</span> <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>la</span> <span class='transcriptor' style='color:black'>or</span> <span class='transcriptor' style='color:green'>another</span> <span class='transcriptor' style='color:black'>law</span>"]},{"begin":"889.60","children":[],"end":"890.2","id":"253","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"890.40","children":[],"end":"891.27","id":"254","language":"eng","lines":[" <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>nice</span>"]},{"begin":"898.36","children":[],"end":"899.54","id":"255","language":"eng","lines":[" <span class='transcriptor' style='color:black'>weekend</span> <span class='transcriptor' style='color:green'>sleep</span>"]},{"begin":"900.65","children":[],"end":"904.4599999999999","id":"256","language":"eng","lines":[" <span class='transcriptor' style='color:green'>you</span> <span class='transcriptor' style='color:green'>know</span> <span class='transcriptor' style='color:green'>i'm</span> <span class='transcriptor' style='color:green'>never</span> <span class='transcriptor' style='color:black'>gonna</span> <span class='transcriptor' style='color:black'>like</span> <span class='transcriptor' style='color:black'>work</span> <span class='transcriptor' style='color:black'>v-noise</span>"]},{"begin":"904.63","children":[],"end":"907.55","id":"257","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>projects</span>"]},{"begin":"907.67","children":[],"end":"908.66","id":"258","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"909.66","children":[],"end":"911.0799999999999","id":"259","language":"eng","lines":[" <span class='transcriptor' style='color:black'>no</span> <span class='transcriptor' style='color:green'>it's</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>those</span> <span class='transcriptor' style='color:green'>online</span> <span class='transcriptor' style='color:red'>pa</span>"]},{"begin":"911.44","children":[],"end":"912.4000000000001","id":"260","language":"eng","lines":["<span class='transcriptor' style='color:green'>essays</span>"]},{"begin":"913.26","children":[],"end":"916.11","id":"261","language":"eng","lines":[" <span class='transcriptor' style='color:green'>and</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:black'>cat</span> <span class='transcriptor' style='color:green'>comes</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>had</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>go</span> <span class='transcriptor' style='color:green'>all</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>way</span> <span class='transcriptor' style='color:green'>to</span>"]},{"begin":"916.31","children":[],"end":"918.05","id":"262","language":"eng","lines":[" <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>botanic</span> <span class='transcriptor' style='color:green'>gardens</span> <span class='transcriptor' style='color:green'>for</span> <span class='transcriptor' style='color:green'>that</span>"]},{"begin":"919.72","children":[],"end":"920.86","id":"263","language":"eng","lines":[" <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:black'>cab</span> <span class='transcriptor' style='color:black'>comes</span>"]},{"begin":"921.86","children":[],"end":"923.63","id":"264","language":"eng","lines":[" <span class='transcriptor' style='color:black'>on</span> <span class='transcriptor' style='color:green'>how</span> <span class='transcriptor' style='color:black'>he</span> <span class='transcriptor' style='color:green'>didn't</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:green'>either</span>"]},{"begin":"924.93","children":[],"end":"926.66","id":"265","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:black'>cannot</span> <span class='transcriptor' style='color:green'>make</span> <span class='transcriptor' style='color:green'>communication</span>"]},{"begin":"927.91","children":[],"end":"928.64","id":"266","language":"eng","lines":["<span class='transcriptor' style='color:green'>oh</span>"]},{"begin":"928.77","children":[],"end":"931.28","id":"267","language":"eng","lines":[" <span class='transcriptor' style='color:black'>for</span> <span class='transcriptor' style='color:black'>its</span> <span class='transcriptor' style='color:black'>part</span> <span class='transcriptor' style='color:black'>right</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>don't</span> <span class='transcriptor' style='color:green'>think</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>need</span> <span class='transcriptor' style='color:green'>it</span>"]},{"begin":"932.05","children":[],"end":"932.88","id":"268","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"933.49","children":[],"end":"934.35","id":"269","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:black'>don't</span> <span class='transcriptor' style='color:black'>want</span> <span class='transcriptor' style='color:black'>it</span>"]},{"begin":"935.76","children":[],"end":"937.23","id":"270","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"944.56","children":[],"end":"945.8599999999999","id":"271","language":"eng","lines":[" <span class='transcriptor' style='color:green'>yeah</span> <span class='transcriptor' style='color:green'>but</span>"]},{"begin":"945.92","children":[],"end":"946.54","id":"272","language":"eng","lines":["<span class='transcriptor' style='color:red'>that's</span>"]},{"begin":"946.59","children":[],"end":"947.63","id":"273","language":"eng","lines":["<span class='transcriptor' style='color:green'>anyone</span>"]},{"begin":"950.19","children":[],"end":"950.85","id":"274","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"955.99","children":[],"end":"956.95","id":"275","language":"eng","lines":[" <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:black'>song</span> <span class='transcriptor' style='color:black'>sauce</span>"]},{"begin":"957.47","children":[],"end":"959.7","id":"276","language":"eng","lines":[" <span class='transcriptor' style='color:green'>so</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>didn't</span> <span class='transcriptor' style='color:green'>check</span> <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>expiry</span> <span class='transcriptor' style='color:green'>date</span> <span class='transcriptor' style='color:green'>with</span> <span class='transcriptor' style='color:red'>whatever</span>"]},{"begin":"967.70","children":[],"end":"969.08","id":"277","language":"eng","lines":[" <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:black'>hi</span>"]},{"begin":"969.12","children":[],"end":"974.71","id":"278","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>recently</span> <span class='transcriptor' style='color:green'>went</span> <span class='transcriptor' style='color:green'>to</span> <span class='transcriptor' style='color:green'>n</span> <span class='transcriptor' style='color:green'>t</span> <span class='transcriptor' style='color:green'>u</span> <span class='transcriptor' style='color:green'>c</span> <span class='transcriptor' style='color:black'>n</span> <span class='transcriptor' style='color:black'>n</span> <span class='transcriptor' style='color:green'>bought</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:green'>product</span> <span class='transcriptor' style='color:green'>but</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>have</span> <span class='transcriptor' style='color:green'>now</span> <span class='transcriptor' style='color:black'>realise</span> <span class='transcriptor' style='color:black'>it's</span> <span class='transcriptor' style='color:green'>expired</span>"]},{"begin":"975.00","children":[],"end":"976.29","id":"279","language":"eng","lines":[" <span class='transcriptor' style='color:green'>can</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>return</span> <span class='transcriptor' style='color:green'>it</span>"]},{"begin":"978.50","children":[],"end":"979.41","id":"280","language":"eng","lines":["<span class='transcriptor' style='color:green'>celine</span>"]},{"begin":"984.43","children":[],"end":"985.3199999999999","id":"281","language":"eng","lines":["<span class='transcriptor' style='color:green'>oats</span>"]},{"begin":"989.48","children":[],"end":"990.6","id":"282","language":"eng","lines":[" <span class='transcriptor' style='color:green'>just</span> <span class='transcriptor' style='color:green'>yesterday</span>"]},{"begin":"994.43","children":[],"end":"995.3","id":"283","language":"eng","lines":["<span class='transcriptor' style='color:green'>no</span>"]},{"begin":"1001.86","children":[],"end":"1002.79","id":"284","language":"eng","lines":[" <span class='transcriptor' style='color:green'>for</span> <span class='transcriptor' style='color:black'>a</span> <span class='transcriptor' style='color:green'>year</span>"]},{"begin":"1003.42","children":[],"end":"1004.11","id":"285","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"1011.05","children":[],"end":"1011.67","id":"286","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"1012.42","children":[],"end":"1013.04","id":"287","language":"eng","lines":["<span class='transcriptor' style='color:red'>uh-huh</span>"]},{"begin":"1017.36","children":[],"end":"1018.38","id":"288","language":"eng","lines":[" <span class='transcriptor' style='color:green'>they</span> <span class='transcriptor' style='color:green'>look</span>"]},{"begin":"1019.18","children":[],"end":"1021.16","id":"289","language":"eng","lines":[" <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>haven't</span> <span class='transcriptor' style='color:green'>opened</span> <span class='transcriptor' style='color:green'>that</span> <span class='transcriptor' style='color:black'>should</span> <span class='transcriptor' style='color:black'>like</span> <span class='transcriptor' style='color:black'>open</span> <span class='transcriptor' style='color:black'>air</span>"]},{"begin":"1022.28","children":[],"end":"1023.51","id":"290","language":"eng","lines":[" <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>s</span>"]},{"begin":"1029.28","children":[],"end":"1030.76","id":"291","language":"eng","lines":[" <span class='transcriptor' style='color:green'>the</span> <span class='transcriptor' style='color:green'>one</span> <span class='transcriptor' style='color:green'>at</span> <span class='transcriptor' style='color:green'>choa</span> <span class='transcriptor' style='color:green'>chu</span> <span class='transcriptor' style='color:green'>kang</span>"]},{"begin":"1032.27","children":[],"end":"1033.12","id":"292","language":"eng","lines":[" <span class='transcriptor' style='color:black'>new</span> <span class='transcriptor' style='color:black'>t</span>"]},{"begin":"1033.77","children":[],"end":"1034.45","id":"293","language":"eng","lines":["<span class='transcriptor' style='color:black'>no</span>"]},{"begin":"1035.59","children":[],"end":"1036.25","id":"294","language":"eng","lines":["<span class='transcriptor' style='color:black'>yeah</span>"]},{"begin":"1037.94","children":[],"end":"1039.1200000000001","id":"295","language":"eng","lines":[" <span class='transcriptor' style='color:green'>one</span> <span class='transcriptor' style='color:green'>station</span> <span class='transcriptor' style='color:green'>away</span>"]},{"begin":"1045.20","children":[],"end":"1046.2","id":"296","language":"eng","lines":["<span class='transcriptor' style='color:green'>yesterday</span>"]},{"begin":"1053.44","children":[],"end":"1054.25","id":"297","language":"eng","lines":["<span class='transcriptor' style='color:green'>yeah</span>"]},{"begin":"1056.02","children":[],"end":"1056.84","id":"298","language":"eng","lines":["<span class='transcriptor' style='color:green'>cash</span>"]},{"begin":"1058.31","children":[],"end":"1058.9299999999998","id":"299","language":"eng","lines":["<span class='transcriptor' style='color:black'>um-hum</span>"]},{"begin":"1072.41","children":[],"end":"1074.3200000000002","id":"300","language":"eng","lines":[" <span class='transcriptor' style='color:green'>okay</span> <span class='transcriptor' style='color:black'>can</span> <span class='transcriptor' style='color:green'>i</span> <span class='transcriptor' style='color:green'>get</span> <span class='transcriptor' style='color:green'>a</span> <span class='transcriptor' style='color:green'>full</span> <span class='transcriptor' style='color:green'>refund</span>"]},{"begin":"1075.45","children":[],"end":"1076.19","id":"301","language":"eng","lines":["<span class='transcriptor' style='color:green'>okay</span>"]},{"begin":"1081.19","children":[],"end":"1082.05","id":"302","language":"eng","lines":["<span class='transcriptor' style='color:green'>v-noise</span>"]},{"begin":"1087.52","children":[],"end":"1088.66","id":"303","language":"eng","lines":["<span class='transcriptor' style='color:green'>okay</span>"]},{"begin":"1093.54","children":[],"end":"1094.61","id":"304","language":"eng","lines":[" <span class='transcriptor' style='color:green'>no</span> <span class='transcriptor' style='color:green'>not</span> <span class='transcriptor' style='color:green'>really</span>"]},{"begin":"1099.68","children":[],"end":"1101.0700000000002","id":"305","language":"eng","lines":[" <span class='transcriptor' style='color:green'>okay</span> <span class='transcriptor' style='color:green'>thank</span> <span class='transcriptor' style='color:green'>you</span>"]}];
-    var actions = [
-      {
-        class: '.red.minus.icon',
-        title: 'Reduce annotation end by 0.010s',
-        action: (annotation, i, annotations, opts) => {
-          var next;
-          var delta = 0.010;
-          annotation.end -= delta;
 
-          if (opts.linkEndpoints) {
-            next = annotations[i + 1];
-            next && (next.start -= delta);
-          }
-        }
-      },
-      {
-        class: '.green.plus.icon',
-        title: 'Increase annotation end by 0.010s',
-        action: (annotation, i, annotations, opts) => {
-          var next;
-          var delta = 0.010;
-          annotation.end += delta;
+    $container.on("dragenter", ".track-drop", function (e) {
+      e.preventDefault();
+      e.target.classList.add("disabled");
+    });
 
-          if (opts.linkEndpoints) {
-            next = annotations[i + 1];
-            next && (next.start += delta);
-          }
-        }
-      },
-      {
-        class: '.red.scissors',
-        title: 'Split annotation in half',
-        action: (annotation, i, annotations) => {
-          const halfDuration = (annotation.end - annotation.start) / 2;
+    $container.on("dragover", ".track-drop", function (e) {
+      e.preventDefault();
+    });
 
-          annotations.splice(i + 1, 0, {
-            id: 'test',
-            start: annotation.end - halfDuration,
-            end: annotation.end,
-            lines: ['----'],
-            lang: 'en',
-          });
+    $container.on("dragleave", ".track-drop", function (e) {
+      e.preventDefault();
+      e.target.classList.remove("disabled");
+    });
 
-          annotation.end = annotation.start + halfDuration;
-        }
-      },
-      {
-        class: 'fa.fa-trash',
-        title: 'Delete annotation',
-        action: (annotation, i, annotations) => {
-          annotations.splice(i, 1);
-        }
-      }
-    ];
+    $container.on("drop", ".track-drop", e => {
+      e.preventDefault();
+      e.target.classList.remove("disabled");
 
-    var playlist = WaveformPlaylist.init({
-      samplesPerPixel: 1000,
-      waveHeight: 100,
-      // isAutomaticScroll: true,
-      container: document.getElementById("playlist"),
-      state: 'cursor',
-      colors: {
-        waveOutlineColor: 'black',
-        timeColor: 'grey',
-        fadeColor: 'black'
-      },
-      timescale: true,
-      controls: {
-        // show: true, //whether or not to include the track controls
-        width: 200 //width of controls in pixels
-      },
-      annotationList: {
-        annotations: notes,
-        controls: actions,
-        editable: true,
-        isContinuousPlay: false,
-        linkEndpoints: true
-      },
-      seekStyle : 'line',
-      zoomLevels: [100, 500, 1000, 3000, 5000],
-      // isAutomaticScroll: true,
-      options: {
-        isAutomaticScroll: true
+      var dropEvent = e.originalEvent;
+
+      for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
+        // ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
+        console.log('File dropped successfully');
+        console.log(dropEvent.dataTransfer.files[i]);
+        let file = dropEvent.dataTransfer.files[i]
+        this.set('audioFile', file);
+        this.send('loadWaveFile', this.get('audioFile'), this.get('notes'));
+        // _this.set('sourceAudioFile', dropEvent.dataTransfer.files[i]);
       }
     });
-    console.log('playlist defined', playlist);
-    var _this = this;
-    playlist.load([
-      {
-        "src": 'https://raw.githubusercontent.com/CosmicCoder96/Transcriptor/master/media/Singapores%2021st-Century.mp3?token=AQdBxQxf-uZaeyceGQuIs7inkHZxv_CYks5cZODrwA%3D%3D',
-        "name": "Vocals",
-        "fadeIn": {
-          "duration": 0.5
-        },
-        "fadeOut": {
-          "duration": 0.5
-        },
-        "cuein": 5.918,
-        // "cueout": 14.5,
-        "customClass": "vocals",
-        "waveOutlineColor": 'white'
+
+// transcription drop
+    $container.on("dragenter", ".transcription-drop", function (e) {
+      e.preventDefault();
+      e.target.classList.add("disabled");
+    });
+
+    $container.on("dragover", ".transcription-drop", function (e) {
+      e.preventDefault();
+    });
+
+    $container.on("dragleave", ".transcription-drop", function (e) {
+      e.preventDefault();
+      e.target.classList.remove("disabled");
+    });
+
+    $container.on("drop", ".transcription-drop", function (e) {
+      e.preventDefault();
+      e.target.classList.remove("disabled");
+
+      var dropEvent = e.originalEvent;
+      const file = dropEvent.dataTransfer.files[0];
+      let reader = new FileReader();
+      reader.onload = function (e) {
+        // get file content
+        var notes = JSON.parse(e.target.result);
+        console.log(notes);
+        _this.set('notes', notes);
+
       }
-    ]).then(function() {
-      //can do stuff with the playlist.
+      reader.readAsText(file);
 
-      //initialize the WAV exporter.
-      console.log('Player initialised successfully.')
-      playlist.initExporter();
-      var ee = playlist.getEventEmitter();
-      var $container = $("body");
-      var $timeFormat = $container.find('.time-format');
-      var $audioStart = $container.find('.audio-start');
-      var $audioEnd = $container.find('.audio-end');
-      var $time = $container.find('.audio-pos');
+      // for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
+      //   ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
+      // }
+    });
 
-      var format = "hh:mm:ss.uuu";
-      var startTime = 0;
-      var endTime = 0;
-      var audioPos = 0;
-      var downloadUrl = undefined;
-      var isLooping = false;
-      var playoutPromises;
 
-      function toggleActive(node) {
-        var active = node.parentNode.querySelectorAll('.active');
-        var i = 0, len = active.length;
+  },
+  actions:{ loadWaveFile(audioFile, notes) {
 
-        for (; i < len; i++) {
-          active[i].classList.remove('active');
-        }
+      var actions = [
+        {
+          class: '.red.minus.icon',
+          title: 'Reduce annotation end by 0.010s',
+          action: (annotation, i, annotations, opts) => {
+            var next;
+            var delta = 0.010;
+            annotation.end -= delta;
 
-        node.classList.toggle('active');
-      }
-
-      function cueFormatters(format) {
-
-        function clockFormat(seconds, decimals) {
-          var hours,
-            minutes,
-            secs,
-            result;
-
-          hours = parseInt(seconds / 3600, 10) % 24;
-          minutes = parseInt(seconds / 60, 10) % 60;
-          secs = seconds % 60;
-          secs = secs.toFixed(decimals);
-
-          result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (secs < 10 ? "0" + secs : secs);
-
-          return result;
-        }
-
-        var formats = {
-          "seconds": function (seconds) {
-            return seconds.toFixed(0);
-          },
-          "thousandths": function (seconds) {
-            return seconds.toFixed(3);
-          },
-          "hh:mm:ss": function (seconds) {
-            return clockFormat(seconds, 0);
-          },
-          "hh:mm:ss.u": function (seconds) {
-            return clockFormat(seconds, 1);
-          },
-          "hh:mm:ss.uu": function (seconds) {
-            return clockFormat(seconds, 2);
-          },
-          "hh:mm:ss.uuu": function (seconds) {
-            return clockFormat(seconds, 3);
+            if (opts.linkEndpoints) {
+              next = annotations[i + 1];
+              next && (next.start -= delta);
+            }
           }
-        };
+        },
+        {
+          class: '.green.plus.icon',
+          title: 'Increase annotation end by 0.010s',
+          action: (annotation, i, annotations, opts) => {
+            var next;
+            var delta = 0.010;
+            annotation.end += delta;
 
-        return formats[format];
-      }
+            if (opts.linkEndpoints) {
+              next = annotations[i + 1];
+              next && (next.start += delta);
+            }
+          }
+        },
+        {
+          class: '.red.scissors',
+          title: 'Split annotation in half',
+          action: (annotation, i, annotations) => {
+            const halfDuration = (annotation.end - annotation.start) / 2;
 
-      function updateSelect(start, end) {
-        if (start < end) {
-          $('.btn-trim-audio').removeClass('disabled');
-          $('.btn-loop').removeClass('disabled');
+            annotations.splice(i + 1, 0, {
+              id: 'test',
+              start: annotation.end - halfDuration,
+              end: annotation.end,
+              lines: ['----'],
+              lang: 'en',
+            });
+
+            annotation.end = annotation.start + halfDuration;
+          }
+        },
+        {
+          class: 'fa.fa-trash',
+          title: 'Delete annotation',
+          action: (annotation, i, annotations) => {
+            annotations.splice(i, 1);
+          }
         }
-        else {
-          $('.btn-trim-audio').addClass('disabled');
-          $('.btn-loop').addClass('disabled');
+      ];
+
+      var playlist = WaveformPlaylist.init({
+        samplesPerPixel: 1000,
+        waveHeight: 100,
+        // isAutomaticScroll: true,
+        container: document.getElementById("playlist"),
+        state: 'cursor',
+        colors: {
+          waveOutlineColor: 'black',
+          timeColor: 'grey',
+          fadeColor: 'black'
+        },
+        timescale: true,
+        controls: {
+          // show: true, //whether or not to include the track controls
+          width: 200 //width of controls in pixels
+        },
+        annotationList: {
+          annotations: notes,
+          controls: actions,
+          editable: true,
+          isContinuousPlay: false,
+          linkEndpoints: true
+        },
+        seekStyle : 'line',
+        zoomLevels: [100, 500, 1000, 3000, 5000],
+        // isAutomaticScroll: true,
+        options: {
+          isAutomaticScroll: true
+        }
+      });
+      console.log('playlist defined', playlist);
+
+      var _this = this;
+      playlist.load([
+        {
+          "src": audioFile,
+          "name": "Vocals",
+          "fadeIn": {
+            "duration": 0.5
+          },
+          "fadeOut": {
+            "duration": 0.5
+          },
+          "cuein": 5.918,
+          // "cueout": 14.5,
+          "customClass": "vocals",
+          "waveOutlineColor": 'white'
+        }
+      ]).then(function () {
+        //can do stuff with the playlist.
+
+        //initialize the WAV exporter.
+        console.log('Player initialised successfully.')
+        playlist.initExporter();
+        var ee = playlist.getEventEmitter();
+        var $container = $("body");
+        var $timeFormat = $container.find('.time-format');
+        var $audioStart = $container.find('.audio-start');
+        var $audioEnd = $container.find('.audio-end');
+        var $time = $container.find('.audio-pos');
+
+        var format = "hh:mm:ss.uuu";
+        var startTime = 0;
+        var endTime = 0;
+        var audioPos = 0;
+        var downloadUrl = undefined;
+        var isLooping = false;
+        var playoutPromises;
+
+        function toggleActive(node) {
+          var active = node.parentNode.querySelectorAll('.active');
+          var i = 0, len = active.length;
+
+          for (; i < len; i++) {
+            active[i].classList.remove('active');
+          }
+
+          node.classList.toggle('active');
         }
 
-        $audioStart.val(cueFormatters(format)(start));
-        $audioEnd.val(cueFormatters(format)(end));
+        function cueFormatters(format) {
 
-        startTime = start;
-        endTime = end;
-      }
+          function clockFormat(seconds, decimals) {
+            var hours,
+              minutes,
+              secs,
+              result;
 
-      function updateTime(time) {
-        $time.html(cueFormatters(format)(time));
+            hours = parseInt(seconds / 3600, 10) % 24;
+            minutes = parseInt(seconds / 60, 10) % 60;
+            secs = seconds % 60;
+            secs = secs.toFixed(decimals);
 
-        audioPos = time;
-      }
+            result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (secs < 10 ? "0" + secs : secs);
 
-      updateSelect(startTime, endTime);
-      updateTime(audioPos);
+            return result;
+          }
+
+          var formats = {
+            "seconds": function (seconds) {
+              return seconds.toFixed(0);
+            },
+            "thousandths": function (seconds) {
+              return seconds.toFixed(3);
+            },
+            "hh:mm:ss": function (seconds) {
+              return clockFormat(seconds, 0);
+            },
+            "hh:mm:ss.u": function (seconds) {
+              return clockFormat(seconds, 1);
+            },
+            "hh:mm:ss.uu": function (seconds) {
+              return clockFormat(seconds, 2);
+            },
+            "hh:mm:ss.uuu": function (seconds) {
+              return clockFormat(seconds, 3);
+            }
+          };
+
+          return formats[format];
+        }
+
+        function updateSelect(start, end) {
+          if (start < end) {
+            $('.btn-trim-audio').removeClass('disabled');
+            $('.btn-loop').removeClass('disabled');
+          } else {
+            $('.btn-trim-audio').addClass('disabled');
+            $('.btn-loop').addClass('disabled');
+          }
+
+          $audioStart.val(cueFormatters(format)(start));
+          $audioEnd.val(cueFormatters(format)(end));
+
+          startTime = start;
+          endTime = end;
+        }
+
+        function updateTime(time) {
+          $time.html(cueFormatters(format)(time));
+
+          audioPos = time;
+        }
+
+        updateSelect(startTime, endTime);
+        updateTime(audioPos);
 
 
-
-      /*
-      * Code below sets up events to send messages to the playlist.
-      */
+        /*
+        * Code below sets up events to send messages to the playlist.
+        */
 // $container.on("click", ".btn-playlist-state-group", function() {
 //   //reset these for now.
 //   $('.btn-fade-state-group').addClass('hidden');
@@ -454,328 +300,272 @@ export default Component.extend({
 //   }
 // });
 
-      $container.on("click", ".btn-annotations-download", function() {
-        ee.emit("annotationsrequest");
-      });
-
-      $container.on("click", ".btn-loop", function() {
-        isLooping = true;
-        playoutPromises = playlist.play(startTime, endTime);
-      });
-
-      $container.on("click", ".btn-play", function() {
-        ee.emit("play");
-
-      });
-
-      $container.on("click", ".btn-pause", function() {
-        isLooping = false;
-        ee.emit("pause");
-      });
-
-      $container.on("click", ".btn-stop", function() {
-        isLooping = false;
-        ee.emit("stop");
-      });
-
-      $container.on("click", ".btn-rewind", function() {
-        isLooping = false;
-        ee.emit("rewind");
-      });
-
-      $container.on("click", ".btn-fast-forward", function() {
-        isLooping = false;
-        ee.emit("fastforward");
-      });
-
-      $container.on("click", ".btn-clear", function() {
-        isLooping = false;
-        ee.emit("clear");
-      });
-
-      $container.on("click", ".btn-record", function() {
-        ee.emit("record");
-      });
-
-//track interaction states
-      $container.on("click", ".btn-cursor", function() {
-        ee.emit("statechange", "cursor");
-        toggleActive(this);
-      });
-
-      $container.on("click", ".btn-select", function() {
-        ee.emit("statechange", "select");
-        toggleActive(this);
-      });
-
-      $container.on("click", ".btn-shift", function() {
-        ee.emit("statechange", "shift");
-        toggleActive(this);
-      });
-
-      $container.on("click", ".btn-fadein", function() {
-        ee.emit("statechange", "fadein");
-        toggleActive(this);
-      });
-
-      $container.on("click", ".btn-fadeout", function() {
-        ee.emit("statechange", "fadeout");
-        toggleActive(this);
-      });
-
-//fade types
-      $container.on("click", ".btn-logarithmic", function() {
-        ee.emit("fadetype", "logarithmic");
-        toggleActive(this);
-      });
-
-      $container.on("click", ".btn-linear", function() {
-        ee.emit("fadetype", "linear");
-        toggleActive(this);
-      });
-
-      $container.on("click", ".btn-scurve", function() {
-        ee.emit("fadetype", "sCurve");
-        toggleActive(this);
-      });
-
-      $container.on("click", ".btn-exponential", function() {
-        ee.emit("fadetype", "exponential");
-        toggleActive(this);
-      });
-
-//zoom buttons
-      $container.on("click", ".btn-zoom-in", function() {
-        ee.emit("zoomin");
-        console.log('you clicked zoom');
-      });
-
-      $container.on("click", ".btn-zoom-out", function() {
-        ee.emit("zoomout");
-      });
-
-      $container.on("click", ".btn-trim-audio", function() {
-        ee.emit("trim");
-      });
-
-      $container.on("click", ".btn-info", function() {
-        console.log(playlist.getInfo());
-      });
-
-      $container.on("click", ".btn-download", function () {
-        ee.emit('startaudiorendering', 'wav');
-      });
-
-      $container.on("click", ".btn-seektotime", function () {
-        var time = parseInt(document.getElementById("seektime").value, 10);
-        ee.emit("select", time, time);
-      });
-
-      $container.on("change", ".select-seek-style", function (node) {
-        playlist.setSeekStyle(node.target.value);
-      });
-
-//track drop
-      $container.on("dragenter", ".track-drop", function(e) {
-        e.preventDefault();
-        e.target.classList.add("disabled");
-      });
-
-      $container.on("dragover", ".track-drop", function(e) {
-        e.preventDefault();
-      });
-
-      $container.on("dragleave", ".track-drop", function(e) {
-        e.preventDefault();
-        e.target.classList.remove("disabled");
-      });
-
-      $container.on("drop", ".track-drop", function(e) {
-        e.preventDefault();
-        e.target.classList.remove("disabled");
-
-        var dropEvent = e.originalEvent;
-
-        for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
-          ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
-        }
-      });
-
-// transcription drop
-      $container.on("dragenter", ".transcription-drop", function(e) {
-        e.preventDefault();
-        e.target.classList.add("disabled");
-      });
-
-      $container.on("dragover", ".transcription-drop", function(e) {
-        e.preventDefault();
-      });
-
-      $container.on("dragleave", ".transcription-drop", function(e) {
-        e.preventDefault();
-        e.target.classList.remove("disabled");
-      });
-
-      $container.on("drop", ".transcription-drop", function(e) {
-        e.preventDefault();
-        e.target.classList.remove("disabled");
-
-        var dropEvent = e.originalEvent;
-        const file = dropEvent.dataTransfer.files[0];
-        let reader = new FileReader();
-        reader.onload = function(e) {
-          // get file content
-          var notes = JSON.parse(e.target.result);
-          console.log(notes);
-        }
-        _this.set('notes', notes);
-        reader.readAsText(file);
-
-        // for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
-        //   ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
-        // }
-      });
-
-      $container.on("change", ".time-format", function(e) {
-        format = $timeFormat.val();
-        ee.emit("durationformat", format);
-
-        updateSelect(startTime, endTime);
-        updateTime(audioPos);
-      });
-
-      $container.on("input change", ".master-gain", function(e){
-        ee.emit("mastervolumechange", e.target.value);
-
-      });
-
-      $container.on("change", ".continuous-play", function(e){
-        ee.emit("continuousplay", $(e.target).is(':checked'));
-      });
-
-      $container.on("change", ".link-endpoints", function(e){
-        ee.emit("linkendpoints", $(e.target).is(':checked'));
-      });
-
-      $container.on("change", ".automatic-scroll", function(e){
-        ee.emit("automaticscroll", $(e.target).is(':checked'));
-      });
-
-      function displaySoundStatus(status) {
-        $(".sound-status").html(status);
-      }
-
-      function displayLoadingData(data) {
-        var info = $("<div/>").append(data);
-        $(".loading-data").append(info);
-
-      }
-
-      function displayDownloadLink(link) {
-        var dateString = (new Date()).toISOString();
-        var $link = $("<a/>", {
-          'href': link,
-          'download': 'waveformplaylist' + dateString + '.wav',
-          'text': 'Download mix ' + dateString,
-          'class': 'btn btn-small btn-download-link'
+        $container.on("click", ".btn-annotations-download", function () {
+          ee.emit("annotationsrequest");
         });
 
-        $('.btn-download-link').remove();
-        $('.btn-download').after($link);
-      }
+        $container.on("click", ".btn-loop", function () {
+          isLooping = true;
+          playoutPromises = playlist.play(startTime, endTime);
+        });
 
+        $container.on("click", ".btn-play", function () {
+          ee.emit("play");
 
-      /*
-      * Code below receives updates from the playlist.
-      */
-      ee.on("select", updateSelect);
+        });
 
-      ee.on("timeupdate", updateTime);
+        $container.on("click", ".btn-pause", function () {
+          isLooping = false;
+          ee.emit("pause");
+        });
 
-      ee.on("mute", function(track) {
-        displaySoundStatus("Mute button pressed for " + track.name);
-      });
+        $container.on("click", ".btn-stop", function () {
+          isLooping = false;
+          ee.emit("stop");
+        });
 
-      ee.on("solo", function(track) {
-        displaySoundStatus("Solo button pressed for " + track.name);
-      });
+        $container.on("click", ".btn-rewind", function () {
+          isLooping = false;
+          ee.emit("rewind");
+        });
 
-      ee.on("volumechange", function(volume, track) {
-        displaySoundStatus(track.name + " now has volume " + volume + ".");
-      });
+        $container.on("click", ".btn-fast-forward", function () {
+          isLooping = false;
+          ee.emit("fastforward");
+        });
 
-      ee.on("mastervolumechange", function(volume) {
-        displaySoundStatus("Master volume now has volume " + volume + ".");
-      });
+        $container.on("click", ".btn-clear", function () {
+          isLooping = false;
+          ee.emit("clear");
+        });
 
+        $container.on("click", ".btn-record", function () {
+          ee.emit("record");
+        });
 
-      var audioStates = ["uninitialized", "loading", "decoding", "finished"];
+//track interaction states
+        $container.on("click", ".btn-cursor", function () {
+          ee.emit("statechange", "cursor");
+          toggleActive(this);
+        });
 
-      ee.on("audiorequeststatechange", function(state, src) {
-        var name = src;
+        $container.on("click", ".btn-select", function () {
+          ee.emit("statechange", "select");
+          toggleActive(this);
+        });
 
-        if (src instanceof File) {
-          name = src.name;
+        $container.on("click", ".btn-shift", function () {
+          ee.emit("statechange", "shift");
+          toggleActive(this);
+        });
+
+        $container.on("click", ".btn-fadein", function () {
+          ee.emit("statechange", "fadein");
+          toggleActive(this);
+        });
+
+        $container.on("click", ".btn-fadeout", function () {
+          ee.emit("statechange", "fadeout");
+          toggleActive(this);
+        });
+
+//fade types
+        $container.on("click", ".btn-logarithmic", function () {
+          ee.emit("fadetype", "logarithmic");
+          toggleActive(this);
+        });
+
+        $container.on("click", ".btn-linear", function () {
+          ee.emit("fadetype", "linear");
+          toggleActive(this);
+        });
+
+        $container.on("click", ".btn-scurve", function () {
+          ee.emit("fadetype", "sCurve");
+          toggleActive(this);
+        });
+
+        $container.on("click", ".btn-exponential", function () {
+          ee.emit("fadetype", "exponential");
+          toggleActive(this);
+        });
+
+//zoom buttons
+        $container.on("click", ".btn-zoom-in", function () {
+          ee.emit("zoomin");
+          console.log('you clicked zoom');
+        });
+
+        $container.on("click", ".btn-zoom-out", function () {
+          ee.emit("zoomout");
+        });
+
+        $container.on("click", ".btn-trim-audio", function () {
+          ee.emit("trim");
+        });
+
+        $container.on("click", ".btn-info", function () {
+          console.log(playlist.getInfo());
+        });
+
+        $container.on("click", ".btn-download", function () {
+          ee.emit('startaudiorendering', 'wav');
+        });
+
+        $container.on("click", ".btn-seektotime", function () {
+          var time = parseInt(document.getElementById("seektime").value, 10);
+          ee.emit("select", time, time);
+        });
+
+        $container.on("change", ".select-seek-style", function (node) {
+          playlist.setSeekStyle(node.target.value);
+        });
+
+//track drop
+
+        $container.on("change", ".time-format", function (e) {
+          format = $timeFormat.val();
+          ee.emit("durationformat", format);
+
+          updateSelect(startTime, endTime);
+          updateTime(audioPos);
+        });
+
+        $container.on("input change", ".master-gain", function (e) {
+          ee.emit("mastervolumechange", e.target.value);
+
+        });
+
+        $container.on("change", ".continuous-play", function (e) {
+          ee.emit("continuousplay", $(e.target).is(':checked'));
+        });
+
+        $container.on("change", ".link-endpoints", function (e) {
+          ee.emit("linkendpoints", $(e.target).is(':checked'));
+        });
+
+        $container.on("change", ".automatic-scroll", function (e) {
+          ee.emit("automaticscroll", $(e.target).is(':checked'));
+        });
+
+        function displaySoundStatus(status) {
+          $(".sound-status").html(status);
         }
 
-        displayLoadingData("Track " + name + " is in state " + audioStates[state]);
-      });
+        function displayLoadingData(data) {
+          var info = $("<div/>").append(data);
+          $(".loading-data").append(info);
 
-      ee.on("loadprogress", function(percent, src) {
-        var name = src;
-
-        if (src instanceof File) {
-          name = src.name;
         }
 
-        displayLoadingData("Track " + name + " has loaded " + percent + "%");
-        percent = parseFloat(percent);
-        percent =  (percent > 10 ? percent-10: percent);
-        _this.set('loadProgress', percent);
+        function displayDownloadLink(link) {
+          var dateString = (new Date()).toISOString();
+          var $link = $("<a/>", {
+            'href': link,
+            'download': 'waveformplaylist' + dateString + '.wav',
+            'text': 'Download mix ' + dateString,
+            'class': 'btn btn-small btn-download-link'
+          });
 
-      });
+          $('.btn-download-link').remove();
+          $('.btn-download').after($link);
+        }
 
-      ee.on("audiosourcesloaded", function() {
-        displayLoadingData("Tracks have all finished decoding.");
-        _this.set('loadProgress', 98);
 
-      });
+        /*
+        * Code below receives updates from the playlist.
+        */
+        ee.on("select", updateSelect);
 
-      ee.on("audiosourcesrendered", function() {
-        displayLoadingData("Tracks have been rendered");
-        _this.set('loadProgress', 100);
+        ee.on("timeupdate", updateTime);
 
-      });
+        ee.on("mute", function (track) {
+          displaySoundStatus("Mute button pressed for " + track.name);
+        });
 
-      ee.on('audiorenderingfinished', function (type, data) {
-        if (type == 'wav'){
-          if (downloadUrl) {
-            window.URL.revokeObjectURL(downloadUrl);
+        ee.on("solo", function (track) {
+          displaySoundStatus("Solo button pressed for " + track.name);
+        });
+
+        ee.on("volumechange", function (volume, track) {
+          displaySoundStatus(track.name + " now has volume " + volume + ".");
+        });
+
+        ee.on("mastervolumechange", function (volume) {
+          displaySoundStatus("Master volume now has volume " + volume + ".");
+        });
+
+
+        var audioStates = ["uninitialized", "loading", "decoding", "finished"];
+
+        ee.on("audiorequeststatechange", function (state, src) {
+          var name = src;
+
+          if (src instanceof File) {
+            name = src.name;
           }
 
-          downloadUrl = window.URL.createObjectURL(data);
-          displayDownloadLink(downloadUrl);
-        }
+          displayLoadingData("Track " + name + " is in state " + audioStates[state]);
+        });
+
+        ee.on("loadprogress", function (percent, src) {
+          var name = src;
+
+          if (src instanceof File) {
+            name = src.name;
+          }
+
+          displayLoadingData("Track " + name + " has loaded " + percent + "%");
+          percent = parseFloat(percent);
+          percent = (percent > 10 ? percent - 10 : percent);
+          _this.set('loadProgress', percent);
+
+        });
+
+        ee.on("audiosourcesloaded", function () {
+          displayLoadingData("Tracks have all finished decoding.");
+          _this.set('loadProgress', 98);
+
+        });
+
+        ee.on("audiosourcesrendered", function () {
+          displayLoadingData("Tracks have been rendered");
+          _this.set('loadProgress', 100);
+
+        });
+
+        ee.on('audiorenderingfinished', function (type, data) {
+          if (type == 'wav') {
+            if (downloadUrl) {
+              window.URL.revokeObjectURL(downloadUrl);
+            }
+
+            downloadUrl = window.URL.createObjectURL(data);
+            displayDownloadLink(downloadUrl);
+          }
+        });
+
+        ee.on('finished', function () {
+          console.log("The cursor has reached the end of the selection !");
+
+          if (isLooping) {
+            playoutPromises.then(function () {
+              playoutPromises = playlist.play(startTime, endTime);
+            });
+          }
+        });
+      })
+        .catch(e => {
+          console.log('e')
+        });
+
+      var re = new RegExp('&lt;', 'g');
+      var re2 = new RegExp('&gt;', 'g');
+      var annotationLines = $('.annotation-lines');
+      console.log(annotationLines);
+      annotationLines.each(index => {
+        annotationLines[index].innerHTML = annotationLines[index].innerHTML.replace(re, '<').replace(re2, '>')
       });
-
-      ee.on('finished', function () {
-        console.log("The cursor has reached the end of the selection !");
-
-        if (isLooping) {
-          playoutPromises.then(function() {
-            playoutPromises = playlist.play(startTime, endTime);
-          });
-        }
-      });
-    })
-      .catch(e=>{console.log('e')});
-
-    var re = new RegExp('&lt;', 'g');
-    var re2 = new RegExp('&gt;', 'g');
-    var annotationLines = $('.annotation-lines');
-    console.log(annotationLines);
-    annotationLines.each(index => {
-      annotationLines[index].innerHTML=annotationLines[index].innerHTML.replace(re, '<').replace(re2,'>')
-    });
-  }
+    }
+}
 });
