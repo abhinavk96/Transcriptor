@@ -578,7 +578,7 @@ export default Component.extend({
 //track drop
       $container.on("dragenter", ".track-drop", function(e) {
         e.preventDefault();
-        e.target.classList.add("drag-enter");
+        e.target.classList.add("disabled");
       });
 
       $container.on("dragover", ".track-drop", function(e) {
@@ -587,18 +587,53 @@ export default Component.extend({
 
       $container.on("dragleave", ".track-drop", function(e) {
         e.preventDefault();
-        e.target.classList.remove("drag-enter");
+        e.target.classList.remove("disabled");
       });
 
       $container.on("drop", ".track-drop", function(e) {
         e.preventDefault();
-        e.target.classList.remove("drag-enter");
+        e.target.classList.remove("disabled");
 
         var dropEvent = e.originalEvent;
 
         for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
           ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
         }
+      });
+
+// transcription drop
+      $container.on("dragenter", ".transcription-drop", function(e) {
+        e.preventDefault();
+        e.target.classList.add("disabled");
+      });
+
+      $container.on("dragover", ".transcription-drop", function(e) {
+        e.preventDefault();
+      });
+
+      $container.on("dragleave", ".transcription-drop", function(e) {
+        e.preventDefault();
+        e.target.classList.remove("disabled");
+      });
+
+      $container.on("drop", ".transcription-drop", function(e) {
+        e.preventDefault();
+        e.target.classList.remove("disabled");
+
+        var dropEvent = e.originalEvent;
+        const file = dropEvent.dataTransfer.files[0];
+        let reader = new FileReader();
+        reader.onload = function(e) {
+          // get file content
+          var notes = JSON.parse(e.target.result);
+          console.log(notes);
+        }
+        _this.set('notes', notes);
+        reader.readAsText(file);
+
+        // for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
+        //   ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
+        // }
       });
 
       $container.on("change", ".time-format", function(e) {

@@ -109,15 +109,31 @@
           <div class="sound-status">
 
           </div>
-   {{#if (gt loadProgress 0) }}
-     {{#ui-progress percent=loadProgress class="teal indicating"}}
-       <div class="bar"></div>
-       <div class="label loading-data"></div>
-     {{/ui-progress}}
-   {{/if}}
+           {{#if (gt loadProgress 0) }}
+             {{#ui-progress percent=loadProgress class="teal indicating"}}
+               <div class="bar"></div>
+               <div class="label loading-data"></div>
+             {{/ui-progress}}
+           {{/if}}
 
 
-          <div class="track-drop"></div>
+          <!--<div class="track-drop"></div>-->
+          <div class="ui horizontal segments">
+            <div class="ui placeholder track-drop segment">
+              <div class="ui icon header">
+                <i class="file audio icon"></i>
+                Drop your audio file here.
+              </div>
+            </div>
+            <div class="ui placeholder transcription-drop segment">
+              <div class="ui icon header">
+                <i class="audio description icon"></i>
+                Drop your transcription file here.
+              </div>
+            </div>
+
+          </div>
+
           <!--<div class="loading-data"></div>-->
         </div>
       </div>
