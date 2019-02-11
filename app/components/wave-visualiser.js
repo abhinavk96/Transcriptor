@@ -1,6 +1,8 @@
 import Component from '@ember/component';
 import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
+  disablePlay: true,
+  loadProgress: 0,
   didInsertElement(){
     var notes = [
         {
@@ -317,6 +319,7 @@ export default Component.extend({
       }
     });
     console.log('playlist defined', playlist);
+    var _this = this;
     playlist.load([
       {
         "src": 'https://raw.githubusercontent.com/CosmicCoder96/Transcriptor/master/media/Singapores%2021st-Century.mp3?token=AQdBxQxf-uZaeyceGQuIs7inkHZxv_CYks5cZODrwA%3D%3D',
@@ -630,6 +633,7 @@ export default Component.extend({
       function displayLoadingData(data) {
         var info = $("<div/>").append(data);
         $(".loading-data").append(info);
+
       }
 
       function displayDownloadLink(link) {
@@ -690,14 +694,22 @@ export default Component.extend({
         }
 
         displayLoadingData("Track " + name + " has loaded " + percent + "%");
+        percent = parseFloat(percent);
+        percent =  (percent > 10 ? percent-10: percent);
+        _this.set('loadProgress', percent);
+
       });
 
       ee.on("audiosourcesloaded", function() {
         displayLoadingData("Tracks have all finished decoding.");
+        _this.set('loadProgress', 98);
+
       });
 
       ee.on("audiosourcesrendered", function() {
         displayLoadingData("Tracks have been rendered");
+        _this.set('loadProgress', 100);
+
       });
 
       ee.on('audiorenderingfinished', function (type, data) {

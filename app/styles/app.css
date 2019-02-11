@@ -3,7 +3,8 @@
 .playlist .playlist-time-scale {
   height: 30px; }
 .playlist .playlist-tracks {
-  background: #E0EFF1; }
+  /*background: #E0EFF1; */
+}
 .playlist .channel {
   background: grey; }
 .playlist .channel-progress {
@@ -103,11 +104,11 @@
 .playlist .annotations .annotations-boxes {
   text-align: center; }
 .playlist .annotations .annotation-box {
-  border: 2px dashed grey;
+  border: 2px dashed dodgerblue;
   padding: 0 10px; }
 .playlist .annotations .annotation-box .resize-handle {
-  background: grey;
-  opacity: 0.3;
+  background: black;
+  opacity: 0;
   cursor: ew-resize; }
 .playlist .annotations .annotation-box .id {
   cursor: pointer;
@@ -178,3 +179,73 @@ footer {
 .transcriptor {
   margin: 0 !important;
 }
+
+body ::-webkit-scrollbar {
+  /* -webkit-appearance: none; */
+  /* width: 10px; */
+  /* height: 10px; */
+}
+
+body ::-webkit-scrollbar-track {
+  /* background: rgba(0, 0, 0, 0.1); */
+  border-radius: 0px;
+}
+
+body ::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  /* border-radius: 5px; */
+  /* background: rgba(0, 0, 0, 0.25); */
+  -webkit-transition: color 0.2s ease;
+  /* transition: color 0.2s ease; */
+}
+
+body ::-webkit-scrollbar-thumb:window-inactive {
+  background-color: #0ae;
+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%,
+  color-stop(.5, rgba(255, 255, 255, .2)),
+  color-stop(.5, transparent), to(transparent));
+}
+
+body ::-webkit-scrollbar-thumb:hover {
+  background-color: #0ae;
+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%,
+  color-stop(.5, rgba(255, 255, 255, .2)),
+  color-stop(.5, transparent), to(transparent));
+}
+
+
+
+
+body ::-webkit-scrollbar {
+  -webkit-appearance: button;
+  width: 10px;
+  height: 10px;
+}
+body ::-webkit-scrollbar-track {
+  background: rgba(2, 2, 2, 0);
+  border-radius: 0px;
+}
+body ::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+body ::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+body ::-webkit-scrollbar-thumb
+{
+  background-color: #0ae;
+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%,
+  color-stop(.5, rgba(255, 255, 255, .2)),
+  color-stop(.5, transparent), to(transparent));
+}
+

@@ -8,8 +8,8 @@
       <div class="post-content">
         <div id="top-bar" class="playlist-top-bar">
           <div class="playlist-toolbar">
-            <div class="ui  basic secondary icon buttons">
-              <button class="btn-play ui  positive  button">
+            <div class="ui  basic icon buttons">
+              <button class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
                 <i class="play green icon"></i>
               </button>
               <button class="btn-pause ui  orange  button">
@@ -19,11 +19,11 @@
                 <i class="ui stop red icon"></i>
               </button>
               <button class="btn-rewind btn ui  secondary button">
-                <i class="ui backward icon"></i>
+                <i class="ui redo icon"></i>
               </button>
-              <button class="btn-fast-forward btn ui  secondary button">
-                <i class="ui fast forward icon"></i>
-              </button>
+              <!--<button class="btn-fast-forward btn ui  secondary button">-->
+                <!--<i class="ui fast forward icon"></i>-->
+              <!--</button>-->
               <button title="zoom in" class="btn-zoom-in btn ui  secondary button">
                 <i class="ui zoom-in blue icon"></i>
               </button>
@@ -31,7 +31,7 @@
                 <i class="ui zoom-out blue icon"></i>
               </button>
             </div>
-            <div class="ui basic secondary icon buttons btn-playlist-state-group">
+            <div class="ui basic icon buttons btn-playlist-state-group">
                <button class="btn-cursor ui button active" title="select cursor">
                <i class="headphones icon"></i>
                </button>
@@ -106,9 +106,19 @@
             </div>
           </form>            <button class="ui basic primary button btn-seektotime">Seek !</button>
 
-          <div class="sound-status"></div>
+          <div class="sound-status">
+
+          </div>
+   {{#if (gt loadProgress 0) }}
+     {{#ui-progress percent=loadProgress class="teal indicating"}}
+       <div class="bar"></div>
+       <div class="label loading-data"></div>
+     {{/ui-progress}}
+   {{/if}}
+
+
           <div class="track-drop"></div>
-          <div class="loading-data"></div>
+          <!--<div class="loading-data"></div>-->
         </div>
       </div>
     </article>
