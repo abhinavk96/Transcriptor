@@ -156,7 +156,7 @@
   color: orange;
   cursor: pointer; }
 .playlist .annotations .current {
-  background-color: #EBF4F6; }
+  background-color: pink; }
 
 .playlist .vocals {
   background-color: #c0dce0; }
