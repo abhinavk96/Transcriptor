@@ -158,6 +158,9 @@
 .playlist .annotations .current {
   background-color: pink; }
 
+.currentWord {
+  text-decoration: underline;
+}
 .playlist .vocals {
   background-color: #c0dce0; }
 .playlist .vocals header {

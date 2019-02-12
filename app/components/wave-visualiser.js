@@ -566,6 +566,15 @@ export default Component.extend({
       annotationLines.each(index => {
         annotationLines[index].innerHTML = annotationLines[index].innerHTML.replace(re, '<').replace(re2, '>')
       });
+      var words = $('.transcriptor');
+      let stimes = []
+      let etimes = []
+      words.each(index => {
+        stimes.push($(words[index]).data('stime'));
+        etimes.push($(words[index]).data('etime'));
+
+      })
+      console.log(stimes, etimes);
     }
 }
 });
