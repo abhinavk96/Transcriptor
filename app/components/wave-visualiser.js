@@ -8,37 +8,38 @@ export default Component.extend({
   timeMappings: new Object(),
   targetSpan: null,
   allSpans: [],
+  isPlaying: false,
   targetSpanIndex: 0,
   targetSpanStartTime: 0,
   targetSpanEndTime: 0,
+  actualTimer: 0,
+  timeUpdate: false,
   notes: [],
-  currentSpan:  computed('currentTimer', function(){
-    // console.log(this.get('currentTimer'));
-    // if(this.get('timeMappings')[this.get('currentTimer')]) {
-    //   let currentSpan = this.timeMappings[this.currentTimer];
-      if(this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
-        $(`#${this.targetSpan}`).addClass('currentWord');
-        // this.targetSpan.addClass('currentWord');
-        console.log('encountetred! encountered!', this.targetSpan);
-      }
-      else if(this.currentTimer >= this.targetSpanEndTime) {
-        $(`#${this.targetSpan}`).removeClass('currentWord');
-        let nextSpan = this.targetSpanIndex + 1;
-        this.set('targetSpanIndex', nextSpan);
-        console.log('new target:', nextSpan);
-        if(this.allSpans[nextSpan]) {
-          this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
-          this.set('targetSpanEndTime', this.allSpans[nextSpan].data('etime'));
-          this.set('targetSpan', `o-${nextSpan}`);
-          if(this.currentTimer >= this.targetSpanEndTime) {
-            $(`#${this.targetSpan}`).addClass('currentWord');
-          }
-        }
-      }
-      // if(currentSpan){
-      //   currentSpan.addClass('currentWord');
+  currentSpan:  computed('actualTimer', function(){
+      // if (this.currentTimer - this.actualTimer < 0.05) {
+        this.set('currentTimer', this.actualTimer);
+        this.set('timeUpdate', true);
+
       // }
-    // }
+      // if(this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
+      //   $(`#${this.targetSpan}`).addClass('currentWord');
+      //   console.log('encountetred! encountered!', this.targetSpan);
+      // }
+      // else if(this.currentTimer >= this.targetSpanEndTime) {
+      //   $(`#${this.targetSpan}`).removeClass('currentWord');
+      //   let nextSpan = this.targetSpanIndex + 1;
+      //   this.set('targetSpanIndex', nextSpan);
+      //   console.log('new target:', nextSpan);
+      //   if(this.allSpans[nextSpan]) {
+      //     this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
+      //     this.set('targetSpanEndTime', this.allSpans[nextSpan].data('etime'));
+      //     this.set('targetSpan', `o-${nextSpan}`);
+      //     if(this.currentTimer >= this.targetSpanEndTime) {
+      //       $(`#${this.targetSpan}`).addClass('currentWord');
+      //     }
+      //   }
+      // }
+
 
   }),
   didInsertElement(){
@@ -315,7 +316,8 @@ export default Component.extend({
 
         function updateTime(time) {
           $time.val(cueFormatters(format)(time));
-          _this.set('currentTimer', cueFormatters(format)(time));
+          // console.log(cueFormatters(format)(time));
+          _this.set('actualTimer', cueFormatters(format)(time));
 
 
           audioPos = time;
@@ -353,6 +355,7 @@ export default Component.extend({
 
         $container.on("click", ".btn-play", function () {
           ee.emit("play");
+          _this.toggleProperty('isPlaying');
 
         });
 
@@ -626,7 +629,42 @@ export default Component.extend({
       _this.set('targetSpanEndTime', _this.allSpans[0].data('etime').toFixed(2));
       _this.set('targetSpanIndex', 0);
       console.log(_this.targetSpan);
+      let previousTimer = _this.actualTimer;
       // console.log(_this.targetSpan.data('stime'));
+      setInterval(function(){
+        if(_this.isPlaying){
+          // if(_this.timeUpdate && previousTimer === _this.actualTimer) {
+          //   _this.set('timeUpdate', false);
+          // }
+          // if(!_this.timeUpdate) {
+            _this.set('currentTimer', parseFloat(_this.currentTimer) + 0.01);
+            console.log('incremented');
+          // }
+          console.log(_this.currentTimer);
+          if(_this.currentTimer >= _this.targetSpanStartTime && _this.currentTimer <= _this.targetSpanEndTime) {
+            $(`#${_this.targetSpan}`).addClass('currentWord');
+            console.log('encountetred! encountered!', _this.targetSpan);
+          }
+          else if(_this.currentTimer >= _this.targetSpanEndTime) {
+            $(`#${_this.targetSpan}`).removeClass('currentWord');
+            let nextSpan = _this.targetSpanIndex + 1;
+            _this.set('targetSpanIndex', nextSpan);
+            console.log('new target:', nextSpan);
+            if(_this.allSpans[nextSpan]) {
+              _this.set('targetSpanStartTime', _this.allSpans[nextSpan].data('stime'));
+              _this.set('targetSpanEndTime', _this.allSpans[nextSpan].data('etime'));
+              _this.set('targetSpan', `o-${nextSpan}`);
+            }
+          }
+          // if(_this.timeUpdate) {
+          // _this.set('timeUpdate', false);
+          // }
+          // previousTimer = this.actualTimer;
+        }
+
+
+      },10);
     }
+
 }
 });
