@@ -7,18 +7,37 @@ export default Component.extend({
   loadProgress: 0,
   timeMappings: new Object(),
   targetSpan: null,
+  allSpans: [],
   targetSpanIndex: 0,
-  targetSpanTime: 0
+  targetSpanStartTime: 0,
+  targetSpanEndTime: 0,
   notes: [],
   currentSpan:  computed('currentTimer', function(){
     // console.log(this.get('currentTimer'));
     // if(this.get('timeMappings')[this.get('currentTimer')]) {
-      let currentSpan = this.timeMappings[this.currentTimer];
-      if(this.currentTimer > this.targetSpan)
-      console.log(currentSpan);
-      if(currentSpan){
-        currentSpan.addClass('currentWord');
+    //   let currentSpan = this.timeMappings[this.currentTimer];
+      if(this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
+        $(`#${this.targetSpan}`).addClass('currentWord');
+        // this.targetSpan.addClass('currentWord');
+        console.log('encountetred! encountered!', this.targetSpan);
       }
+      else if(this.currentTimer >= this.targetSpanEndTime) {
+        $(`#${this.targetSpan}`).removeClass('currentWord');
+        let nextSpan = this.targetSpanIndex + 1;
+        this.set('targetSpanIndex', nextSpan);
+        console.log('new target:', nextSpan);
+        if(this.allSpans[nextSpan]) {
+          this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
+          this.set('targetSpanEndTime', this.allSpans[nextSpan].data('etime'));
+          this.set('targetSpan', `o-${nextSpan}`);
+          if(this.currentTimer >= this.targetSpanEndTime) {
+            $(`#${this.targetSpan}`).addClass('currentWord');
+          }
+        }
+      }
+      // if(currentSpan){
+      //   currentSpan.addClass('currentWord');
+      // }
     // }
 
   }),
@@ -297,6 +316,7 @@ export default Component.extend({
         function updateTime(time) {
           $time.val(cueFormatters(format)(time));
           _this.set('currentTimer', cueFormatters(format)(time));
+
 
           audioPos = time;
         }
@@ -584,6 +604,7 @@ export default Component.extend({
       var re = new RegExp('&lt;', 'g');
       var re2 = new RegExp('&gt;', 'g');
       var annotationLines = $('.annotation-lines');
+      let allSpans = [];
       // var timeMappings = new Object();
       // console.log(annotationLines);
       annotationLines.each(index => {
@@ -595,11 +616,17 @@ export default Component.extend({
           let currentSpan = $(spans[index]);
           _this.timeMappings[currentSpan.data('stime').toFixed(2)] = currentSpan;
           _this.timeMappings[currentSpan.data('etime').toFixed(2)] = 0;
+           allSpans.push(currentSpan);
         });
-
       });
+      _this.set('allSpans', allSpans);
       console.log(_this.timeMappings);
-
+      _this.set('targetSpan', _this.allSpans[0].attr('id'));
+      _this.set('targetSpanStartTime', _this.allSpans[0].data('stime').toFixed(2));
+      _this.set('targetSpanEndTime', _this.allSpans[0].data('etime').toFixed(2));
+      _this.set('targetSpanIndex', 0);
+      console.log(_this.targetSpan);
+      // console.log(_this.targetSpan.data('stime'));
     }
 }
 });

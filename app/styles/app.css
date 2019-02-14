@@ -160,6 +160,7 @@
 
 .currentWord {
   text-decoration: underline;
+  background: yellow;
 }
 .playlist .vocals {
   background-color: #c0dce0; }
