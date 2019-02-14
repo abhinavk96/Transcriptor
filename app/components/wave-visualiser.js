@@ -1,9 +1,26 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
+
 import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
   disablePlay: true,
   loadProgress: 0,
+  timeMappings: new Object(),
+  targetSpan: null,
+  targetSpanIndex: 0,
   notes: [],
+  currentSpan:  computed('currentTimer', function(){
+    // console.log(this.get('currentTimer'));
+    // if(this.get('timeMappings')[this.get('currentTimer')]) {
+      let currentSpan = this.timeMappings[this.currentTimer];
+      if(this.currentTimer > targetSpan)
+      console.log(currentSpan);
+      if(currentSpan){
+        currentSpan.addClass('currentWord');
+      }
+    // }
+
+  }),
   didInsertElement(){
     var _this = this;
     var $container = $("body");
@@ -240,6 +257,9 @@ export default Component.extend({
             "thousandths": function (seconds) {
               return seconds.toFixed(3);
             },
+            "hundredths": function (seconds) {
+              return seconds.toFixed(2);
+            },
             "hh:mm:ss": function (seconds) {
               return clockFormat(seconds, 0);
             },
@@ -274,7 +294,8 @@ export default Component.extend({
         }
 
         function updateTime(time) {
-          $time.html(cueFormatters(format)(time));
+          $time.val(cueFormatters(format)(time));
+          _this.set('currentTimer', cueFormatters(format)(time));
 
           audioPos = time;
         }
@@ -556,25 +577,28 @@ export default Component.extend({
         });
       })
         .catch(e => {
-          console.log('e')
+          console.log(e)
         });
 
       var re = new RegExp('&lt;', 'g');
       var re2 = new RegExp('&gt;', 'g');
       var annotationLines = $('.annotation-lines');
-      console.log(annotationLines);
+      // var timeMappings = new Object();
+      // console.log(annotationLines);
       annotationLines.each(index => {
         annotationLines[index].innerHTML = annotationLines[index].innerHTML.replace(re, '<').replace(re2, '>')
-      });
-      var words = $('.transcriptor');
-      let stimes = []
-      let etimes = []
-      words.each(index => {
-        stimes.push($(words[index]).data('stime'));
-        etimes.push($(words[index]).data('etime'));
+        var parser = new DOMParser();
+        var htmlDoc = parser.parseFromString(annotationLines[index].innerHTML, 'text/html');
+        var spans = $(htmlDoc.getElementsByClassName('transcriptor'));
+        spans.each(index => {
+          let currentSpan = $(spans[index]);
+          _this.timeMappings[currentSpan.data('stime').toFixed(2)] = currentSpan;
+          _this.timeMappings[currentSpan.data('etime').toFixed(2)] = 0;
+        });
 
-      })
-      console.log(stimes, etimes);
+      });
+      console.log(_this.timeMappings);
+
     }
 }
 });
