@@ -8,12 +8,13 @@ export default Component.extend({
   timeMappings: new Object(),
   targetSpan: null,
   targetSpanIndex: 0,
+  targetSpanTime: 0
   notes: [],
   currentSpan:  computed('currentTimer', function(){
     // console.log(this.get('currentTimer'));
     // if(this.get('timeMappings')[this.get('currentTimer')]) {
       let currentSpan = this.timeMappings[this.currentTimer];
-      if(this.currentTimer > targetSpan)
+      if(this.currentTimer > this.targetSpan)
       console.log(currentSpan);
       if(currentSpan){
         currentSpan.addClass('currentWord');
