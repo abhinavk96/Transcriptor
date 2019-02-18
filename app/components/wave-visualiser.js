@@ -14,6 +14,8 @@ export default Component.extend({
   targetSpanEndTime: 0,
   actualTimer: 0,
   timeUpdate: false,
+  isStep1Complete: false,
+  isStep2Complete:false,
   notes: [],
   currentSpan:  computed('actualTimer', function(){
       // if (this.currentTimer - this.actualTimer < 0.05) {
@@ -105,6 +107,8 @@ export default Component.extend({
         var notes = JSON.parse(e.target.result);
         console.log(notes);
         _this.set('notes', notes);
+        _this.set('isStep1Complete', true);
+
 
       }
       reader.readAsText(file);

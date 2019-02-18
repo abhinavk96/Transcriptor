@@ -120,16 +120,21 @@
 
           <!--<div class="track-drop"></div>-->
           <div class="ui horizontal segments">
-            <div class="ui placeholder track-drop segment">
+            <div class="ui placeholder transcription-drop segment">
+              <div class="ui icon header">
+                {{#if isStep1Complete}}
+                  <i class="green check circle icon"></i>
+                  Transcriptions loaded successfully!
+                {{else}}
+                  <i class="audio description icon"></i>
+                  Drop your transcription file here.
+                {{/if}}
+              </div>
+            </div>
+            <div class="ui {{unless isStep1Complete 'disabled'}} placeholder track-drop segment">
               <div class="ui icon header">
                 <i class="file audio icon"></i>
                 Drop your audio file here.
-              </div>
-            </div>
-            <div class="ui placeholder transcription-drop segment">
-              <div class="ui icon header">
-                <i class="audio description icon"></i>
-                Drop your transcription file here.
               </div>
             </div>
 
