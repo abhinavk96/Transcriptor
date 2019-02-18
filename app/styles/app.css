@@ -156,7 +156,7 @@
   color: orange;
   cursor: pointer; }
 .playlist .annotations .current {
-  background-color: pink; }
+  padding: 0; }
 
 .currentWord {
   text-decoration: underline;
