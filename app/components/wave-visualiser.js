@@ -631,39 +631,41 @@ export default Component.extend({
       console.log(_this.targetSpan);
       let previousTimer = _this.actualTimer;
       // console.log(_this.targetSpan.data('stime'));
-      setInterval(function(){
-        if(_this.isPlaying){
-          // if(_this.timeUpdate && previousTimer === _this.actualTimer) {
-          //   _this.set('timeUpdate', false);
-          // }
-          // if(!_this.timeUpdate) {
-            _this.set('currentTimer', parseFloat(_this.currentTimer) + 0.01);
-            console.log('incremented');
-          // }
-          console.log(_this.currentTimer);
-          if(_this.currentTimer >= _this.targetSpanStartTime && _this.currentTimer <= _this.targetSpanEndTime) {
-            $(`#${_this.targetSpan}`).addClass('currentWord');
-            console.log('encountetred! encountered!', _this.targetSpan);
-          }
-          else if(_this.currentTimer >= _this.targetSpanEndTime) {
-            $(`#${_this.targetSpan}`).removeClass('currentWord');
-            let nextSpan = _this.targetSpanIndex + 1;
-            _this.set('targetSpanIndex', nextSpan);
-            console.log('new target:', nextSpan);
-            if(_this.allSpans[nextSpan]) {
-              _this.set('targetSpanStartTime', _this.allSpans[nextSpan].data('stime'));
-              _this.set('targetSpanEndTime', _this.allSpans[nextSpan].data('etime'));
-              _this.set('targetSpan', `o-${nextSpan}`);
-            }
-          }
-          // if(_this.timeUpdate) {
-          // _this.set('timeUpdate', false);
-          // }
-          // previousTimer = this.actualTimer;
-        }
 
-
-      },10);
+      //temporarily disable word highlighting
+      // setInterval(function(){
+      //   if(_this.isPlaying){
+      //     // if(_this.timeUpdate && previousTimer === _this.actualTimer) {
+      //     //   _this.set('timeUpdate', false);
+      //     // }
+      //     // if(!_this.timeUpdate) {
+      //       _this.set('currentTimer', parseFloat(_this.currentTimer) + 0.01);
+      //       console.log('incremented');
+      //     // }
+      //     console.log(_this.currentTimer);
+      //     if(_this.currentTimer >= _this.targetSpanStartTime && _this.currentTimer <= _this.targetSpanEndTime) {
+      //       $(`#${_this.targetSpan}`).addClass('currentWord');
+      //       console.log('encountetred! encountered!', _this.targetSpan);
+      //     }
+      //     else if(_this.currentTimer >= _this.targetSpanEndTime) {
+      //       $(`#${_this.targetSpan}`).removeClass('currentWord');
+      //       let nextSpan = _this.targetSpanIndex + 1;
+      //       _this.set('targetSpanIndex', nextSpan);
+      //       console.log('new target:', nextSpan);
+      //       if(_this.allSpans[nextSpan]) {
+      //         _this.set('targetSpanStartTime', _this.allSpans[nextSpan].data('stime'));
+      //         _this.set('targetSpanEndTime', _this.allSpans[nextSpan].data('etime'));
+      //         _this.set('targetSpan', `o-${nextSpan}`);
+      //       }
+      //     }
+      //     // if(_this.timeUpdate) {
+      //     // _this.set('timeUpdate', false);
+      //     // }
+      //     // previousTimer = this.actualTimer;
+      //   }
+      //
+      //
+      // },10);
     }
 
 }
