@@ -10,6 +10,7 @@ export default Component.extend({
   allSpans: [],
   isPlaying: false,
   targetSpanIndex: 0,
+  isPlayerLoading: false,
   targetSpanStartTime: 0,
   targetSpanEndTime: 0,
   actualTimer: 0,
@@ -121,7 +122,7 @@ export default Component.extend({
 
   },
   actions:{ loadWaveFile(audioFile, notes) {
-
+      this.set('isPlayerLoading', true);
       var actions = [
         {
           class: '.red.minus.icon',
@@ -227,7 +228,7 @@ export default Component.extend({
         }
       ]).then(function () {
         //can do stuff with the playlist.
-
+        _this.set('isPlayerLoading', false);
         //initialize the WAV exporter.
         console.log('Player initialised successfully.')
         playlist.initExporter();
