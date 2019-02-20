@@ -24,24 +24,24 @@ export default Component.extend({
         this.set('timeUpdate', true);
 
       // }
-      // if(this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
-      //   $(`#${this.targetSpan}`).addClass('currentWord');
-      //   console.log('encountetred! encountered!', this.targetSpan);
-      // }
-      // else if(this.currentTimer >= this.targetSpanEndTime) {
-      //   $(`#${this.targetSpan}`).removeClass('currentWord');
-      //   let nextSpan = this.targetSpanIndex + 1;
-      //   this.set('targetSpanIndex', nextSpan);
-      //   console.log('new target:', nextSpan);
-      //   if(this.allSpans[nextSpan]) {
-      //     this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
-      //     this.set('targetSpanEndTime', this.allSpans[nextSpan].data('etime'));
-      //     this.set('targetSpan', `o-${nextSpan}`);
-      //     if(this.currentTimer >= this.targetSpanEndTime) {
-      //       $(`#${this.targetSpan}`).addClass('currentWord');
-      //     }
-      //   }
-      // }
+      if(this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
+        $(`#${this.targetSpan}`).addClass('currentWord');
+        console.log('encountetred! encountered!', this.targetSpan);
+      }
+      else if(this.currentTimer >= this.targetSpanEndTime) {
+        $(`#${this.targetSpan}`).removeClass('currentWord');
+        let nextSpan = this.targetSpanIndex + 1;
+        this.set('targetSpanIndex', nextSpan);
+        console.log('new target:', nextSpan);
+        if(this.allSpans[nextSpan]) {
+          this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
+          this.set('targetSpanEndTime', this.allSpans[nextSpan].data('etime'));
+          this.set('targetSpan', `o-${nextSpan}`);
+          if(this.currentTimer >= this.targetSpanEndTime) {
+            $(`#${this.targetSpan}`).addClass('currentWord');
+          }
+        }
+      }
 
 
   }),
