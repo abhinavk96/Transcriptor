@@ -8,7 +8,7 @@ function getColor(score) {
   if (parseFloat(score) > 0.7) {
     return 'green';
   }
-  else if(parseFloat(score) < 0.4) {
+  else if(parseFloat(score) < 0.7) {
     return 'red';
   }
   else {
