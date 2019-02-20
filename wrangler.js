@@ -15,6 +15,9 @@ function getColor(score) {
     return 'black';
   }
 }
+segmentList = segmentsList.sort(function(a,b) {
+  return (parseFloat(a['-stime']) - parseFloat(b['-stime']));
+});
 segmentsList.forEach(function(segment) {
   console.log(segment.Word.length);
   let sentence = segment.Word;
@@ -22,7 +25,7 @@ segmentsList.forEach(function(segment) {
     //handle sentences
     let line = "";
     sentence.forEach(function(word) {
-      line = `${line} <span class='transcriptor' id = 'o-${spanIndex++}' data-stime='${parseFloat(word['-stime'])}' data-etime='${parseFloat(word['-stime']) + parseFloat(word['-dur'])}' style='color:${getColor(word['-score'])}'>${word['#text']}</span>`;
+      line = `${line} <span class='transcriptor ${getColor(word['-score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(word['-stime'])}' data-etime='${parseFloat(word['-stime']) + parseFloat(word['-dur'])}'>${word['#text']}</span>`;
     });
     // based on start and end times of words
     // o = {begin: sentence[0]['-stime'], children: [], end: String((parseFloat(sentence[sentence.length-1]['-stime'])+ parseFloat(sentence[sentence.length-1]['-dur']))), id: notes.length, language: 'eng', lines: [line] }
@@ -34,7 +37,7 @@ segmentsList.forEach(function(segment) {
     //handle single word sentences
     //based on start and end times of words
     // o = {begin: sentence['-stime'], children: [], end: String((parseFloat(sentence['-stime'])+ parseFloat(sentence['-dur']))), id: notes.length, language: 'eng', lines: [sentence['#text']] }
-    line = `<span class='transcriptor' id = 'o-${spanIndex++}' data-stime='${parseFloat(sentence['-stime'])}' data-etime='${parseFloat(sentence['-stime']) + parseFloat(sentence['-dur'])}' style='color:${getColor(sentence['-score'])}'>${sentence['#text']}</span>`
+    line = `<span class='transcriptor ${getColor(sentence['-score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(sentence['-stime'])}' data-etime='${parseFloat(sentence['-stime']) + parseFloat(sentence['-dur'])}'>${sentence['#text']}</span>`
     o = {begin: segment['-stime'], children: [], end: String((parseFloat(segment['-stime'])+ parseFloat(segment['-dur']))), id: String(notes.length), language: 'eng', lines: [line] };
     notes.push(o);
   }

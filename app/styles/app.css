@@ -248,3 +248,14 @@ body ::-webkit-scrollbar-thumb
   color-stop(.5, transparent), to(transparent));
 }
 
+.transcriptor.black {
+  color: #0d71bb;
+}
+
+.transcriptor.green {
+  color: #0ea432;
+}
+
+.transcriptor.red {
+  color: #9f3a38;
+}
