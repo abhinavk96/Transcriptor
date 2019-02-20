@@ -13,6 +13,7 @@ export default Component.extend({
   isPlayerLoading: false,
   targetSpanStartTime: 0,
   targetSpanEndTime: 0,
+  wordLevelHighlighting: true,
   actualTimer: 0,
   timeUpdate: false,
   isStep1Complete: false,
@@ -33,30 +34,30 @@ export default Component.extend({
 
   }),
   currentSpan:  computed('actualTimer', function(){
+    if(this.wordLevelHighlighting) {
       // if (this.currentTimer - this.actualTimer < 0.05) {
-        this.set('currentTimer', this.actualTimer);
-        this.set('timeUpdate', true);
+      this.set('currentTimer', this.actualTimer);
+      this.set('timeUpdate', true);
 
       // }
-      if(this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
+      if (this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
         $(`#${this.targetSpan}`).addClass('currentWord');
         console.log('encountetred! encountered!', this.targetSpan);
-      }
-      else if(this.currentTimer >= this.targetSpanEndTime) {
+      } else if (this.currentTimer >= this.targetSpanEndTime) {
         $(`#${this.targetSpan}`).removeClass('currentWord');
         let nextSpan = this.targetSpanIndex + 1;
         this.set('targetSpanIndex', nextSpan);
         console.log('new target:', nextSpan);
-        if(this.allSpans[nextSpan]) {
+        if (this.allSpans[nextSpan]) {
           this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
           this.set('targetSpanEndTime', this.allSpans[nextSpan].data('etime'));
           this.set('targetSpan', `o-${nextSpan}`);
-          if(this.currentTimer >= this.targetSpanEndTime) {
+          if (this.currentTimer >= this.targetSpanEndTime) {
             $(`#${this.targetSpan}`).addClass('currentWord');
           }
         }
       }
-
+    }
 
   }),
   didInsertElement(){
@@ -235,7 +236,7 @@ export default Component.extend({
           "fadeOut": {
             "duration": 0.5
           },
-          "cuein": 5.918,
+          "cuein": 0,
           // "cueout": 14.5,
           "customClass": "vocals",
           "waveOutlineColor": 'white'

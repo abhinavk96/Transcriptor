@@ -118,7 +118,11 @@
                 <input type="checkbox" class="automatic-scroll"> Automatic Scroll
               </label>
             </div>
+            <br><br>
+            {{ui-checkbox class="toggle" label="Word level Highlighting" checked=wordLevelHighlighting onChange=(action (mut wordLevelHighlighting))}}
+
           </form>
+
           seek to time
           <form class="ui form" onsubmit="preventDefault();">
             <div class="ui small icon input">
