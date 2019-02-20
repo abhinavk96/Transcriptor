@@ -5,14 +5,11 @@ let segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
 let notes = [];
 let spanIndex = 0;
 function getColor(score) {
-  if (parseFloat(score) > 0.7) {
-    return 'green';
-  }
-  else if(parseFloat(score) < 0.7) {
+  if(parseFloat(score) < 0.7) {
     return 'red';
   }
   else {
-    return 'black';
+    return '';
   }
 }
 segmentList = segmentsList.sort(function(a,b) {

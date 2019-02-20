@@ -7,7 +7,7 @@
           "-channel": "1",
           "-stime": "2.29",
           "-dur": "2.80",
-          "-score": "1.0",
+          "-score": "0.82",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -15,42 +15,50 @@
           "Word": [
             {
               "-stime": "2.29",
-              "-dur": "0.21",
+              "-dur": "0.12",
+              "-score": "0.43",
               "#text": "a"
             },
             {
-              "-stime": "2.50",
-              "-dur": "0.27",
+              "-stime": "2.41",
+              "-dur": "0.33",
+              "-score": "0.32",
               "#text": "senior"
             },
             {
-              "-stime": "2.77",
-              "-dur": "0.12",
+              "-stime": "2.75",
+              "-dur": "0.14",
+              "-score": "0.99",
               "#text": "this"
             },
             {
-              "-stime": "2.92",
-              "-dur": "0.63",
+              "-stime": "2.93",
+              "-dur": "0.62",
+              "-score": "0.99",
               "#text": "important"
             },
             {
               "-stime": "3.55",
               "-dur": "0.12",
+              "-score": "0.98",
               "#text": "to"
             },
             {
               "-stime": "3.67",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "make"
             },
             {
               "-stime": "3.97",
               "-dur": "0.48",
+              "-score": "0.98",
               "#text": "school"
             },
             {
               "-stime": "4.60",
               "-dur": "0.39",
+              "-score": "0.85",
               "#text": "fun"
             }
           ]
@@ -59,7 +67,7 @@
           "-channel": "1",
           "-stime": "5.53",
           "-dur": "5.39",
-          "-score": "1.0",
+          "-score": "0.92",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -68,126 +76,151 @@
             {
               "-stime": "5.53",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "5.80",
               "-dur": "0.15",
+              "-score": "0.99",
               "#text": "when"
             },
             {
               "-stime": "5.95",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "school"
             },
             {
               "-stime": "6.25",
               "-dur": "0.15",
+              "-score": "0.93",
               "#text": "is"
             },
             {
               "-stime": "6.40",
-              "-dur": "0.27",
+              "-dur": "0.26",
+              "-score": "0.73",
               "#text": "fun"
             },
             {
-              "-stime": "6.67",
-              "-dur": "0.15",
+              "-stime": "6.66",
+              "-dur": "0.16",
+              "-score": "1.0",
               "#text": "you"
             },
             {
               "-stime": "6.82",
               "-dur": "0.21",
+              "-score": "0.98",
               "#text": "don't"
             },
             {
               "-stime": "7.03",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "get"
             },
             {
               "-stime": "7.21",
               "-dur": "0.27",
+              "-score": "0.73",
               "#text": "kids"
             },
             {
               "-stime": "7.51",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "waking"
             },
             {
               "-stime": "7.90",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "up"
             },
             {
               "-stime": "8.29",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "8.44",
               "-dur": "0.06",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "8.50",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "morning"
             },
             {
               "-stime": "8.83",
               "-dur": "0.03",
+              "-score": "0.93",
               "#text": "i"
             },
             {
               "-stime": "8.86",
               "-dur": "0.18",
+              "-score": "0.99",
               "#text": "say"
             },
             {
               "-stime": "9.04",
-              "-dur": "0.12",
+              "-dur": "0.10",
+              "-score": "0.34",
               "#text": "i'll"
             },
             {
-              "-stime": "9.16",
+              "-stime": "9.15",
               "-dur": "0.15",
+              "-score": "0.88",
               "#text": "do"
             },
             {
               "-stime": "9.31",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "i"
             },
             {
               "-stime": "9.43",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "have"
             },
             {
               "-stime": "9.55",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "9.64",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "come"
             },
             {
               "-stime": "9.85",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "9.94",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "school"
             },
             {
-              "-stime": "10.30",
-              "-dur": "0.54",
+              "-stime": "10.32",
+              "-dur": "0.40",
+              "-score": "0.58",
               "#text": "again"
             }
           ]
@@ -196,7 +229,7 @@
           "-channel": "1",
           "-stime": "11.01",
           "-dur": "5.34",
-          "-score": "1.0",
+          "-score": "0.99",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -205,61 +238,73 @@
             {
               "-stime": "11.37",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "so"
             },
             {
               "-stime": "11.55",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "11.82",
               "-dur": "0.39",
+              "-score": "0.95",
               "#text": "embrace"
             },
             {
               "-stime": "12.21",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "technology"
             },
             {
               "-stime": "12.84",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "because"
             },
             {
               "-stime": "13.38",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "it"
             },
             {
               "-stime": "13.68",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "helps"
             },
             {
               "-stime": "14.13",
               "-dur": "0.30",
+              "-score": "0.99",
               "#text": "us"
             },
             {
               "-stime": "14.43",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "make"
             },
             {
               "-stime": "14.79",
               "-dur": "0.57",
+              "-score": "1.0",
               "#text": "learning"
             },
             {
               "-stime": "15.36",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "more"
             },
             {
               "-stime": "15.60",
               "-dur": "0.54",
+              "-score": "1.0",
               "#text": "engaging"
             }
           ]
@@ -268,7 +313,7 @@
           "-channel": "1",
           "-stime": "16.48",
           "-dur": "5.09",
-          "-score": "1.0",
+          "-score": "0.99",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -277,81 +322,97 @@
             {
               "-stime": "16.75",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "i"
             },
             {
               "-stime": "16.87",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "believe"
             },
             {
               "-stime": "17.17",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "that"
             },
             {
               "-stime": "17.26",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "when"
             },
             {
               "-stime": "17.41",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "kids"
             },
             {
               "-stime": "17.62",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "are"
             },
             {
               "-stime": "17.71",
               "-dur": "0.51",
+              "-score": "0.86",
               "#text": "engaged"
             },
             {
               "-stime": "18.61",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "when"
             },
             {
               "-stime": "18.85",
               "-dur": "0.33",
+              "-score": "0.99",
               "#text": "kids"
             },
             {
               "-stime": "19.18",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "are"
             },
             {
               "-stime": "19.30",
               "-dur": "0.54",
+              "-score": "0.99",
               "#text": "interested"
             },
             {
               "-stime": "20.32",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "that's"
             },
             {
               "-stime": "20.59",
               "-dur": "0.18",
+              "-score": "0.99",
               "#text": "where"
             },
             {
               "-stime": "20.77",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "learning"
             },
             {
               "-stime": "21.10",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "takes"
             },
             {
               "-stime": "21.37",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "place"
             }
           ]
@@ -360,225 +421,268 @@
           "-channel": "1",
           "-stime": "214.68",
           "-dur": "14.99",
-          "-score": "1.0",
+          "-score": "0.91",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S1",
           "Word": [
             {
-              "-stime": "215.10",
+              "-stime": "215.08",
               "-dur": "0.24",
+              "-score": "0.88",
               "#text": "web"
             },
             {
               "-stime": "215.34",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "two"
             },
             {
               "-stime": "215.46",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "point"
             },
             {
               "-stime": "215.61",
-              "-dur": "0.27",
+              "-dur": "0.28",
+              "-score": "1.0",
               "#text": "zero"
             },
             {
-              "-stime": "215.88",
-              "-dur": "0.30",
+              "-stime": "215.91",
+              "-dur": "0.27",
+              "-score": "0.36",
               "#text": "worked"
             },
             {
-              "-stime": "216.18",
-              "-dur": "0.24",
+              "-stime": "216.20",
+              "-dur": "0.22",
+              "-score": "0.77",
               "#text": "with"
             },
             {
-              "-stime": "216.42",
-              "-dur": "0.60",
+              "-stime": "216.46",
+              "-dur": "0.55",
+              "-score": "0.68",
               "#text": "wiki"
             },
             {
-              "-stime": "217.05",
-              "-dur": "0.42",
+              "-stime": "217.06",
+              "-dur": "0.37",
+              "-score": "0.81",
               "#text": "with"
             },
             {
-              "-stime": "217.47",
-              "-dur": "0.15",
+              "-stime": "217.49",
+              "-dur": "0.13",
+              "-score": "1.0",
               "#text": "your"
             },
             {
               "-stime": "217.62",
               "-dur": "0.66",
+              "-score": "1.0",
               "#text": "facebook"
             },
             {
               "-stime": "218.31",
               "-dur": "0.51",
+              "-score": "0.82",
               "#text": "your"
             },
             {
               "-stime": "218.82",
               "-dur": "0.51",
+              "-score": "0.99",
               "#text": "blocks"
             },
             {
               "-stime": "219.36",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "you"
             },
             {
               "-stime": "219.57",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "find"
             },
             {
               "-stime": "219.99",
               "-dur": "0.30",
+              "-score": "0.99",
               "#text": "that"
             },
             {
               "-stime": "220.29",
               "-dur": "0.24",
+              "-score": "0.93",
               "#text": "uh"
             },
             {
               "-stime": "220.53",
-              "-dur": "0.18",
+              "-dur": "0.17",
+              "-score": "0.91",
               "#text": "that"
             },
             {
               "-stime": "220.71",
               "-dur": "0.18",
+              "-score": "0.73",
               "#text": "is"
             },
             {
               "-stime": "220.89",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "a"
             },
             {
               "-stime": "220.98",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "221.28",
-              "-dur": "0.66",
+              "-dur": "0.68",
+              "-score": "0.98",
               "#text": "participate"
             },
             {
-              "-stime": "221.94",
-              "-dur": "0.15",
+              "-stime": "221.96",
+              "-dur": "0.13",
+              "-score": "0.45",
               "#text": "tree"
             },
             {
               "-stime": "222.09",
               "-dur": "0.39",
+              "-score": "0.99",
               "#text": "culture"
             },
             {
-              "-stime": "222.90",
-              "-dur": "0.27",
+              "-stime": "222.88",
+              "-dur": "0.26",
+              "-score": "0.44",
               "#text": "it"
             },
             {
               "-stime": "223.17",
               "-dur": "0.27",
+              "-score": "0.87",
               "#text": "calls"
             },
             {
               "-stime": "223.44",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "for"
             },
             {
               "-stime": "223.56",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "a"
             },
             {
               "-stime": "223.65",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "lot"
             },
             {
               "-stime": "223.83",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "223.92",
               "-dur": "0.69",
+              "-score": "1.0",
               "#text": "collaboration"
             },
             {
               "-stime": "224.76",
               "-dur": "0.18",
+              "-score": "0.99",
               "#text": "they"
             },
             {
               "-stime": "224.94",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "no"
             },
             {
               "-stime": "225.06",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "longer"
             },
             {
               "-stime": "225.30",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "become"
             },
             {
               "-stime": "225.60",
               "-dur": "0.30",
+              "-score": "0.98",
               "#text": "just"
             },
             {
               "-stime": "226.29",
               "-dur": "0.15",
+              "-score": "0.92",
               "#text": "a"
             },
             {
               "-stime": "226.44",
               "-dur": "0.60",
+              "-score": "1.0",
               "#text": "consumer"
             },
             {
               "-stime": "227.04",
-              "-dur": "0.15",
+              "-dur": "0.16",
+              "-score": "0.95",
               "#text": "of"
             },
             {
-              "-stime": "227.19",
-              "-dur": "0.45",
+              "-stime": "227.20",
+              "-dur": "0.44",
+              "-score": "0.97",
               "#text": "knowledge"
             },
             {
               "-stime": "227.91",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "they"
             },
             {
               "-stime": "228.09",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "actually"
             },
             {
               "-stime": "228.54",
               "-dur": "0.45",
+              "-score": "0.83",
               "#text": "produce"
             },
             {
-              "-stime": "228.99",
-              "-dur": "0.42",
+              "-stime": "229.00",
+              "-dur": "0.41",
+              "-score": "1.0",
               "#text": "knowledge"
             }
           ]
@@ -587,7 +691,7 @@
           "-channel": "1",
           "-stime": "263.32",
           "-dur": "7.11",
-          "-score": "1.0",
+          "-score": "0.96",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -596,96 +700,115 @@
             {
               "-stime": "263.53",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "i"
             },
             {
               "-stime": "263.68",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "would"
             },
             {
               "-stime": "263.80",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "say"
             },
             {
               "-stime": "264.01",
               "-dur": "0.18",
+              "-score": "0.97",
               "#text": "that"
             },
             {
               "-stime": "264.19",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "264.28",
               "-dur": "0.42",
+              "-score": "0.99",
               "#text": "teachers"
             },
             {
-              "-stime": "264.73",
-              "-dur": "0.12",
+              "-stime": "264.72",
+              "-dur": "0.11",
+              "-score": "0.86",
               "#text": "in"
             },
             {
-              "-stime": "264.85",
-              "-dur": "0.12",
+              "-stime": "264.83",
+              "-dur": "0.18",
+              "-score": "0.86",
               "#text": "the"
             },
             {
-              "-stime": "264.97",
-              "-dur": "0.33",
+              "-stime": "265.01",
+              "-dur": "0.30",
+              "-score": "0.87",
               "#text": "school"
             },
             {
               "-stime": "265.36",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "myself"
             },
             {
               "-stime": "265.84",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "included"
             },
             {
               "-stime": "266.29",
               "-dur": "0.33",
+              "-score": "0.87",
               "#text": "we"
             },
             {
               "-stime": "266.89",
               "-dur": "0.27",
+              "-score": "0.95",
               "#text": "we"
             },
             {
               "-stime": "267.16",
               "-dur": "0.39",
+              "-score": "0.93",
               "#text": "scanned"
             },
             {
               "-stime": "267.55",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "the"
             },
             {
               "-stime": "267.64",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "globe"
             },
             {
               "-stime": "268.39",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "for"
             },
             {
               "-stime": "268.63",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "best"
             },
             {
               "-stime": "268.96",
               "-dur": "0.54",
+              "-score": "1.0",
               "#text": "practices"
             }
           ]
@@ -694,14 +817,15 @@
           "-channel": "1",
           "-stime": "75.50",
           "-dur": "4.40",
-          "-score": "1.0",
+          "-score": "0.46",
           "-lang": "eng",
           "-gender": "2",
           "-band": "S",
           "-spkrid": "S13",
           "Word": {
-            "-stime": "75.50",
-            "-dur": "0.12",
+            "-stime": "75.56",
+            "-dur": "0.24",
+            "-score": "0.46",
             "#text": "unk"
           }
         },
@@ -709,7 +833,7 @@
           "-channel": "1",
           "-stime": "79.90",
           "-dur": "18.78",
-          "-score": "1.0",
+          "-score": "0.92",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -718,271 +842,325 @@
             {
               "-stime": "80.02",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "80.23",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "80.35",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "early"
             },
             {
               "-stime": "80.80",
               "-dur": "0.33",
+              "-score": "0.99",
               "#text": "nineteen"
             },
             {
               "-stime": "81.13",
-              "-dur": "0.54",
+              "-dur": "0.49",
+              "-score": "0.75",
               "#text": "nineties"
             },
             {
               "-stime": "81.67",
               "-dur": "0.12",
+              "-score": "0.86",
               "#text": "the"
             },
             {
               "-stime": "81.79",
               "-dur": "0.51",
+              "-score": "0.86",
               "#text": "teachers"
             },
             {
               "-stime": "82.30",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "really"
             },
             {
               "-stime": "82.66",
-              "-dur": "0.15",
+              "-dur": "0.16",
+              "-score": "0.69",
               "#text": "are"
             },
             {
-              "-stime": "82.81",
-              "-dur": "0.09",
+              "-stime": "82.82",
+              "-dur": "0.08",
+              "-score": "0.88",
               "#text": "the"
             },
             {
               "-stime": "82.90",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "monopoly"
             },
             {
               "-stime": "83.53",
               "-dur": "0.15",
+              "-score": "0.85",
               "#text": "of"
             },
             {
               "-stime": "83.68",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "knowledge"
             },
             {
-              "-stime": "84.43",
-              "-dur": "0.24",
+              "-stime": "84.44",
+              "-dur": "0.23",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "84.67",
               "-dur": "0.27",
+              "-score": "0.99",
               "#text": "they"
             },
             {
               "-stime": "84.94",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "are"
             },
             {
               "-stime": "85.18",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "85.33",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "one"
             },
             {
               "-stime": "85.66",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "that"
             },
             {
               "-stime": "85.81",
-              "-dur": "0.27",
+              "-dur": "0.29",
+              "-score": "1.0",
               "#text": "comes"
             },
             {
-              "-stime": "86.08",
+              "-stime": "86.10",
               "-dur": "0.06",
+              "-score": "0.47",
               "#text": "to"
             },
             {
-              "-stime": "86.14",
-              "-dur": "0.09",
+              "-stime": "86.16",
+              "-dur": "0.08",
+              "-score": "0.53",
               "#text": "the"
             },
             {
               "-stime": "86.23",
               "-dur": "0.48",
+              "-score": "0.61",
               "#text": "glass"
             },
             {
               "-stime": "86.98",
               "-dur": "0.18",
+              "-score": "0.98",
               "#text": "to"
             },
             {
               "-stime": "87.16",
               "-dur": "0.54",
+              "-score": "0.97",
               "#text": "deliver"
             },
             {
               "-stime": "87.70",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "that"
             },
             {
               "-stime": "87.88",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "knowledge"
             },
             {
               "-stime": "88.42",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "so"
             },
             {
               "-stime": "88.69",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "that"
             },
             {
               "-stime": "88.87",
               "-dur": "0.12",
+              "-score": "0.83",
               "#text": "the"
             },
             {
               "-stime": "88.99",
               "-dur": "0.48",
+              "-score": "0.99",
               "#text": "students"
             },
             {
               "-stime": "89.47",
               "-dur": "0.24",
+              "-score": "0.87",
               "#text": "can"
             },
             {
               "-stime": "89.71",
-              "-dur": "0.42",
+              "-dur": "0.41",
+              "-score": "0.95",
               "#text": "acquire"
             },
             {
               "-stime": "90.13",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "them"
             },
             {
               "-stime": "90.91",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "but"
             },
             {
               "-stime": "91.12",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "today"
             },
             {
               "-stime": "92.32",
               "-dur": "0.57",
+              "-score": "1.0",
               "#text": "knowledge"
             },
             {
               "-stime": "92.92",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "is"
             },
             {
               "-stime": "93.16",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "no"
             },
             {
               "-stime": "93.31",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "more"
             },
             {
               "-stime": "93.52",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "a"
             },
             {
               "-stime": "93.61",
               "-dur": "0.54",
+              "-score": "1.0",
               "#text": "monopoly"
             },
             {
               "-stime": "94.18",
               "-dur": "0.39",
+              "-score": "0.97",
               "#text": "amanda"
             },
             {
               "-stime": "94.57",
               "-dur": "0.60",
+              "-score": "0.4",
               "#text": "details"
             },
             {
-              "-stime": "95.32",
-              "-dur": "0.33",
+              "-stime": "95.31",
+              "-dur": "0.32",
+              "-score": "0.86",
               "#text": "because"
             },
             {
-              "-stime": "95.65",
-              "-dur": "0.42",
+              "-stime": "95.64",
+              "-dur": "0.43",
+              "-score": "1.0",
               "#text": "students"
             },
             {
               "-stime": "96.07",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "can"
             },
             {
               "-stime": "96.28",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "get"
             },
             {
               "-stime": "96.46",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "knowledge"
             },
             {
               "-stime": "96.85",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "from"
             },
             {
               "-stime": "97.12",
               "-dur": "0.12",
+              "-score": "0.98",
               "#text": "a"
             },
             {
               "-stime": "97.24",
               "-dur": "0.42",
+              "-score": "0.85",
               "#text": "myriad"
             },
             {
               "-stime": "97.69",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "97.96",
               "-dur": "0.63",
+              "-score": "0.8",
               "#text": "sauces"
             }
           ]
@@ -991,7 +1169,7 @@
           "-channel": "1",
           "-stime": "98.68",
           "-dur": "3.47",
-          "-score": "1.0",
+          "-score": "0.96",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -1000,41 +1178,49 @@
             {
               "-stime": "98.89",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "99.46",
               "-dur": "0.66",
+              "-score": "1.0",
               "#text": "hence"
             },
             {
               "-stime": "100.33",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "100.48",
               "-dur": "0.30",
+              "-score": "0.83",
               "#text": "role"
             },
             {
               "-stime": "100.78",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "100.90",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "101.02",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "teacher"
             },
             {
-              "-stime": "101.41",
-              "-dur": "0.45",
+              "-stime": "101.44",
+              "-dur": "0.42",
+              "-score": "0.84",
               "#text": "today"
             }
           ]
@@ -1043,30 +1229,34 @@
           "-channel": "1",
           "-stime": "102.15",
           "-dur": "3.27",
-          "-score": "1.0",
+          "-score": "0.86",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S14",
           "Word": [
             {
-              "-stime": "102.18",
-              "-dur": "0.84",
+              "-stime": "102.19",
+              "-dur": "0.83",
+              "-score": "1.0",
               "#text": "facilitation"
             },
             {
               "-stime": "103.74",
               "-dur": "0.33",
+              "-score": "0.96",
               "#text": "dummies"
             },
             {
               "-stime": "104.07",
-              "-dur": "0.72",
+              "-dur": "0.73",
+              "-score": "0.51",
               "#text": "facilitate"
             },
             {
-              "-stime": "104.79",
-              "-dur": "0.57",
+              "-stime": "104.80",
+              "-dur": "0.56",
+              "-score": "0.98",
               "#text": "students"
             }
           ]
@@ -1075,115 +1265,136 @@
           "-channel": "1",
           "-stime": "105.42",
           "-dur": "6.85",
-          "-score": "1.0",
+          "-score": "0.91",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S14",
           "Word": [
             {
-              "-stime": "105.66",
-              "-dur": "0.48",
+              "-stime": "105.68",
+              "-dur": "0.46",
+              "-score": "1.0",
               "#text": "where"
             },
             {
               "-stime": "106.17",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "they"
             },
             {
               "-stime": "106.29",
               "-dur": "0.18",
+              "-score": "0.97",
               "#text": "could"
             },
             {
               "-stime": "106.47",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "get"
             },
             {
               "-stime": "106.71",
-              "-dur": "0.15",
+              "-dur": "0.14",
+              "-score": "0.47",
               "#text": "the"
             },
             {
-              "-stime": "106.86",
-              "-dur": "0.27",
+              "-stime": "106.85",
+              "-dur": "0.28",
+              "-score": "0.96",
               "#text": "right"
             },
             {
               "-stime": "107.13",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "knowledge"
             },
             {
               "-stime": "107.52",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "how"
             },
             {
               "-stime": "107.91",
-              "-dur": "0.18",
+              "-dur": "0.19",
+              "-score": "0.83",
               "#text": "they"
             },
             {
-              "-stime": "108.09",
-              "-dur": "0.27",
+              "-stime": "108.10",
+              "-dur": "0.26",
+              "-score": "0.95",
               "#text": "could"
             },
             {
               "-stime": "108.60",
               "-dur": "0.87",
+              "-score": "1.0",
               "#text": "synthesize"
             },
             {
               "-stime": "109.47",
               "-dur": "0.30",
+              "-score": "0.82",
               "#text": "them"
             },
             {
               "-stime": "109.80",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "how"
             },
             {
               "-stime": "110.10",
               "-dur": "0.12",
+              "-score": "0.98",
               "#text": "they"
             },
             {
               "-stime": "110.22",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "could"
             },
             {
               "-stime": "110.40",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "discern"
             },
             {
               "-stime": "111.06",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "111.21",
               "-dur": "0.60",
+              "-score": "1.0",
               "#text": "information"
             },
             {
               "-stime": "111.81",
-              "-dur": "0.12",
+              "-dur": "0.13",
+              "-score": "0.99",
               "#text": "that"
             },
             {
-              "-stime": "111.93",
-              "-dur": "0.09",
+              "-stime": "111.94",
+              "-dur": "0.06",
+              "-score": "0.5",
               "#text": "they"
             },
             {
-              "-stime": "112.02",
-              "-dur": "0.21",
+              "-stime": "112.00",
+              "-dur": "0.23",
+              "-score": "0.57",
               "#text": "get"
             }
           ]
@@ -1192,7 +1403,7 @@
           "-channel": "1",
           "-stime": "112.27",
           "-dur": "8.28",
-          "-score": "1.0",
+          "-score": "0.81",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -1200,192 +1411,236 @@
           "Word": [
             {
               "-stime": "112.57",
-              "-dur": "0.54",
+              "-dur": "0.55",
+              "-score": "0.83",
               "#text": "velocity"
             },
             {
-              "-stime": "113.14",
-              "-dur": "0.51",
+              "-stime": "113.16",
+              "-dur": "0.48",
+              "-score": "0.63",
               "#text": "defies"
             },
             {
-              "-stime": "113.65",
-              "-dur": "0.09",
+              "-stime": "113.66",
+              "-dur": "0.08",
+              "-score": "0.99",
               "#text": "the"
             },
             {
               "-stime": "113.74",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "rate"
             },
             {
               "-stime": "113.98",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "114.10",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "change"
             },
             {
               "-stime": "114.49",
-              "-dur": "0.21",
+              "-dur": "0.19",
+              "-score": "0.73",
               "#text": "of"
             },
             {
               "-stime": "114.70",
-              "-dur": "0.39",
+              "-dur": "0.31",
+              "-score": "0.38",
               "#text": "distance"
             },
             {
-              "-stime": "115.09",
-              "-dur": "0.12",
+              "-stime": "115.03",
+              "-dur": "0.17",
+              "-score": "0.62",
               "#text": "with"
             },
             {
               "-stime": "115.21",
               "-dur": "0.24",
+              "-score": "0.98",
               "#text": "time"
             },
             {
               "-stime": "115.45",
               "-dur": "0.15",
+              "-score": "0.98",
               "#text": "is"
             },
             {
-              "-stime": "115.60",
+              "-stime": "115.59",
               "-dur": "0.15",
+              "-score": "0.98",
               "#text": "it"
             },
             {
-              "-stime": "115.75",
-              "-dur": "0.24",
+              "-stime": "115.74",
+              "-dur": "0.22",
+              "-score": "0.95",
               "#text": "true"
             },
             {
-              "-stime": "115.99",
-              "-dur": "0.09",
+              "-stime": "115.97",
+              "-dur": "0.13",
+              "-score": "0.53",
               "#text": "or"
             },
             {
-              "-stime": "116.08",
-              "-dur": "0.27",
+              "-stime": "116.09",
+              "-dur": "0.18",
+              "-score": "0.5",
               "#text": "false"
             },
             {
-              "-stime": "116.35",
-              "-dur": "0.03",
+              "-stime": "116.28",
+              "-dur": "0.18",
+              "-score": "0.33",
               "#text": "v-noise"
             },
             {
-              "-stime": "116.74",
-              "-dur": "0.15",
+              "-stime": "116.72",
+              "-dur": "0.19",
+              "-score": "0.92",
               "#text": "so"
             },
             {
-              "-stime": "116.89",
-              "-dur": "0.06",
+              "-stime": "116.91",
+              "-dur": "0.08",
+              "-score": "0.76",
               "#text": "i"
             },
             {
-              "-stime": "116.95",
-              "-dur": "0.21",
+              "-stime": "116.99",
+              "-dur": "0.16",
+              "-score": "0.59",
               "#text": "want"
             },
             {
               "-stime": "117.16",
               "-dur": "0.15",
+              "-score": "0.73",
               "#text": "you"
             },
             {
               "-stime": "117.31",
               "-dur": "0.09",
+              "-score": "0.67",
               "#text": "to"
             },
             {
-              "-stime": "117.40",
-              "-dur": "0.27",
-              "#text": "treat"
+              "-stime": "117.41",
+              "-dur": "0.26",
+              "-score": "0.52",
+              "#text": "tweet"
             },
             {
               "-stime": "117.67",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "me"
+            },
+            {
+              "-stime": "117.85",
+              "-dur": "0.22",
+              "-score": "0.51",
+              "#text": "answer"
             },
             {
               "-stime": "118.21",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "so"
             },
             {
               "-stime": "118.33",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "this"
             },
             {
               "-stime": "118.54",
               "-dur": "0.06",
+              "-score": "1.0",
               "#text": "is"
             },
             {
               "-stime": "118.60",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "how"
             },
             {
               "-stime": "118.69",
-              "-dur": "0.12",
+              "-dur": "0.13",
+              "-score": "0.99",
               "#text": "you"
             },
             {
-              "-stime": "118.81",
-              "-dur": "0.15",
+              "-stime": "118.82",
+              "-dur": "0.13",
+              "-score": "0.8",
               "#text": "do"
             },
             {
-              "-stime": "118.96",
-              "-dur": "0.09",
+              "-stime": "118.94",
+              "-dur": "0.10",
+              "-score": "0.85",
               "#text": "it"
             },
             {
-              "-stime": "119.05",
+              "-stime": "119.04",
               "-dur": "0.15",
+              "-score": "0.97",
               "#text": "this"
             },
             {
               "-stime": "119.20",
               "-dur": "0.12",
+              "-score": "0.96",
               "#text": "is"
             },
             {
               "-stime": "119.32",
               "-dur": "0.09",
+              "-score": "0.82",
               "#text": "a"
             },
             {
-              "-stime": "119.41",
-              "-dur": "0.39",
+              "-stime": "119.43",
+              "-dur": "0.32",
+              "-score": "0.54",
               "#text": "format"
             },
             {
-              "-stime": "119.80",
+              "-stime": "119.79",
               "-dur": "0.12",
+              "-score": "0.78",
               "#text": "they"
             },
             {
               "-stime": "119.92",
               "-dur": "0.15",
+              "-score": "0.98",
               "#text": "need"
             },
             {
               "-stime": "120.07",
               "-dur": "0.06",
+              "-score": "0.96",
               "#text": "to"
             },
             {
-              "-stime": "120.13",
-              "-dur": "0.33",
+              "-stime": "120.14",
+              "-dur": "0.29",
+              "-score": "0.72",
               "#text": "tweet"
             }
           ]
@@ -1394,7 +1649,7 @@
           "-channel": "1",
           "-stime": "120.62",
           "-dur": "3.21",
-          "-score": "1.0",
+          "-score": "0.75",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -1403,56 +1658,67 @@
             {
               "-stime": "120.86",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "so"
             },
             {
               "-stime": "121.07",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "you"
             },
             {
-              "-stime": "121.46",
-              "-dur": "0.18",
+              "-stime": "121.45",
+              "-dur": "0.17",
+              "-score": "0.55",
               "#text": "what"
             },
             {
-              "-stime": "121.64",
+              "-stime": "121.63",
               "-dur": "0.18",
+              "-score": "0.54",
               "#text": "is"
             },
             {
               "-stime": "121.82",
               "-dur": "0.24",
+              "-score": "0.87",
               "#text": "at"
             },
             {
-              "-stime": "122.06",
+              "-stime": "122.07",
               "-dur": "0.39",
+              "-score": "0.63",
               "#text": "sign"
             },
             {
               "-stime": "122.48",
               "-dur": "0.33",
+              "-score": "0.96",
               "#text": "vote"
             },
             {
               "-stime": "122.84",
               "-dur": "0.30",
+              "-score": "0.88",
               "#text": "by"
             },
             {
-              "-stime": "123.14",
-              "-dur": "0.21",
+              "-stime": "123.15",
+              "-dur": "0.13",
+              "-score": "0.48",
               "#text": "to"
             },
             {
-              "-stime": "123.35",
-              "-dur": "0.15",
+              "-stime": "123.28",
+              "-dur": "0.22",
+              "-score": "0.52",
               "#text": "eat"
             },
             {
               "-stime": "123.50",
               "-dur": "0.27",
+              "-score": "0.85",
               "#text": "one"
             }
           ]
@@ -1461,7 +1727,7 @@
           "-channel": "1",
           "-stime": "123.83",
           "-dur": "9.17",
-          "-score": "1.0",
+          "-score": "0.99",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -1470,126 +1736,151 @@
             {
               "-stime": "123.89",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "124.28",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "look"
             },
             {
               "-stime": "124.55",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "at"
             },
             {
               "-stime": "124.64",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "technology"
             },
             {
               "-stime": "125.12",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "125.36",
               "-dur": "0.51",
+              "-score": "0.93",
               "#text": "meaningful"
             },
             {
               "-stime": "126.20",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "126.38",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "126.47",
               "-dur": "0.18",
+              "-score": "0.88",
               "#text": "see"
             },
             {
               "-stime": "126.68",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "how"
             },
             {
               "-stime": "127.19",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "can"
             },
             {
               "-stime": "127.37",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "127.55",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "leverage"
             },
             {
               "-stime": "127.97",
-              "-dur": "0.15",
+              "-dur": "0.14",
+              "-score": "0.93",
               "#text": "this"
             },
             {
-              "-stime": "128.12",
-              "-dur": "0.60",
+              "-stime": "128.11",
+              "-dur": "0.61",
+              "-score": "1.0",
               "#text": "technology"
             },
             {
               "-stime": "129.26",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "129.47",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "make"
             },
             {
               "-stime": "129.89",
               "-dur": "0.15",
+              "-score": "0.96",
               "#text": "a"
             },
             {
               "-stime": "130.04",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "130.40",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "significant"
             },
             {
               "-stime": "130.88",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "impact"
             },
             {
               "-stime": "131.33",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "131.63",
               "-dur": "0.12",
+              "-score": "0.95",
               "#text": "the"
             },
             {
               "-stime": "131.75",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "classroom"
             },
             {
               "-stime": "132.11",
               "-dur": "0.57",
+              "-score": "1.0",
               "#text": "instruction"
             }
           ]
@@ -1598,7 +1889,7 @@
           "-channel": "1",
           "-stime": "133.00",
           "-dur": "11.68",
-          "-score": "1.0",
+          "-score": "0.91",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -1606,203 +1897,237 @@
           "Word": [
             {
               "-stime": "133.15",
-              "-dur": "0.12",
+              "-dur": "0.13",
+              "-score": "0.97",
               "#text": "i"
             },
             {
               "-stime": "133.27",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "give"
             },
             {
               "-stime": "133.42",
               "-dur": "0.06",
+              "-score": "1.0",
               "#text": "you"
             },
             {
               "-stime": "133.48",
               "-dur": "0.06",
+              "-score": "1.0",
               "#text": "an"
             },
             {
               "-stime": "133.54",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "example"
             },
             {
               "-stime": "134.32",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "134.50",
               "-dur": "0.03",
+              "-score": "0.89",
               "#text": "a"
             },
             {
               "-stime": "134.53",
               "-dur": "0.39",
+              "-score": "0.99",
               "#text": "classroom"
             },
             {
               "-stime": "134.92",
-              "-dur": "0.12",
+              "-dur": "0.10",
+              "-score": "0.44",
               "#text": "of"
             },
             {
-              "-stime": "135.04",
-              "-dur": "0.48",
+              "-stime": "135.03",
+              "-dur": "0.49",
+              "-score": "0.74",
               "#text": "forty"
             },
             {
-              "-stime": "135.67",
-              "-dur": "0.15",
+              "-stime": "135.68",
+              "-dur": "0.14",
+              "-score": "1.0",
               "#text": "it"
             },
             {
               "-stime": "135.82",
               "-dur": "0.18",
+              "-score": "0.98",
               "#text": "is"
             },
             {
               "-stime": "136.18",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "really"
             },
             {
               "-stime": "136.54",
               "-dur": "0.54",
+              "-score": "1.0",
               "#text": "impossible"
             },
             {
               "-stime": "137.08",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "137.20",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "get"
             },
             {
               "-stime": "137.38",
               "-dur": "0.33",
+              "-score": "0.66",
               "#text": "forty"
             },
             {
               "-stime": "137.71",
-              "-dur": "0.27",
+              "-dur": "0.26",
+              "-score": "0.66",
               "#text": "students"
             },
             {
               "-stime": "137.98",
               "-dur": "0.09",
+              "-score": "0.89",
               "#text": "to"
             },
             {
               "-stime": "138.07",
               "-dur": "0.27",
+              "-score": "0.96",
               "#text": "us"
             },
             {
               "-stime": "138.34",
               "-dur": "0.33",
+              "-score": "0.81",
               "#text": "forty"
             },
             {
               "-stime": "138.67",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "questions"
             },
             {
               "-stime": "139.06",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "at"
             },
             {
               "-stime": "139.15",
               "-dur": "0.18",
+              "-score": "0.99",
               "#text": "one"
             },
             {
               "-stime": "139.33",
               "-dur": "0.27",
+              "-score": "0.55",
               "#text": "gulp"
             },
             {
               "-stime": "139.90",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "when"
             },
             {
               "-stime": "140.08",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "140.20",
               "-dur": "0.36",
+              "-score": "0.98",
               "#text": "use"
             },
             {
               "-stime": "140.56",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "141.31",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "instant"
             },
             {
               "-stime": "141.67",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "messaging"
             },
             {
               "-stime": "142.12",
               "-dur": "0.33",
+              "-score": "0.99",
               "#text": "tool"
             },
             {
               "-stime": "142.54",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "142.75",
               "-dur": "0.30",
+              "-score": "0.73",
               "#text": "opened"
             },
             {
               "-stime": "143.05",
               "-dur": "0.33",
+              "-score": "0.9",
               "#text": "forty"
             },
             {
               "-stime": "143.38",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "windows"
             },
             {
               "-stime": "143.74",
               "-dur": "0.15",
+              "-score": "0.83",
               "#text": "to"
             },
             {
               "-stime": "143.89",
               "-dur": "0.36",
+              "-score": "0.62",
               "#text": "faulty"
             },
             {
               "-stime": "144.25",
               "-dur": "0.36",
+              "-score": "0.95",
               "#text": "kits"
-            },
-            {
-              "-stime": "144.68",
-              "-dur": "0.30",
-              "#text": "they"
             }
           ]
         },
@@ -1810,180 +2135,208 @@
           "-channel": "1",
           "-stime": "144.68",
           "-dur": "8.62",
-          "-score": "1.0",
+          "-score": "0.91",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S21",
           "Word": [
             {
-              "-stime": "144.68",
-              "-dur": "0.30",
+              "-stime": "144.69",
+              "-dur": "0.29",
+              "-score": "0.98",
               "#text": "they"
             },
             {
               "-stime": "144.98",
               "-dur": "0.15",
+              "-score": "0.96",
               "#text": "could"
             },
             {
               "-stime": "145.13",
               "-dur": "0.21",
+              "-score": "0.88",
               "#text": "ask"
             },
             {
               "-stime": "145.34",
               "-dur": "0.30",
+              "-score": "0.62",
               "#text": "forty"
             },
             {
               "-stime": "145.64",
               "-dur": "0.57",
+              "-score": "1.0",
               "#text": "questions"
             },
             {
               "-stime": "146.21",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "at"
             },
             {
               "-stime": "146.33",
               "-dur": "0.06",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "146.39",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "same"
             },
             {
               "-stime": "146.63",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "time"
             },
             {
               "-stime": "146.87",
               "-dur": "0.09",
+              "-score": "0.96",
               "#text": "and"
             },
             {
               "-stime": "146.96",
               "-dur": "0.06",
+              "-score": "0.89",
               "#text": "a"
             },
             {
               "-stime": "147.02",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "teacher"
             },
             {
               "-stime": "147.32",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "could"
             },
             {
               "-stime": "147.50",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "see"
             },
             {
               "-stime": "148.13",
               "-dur": "0.18",
+              "-score": "0.6",
               "#text": "their"
             },
             {
               "-stime": "148.31",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "thinking"
             },
             {
               "-stime": "148.76",
               "-dur": "0.18",
+              "-score": "0.8",
               "#text": "on"
-            },
-            {
-              "-stime": "148.97",
-              "-dur": "0.24",
-              "#text": "uh"
             },
             {
               "-stime": "149.27",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "on"
             },
             {
               "-stime": "149.48",
               "-dur": "0.06",
+              "-score": "0.95",
               "#text": "the"
             },
             {
               "-stime": "149.54",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "technology"
             },
             {
               "-stime": "150.02",
               "-dur": "0.15",
+              "-score": "0.69",
               "#text": "to"
             },
             {
               "-stime": "150.17",
               "-dur": "0.12",
+              "-score": "0.96",
               "#text": "that"
             },
             {
               "-stime": "150.29",
               "-dur": "0.06",
+              "-score": "0.94",
               "#text": "they"
             },
             {
               "-stime": "150.35",
               "-dur": "0.33",
+              "-score": "0.97",
               "#text": "use"
             },
             {
               "-stime": "150.71",
               "-dur": "0.24",
+              "-score": "0.96",
               "#text": "and"
             },
             {
               "-stime": "150.95",
               "-dur": "0.24",
+              "-score": "0.97",
               "#text": "kids"
             },
             {
               "-stime": "151.19",
-              "-dur": "0.21",
+              "-dur": "0.19",
+              "-score": "0.74",
               "#text": "getting"
             },
             {
-              "-stime": "151.40",
-              "-dur": "0.12",
+              "-stime": "151.39",
+              "-dur": "0.13",
+              "-score": "0.57",
               "#text": "what"
             },
             {
               "-stime": "151.52",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "excited"
             },
             {
               "-stime": "152.00",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "because"
             },
             {
               "-stime": "152.30",
-              "-dur": "0.09",
+              "-dur": "0.08",
+              "-score": "0.86",
               "#text": "they"
             },
             {
-              "-stime": "152.39",
-              "-dur": "0.06",
+              "-stime": "152.38",
+              "-dur": "0.07",
+              "-score": "0.87",
               "#text": "are"
             },
             {
               "-stime": "152.45",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "using"
             }
           ]
@@ -1992,7 +2345,7 @@
           "-channel": "1",
           "-stime": "153.30",
           "-dur": "5.18",
-          "-score": "1.0",
+          "-score": "0.99",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -2001,81 +2354,97 @@
             {
               "-stime": "153.66",
               "-dur": "0.24",
+              "-score": "0.99",
               "#text": "the"
             },
             {
               "-stime": "153.90",
               "-dur": "0.42",
+              "-score": "0.98",
               "#text": "tools"
             },
             {
               "-stime": "154.32",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "that"
             },
             {
               "-stime": "154.47",
               "-dur": "0.15",
+              "-score": "0.91",
               "#text": "they"
             },
             {
               "-stime": "154.62",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "are"
             },
             {
               "-stime": "154.89",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "155.25",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "155.55",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "good"
             },
             {
               "-stime": "155.73",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "in"
             },
             {
               "-stime": "155.85",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "using"
             },
             {
               "-stime": "156.48",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "not"
             },
             {
               "-stime": "156.69",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "just"
             },
             {
               "-stime": "156.93",
               "-dur": "0.06",
+              "-score": "0.99",
               "#text": "a"
             },
             {
               "-stime": "156.99",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "pen"
             },
             {
               "-stime": "157.47",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "157.95",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "pencil"
             }
           ]
@@ -2084,170 +2453,178 @@
           "-channel": "1",
           "-stime": "158.48",
           "-dur": "9.54",
-          "-score": "1.0",
+          "-score": "0.70",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S27",
           "Word": [
             {
-              "-stime": "158.75",
-              "-dur": "0.33",
+              "-stime": "158.74",
+              "-dur": "0.32",
+              "-score": "0.92",
               "#text": "okay"
             },
             {
-              "-stime": "159.44",
-              "-dur": "0.18",
+              "-stime": "159.34",
+              "-dur": "0.15",
+              "-score": "0.76",
               "#text": "so"
             },
             {
-              "-stime": "159.62",
-              "-dur": "0.24",
-              "#text": "since"
-            },
-            {
-              "-stime": "159.86",
-              "-dur": "0.18",
+              "-stime": "159.77",
+              "-dur": "0.19",
+              "-score": "0.57",
               "#text": "then"
             },
             {
               "-stime": "160.04",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "160.16",
               "-dur": "0.15",
+              "-score": "0.89",
               "#text": "will"
             },
             {
               "-stime": "160.31",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "have"
             },
             {
               "-stime": "160.55",
-              "-dur": "0.45",
+              "-dur": "0.47",
+              "-score": "0.88",
               "#text": "a"
             },
             {
               "-stime": "161.42",
               "-dur": "0.18",
+              "-score": "0.85",
               "#text": "two"
             },
             {
               "-stime": "161.60",
-              "-dur": "0.36",
+              "-dur": "0.35",
+              "-score": "0.96",
               "#text": "students"
             },
             {
               "-stime": "161.96",
-              "-dur": "0.12",
+              "-dur": "0.11",
+              "-score": "0.29",
               "#text": "were"
             },
             {
-              "-stime": "162.08",
-              "-dur": "0.30",
-              "#text": "avid"
+              "-stime": "162.07",
+              "-dur": "0.23",
+              "-score": "0.54",
+              "#text": "every"
             },
             {
-              "-stime": "162.38",
-              "-dur": "0.12",
-              "#text": "let"
+              "-stime": "162.33",
+              "-dur": "0.19",
+              "-score": "0.51",
+              "#text": "time"
             },
             {
-              "-stime": "162.50",
-              "-dur": "0.09",
-              "#text": "me"
+              "-stime": "162.52",
+              "-dur": "0.07",
+              "-score": "0.66",
+              "#text": "you"
             },
             {
               "-stime": "162.59",
               "-dur": "0.15",
+              "-score": "0.98",
               "#text": "know"
             },
             {
               "-stime": "162.80",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "if"
             },
             {
               "-stime": "162.98",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "you"
             },
             {
               "-stime": "163.07",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "have"
             },
             {
               "-stime": "163.22",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "any"
             },
             {
               "-stime": "163.46",
-              "-dur": "0.33",
+              "-dur": "0.26",
+              "-score": "0.73",
               "#text": "issues"
             },
             {
-              "-stime": "163.79",
-              "-dur": "0.06",
+              "-stime": "163.72",
+              "-dur": "0.14",
+              "-score": "0.22",
               "#text": "or"
             },
             {
-              "-stime": "163.85",
-              "-dur": "0.18",
+              "-stime": "163.87",
+              "-dur": "0.14",
+              "-score": "0.55",
               "#text": "that"
             },
             {
               "-stime": "164.03",
-              "-dur": "0.09",
+              "-dur": "0.16",
+              "-score": "0.77",
               "#text": "the"
             },
             {
-              "-stime": "164.12",
-              "-dur": "0.51",
-              "#text": "meals"
-            },
-            {
-              "-stime": "165.02",
-              "-dur": "0.21",
-              "#text": "raise"
-            },
-            {
-              "-stime": "165.23",
-              "-dur": "0.12",
+              "-stime": "164.83",
+              "-dur": "0.27",
+              "-score": "0.23",
               "#text": "your"
             },
             {
-              "-stime": "165.35",
-              "-dur": "0.18",
+              "-stime": "165.17",
+              "-dur": "0.27",
+              "-score": "0.21",
               "#text": "hand"
             },
             {
-              "-stime": "165.83",
-              "-dur": "0.30",
-              "#text": "right"
-            },
-            {
-              "-stime": "166.13",
-              "-dur": "0.15",
+              "-stime": "165.67",
+              "-dur": "0.21",
+              "-score": "0.32",
               "#text": "yeah"
             },
             {
-              "-stime": "166.70",
-              "-dur": "0.30",
+              "-stime": "166.50",
+              "-dur": "0.29",
+              "-score": "0.68",
               "#text": "okay"
             },
             {
-              "-stime": "167.66",
+              "-stime": "167.37",
               "-dur": "0.18",
+              "-score": "0.53",
               "#text": "let's"
             },
             {
-              "-stime": "167.84",
-              "-dur": "0.12",
+              "-stime": "167.63",
+              "-dur": "0.16",
+              "-score": "0.53",
               "#text": "go"
             }
           ]
@@ -2256,231 +2633,269 @@
           "-channel": "1",
           "-stime": "168.02",
           "-dur": "15.63",
-          "-score": "1.0",
+          "-score": "0.91",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S29",
           "Word": [
             {
-              "-stime": "170.51",
+              "-stime": "170.48",
               "-dur": "0.24",
+              "-score": "0.98",
               "#text": "what"
             },
             {
               "-stime": "170.75",
               "-dur": "0.09",
+              "-score": "0.95",
               "#text": "the"
             },
             {
               "-stime": "170.84",
               "-dur": "0.36",
+              "-score": "0.97",
               "#text": "students"
             },
             {
               "-stime": "171.20",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "are"
             },
             {
               "-stime": "171.32",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "doing"
             },
             {
               "-stime": "171.56",
-              "-dur": "0.18",
+              "-dur": "0.16",
+              "-score": "0.91",
               "#text": "is"
             },
             {
-              "-stime": "171.95",
-              "-dur": "0.45",
+              "-stime": "171.81",
+              "-dur": "0.08",
+              "-score": "0.61",
+              "#text": "are"
+            },
+            {
+              "-stime": "171.97",
+              "-dur": "0.43",
+              "-score": "1.0",
               "#text": "currently"
             },
             {
               "-stime": "172.40",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "exploring"
             },
             {
               "-stime": "173.03",
               "-dur": "0.21",
+              "-score": "0.97",
               "#text": "this"
             },
             {
               "-stime": "173.27",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "second"
             },
             {
               "-stime": "173.60",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "life"
             },
             {
               "-stime": "173.87",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "art"
             },
             {
               "-stime": "174.08",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "gallery"
             },
             {
-              "-stime": "175.37",
-              "-dur": "0.24",
+              "-stime": "175.38",
+              "-dur": "0.23",
+              "-score": "0.94",
               "#text": "which"
             },
             {
               "-stime": "175.61",
-              "-dur": "0.12",
+              "-dur": "0.13",
+              "-score": "0.79",
               "#text": "to"
             },
             {
-              "-stime": "175.73",
-              "-dur": "0.30",
+              "-stime": "175.74",
+              "-dur": "0.29",
+              "-score": "0.71",
               "#text": "swear"
             },
             {
               "-stime": "176.03",
               "-dur": "0.27",
+              "-score": "0.99",
               "#text": "set"
             },
             {
               "-stime": "176.30",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "up"
             },
             {
-              "-stime": "177.14",
-              "-dur": "0.30",
+              "-stime": "177.13",
+              "-dur": "0.31",
+              "-score": "0.95",
               "#text": "and"
             },
             {
               "-stime": "177.44",
               "-dur": "0.12",
+              "-score": "0.91",
               "#text": "the"
             },
             {
-              "-stime": "177.56",
-              "-dur": "0.33",
+              "-stime": "177.57",
+              "-dur": "0.32",
+              "-score": "0.77",
               "#text": "works"
             },
             {
               "-stime": "177.89",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "that"
             },
             {
               "-stime": "178.10",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "are"
             },
             {
               "-stime": "178.25",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "shown"
             },
             {
               "-stime": "178.55",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "178.76",
-              "-dur": "0.27",
+              "-dur": "0.26",
+              "-score": "1.0",
               "#text": "this"
             },
             {
-              "-stime": "179.03",
-              "-dur": "0.36",
+              "-stime": "179.02",
+              "-dur": "0.25",
+              "-score": "0.58",
               "#text": "together"
             },
             {
-              "-stime": "179.39",
-              "-dur": "0.09",
+              "-stime": "179.27",
+              "-dur": "0.20",
+              "-score": "0.45",
               "#text": "he"
             },
             {
-              "-stime": "179.48",
-              "-dur": "0.12",
+              "-stime": "179.47",
+              "-dur": "0.14",
+              "-score": "0.61",
               "#text": "is"
             },
             {
-              "-stime": "179.60",
-              "-dur": "0.27",
+              "-stime": "179.62",
+              "-dur": "0.24",
+              "-score": "0.75",
               "#text": "actually"
             },
             {
-              "-stime": "179.87",
-              "-dur": "0.18",
+              "-stime": "179.86",
+              "-dur": "0.19",
+              "-score": "1.0",
               "#text": "made"
             },
             {
               "-stime": "180.05",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "up"
             },
             {
               "-stime": "180.20",
               "-dur": "0.18",
+              "-score": "0.99",
               "#text": "of"
             },
             {
               "-stime": "180.38",
               "-dur": "0.12",
+              "-score": "0.79",
               "#text": "our"
             },
             {
               "-stime": "180.50",
               "-dur": "0.75",
+              "-score": "1.0",
               "#text": "local"
             },
             {
               "-stime": "181.28",
               "-dur": "0.39",
+              "-score": "0.99",
               "#text": "works"
             },
             {
-              "-stime": "181.67",
-              "-dur": "0.12",
-              "#text": "they"
-            },
-            {
-              "-stime": "181.79",
-              "-dur": "0.12",
+              "-stime": "181.77",
+              "-dur": "0.13",
+              "-score": "0.7",
               "#text": "have"
             },
             {
-              "-stime": "181.91",
-              "-dur": "0.15",
+              "-stime": "181.90",
+              "-dur": "0.16",
+              "-score": "0.96",
               "#text": "been"
             },
             {
               "-stime": "182.06",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "done"
             },
             {
               "-stime": "182.27",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "by"
             },
             {
               "-stime": "182.51",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "local"
             },
             {
               "-stime": "182.84",
               "-dur": "0.45",
+              "-score": "0.93",
               "#text": "artist"
-            },
-            {
-              "-stime": "183.65",
-              "-dur": "0.27",
-              "#text": "unk"
             }
           ]
         },
@@ -2488,326 +2903,371 @@
           "-channel": "1",
           "-stime": "189.63",
           "-dur": "18.55",
-          "-score": "1.0",
+          "-score": "0.82",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S29",
           "Word": [
             {
-              "-stime": "189.63",
-              "-dur": "0.48",
+              "-stime": "189.64",
+              "-dur": "0.46",
+              "-score": "0.97",
               "#text": "because"
             },
             {
               "-stime": "190.11",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "of"
             },
             {
               "-stime": "190.20",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "all"
             },
             {
               "-stime": "190.32",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "190.47",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "online"
             },
             {
               "-stime": "191.10",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "platform"
             },
             {
               "-stime": "191.52",
               "-dur": "0.15",
+              "-score": "0.99",
               "#text": "is"
             },
             {
               "-stime": "191.67",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "192.03",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "192.24",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "useful"
             },
             {
               "-stime": "192.63",
-              "-dur": "0.48",
+              "-dur": "0.46",
+              "-score": "1.0",
               "#text": "because"
             },
             {
-              "-stime": "193.11",
-              "-dur": "0.12",
-              "#text": "uh"
-            },
-            {
-              "-stime": "193.23",
-              "-dur": "0.12",
+              "-stime": "193.17",
+              "-dur": "0.10",
+              "-score": "0.49",
               "#text": "it's"
             },
             {
-              "-stime": "193.35",
-              "-dur": "0.30",
+              "-stime": "193.33",
+              "-dur": "0.32",
+              "-score": "1.0",
               "#text": "something"
             },
             {
               "-stime": "193.65",
-              "-dur": "0.09",
+              "-dur": "0.08",
+              "-score": "0.56",
               "#text": "that"
             },
             {
-              "-stime": "193.74",
-              "-dur": "0.24",
+              "-stime": "193.73",
+              "-dur": "0.25",
+              "-score": "1.0",
               "#text": "really"
             },
             {
               "-stime": "193.98",
-              "-dur": "0.57",
+              "-dur": "0.54",
+              "-score": "0.76",
               "#text": "engaging"
             },
             {
-              "-stime": "194.55",
-              "-dur": "0.06",
+              "-stime": "194.52",
+              "-dur": "0.07",
+              "-score": "0.55",
               "#text": "the"
             },
             {
-              "-stime": "194.61",
-              "-dur": "0.60",
+              "-stime": "194.58",
+              "-dur": "0.62",
+              "-score": "0.95",
               "#text": "students"
             },
             {
-              "-stime": "195.36",
-              "-dur": "0.12",
+              "-stime": "195.34",
+              "-dur": "0.13",
+              "-score": "0.57",
               "#text": "they"
             },
             {
-              "-stime": "195.48",
-              "-dur": "0.18",
+              "-stime": "195.49",
+              "-dur": "0.15",
+              "-score": "0.81",
               "#text": "will"
             },
             {
-              "-stime": "195.66",
+              "-stime": "195.65",
               "-dur": "0.33",
+              "-score": "0.9",
               "#text": "be"
             },
             {
-              "-stime": "196.08",
-              "-dur": "0.36",
+              "-stime": "196.05",
+              "-dur": "0.27",
+              "-score": "0.42",
               "#text": "chatting"
             },
             {
-              "-stime": "196.44",
-              "-dur": "0.12",
+              "-stime": "196.34",
+              "-dur": "0.18",
+              "-score": "0.68",
               "#text": "with"
             },
             {
-              "-stime": "196.56",
-              "-dur": "0.21",
+              "-stime": "196.53",
+              "-dur": "0.24",
+              "-score": "0.4",
               "#text": "one"
             },
             {
               "-stime": "196.77",
-              "-dur": "0.48",
+              "-dur": "0.47",
+              "-score": "0.95",
               "#text": "another"
             },
             {
-              "-stime": "197.55",
-              "-dur": "0.12",
+              "-stime": "197.40",
+              "-dur": "0.09",
+              "-score": "0.51",
               "#text": "i"
             },
             {
-              "-stime": "197.67",
-              "-dur": "0.18",
+              "-stime": "197.61",
+              "-dur": "0.22",
+              "-score": "0.53",
               "#text": "care"
             },
             {
-              "-stime": "197.85",
-              "-dur": "0.24",
+              "-stime": "197.84",
+              "-dur": "0.25",
+              "-score": "1.0",
               "#text": "about"
             },
             {
               "-stime": "198.09",
               "-dur": "0.09",
+              "-score": "0.93",
               "#text": "the"
             },
             {
               "-stime": "198.18",
               "-dur": "0.39",
+              "-score": "0.96",
               "#text": "works"
             },
             {
               "-stime": "198.57",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "using"
             },
             {
               "-stime": "198.93",
-              "-dur": "0.12",
+              "-dur": "0.13",
+              "-score": "0.92",
               "#text": "the"
             },
             {
-              "-stime": "199.05",
-              "-dur": "0.36",
+              "-stime": "199.06",
+              "-dur": "0.28",
+              "-score": "0.44",
               "#text": "enemies"
             },
             {
-              "-stime": "199.41",
-              "-dur": "0.15",
+              "-stime": "199.35",
+              "-dur": "0.19",
+              "-score": "0.62",
               "#text": "of"
             },
             {
-              "-stime": "199.56",
-              "-dur": "0.21",
+              "-stime": "199.54",
+              "-dur": "0.23",
+              "-score": "0.68",
               "#text": "our"
             },
             {
               "-stime": "199.77",
               "-dur": "0.51",
+              "-score": "0.99",
               "#text": "principles"
             },
             {
               "-stime": "200.28",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "200.40",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "design"
             },
             {
               "-stime": "201.30",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "as"
             },
             {
               "-stime": "201.54",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "well"
             },
             {
               "-stime": "201.78",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "as"
             },
             {
               "-stime": "202.05",
               "-dur": "0.18",
+              "-score": "0.96",
               "#text": "a"
             },
             {
               "-stime": "202.23",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "reading"
             },
             {
               "-stime": "202.62",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "other"
             },
             {
               "-stime": "202.83",
               "-dur": "0.39",
+              "-score": "0.85",
               "#text": "students"
             },
             {
-              "-stime": "203.22",
-              "-dur": "0.42",
+              "-stime": "203.23",
+              "-dur": "0.38",
+              "-score": "0.54",
               "#text": "comments"
             },
             {
-              "-stime": "203.64",
-              "-dur": "0.18",
-              "#text": "as"
+              "-stime": "203.69",
+              "-dur": "0.28",
+              "-score": "0.32",
+              "#text": "israel"
             },
             {
-              "-stime": "203.82",
-              "-dur": "0.18",
-              "#text": "well"
-            },
-            {
-              "-stime": "204.33",
+              "-stime": "204.21",
               "-dur": "0.15",
+              "-score": "0.4",
               "#text": "if"
             },
             {
-              "-stime": "204.48",
-              "-dur": "0.18",
-              "#text": "you'd"
+              "-stime": "204.42",
+              "-dur": "0.19",
+              "-score": "0.45",
+              "#text": "gave"
             },
             {
               "-stime": "204.66",
               "-dur": "0.21",
+              "-score": "0.6",
               "#text": "like"
             },
             {
-              "-stime": "204.87",
-              "-dur": "0.12",
+              "-stime": "204.89",
+              "-dur": "0.13",
+              "-score": "0.63",
               "#text": "to"
             },
             {
-              "-stime": "204.99",
-              "-dur": "0.27",
-              "#text": "decay"
+              "-stime": "205.06",
+              "-dur": "0.20",
+              "-score": "0.54",
+              "#text": "can"
             },
             {
               "-stime": "205.26",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "actually"
             },
             {
               "-stime": "205.65",
-              "-dur": "0.30",
+              "-dur": "0.29",
+              "-score": "0.81",
               "#text": "leave"
             },
             {
-              "-stime": "205.95",
-              "-dur": "0.60",
+              "-stime": "205.96",
+              "-dur": "0.57",
+              "-score": "0.88",
               "#text": "notes"
             },
             {
               "-stime": "207.00",
               "-dur": "0.18",
+              "-score": "0.97",
               "#text": "for"
             },
             {
               "-stime": "207.18",
               "-dur": "0.21",
+              "-score": "0.97",
               "#text": "other"
             },
             {
               "-stime": "207.39",
               "-dur": "0.36",
+              "-score": "0.94",
               "#text": "students"
             },
             {
               "-stime": "207.75",
               "-dur": "0.15",
+              "-score": "0.9",
               "#text": "should"
             },
             {
               "-stime": "207.90",
               "-dur": "0.18",
+              "-score": "0.98",
               "#text": "be"
-            },
-            {
-              "-stime": "208.18",
-              "-dur": "0.24",
-              "#text": "unk"
             }
           ]
         },
@@ -2815,14 +3275,15 @@
           "-channel": "1",
           "-stime": "23.09",
           "-dur": "1.67",
-          "-score": "1.0",
+          "-score": "0.65",
           "-lang": "eng",
           "-gender": "2",
           "-band": "S",
           "-spkrid": "S3",
           "Word": {
-            "-stime": "23.09",
-            "-dur": "0.06",
+            "-stime": "23.13",
+            "-dur": "0.12",
+            "-score": "0.65",
             "#text": "unk"
           }
         },
@@ -2830,47 +3291,44 @@
           "-channel": "1",
           "-stime": "35.28",
           "-dur": "3.51",
-          "-score": "1.0",
+          "-score": "0.38",
           "-lang": "eng",
           "-gender": "2",
           "-band": "S",
           "-spkrid": "S3",
-          "Word": [
-            {
-              "-stime": "35.28",
-              "-dur": "0.48",
-              "#text": "uh-huh"
-            },
-            {
-              "-stime": "38.79",
-              "-dur": "0.51",
-              "#text": "yeah"
-            }
-          ]
+          "Word": {
+            "-stime": "35.69",
+            "-dur": "0.34",
+            "-score": "0.38",
+            "#text": "unk"
+          }
         },
         {
           "-channel": "1",
           "-stime": "229.91",
           "-dur": "6.96",
-          "-score": "1.0",
+          "-score": "0.71",
           "-lang": "eng",
           "-gender": "2",
           "-band": "S",
           "-spkrid": "S3",
           "Word": [
             {
-              "-stime": "231.71",
-              "-dur": "0.39",
+              "-stime": "231.32",
+              "-dur": "0.31",
+              "-score": "0.69",
               "#text": "discovered"
             },
             {
-              "-stime": "232.10",
-              "-dur": "0.12",
+              "-stime": "231.75",
+              "-dur": "0.56",
+              "-score": "0.74",
               "#text": "so"
             },
             {
-              "-stime": "232.22",
-              "-dur": "0.15",
+              "-stime": "232.45",
+              "-dur": "0.17",
+              "-score": "0.71",
               "#text": "far"
             }
           ]
@@ -2879,36 +3337,31 @@
           "-channel": "1",
           "-stime": "183.65",
           "-dur": "5.98",
-          "-score": "1.0",
-          "-lang": "eng",
-          "-gender": "2",
-          "-band": "S",
-          "-spkrid": "S32",
-          "Word": [
-            {
-              "-stime": "183.65",
-              "-dur": "0.27",
-              "#text": "unk"
-            },
-            {
-              "-stime": "189.63",
-              "-dur": "0.48",
-              "#text": "because"
-            }
-          ]
-        },
-        {
-          "-channel": "1",
-          "-stime": "208.18",
-          "-dur": "4.15",
-          "-score": "1.0",
+          "-score": "0.35",
           "-lang": "eng",
           "-gender": "2",
           "-band": "S",
           "-spkrid": "S32",
           "Word": {
-            "-stime": "208.18",
+            "-stime": "183.78",
             "-dur": "0.24",
+            "-score": "0.35",
+            "#text": "unk"
+          }
+        },
+        {
+          "-channel": "1",
+          "-stime": "208.18",
+          "-dur": "4.15",
+          "-score": "0.83",
+          "-lang": "eng",
+          "-gender": "2",
+          "-band": "S",
+          "-spkrid": "S32",
+          "Word": {
+            "-stime": "208.19",
+            "-dur": "0.24",
+            "-score": "0.83",
             "#text": "unk"
           }
         },
@@ -2916,7 +3369,7 @@
           "-channel": "1",
           "-stime": "236.87",
           "-dur": "15.03",
-          "-score": "1.0",
+          "-score": "0.92",
           "-lang": "eng",
           "-gender": "2",
           "-band": "S",
@@ -2925,261 +3378,313 @@
             {
               "-stime": "237.44",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "i"
             },
             {
               "-stime": "237.62",
-              "-dur": "0.39",
+              "-dur": "0.40",
+              "-score": "1.0",
               "#text": "find"
             },
             {
-              "-stime": "238.01",
-              "-dur": "0.21",
+              "-stime": "238.02",
+              "-dur": "0.20",
+              "-score": "0.84",
               "#text": "that"
             },
             {
               "-stime": "238.22",
               "-dur": "0.45",
+              "-score": "0.99",
               "#text": "students"
             },
             {
               "-stime": "238.67",
               "-dur": "0.45",
+              "-score": "0.99",
               "#text": "themselves"
             },
             {
-              "-stime": "239.18",
-              "-dur": "0.12",
+              "-stime": "239.17",
+              "-dur": "0.10",
+              "-score": "0.85",
               "#text": "are"
             },
             {
-              "-stime": "239.30",
-              "-dur": "0.39",
+              "-stime": "239.28",
+              "-dur": "0.41",
+              "-score": "1.0",
               "#text": "often"
             },
             {
               "-stime": "239.72",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "on"
             },
             {
               "-stime": "239.96",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "facebook"
             },
             {
               "-stime": "240.56",
               "-dur": "0.24",
+              "-score": "0.99",
               "#text": "so"
             },
             {
               "-stime": "240.80",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "instead"
             },
             {
               "-stime": "241.13",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "241.25",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "looking"
             },
             {
               "-stime": "241.55",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "at"
             },
             {
               "-stime": "241.73",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "them"
             },
             {
-              "-stime": "242.09",
-              "-dur": "0.21",
+              "-stime": "242.08",
+              "-dur": "0.17",
+              "-score": "0.84",
               "#text": "and"
             },
             {
-              "-stime": "242.30",
-              "-dur": "0.21",
+              "-stime": "242.28",
+              "-dur": "0.18",
+              "-score": "0.56",
               "#text": "at"
             },
             {
               "-stime": "242.51",
-              "-dur": "0.24",
+              "-dur": "0.22",
+              "-score": "0.76",
               "#text": "looking"
             },
             {
-              "-stime": "242.75",
-              "-dur": "0.09",
+              "-stime": "242.73",
+              "-dur": "0.11",
+              "-score": "0.95",
               "#text": "at"
             },
             {
               "-stime": "242.84",
               "-dur": "0.45",
+              "-score": "0.99",
               "#text": "facebook"
             },
             {
               "-stime": "243.29",
               "-dur": "0.18",
+              "-score": "0.74",
               "#text": "s"
             },
             {
               "-stime": "243.47",
-              "-dur": "0.12",
+              "-dur": "0.11",
+              "-score": "0.61",
               "#text": "with"
             },
             {
-              "-stime": "243.59",
-              "-dur": "0.60",
+              "-stime": "243.58",
+              "-dur": "0.61",
+              "-score": "0.86",
               "#text": "destruction"
             },
             {
               "-stime": "244.22",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "i"
             },
             {
               "-stime": "244.37",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "would"
             },
             {
               "-stime": "244.61",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "rather"
             },
             {
               "-stime": "244.91",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "use"
             },
             {
               "-stime": "245.18",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "it"
             },
             {
               "-stime": "245.33",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "to"
             },
             {
               "-stime": "245.57",
               "-dur": "0.57",
+              "-score": "0.98",
               "#text": "engage"
             },
             {
               "-stime": "246.14",
               "-dur": "0.30",
+              "-score": "0.98",
               "#text": "them"
             },
             {
-              "-stime": "246.62",
-              "-dur": "0.18",
+              "-stime": "246.63",
+              "-dur": "0.17",
+              "-score": "0.99",
               "#text": "they"
             },
             {
               "-stime": "246.80",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "even"
             },
             {
               "-stime": "247.10",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "like"
             },
             {
               "-stime": "247.25",
               "-dur": "0.12",
+              "-score": "0.98",
               "#text": "when"
             },
             {
               "-stime": "247.37",
               "-dur": "0.09",
+              "-score": "0.84",
               "#text": "they're"
             },
             {
               "-stime": "247.46",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "stuck"
             },
             {
               "-stime": "247.73",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "with"
             },
             {
               "-stime": "247.82",
               "-dur": "0.27",
+              "-score": "0.85",
               "#text": "southern"
             },
             {
               "-stime": "248.09",
-              "-dur": "0.39",
+              "-dur": "0.40",
+              "-score": "0.83",
               "#text": "question"
             },
             {
-              "-stime": "248.51",
-              "-dur": "0.39",
+              "-stime": "248.52",
+              "-dur": "0.36",
+              "-score": "0.62",
               "#text": "daily"
             },
             {
-              "-stime": "248.90",
-              "-dur": "0.27",
+              "-stime": "248.91",
+              "-dur": "0.24",
+              "-score": "0.36",
               "#text": "pulls"
             },
             {
               "-stime": "249.17",
-              "-dur": "0.12",
+              "-dur": "0.13",
+              "-score": "0.81",
               "#text": "up"
             },
             {
               "-stime": "249.29",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "249.38",
               "-dur": "0.30",
+              "-score": "0.9",
               "#text": "question"
             },
             {
               "-stime": "249.68",
               "-dur": "0.06",
+              "-score": "0.96",
               "#text": "to"
             },
             {
               "-stime": "249.74",
               "-dur": "0.12",
+              "-score": "0.97",
               "#text": "the"
             },
             {
               "-stime": "249.86",
               "-dur": "0.48",
+              "-score": "0.95",
               "#text": "class"
             },
             {
               "-stime": "250.67",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "250.91",
               "-dur": "0.12",
+              "-score": "0.88",
               "#text": "you"
             },
             {
               "-stime": "251.03",
               "-dur": "0.18",
+              "-score": "0.99",
               "#text": "see"
             },
             {
               "-stime": "251.21",
               "-dur": "0.66",
+              "-score": "1.0",
               "#text": "responses"
             }
           ]
@@ -3188,130 +3693,154 @@
           "-channel": "1",
           "-stime": "252.07",
           "-dur": "7.74",
-          "-score": "1.0",
+          "-score": "0.90",
           "-lang": "eng",
           "-gender": "2",
           "-band": "S",
           "-spkrid": "S39",
           "Word": [
             {
-              "-stime": "252.07",
-              "-dur": "0.39",
+              "-stime": "252.08",
+              "-dur": "0.36",
+              "-score": "0.91",
               "#text": "and"
             },
             {
-              "-stime": "252.46",
-              "-dur": "0.09",
+              "-stime": "252.45",
+              "-dur": "0.06",
+              "-score": "0.56",
               "#text": "they"
             },
             {
-              "-stime": "252.55",
-              "-dur": "0.06",
+              "-stime": "252.51",
+              "-dur": "0.10",
+              "-score": "0.6",
               "#text": "are"
             },
             {
               "-stime": "252.61",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "learning"
             },
             {
               "-stime": "252.97",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "from"
             },
             {
               "-stime": "253.12",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "each"
             },
             {
               "-stime": "253.27",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "other"
             },
             {
               "-stime": "253.57",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "which"
             },
             {
               "-stime": "253.78",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "i"
             },
             {
               "-stime": "253.90",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "think"
             },
             {
               "-stime": "254.23",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "it's"
             },
             {
               "-stime": "255.34",
               "-dur": "0.36",
+              "-score": "0.97",
               "#text": "better"
             },
             {
               "-stime": "255.70",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "because"
             },
             {
-              "-stime": "256.15",
-              "-dur": "0.24",
+              "-stime": "256.16",
+              "-dur": "0.22",
+              "-score": "0.52",
               "#text": "this"
             },
             {
-              "-stime": "256.39",
-              "-dur": "0.15",
+              "-stime": "256.38",
+              "-dur": "0.16",
+              "-score": "0.98",
               "#text": "more"
             },
             {
               "-stime": "256.54",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "motivation"
             },
             {
               "-stime": "257.17",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "intrinsic"
             },
             {
               "-stime": "257.59",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "motivation"
             },
             {
               "-stime": "258.07",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "for"
             },
             {
               "-stime": "258.19",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "them"
             },
             {
               "-stime": "258.34",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "258.49",
               "-dur": "0.30",
+              "-score": "0.99",
               "#text": "learn"
             },
             {
-              "-stime": "259.09",
-              "-dur": "0.12",
+              "-stime": "259.06",
+              "-dur": "0.16",
+              "-score": "0.5",
               "#text": "from"
             },
             {
-              "-stime": "259.21",
+              "-stime": "259.26",
               "-dur": "0.24",
+              "-score": "0.62",
               "#text": "others"
             }
           ]
@@ -3320,7 +3849,7 @@
           "-channel": "1",
           "-stime": "24.76",
           "-dur": "10.50",
-          "-score": "1.0",
+          "-score": "0.92",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -3329,201 +3858,241 @@
             {
               "-stime": "24.76",
               "-dur": "0.06",
+              "-score": "0.89",
               "#text": "unk"
             },
             {
               "-stime": "24.82",
-              "-dur": "0.33",
+              "-dur": "0.32",
+              "-score": "0.54",
               "#text": "kits"
             },
             {
               "-stime": "25.15",
-              "-dur": "0.15",
+              "-dur": "0.14",
+              "-score": "0.88",
               "#text": "are"
             },
             {
-              "-stime": "25.30",
-              "-dur": "0.36",
+              "-stime": "25.29",
+              "-dur": "0.34",
+              "-score": "0.57",
               "#text": "relieved"
             },
             {
-              "-stime": "25.66",
-              "-dur": "0.18",
+              "-stime": "25.64",
+              "-dur": "0.21",
+              "-score": "1.0",
               "#text": "from"
             },
             {
               "-stime": "25.84",
-              "-dur": "0.06",
+              "-dur": "0.05",
+              "-score": "0.84",
               "#text": "a"
             },
             {
               "-stime": "25.90",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "26.14",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "different"
             },
             {
               "-stime": "26.50",
               "-dur": "0.36",
+              "-score": "0.68",
               "#text": "world"
             },
             {
               "-stime": "26.89",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "now"
             },
             {
-              "-stime": "27.97",
-              "-dur": "0.12",
+              "-stime": "27.88",
+              "-dur": "0.20",
+              "-score": "0.36",
               "#text": "i"
             },
             {
               "-stime": "28.09",
               "-dur": "0.24",
+              "-score": "0.99",
               "#text": "really"
             },
             {
               "-stime": "28.33",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "28.45",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "reach"
             },
             {
               "-stime": "28.69",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "out"
             },
             {
               "-stime": "28.87",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "28.99",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "29.08",
               "-dur": "0.30",
+              "-score": "0.94",
               "#text": "kids"
             },
             {
               "-stime": "29.38",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "you"
             },
             {
               "-stime": "29.47",
               "-dur": "0.21",
+              "-score": "0.99",
               "#text": "need"
             },
             {
               "-stime": "29.68",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "29.80",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "be"
             },
             {
               "-stime": "30.01",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "savvy"
             },
             {
               "-stime": "30.70",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "with"
             },
             {
               "-stime": "30.88",
               "-dur": "0.57",
+              "-score": "1.0",
               "#text": "technology"
             },
             {
               "-stime": "31.48",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "if"
             },
             {
               "-stime": "31.66",
               "-dur": "0.09",
+              "-score": "0.89",
               "#text": "you're"
             },
             {
               "-stime": "31.75",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "not"
             },
             {
               "-stime": "31.96",
               "-dur": "0.30",
+              "-score": "0.97",
               "#text": "savvy"
             },
             {
               "-stime": "32.26",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "with"
             },
             {
               "-stime": "32.38",
               "-dur": "0.69",
+              "-score": "1.0",
               "#text": "technology"
             },
             {
               "-stime": "33.28",
               "-dur": "0.18",
+              "-score": "0.67",
               "#text": "you're"
             },
             {
               "-stime": "33.46",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "going"
             },
             {
               "-stime": "33.61",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "33.73",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "lose"
             },
             {
               "-stime": "33.94",
               "-dur": "0.12",
+              "-score": "0.79",
               "#text": "to"
             },
             {
               "-stime": "34.06",
               "-dur": "0.33",
+              "-score": "0.99",
               "#text": "kids"
             },
             {
               "-stime": "34.39",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "34.51",
               "-dur": "0.06",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "34.57",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "school"
             }
           ]
@@ -3532,170 +4101,202 @@
           "-channel": "1",
           "-stime": "38.79",
           "-dur": "11.83",
-          "-score": "1.0",
+          "-score": "0.94",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
           "-spkrid": "S6",
           "Word": [
             {
-              "-stime": "38.79",
-              "-dur": "0.51",
+              "-stime": "38.81",
+              "-dur": "0.48",
+              "-score": "0.21",
               "#text": "yeah"
             },
             {
-              "-stime": "39.33",
-              "-dur": "0.45",
+              "-stime": "39.35",
+              "-dur": "0.43",
+              "-score": "1.0",
               "#text": "secondary"
             },
             {
               "-stime": "39.78",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "school"
             },
             {
               "-stime": "40.14",
               "-dur": "0.21",
+              "-score": "0.95",
               "#text": "is"
             },
             {
               "-stime": "40.35",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "a"
             },
             {
               "-stime": "40.47",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "typical"
             },
             {
               "-stime": "40.92",
               "-dur": "0.21",
+              "-score": "0.98",
               "#text": "school"
             },
             {
               "-stime": "41.13",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "41.22",
               "-dur": "0.54",
+              "-score": "1.0",
               "#text": "singapore"
             },
             {
               "-stime": "41.76",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "where"
             },
             {
               "-stime": "42.00",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "42.24",
               "-dur": "0.33",
+              "-score": "0.99",
               "#text": "take"
             },
             {
               "-stime": "42.57",
               "-dur": "0.30",
+              "-score": "0.97",
               "#text": "in"
             },
             {
               "-stime": "42.87",
               "-dur": "0.42",
+              "-score": "1.0",
               "#text": "students"
             },
             {
               "-stime": "43.29",
               "-dur": "0.27",
+              "-score": "0.99",
               "#text": "with"
             },
             {
               "-stime": "43.59",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "different"
             },
             {
               "-stime": "44.07",
               "-dur": "0.54",
+              "-score": "1.0",
               "#text": "academic"
             },
             {
               "-stime": "44.61",
               "-dur": "0.54",
+              "-score": "1.0",
               "#text": "abilities"
             },
             {
-              "-stime": "45.30",
+              "-stime": "45.31",
               "-dur": "0.24",
+              "-score": "0.92",
               "#text": "and"
             },
             {
-              "-stime": "45.54",
-              "-dur": "0.09",
+              "-stime": "45.56",
+              "-dur": "0.07",
+              "-score": "0.47",
               "#text": "uh"
             },
             {
               "-stime": "46.17",
               "-dur": "0.21",
+              "-score": "1.0",
               "#text": "we"
             },
             {
               "-stime": "46.38",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "have"
             },
             {
               "-stime": "46.50",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "about"
             },
             {
               "-stime": "46.80",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "one"
             },
             {
               "-stime": "47.94",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "thousand"
             },
             {
               "-stime": "48.33",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "five"
             },
             {
               "-stime": "48.63",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "hundred"
             },
             {
               "-stime": "49.11",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "49.29",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "twelve"
             },
             {
               "-stime": "49.59",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "students"
             },
             {
               "-stime": "49.89",
-              "-dur": "0.18",
+              "-dur": "0.15",
+              "-score": "0.63",
               "#text": "into"
             },
             {
               "-stime": "50.07",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "school"
             }
           ]
@@ -3704,7 +4305,7 @@
           "-channel": "1",
           "-stime": "51.06",
           "-dur": "15.07",
-          "-score": "1.0",
+          "-score": "0.90",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -3712,222 +4313,266 @@
           "Word": [
             {
               "-stime": "51.06",
-              "-dur": "0.18",
+              "-dur": "0.17",
+              "-score": "0.89",
               "#text": "and"
             },
             {
               "-stime": "51.24",
               "-dur": "0.18",
+              "-score": "0.73",
               "#text": "i"
             },
             {
-              "-stime": "51.48",
-              "-dur": "0.12",
+              "-stime": "51.47",
+              "-dur": "0.13",
+              "-score": "0.95",
               "#text": "and"
             },
             {
               "-stime": "51.60",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "they"
             },
             {
               "-stime": "51.72",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "all"
             },
             {
               "-stime": "51.87",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "come"
             },
             {
               "-stime": "52.02",
-              "-dur": "0.15",
+              "-dur": "0.16",
+              "-score": "1.0",
               "#text": "from"
             },
             {
-              "-stime": "52.17",
-              "-dur": "0.06",
+              "-stime": "52.18",
+              "-dur": "0.04",
+              "-score": "0.66",
               "#text": "the"
             },
             {
-              "-stime": "52.23",
-              "-dur": "0.57",
+              "-stime": "52.22",
+              "-dur": "0.58",
+              "-score": "0.75",
               "#text": "neighbourhood"
             },
             {
               "-stime": "53.07",
               "-dur": "0.18",
+              "-score": "0.99",
               "#text": "we"
             },
             {
               "-stime": "53.25",
               "-dur": "0.12",
+              "-score": "0.79",
               "#text": "get"
             },
             {
               "-stime": "53.37",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "students"
             },
             {
               "-stime": "53.70",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "from"
             },
             {
               "-stime": "53.88",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "54.00",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "age"
             },
             {
               "-stime": "54.30",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "54.63",
               "-dur": "0.51",
+              "-score": "0.99",
               "#text": "thirteen"
             },
             {
               "-stime": "55.17",
               "-dur": "0.27",
+              "-score": "0.91",
               "#text": "to"
             },
             {
               "-stime": "55.44",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "about"
             },
             {
               "-stime": "55.80",
               "-dur": "0.72",
+              "-score": "0.99",
               "#text": "sixteen"
             },
             {
               "-stime": "56.76",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "many"
             },
             {
               "-stime": "57.54",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "students"
             },
             {
               "-stime": "57.93",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "want"
             },
             {
               "-stime": "58.17",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "58.26",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "come"
             },
             {
               "-stime": "58.41",
-              "-dur": "0.09",
+              "-dur": "0.11",
+              "-score": "1.0",
               "#text": "to"
             },
             {
-              "-stime": "58.50",
-              "-dur": "0.18",
+              "-stime": "58.52",
+              "-dur": "0.14",
+              "-score": "0.73",
               "#text": "this"
             },
             {
-              "-stime": "58.68",
-              "-dur": "0.21",
+              "-stime": "58.66",
+              "-dur": "0.23",
+              "-score": "0.91",
               "#text": "school"
             },
             {
               "-stime": "58.89",
               "-dur": "0.48",
+              "-score": "1.0",
               "#text": "because"
             },
             {
               "-stime": "59.88",
               "-dur": "0.24",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "60.12",
               "-dur": "0.12",
+              "-score": "1.0",
               "#text": "its"
             },
             {
               "-stime": "60.24",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "strong"
             },
             {
-              "-stime": "60.75",
-              "-dur": "0.27",
+              "-stime": "60.73",
+              "-dur": "0.17",
+              "-score": "0.39",
               "#text": "a"
             },
             {
               "-stime": "61.02",
               "-dur": "0.42",
+              "-score": "0.69",
               "#text": "programme"
             },
             {
               "-stime": "61.44",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "especially"
             },
             {
               "-stime": "62.07",
               "-dur": "0.39",
+              "-score": "1.0",
               "#text": "in"
             },
             {
               "-stime": "63.09",
               "-dur": "0.09",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "63.18",
               "-dur": "0.33",
+              "-score": "1.0",
               "#text": "use"
             },
             {
               "-stime": "63.51",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "of"
             },
             {
               "-stime": "63.66",
-              "-dur": "0.21",
+              "-dur": "0.26",
+              "-score": "0.54",
               "#text": "i"
             },
             {
-              "-stime": "63.87",
-              "-dur": "0.24",
+              "-stime": "63.92",
+              "-dur": "0.22",
+              "-score": "0.55",
               "#text": "c"
             },
             {
-              "-stime": "64.11",
-              "-dur": "0.27",
+              "-stime": "64.14",
+              "-dur": "0.22",
+              "-score": "0.61",
               "#text": "t"
             },
             {
-              "-stime": "64.38",
-              "-dur": "0.63",
+              "-stime": "64.46",
+              "-dur": "0.55",
+              "-score": "0.65",
               "#text": "infocomm"
             },
             {
               "-stime": "65.25",
               "-dur": "0.69",
+              "-score": "1.0",
               "#text": "technology"
             }
           ]
@@ -3936,7 +4581,7 @@
           "-channel": "1",
           "-stime": "66.45",
           "-dur": "4.28",
-          "-score": "1.0",
+          "-score": "0.94",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -3945,66 +4590,79 @@
             {
               "-stime": "66.45",
               "-dur": "0.36",
+              "-score": "0.99",
               "#text": "and"
             },
             {
               "-stime": "66.81",
-              "-dur": "0.06",
+              "-dur": "0.07",
+              "-score": "0.7",
               "#text": "the"
             },
             {
-              "-stime": "66.87",
-              "-dur": "0.30",
+              "-stime": "66.88",
+              "-dur": "0.29",
+              "-score": "0.94",
               "#text": "teachers"
             },
             {
               "-stime": "67.17",
-              "-dur": "0.15",
+              "-dur": "0.14",
+              "-score": "0.59",
               "#text": "here"
             },
             {
-              "-stime": "67.32",
-              "-dur": "0.21",
+              "-stime": "67.31",
+              "-dur": "0.22",
+              "-score": "0.99",
               "#text": "are"
             },
             {
               "-stime": "67.62",
               "-dur": "0.57",
+              "-score": "1.0",
               "#text": "known"
             },
             {
               "-stime": "68.46",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "68.61",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "produce"
             },
             {
               "-stime": "69.06",
               "-dur": "0.12",
+              "-score": "0.99",
               "#text": "a"
             },
             {
               "-stime": "69.18",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "69.48",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "good"
             },
             {
               "-stime": "69.63",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "teaching"
             },
             {
               "-stime": "69.93",
               "-dur": "0.60",
+              "-score": "1.0",
               "#text": "materials"
             }
           ]
@@ -4013,7 +4671,7 @@
           "-channel": "1",
           "-stime": "70.96",
           "-dur": "4.54",
-          "-score": "1.0",
+          "-score": "0.93",
           "-lang": "eng",
           "-gender": "1",
           "-band": "S",
@@ -4022,72 +4680,80 @@
             {
               "-stime": "70.96",
               "-dur": "0.36",
+              "-score": "1.0",
               "#text": "and"
             },
             {
               "-stime": "71.32",
               "-dur": "0.15",
+              "-score": "0.91",
               "#text": "a"
             },
             {
               "-stime": "71.47",
               "-dur": "0.30",
+              "-score": "1.0",
               "#text": "very"
             },
             {
               "-stime": "71.77",
               "-dur": "0.51",
+              "-score": "1.0",
               "#text": "innovative"
             },
             {
               "-stime": "72.28",
               "-dur": "0.27",
+              "-score": "1.0",
               "#text": "teaching"
             },
             {
               "-stime": "72.55",
-              "-dur": "0.45",
+              "-dur": "0.44",
+              "-score": "0.93",
               "#text": "ideas"
             },
             {
               "-stime": "73.00",
               "-dur": "0.15",
+              "-score": "1.0",
               "#text": "to"
             },
             {
               "-stime": "73.15",
               "-dur": "0.63",
+              "-score": "1.0",
               "#text": "engage"
             },
             {
               "-stime": "74.11",
               "-dur": "0.18",
+              "-score": "1.0",
               "#text": "the"
             },
             {
               "-stime": "74.29",
               "-dur": "0.45",
+              "-score": "1.0",
               "#text": "students"
             },
             {
               "-stime": "74.74",
               "-dur": "0.09",
+              "-score": "0.99",
               "#text": "in"
             },
             {
               "-stime": "74.83",
-              "-dur": "0.06",
+              "-dur": "0.07",
+              "-score": "0.55",
               "#text": "the"
             },
             {
-              "-stime": "74.89",
-              "-dur": "0.54",
+              "-stime": "74.90",
+              "-dur": "0.50",
+              "-score": "0.73",
               "#text": "classrooms"
-            },
-            {
-              "-stime": "75.50",
-              "-dur": "0.12",
-              "#text": "unk"
             }
           ]
         }

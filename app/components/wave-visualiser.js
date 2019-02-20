@@ -18,6 +18,20 @@ export default Component.extend({
   isStep1Complete: false,
   isStep2Complete:false,
   notes: [],
+  currentTargetSpan: computed('actualTimer', function() {
+    let closestKey = 0;
+    for (var key in this.timeMappings) {
+      console.log(key);
+      if (key <= this.actualTimer){
+        closestKey++;
+      }
+      else {
+        break;
+      }
+    }
+    return closestKey;
+
+  }),
   currentSpan:  computed('actualTimer', function(){
       // if (this.currentTimer - this.actualTimer < 0.05) {
         this.set('currentTimer', this.actualTimer);
@@ -318,6 +332,11 @@ export default Component.extend({
 
           startTime = start;
           endTime = end;
+          let currentTargetSpan = _this.currentTargetSpan;
+          _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
+          _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(2));
+          _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(2));
+          _this.set('targetSpanIndex', currentTargetSpan);
         }
 
         function updateTime(time) {
@@ -606,6 +625,10 @@ export default Component.extend({
               playoutPromises = playlist.play(startTime, endTime);
             });
           }
+        });
+
+        ee.on("statechange", function (state) {
+          console.log("State " + state);
         });
       })
         .catch(e => {
