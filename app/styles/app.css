@@ -160,8 +160,10 @@
   padding: 0; }
 
 .currentWord {
-  text-decoration: underline;
   background: yellow;
+  padding: 2px;
+  border-radius: 5px;
+  /*border: 1px dashed #0D3349;*/
 }
 .playlist .vocals {
   background-color: #c0dce0; }
