@@ -22,11 +22,14 @@ export default Component.extend({
   currentTargetSpan: computed('actualTimer', function() {
     let closestKey = 0;
     for (var key in this.timeMappings) {
-      console.log(key);
       if (key <= this.actualTimer){
+        console.log(key, this.actualTimer);
+
         closestKey++;
       }
       else {
+        console.log(key, this.actualTimer);
+
         break;
       }
     }
@@ -254,7 +257,7 @@ export default Component.extend({
         var $audioEnd = $container.find('.audio-end');
         var $time = $container.find('.audio-pos');
 
-        var format = "hh:mm:ss.uuu";
+        var format = "hundredths";
         var startTime = 0;
         var endTime = 0;
         var audioPos = 0;
@@ -698,7 +701,19 @@ export default Component.extend({
       //
       //
       // },10);
+    }},
+  keyDown(key) {
+    console.log(key);
+    if(key.which == 9) {
+      key.preventDefault();
     }
-
-}
+  },
+  keyPress(evt) {
+    // console.log('key Pressed!', evt);
+    if(evt.which = 112) {
+      console.log('play');
+      // evt.preventDefault();
+    }
+    // if(evt)
+  }
 });
