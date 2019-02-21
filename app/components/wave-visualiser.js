@@ -257,7 +257,7 @@ export default Component.extend({
         var $audioEnd = $container.find('.audio-end');
         var $time = $container.find('.audio-pos');
 
-        var format = "hundredths";
+        var format = "thousandths";
         var startTime = 0;
         var endTime = 0;
         var audioPos = 0;
@@ -338,8 +338,8 @@ export default Component.extend({
           endTime = end;
           let currentTargetSpan = _this.currentTargetSpan;
           _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
-          _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(2));
-          _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(2));
+          _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
+          _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
           _this.set('targetSpanIndex', currentTargetSpan);
         }
 
@@ -652,16 +652,16 @@ export default Component.extend({
         var spans = $(htmlDoc.getElementsByClassName('transcriptor'));
         spans.each(index => {
           let currentSpan = $(spans[index]);
-          _this.timeMappings[currentSpan.data('stime').toFixed(2)] = currentSpan;
-          _this.timeMappings[currentSpan.data('etime').toFixed(2)] = 0;
+          _this.timeMappings[currentSpan.data('stime').toFixed(3)] = currentSpan;
+          _this.timeMappings[currentSpan.data('etime').toFixed(3)] = 0;
            allSpans.push(currentSpan);
         });
       });
       _this.set('allSpans', allSpans);
       console.log(_this.timeMappings);
       _this.set('targetSpan', _this.allSpans[0].attr('id'));
-      _this.set('targetSpanStartTime', _this.allSpans[0].data('stime').toFixed(2));
-      _this.set('targetSpanEndTime', _this.allSpans[0].data('etime').toFixed(2));
+      _this.set('targetSpanStartTime', _this.allSpans[0].data('stime').toFixed(3));
+      _this.set('targetSpanEndTime', _this.allSpans[0].data('etime').toFixed(3));
       _this.set('targetSpanIndex', 0);
       console.log(_this.targetSpan);
       let previousTimer = _this.actualTimer;
