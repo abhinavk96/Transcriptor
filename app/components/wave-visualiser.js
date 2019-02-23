@@ -22,7 +22,7 @@ export default Component.extend({
   currentTargetSpan: computed('actualTimer', function() {
     let closestKey = 0;
     for (var key in this.timeMappings) {
-      if (key <= this.actualTimer){
+      if (parseFloat(key) <= parseFloat(this.actualTimer)){
         console.log(key, this.actualTimer);
 
         closestKey++;
@@ -337,6 +337,7 @@ export default Component.extend({
           startTime = start;
           endTime = end;
           let currentTargetSpan = _this.currentTargetSpan;
+          console.log(currentTargetSpan);
           _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
           _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
           _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
@@ -443,6 +444,7 @@ export default Component.extend({
           ee.emit("statechange", "fadeout");
           toggleActive(this);
         });
+
 
 //fade types
         $container.on("click", ".btn-logarithmic", function () {
