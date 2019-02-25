@@ -120,7 +120,8 @@
   font-size: 19px;
   font-weight: 300;
   margin-top: 1em;
-  height: 160px;
+  height: 460px;
+  /*width:80%;*/
   overflow-x: hidden;
   overflow-y: auto; }
 .playlist .annotations .annotations-text .annotation {
