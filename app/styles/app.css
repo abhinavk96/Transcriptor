@@ -131,7 +131,9 @@
   justify-content: flex-start;
   align-items: stretch; }
 .playlist .annotations .annotations-text .annotation span {
-  margin: 0.3rem 0.6rem; }
+   margin: 0.3rem 0.6rem;
+  cursor: pointer;
+}
 .playlist .annotations .annotations-text .annotation span:last-of-type {
   margin-right: 1.2rem; }
 .playlist .annotations .annotations-text .annotation .annotation-id {

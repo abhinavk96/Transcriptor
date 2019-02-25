@@ -66,6 +66,8 @@ export default Component.extend({
   didInsertElement(){
     var _this = this;
     var $container = $("body");
+  // .playlist .annotations .annotations-text .annotation span
+
 
 
     $container.on("dragenter", ".track-drop", function (e) {
@@ -373,6 +375,18 @@ export default Component.extend({
 //     $('.btn-fade-state-group').removeClass('hidden');
 //   }
 // });
+
+        $container.on("click", ".transcriptor", function (word) {
+          // isLooping = false;
+          // ee.emit("rewind");
+          let wordStartTime = $(word.target).data('stime');
+          if(wordStartTime) {
+            ee.emit("select", wordStartTime, wordStartTime);
+            // ee.emit("play");
+            console.log('word clicked', $(word.target).data('stime'));
+
+          }
+        });
 
         $container.on("click", ".btn-annotations-download", function () {
           ee.emit("annotationsrequest");
@@ -705,17 +719,23 @@ export default Component.extend({
       // },10);
     }},
   keyDown(key) {
-    console.log(key);
-    if(key.which == 9) {
+    if(key.which === 9) {
       key.preventDefault();
     }
+    console.log(key.which);
   },
   keyPress(evt) {
-    // console.log('key Pressed!', evt);
-    if(evt.which = 112) {
-      console.log('play');
-      // evt.preventDefault();
+    console.log(evt.which);
+    if(evt.which === 112) {
+      if ( $('.annotation-lines:focus').length > 0 ) {
+        console.log('simple key press', $('.annotation-lines:focus'));
+      }
+      else {
+        console.log('play', $('.annotation-lines:focus'));
+        // evt.preventDefault();
+      }
+      console.log('play', $('.annotation-lines:focus'));
+
     }
-    // if(evt)
   }
 });
