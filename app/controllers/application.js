@@ -2,6 +2,13 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  session: service()
+  session: service(),
+  authManager: service(),
+  actions: {
+    logout() {
+      this.get('authManager').logout();
+      this.get('routing').transitionTo('index');
+    }
+  }
 
 });
