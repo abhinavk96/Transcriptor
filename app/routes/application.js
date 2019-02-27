@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 export default Route.extend(ApplicationRouteMixin, {
   authManager: service(),
   session: service(),
+  settings: service(),
   title(tokens) {
     if (!tokens) {
       tokens = [];
