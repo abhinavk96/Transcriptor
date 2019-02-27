@@ -49,7 +49,6 @@
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^5.2.0",
     "loader.js": "^4.7.0",
-    "lodash": "^4.17.11",
     "qunit-dom": "^0.8.0",
     "semantic-ui-ember": "^3.0.3"
   },
@@ -57,10 +56,12 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
+    "browser-sync": "^2.26.3",
     "ember-browserify": "^1.2.2",
     "ember-l10n": "^3.1.0",
     "ember-simple-auth": "^1.8.1",
     "ember-truth-helpers": "^2.1.0",
+    "lodash": "^4.17.11",
     "waveform-playlist": "^3.0.4"
   }
 }
