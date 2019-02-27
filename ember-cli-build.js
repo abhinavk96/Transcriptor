@@ -3,9 +3,18 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
+  let env = process.env.EMBER_ENV || 'development';
   let app = new EmberApp(defaults, {
     // Add options here
+    fingerprint: {
+      enabled: env === 'production',
+      generateAssetMap: true,
+      fingerprintAssetMap: true,
+      // We need to add json to the fingerprinted extentions
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'svg', 'json']
+    }
   });
+
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
