@@ -22,6 +22,9 @@ module.exports = function(environment) {
       // when it is created
       apiHost      : process.env.API_HOST || 'http://127.0.0.1:5000',
 
+    },
+    fastboot: {
+      hostWhitelist: [/.+/]
     }
   };
   ENV['ember-simple-auth'] = {

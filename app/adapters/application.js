@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import ENV from 'transcriptor/config/environment';
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
-import HasManyQueryAdapterMixin from 'ember-data-has-many-query/mixins/rest-adapter';
+// import HasManyQueryAdapterMixin from 'ember-data-has-many-query/mixins/rest-adapter';
 import AdapterFetch from 'ember-fetch/mixins/adapter-fetch';
 import CachedShoe   from 'ember-cached-shoe';
 
@@ -19,7 +19,7 @@ export const fixFilterQuery = query  => {
   return query;
 };
 
-export default JSONAPIAdapter.extend(HasManyQueryAdapterMixin, AdapterFetch, CachedShoe, {
+export default JSONAPIAdapter.extend(AdapterFetch, CachedShoe, {
   host      : ENV.APP.apiHost,
 
   // notify  : service(),
