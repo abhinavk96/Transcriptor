@@ -2,9 +2,9 @@ import JSONAPISerializer from 'ember-data/serializers/json-api';
 import DS from 'ember-data';
 const { normalizeModelName } = DS;
 import { singularize } from 'ember-inflector';
-import EventRelationMixin  from 'open-event-frontend/mixins/event-relation';
+// import EventRelationMixin  from 'open-event-frontend/mixins/event-relation';
 
-export default JSONAPISerializer.extend(EventRelationMixin, {
+export default JSONAPISerializer.extend({
   modelNameFromPayloadKey(key) {
     return singularize(normalizeModelName(key));
   },

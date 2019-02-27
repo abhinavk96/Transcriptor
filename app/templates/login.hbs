@@ -1,3 +1,3 @@
-{{forms/login-form}}
-
+{{forms/login-form session=session authManager=authManager store=store}}
+{{authManager.currentUser.email}}
 {{session.isAuthenticated}}
