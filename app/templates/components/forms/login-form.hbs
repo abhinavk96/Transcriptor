@@ -1,10 +1,9 @@
 
-
-<div class="ui stackable {{unless noSocial 'three' 'one'}} column doubling centered grid">
+<div class="ui stackable three column doubling centered grid">
   <div class="column">
     <form class="ui large form" autocomplete="off" {{action 'submit' on='submit'}}>
       <div class="ui aligned segment basic less margin less padding">
-        <h3 class="weight-400">{{t 'Login'}}</h3>
+        <h3 class="weight-400">Login</h3>
       </div>
       <div class="ui segments">
         <div class="ui segment {{if isLoading 'loading' ''}}">
@@ -15,53 +14,40 @@
           {{/if}}
           {{#if newUser}}
             <div class="ui info message">
-              <p>{{t 'You have been registered successfully. Please login to continue.'}}</p>
+              <p>You have been registered successfully. Please login to continue.</p>
             </div>
           {{/if}}
           <div class="field">
             <div class="ui left icon input">
               <i class="mail icon"></i>
-              {{input name='email' placeholder=(t 'Email ID') value=identification}}
+              {{input name='email' placeholder='Email ID' value=identification}}
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
               {{#if showPass}}
-                {{input type="text" name='password' placeholder=(t 'Password') value=password}}
+                {{input type="text" name='password' placeholder='Password' value=password}}
               {{else}}
-                {{input type="password" name='password' placeholder=(t 'Password') value=password}}
+                {{input type="password" name='password' placeholder='Password' value=password}}
               {{/if}}
-              <div class="ui small basic icon buttons">
-                <button type="button" class="ui button" id="eye1" {{action 'showPassword'}}>
-                  <i class="eye icon"></i>
-                </button>
-              </div>
+
             </div>
           </div>
           <div class="ui center aligned segment basic">
             <div class="ui vertical buttons">
-              <button type="submit" class="ui fluid teal submit button register">
-                {{t 'Login'}}
+              <button type="submit" class="ui fluid green submit button register">
+               Login
               </button>
               <div class="ui center aligned segment basic">
-                <a href="{{href-to 'reset-password'}}" class="text muted"> {{t 'Forgot your password ?'}}</a>
+                <a href="{{href-to 'editor'}}" class="text muted"> Forgot your password ?</a><br>
+                <a href="{{href-to 'editor'}}" class="text muted"> Register</a>
+
               </div>
-              {{#unless noSocial}}
-                <div class="ui horizontal divider">
-                  Or
-                </div>
-                <button type="button" class="ui facebook button" {{action 'auth' 'facebook'}}>
-                  <i class="facebook icon"></i>
-                  {{t 'Login with Facebook'}}
-                </button>
-              {{/unless}}
             </div>
           </div>
         </div>
-        <a href="{{href-to 'register'}}" class="ui secondary segment center aligned text muted weight-800">
-          {{t 'New to site? Create Account'}}
-        </a>
+
       </div>
     </form>
   </div>
