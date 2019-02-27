@@ -40,6 +40,7 @@
     "ember-fetch": "^6.4.0",
     "ember-href-to": "^2.0.1",
     "ember-load-initializers": "^1.1.0",
+    "ember-lodash": "^4.19.4",
     "ember-math-helpers": "^2.10.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^3.4.1",
