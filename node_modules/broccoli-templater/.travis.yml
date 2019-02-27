@@ -1,0 +1,16 @@
+sudo: false
+dist: trusty
+
+language: node_js
+node_js:
+  - "lts/boron"
+  - "lts/carbon"
+  - "10"
+
+cache:
+    yarn: true
+
+install:
+  - yarn
+
+script: yarn test
