@@ -154,6 +154,14 @@ export default Component.extend({
       this.set('isPlayerLoading', true);
       var actions = [
         {
+          class: '.pencil.icon',
+          title: 'Edit annotation',
+          action: (annotation, i, annotations) => {
+            console.log(annotations, i);
+            document.getElementsByClassName("annotation-lines")[i].focus();
+          }
+        },
+        {
           class: '.red.minus.icon',
           title: 'Reduce annotation end by 0.010s',
           action: (annotation, i, annotations, opts) => {
@@ -203,14 +211,6 @@ export default Component.extend({
           title: 'Delete annotation',
           action: (annotation, i, annotations) => {
             annotations.splice(i, 1);
-          }
-        },
-        {
-          class: '.pencil.icon',
-          title: 'Edit annotation',
-          action: (annotation, i, annotations) => {
-            console.log(annotations, i);
-            document.getElementsByClassName("annotation-lines")[i].focus();
           }
         }
       ];
