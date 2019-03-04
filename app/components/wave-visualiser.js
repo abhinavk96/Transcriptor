@@ -43,6 +43,12 @@ export default Component.extend({
       this.set('timeUpdate', true);
 
       if (this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
+       let duplicates = document.getElementsByClassName('currentWord');
+       if(duplicates.length> 1) {
+         for(var i=0; i<duplicates.length; i++) {
+           $(duplicates[i]).removeClass('currentWord');
+         }
+       }
         $(`#${this.targetSpan}`).addClass('currentWord');
         // console.log('encountetred! encountered!', this.targetSpan);
       } else if (this.currentTimer >= this.targetSpanEndTime) {
