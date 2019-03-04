@@ -162,7 +162,7 @@ export default Component.extend({
           }
         },
         {
-          class: '.red.minus.icon',
+          class: '.minus.icon',
           title: 'Reduce annotation end by 0.010s',
           action: (annotation, i, annotations, opts) => {
             var next;
@@ -176,7 +176,7 @@ export default Component.extend({
           }
         },
         {
-          class: '.green.plus.icon.button',
+          class: '.plus.icon',
           title: 'Increase annotation end by 0.010s',
           action: (annotation, i, annotations, opts) => {
             var next;
