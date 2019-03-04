@@ -170,8 +170,9 @@
   margin: 20px;
 }
 .playlist .annotations .annotations-text .annotation .annotation-actions {
+  visibility: hidden;
   flex-basis: auto;
-  width: 80px;
+  width: 120px;
   text-align: right;
   font-size: 16px; }
 .playlist .annotations .annotations-text .annotation .annotation-actions i {

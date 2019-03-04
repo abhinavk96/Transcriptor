@@ -707,6 +707,11 @@ export default Component.extend({
           event.preventDefault();
         }
       });
+      $('.annotation').hover(function() {
+       $($(this).children()[4]).css("visibility","visible");
+      }, function() {
+        $($(this).children()[4]).css("visibility","hidden");
+      });
       // console.log(_this.targetSpan.data('stime'));
 
       //temporarily disable word highlighting
