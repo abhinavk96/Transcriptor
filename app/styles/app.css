@@ -149,10 +149,12 @@
 .playlist .annotations .annotations-text .annotation .annotation-start {
   margin: 20px;
   display: block;
+  color: gray;
   font-size: 12px;
   line-height: 27px; }
 .playlist .annotations .annotations-text .annotation .annotation-end {
   display: block;
+  color: gray;
   font-size: 12px;
   line-height: 27px;
   margin: 20px;
@@ -176,7 +178,25 @@
   color: orange;
   cursor: pointer; }
 .playlist .annotations .current {
-  padding: 0; }
+  padding: 0;
+  background-color: #DFF0FF;
+  color: #2185D0;
+  -webkit-box-shadow: 0px 0px 0px 1px #2185D0 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px 1px #2185D0 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  font-size: 1em;
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0em;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, -webkit-box-shadow 0.1s ease;
+  transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease, -webkit-box-shadow 0.1s ease;
+  border-radius: 0.28571429rem;
+}
+
+
+
+
 
 .currentWord {
   background: yellow;
