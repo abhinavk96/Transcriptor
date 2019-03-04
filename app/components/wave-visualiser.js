@@ -700,7 +700,12 @@ export default Component.extend({
       let previousTimer = _this.actualTimer;
       $('.annotation-lines').on('mousedown', function(event) {
 // do your magic
-        event.preventDefault();
+        if(this == document.activeElement){
+
+        }
+        else {
+          event.preventDefault();
+        }
       });
       // console.log(_this.targetSpan.data('stime'));
 
