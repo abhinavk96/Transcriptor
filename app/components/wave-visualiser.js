@@ -153,58 +153,66 @@ export default Component.extend({
   actions:{ loadWaveFile(audioFile, notes) {
       this.set('isPlayerLoading', true);
       var actions = [
-        // {
-        //   class: '.red.minus.icon',
-        //   title: 'Reduce annotation end by 0.010s',
-        //   action: (annotation, i, annotations, opts) => {
-        //     var next;
-        //     var delta = 0.010;
-        //     annotation.end -= delta;
-        //
-        //     if (opts.linkEndpoints) {
-        //       next = annotations[i + 1];
-        //       next && (next.start -= delta);
-        //     }
-        //   }
-        // },
-        // {
-        //   class: '.green.plus.icon',
-        //   title: 'Increase annotation end by 0.010s',
-        //   action: (annotation, i, annotations, opts) => {
-        //     var next;
-        //     var delta = 0.010;
-        //     annotation.end += delta;
-        //
-        //     if (opts.linkEndpoints) {
-        //       next = annotations[i + 1];
-        //       next && (next.start += delta);
-        //     }
-        //   }
-        // },
-        // {
-        //   class: '.red.scissors',
-        //   title: 'Split annotation in half',
-        //   action: (annotation, i, annotations) => {
-        //     const halfDuration = (annotation.end - annotation.start) / 2;
-        //
-        //     annotations.splice(i + 1, 0, {
-        //       id: 'test',
-        //       start: annotation.end - halfDuration,
-        //       end: annotation.end,
-        //       lines: ['----'],
-        //       lang: 'en',
-        //     });
-        //
-        //     annotation.end = annotation.start + halfDuration;
-        //   }
-        // },
-        // {
-        //   class: 'fa.fa-trash',
-        //   title: 'Delete annotation',
-        //   action: (annotation, i, annotations) => {
-        //     annotations.splice(i, 1);
-        //   }
-        // }
+        {
+          class: '.red.minus.icon',
+          title: 'Reduce annotation end by 0.010s',
+          action: (annotation, i, annotations, opts) => {
+            var next;
+            var delta = 0.010;
+            annotation.end -= delta;
+
+            if (opts.linkEndpoints) {
+              next = annotations[i + 1];
+              next && (next.start -= delta);
+            }
+          }
+        },
+        {
+          class: '.green.plus.icon.button',
+          title: 'Increase annotation end by 0.010s',
+          action: (annotation, i, annotations, opts) => {
+            var next;
+            var delta = 0.010;
+            annotation.end += delta;
+
+            if (opts.linkEndpoints) {
+              next = annotations[i + 1];
+              next && (next.start += delta);
+            }
+          }
+        },
+        {
+          class: '.red.scissors',
+          title: 'Split annotation in half',
+          action: (annotation, i, annotations) => {
+            const halfDuration = (annotation.end - annotation.start) / 2;
+
+            annotations.splice(i + 1, 0, {
+              id: 'test',
+              start: annotation.end - halfDuration,
+              end: annotation.end,
+              lines: ['----'],
+              lang: 'en',
+            });
+
+            annotation.end = annotation.start + halfDuration;
+          }
+        },
+        {
+          class: 'fa.fa-trash',
+          title: 'Delete annotation',
+          action: (annotation, i, annotations) => {
+            annotations.splice(i, 1);
+          }
+        },
+        {
+          class: '.pencil.icon',
+          title: 'Edit annotation',
+          action: (annotation, i, annotations) => {
+            console.log(annotations, i);
+            document.getElementsByClassName("annotation-lines")[i].focus();
+          }
+        }
       ];
 
       var playlist = WaveformPlaylist.init({
@@ -226,7 +234,7 @@ export default Component.extend({
         annotationList: {
           annotations: notes,
           controls: actions,
-          editable: true,
+          editable:  true,
           isContinuousPlay: false,
           linkEndpoints: true
         },
@@ -690,6 +698,10 @@ export default Component.extend({
       _this.set('targetSpanIndex', 0);
       console.log(_this.targetSpan);
       let previousTimer = _this.actualTimer;
+      $('.annotation-lines').on('mousedown', function(event) {
+// do your magic
+        event.preventDefault();
+      });
       // console.log(_this.targetSpan.data('stime'));
 
       //temporarily disable word highlighting
