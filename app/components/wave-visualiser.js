@@ -22,41 +22,44 @@ export default Component.extend({
   currentTargetSpan: computed('actualTimer', function() {
     let closestKey = 0;
     for (var key in this.timeMappings) {
-      if (parseFloat(key) <= parseFloat(this.actualTimer)){
-        console.log(key, this.actualTimer);
+      if (parseFloat(key) < parseFloat(this.actualTimer)) {
 
         closestKey++;
       }
       else {
-        console.log(key, this.actualTimer);
+        // console.log(key, this.actualTimer);
 
         break;
       }
     }
+    console.log(closestKey, this.timeMappings);
     return closestKey;
 
   }),
-  currentSpan:  computed('actualTimer', function(){
+  currentSpan:  computed('actualTimer', 'currentTargetSpan', function(){
     if(this.wordLevelHighlighting) {
-      // if (this.currentTimer - this.actualTimer < 0.05) {
       this.set('currentTimer', this.actualTimer);
+      console.log(this.currentTimer, this.targetSpanStartTime, this.targetSpanEndTime);
       this.set('timeUpdate', true);
 
-      // }
       if (this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
         $(`#${this.targetSpan}`).addClass('currentWord');
-        console.log('encountetred! encountered!', this.targetSpan);
+        // console.log('encountetred! encountered!', this.targetSpan);
       } else if (this.currentTimer >= this.targetSpanEndTime) {
+
         $(`#${this.targetSpan}`).removeClass('currentWord');
         let nextSpan = this.targetSpanIndex + 1;
         this.set('targetSpanIndex', nextSpan);
         console.log('new target:', nextSpan);
+
         if (this.allSpans[nextSpan]) {
           this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
           this.set('targetSpanEndTime', this.allSpans[nextSpan].data('etime'));
           this.set('targetSpan', `o-${nextSpan}`);
           if (this.currentTimer >= this.targetSpanEndTime) {
+
             $(`#${this.targetSpan}`).addClass('currentWord');
+
           }
         }
       }
@@ -324,7 +327,7 @@ export default Component.extend({
         }
 
         function updateSelect(start, end) {
-          console.log('called');
+          // console.log('called');
           if (start < end) {
             $('.btn-trim-audio').removeClass('disabled');
             $('.btn-loop').removeClass('disabled');
@@ -669,7 +672,7 @@ export default Component.extend({
         spans.each(index => {
           let currentSpan = $(spans[index]);
           _this.timeMappings[currentSpan.data('stime').toFixed(3)] = currentSpan;
-          _this.timeMappings[currentSpan.data('etime').toFixed(3)] = 0;
+          // _this.timeMappings[currentSpan.data('etime').toFixed(3)] = 0;
            allSpans.push(currentSpan);
         });
       });
