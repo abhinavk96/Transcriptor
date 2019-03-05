@@ -20,6 +20,23 @@ export default Component.extend({
   isStep1Complete: false,
   isStep2Complete:false,
   notes: [],
+  findApproxTargetSpan: function(time){
+    console.log("Finding approx..")
+    let closestKey = 0;
+    for (var key in this.timeMappings) {
+      if (parseFloat(key) < parseFloat(time)) {
+
+        closestKey++;
+      }
+      else {
+        // console.log(key, this.actualTimer);
+
+        break;
+      }
+    }
+    // console.log("currentTargetSpan computed: ",closestKey);
+    return closestKey;
+  },
   currentTargetSpan: computed('actualTimer', function() {
     let closestKey = 0;
     for (var key in this.timeMappings) {
@@ -54,7 +71,7 @@ export default Component.extend({
         $(`#${this.targetSpan}`).addClass('currentWord');
         // console.log('encountetred! encountered!', this.targetSpan);
       } else if (this.currentTimer >= this.targetSpanEndTime) {
-        // console.log("Should update automatically");
+        console.log("Should update automatically");
         $(`#${this.targetSpan}`).removeClass('currentWord');
         let nextSpan = this.targetSpanIndex + 1;
         this.set('targetSpanIndex', nextSpan);
@@ -404,7 +421,7 @@ export default Component.extend({
 
           startTime = start;
           endTime = end;
-          let currentTargetSpan = _this.currentTargetSpan;
+          let currentTargetSpan =  parseFloat(_this.findApproxTargetSpan(start));
           console.log('currentTargetSpan: ', currentTargetSpan);
           _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
           _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
@@ -452,6 +469,16 @@ export default Component.extend({
 //     $('.btn-fade-state-group').removeClass('hidden');
 //   }
 // });
+
+        $container.on("click", ".annotation-box", function (box) {
+          console.log(box.target.innerText);
+          let currentTargetSpan =  parseFloat(_this.findApproxTargetSpan(_this.notes[parseFloat(box.target.innerText)].begin));
+          console.log('currentTargetSpan: ', currentTargetSpan);
+          _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
+          _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
+          _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
+          _this.set('targetSpanIndex', currentTargetSpan);
+        });
 
         $container.on("click", ".transcriptor", function (word) {
 
