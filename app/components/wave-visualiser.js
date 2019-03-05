@@ -46,7 +46,7 @@ export default Component.extend({
 
       if (this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
        let duplicates = document.getElementsByClassName('currentWord');
-       if(duplicates.length> 1) {
+       if(duplicates.length> 0) {
          for(var i=0; i<duplicates.length; i++) {
            $(duplicates[i]).removeClass('currentWord');
          }
