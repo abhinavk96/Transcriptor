@@ -139,6 +139,12 @@
    margin: 0.3rem 0.6rem;
   cursor: pointer;
 }
+text {
+  margin: 0.3rem 0.6rem;
+  cursor: pointer;
+  display:none;
+}
+
 .playlist .annotations .annotations-text .annotation span:focus {
   margin: 0.3rem 0.6rem;
   cursor: text;

@@ -788,7 +788,7 @@ export default Component.extend({
       _this.set('targetSpanEndTime', _this.allSpans[0].data('etime').toFixed(3));
       _this.set('targetSpanIndex', 0);
       // console.log(_this.targetSpan);
-      let previousTimer = _this.actualTimer;
+//       let previousTimer = _this.actualTimer;
       $('.annotation-lines').on('mousedown', function(event) {
 // do your magic
         if(this == document.activeElement){
@@ -803,6 +803,17 @@ export default Component.extend({
       }, function() {
         $($(this).children()[4]).css("visibility","hidden");
       });
+      $('.annotation-lines').blur(function(evt) {
+        console.log($(this)[0].childNodes);
+        console.log(this, evt.target);
+        this.content = evt.target.innerText
+        // $(this)[0].innerHTML = $(this).children();
+        console.log('losing focus...');
+        $($($(this).parent()[0])[4]).css("visibility","hidden");
+      });
+      // $('.annotation-lines').hover(function() {
+      //
+      // });
       // console.log(_this.targetSpan.data('stime'));
 
       //temporarily disable word highlighting
