@@ -67,6 +67,7 @@
     "ember-simple-auth": "^1.8.1",
     "ember-truth-helpers": "^2.1.0",
     "lodash": "^4.17.11",
-    "waveform-playlist": "^3.0.4"
+    "waveform-playlist": "^3.0.4",
+    "xml-js": "^1.6.11"
   }
 }
