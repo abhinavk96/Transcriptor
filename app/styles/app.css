@@ -142,6 +142,7 @@
 .playlist .annotations .annotations-text .annotation span:focus {
   margin: 0.3rem 0.6rem;
   cursor: text;
+  border: 2px solid greenyellow;
 }
 .playlist .annotations .annotations-text .annotation span:last-of-type {
   margin-right: 1.2rem; }
