@@ -34,7 +34,7 @@ export default Component.extend({
         break;
       }
     }
-    console.log(this.actualTimer);
+    // console.log(this.actualTimer);
     return closestKey;
 
   }),
@@ -103,8 +103,8 @@ export default Component.extend({
 
       for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
         // ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
-        console.log('File dropped successfully');
-        console.log(dropEvent.dataTransfer.files[i]);
+        // console.log('File dropped successfully');
+        // console.log(dropEvent.dataTransfer.files[i]);
         let file = dropEvent.dataTransfer.files[i]
         this.set('audioFile', file);
         this.send('loadWaveFile', this.get('audioFile'), this.get('notes'));
@@ -139,10 +139,10 @@ export default Component.extend({
         var xml = e.target.result;
         // console.log(notes);
         var json = convert.xml2json(xml, {compact: true, spaces: 4});
-        console.log(json);
+        // console.log(json);
 
         var obj = JSON.parse(json);
-        console.log(obj);
+        // console.log(obj);
         let segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
         let notes = [];
         let spanIndex = 0;
@@ -158,13 +158,13 @@ export default Component.extend({
           return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
         });
         segmentsList.forEach(function(segment) {
-          console.log(segment.Word.length);
+          // console.log(segment.Word.length);
           let sentence = segment.Word;
           if (sentence.length) {
             //handle sentences
             let line = "";
             sentence.forEach(function(word) {
-              console.log("Start Time", word['_attributes']['stime']);
+              // console.log("Start Time", word['_attributes']['stime']);
               line = `${line} <span class='transcriptor ${getColor(word['_attributes']['score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(word['_attributes']['stime'])}' data-etime='${parseFloat(word['_attributes']['stime']) + parseFloat(word['_attributes']['dur'])}'>${word['_text']}</span>`;
             });
             // based on start and end times of words
@@ -184,7 +184,7 @@ export default Component.extend({
 
 
         });
-        console.log(notes);
+        // console.log(notes);
         _this.set('notes', notes);
         _this.set('isStep1Complete', true);
 
@@ -206,7 +206,7 @@ export default Component.extend({
           class: '.pencil.icon',
           title: 'Edit annotation',
           action: (annotation, i, annotations) => {
-            console.log(annotations, i);
+            // console.log(annotations, i);
             document.getElementsByClassName("annotation-lines")[i].focus();
           }
         },
@@ -294,7 +294,7 @@ export default Component.extend({
           isAutomaticScroll: true
         }
       });
-      console.log('playlist defined', playlist);
+      // console.log('playlist defined', playlist);
 
       var _this = this;
       playlist.load([
@@ -316,7 +316,7 @@ export default Component.extend({
         //can do stuff with the playlist.
         _this.set('isPlayerLoading', false);
         //initialize the WAV exporter.
-        console.log('Player initialised successfully.')
+        // console.log('Player initialised successfully.')
         playlist.initExporter();
         var ee = playlist.getEventEmitter();
         var $container = $("body");
@@ -714,7 +714,7 @@ export default Component.extend({
         });
 
         ee.on("statechange", function (state) {
-          console.log("State " + state);
+          console.log("State Change" + state);
         });
       })
         .catch(e => {
@@ -740,12 +740,12 @@ export default Component.extend({
         });
       });
       _this.set('allSpans', allSpans);
-      console.log(_this.timeMappings);
+      // console.log(_this.timeMappings);
       _this.set('targetSpan', _this.allSpans[0].attr('id'));
       _this.set('targetSpanStartTime', _this.allSpans[0].data('stime').toFixed(3));
       _this.set('targetSpanEndTime', _this.allSpans[0].data('etime').toFixed(3));
       _this.set('targetSpanIndex', 0);
-      console.log(_this.targetSpan);
+      // console.log(_this.targetSpan);
       let previousTimer = _this.actualTimer;
       $('.annotation-lines').on('mousedown', function(event) {
 // do your magic
