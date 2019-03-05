@@ -21,7 +21,6 @@ export default Component.extend({
   isStep2Complete:false,
   notes: [],
   currentTargetSpan: computed('actualTimer', function() {
-    this.set('currentTimer', this.actualTimer);
     let closestKey = 0;
     for (var key in this.timeMappings) {
       if (parseFloat(key) < parseFloat(this.actualTimer)) {
@@ -34,11 +33,12 @@ export default Component.extend({
         break;
       }
     }
-    // console.log(this.actualTimer);
+    // console.log("currentTargetSpan computed: ",closestKey);
     return closestKey;
 
   }),
   currentSpan:  computed('actualTimer', 'currentTargetSpan', function(){
+    // console.log("currentSpan computed called with actualTimer, currentTargetSpan, targetSpanEndTime as,", this.actualTimer, this.currentTargetSpan, this.targetSpanEndTime);
     if(this.wordLevelHighlighting) {
       this.set('currentTimer', this.actualTimer);
       // console.log(this.currentTimer, this.targetSpanStartTime, this.targetSpanEndTime);
@@ -54,7 +54,7 @@ export default Component.extend({
         $(`#${this.targetSpan}`).addClass('currentWord');
         // console.log('encountetred! encountered!', this.targetSpan);
       } else if (this.currentTimer >= this.targetSpanEndTime) {
-
+        // console.log("Should update automatically");
         $(`#${this.targetSpan}`).removeClass('currentWord');
         let nextSpan = this.targetSpanIndex + 1;
         this.set('targetSpanIndex', nextSpan);
@@ -72,6 +72,7 @@ export default Component.extend({
         }
       }
     }
+    return true;
 
   }),
   didInsertElement(){
@@ -390,7 +391,6 @@ export default Component.extend({
         }
 
         function updateSelect(start, end) {
-          // console.log('called');
           if (start < end) {
             $('.btn-trim-audio').removeClass('disabled');
             $('.btn-loop').removeClass('disabled');
@@ -410,6 +410,17 @@ export default Component.extend({
           _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
           _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
           _this.set('targetSpanIndex', currentTargetSpan);
+        }
+
+        function updateTargetSpan(newTargetSpan) {
+            _this.set('currentTargetSpan', $(newTargetSpan[0]).attr('id').substring(2));
+          let currentTargetSpan =  parseFloat(_this.currentTargetSpan);
+          _this.set('targetSpan', $(newTargetSpan[0]).attr('id'));
+          _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
+          _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
+          _this.set('targetSpanIndex', currentTargetSpan);
+          // console.log('update target span called currentTargetSpan, targetSpanStartTime, targetSpanEndTime: ', currentTargetSpan, _this.targetSpanStartTime, _this.targetSpanEndTime);
+
         }
 
         function updateTime(time) {
@@ -443,13 +454,17 @@ export default Component.extend({
 // });
 
         $container.on("click", ".transcriptor", function (word) {
+
           // isLooping = false;
           // ee.emit("rewind");
           let wordStartTime = $(word.target).data('stime');
           if(wordStartTime) {
             ee.emit("select", wordStartTime, wordStartTime);
-            // ee.emit("play");
+
+            // ee.emit("pause");
+
             console.log('word clicked', $(word.target).data('stime'));
+            updateTargetSpan($(word.target));
 
           }
         });
