@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
+import convert from 'npm:xml-js'
 import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
   disablePlay: true,
@@ -20,6 +21,7 @@ export default Component.extend({
   isStep2Complete:false,
   notes: [],
   currentTargetSpan: computed('actualTimer', function() {
+    this.set('currentTimer', this.actualTimer);
     let closestKey = 0;
     for (var key in this.timeMappings) {
       if (parseFloat(key) < parseFloat(this.actualTimer)) {
@@ -32,14 +34,14 @@ export default Component.extend({
         break;
       }
     }
-    console.log(closestKey, this.timeMappings);
+    console.log(this.actualTimer);
     return closestKey;
 
   }),
   currentSpan:  computed('actualTimer', 'currentTargetSpan', function(){
     if(this.wordLevelHighlighting) {
       this.set('currentTimer', this.actualTimer);
-      console.log(this.currentTimer, this.targetSpanStartTime, this.targetSpanEndTime);
+      // console.log(this.currentTimer, this.targetSpanStartTime, this.targetSpanEndTime);
       this.set('timeUpdate', true);
 
       if (this.currentTimer >= this.targetSpanStartTime && this.currentTimer <= this.targetSpanEndTime) {
@@ -56,7 +58,7 @@ export default Component.extend({
         $(`#${this.targetSpan}`).removeClass('currentWord');
         let nextSpan = this.targetSpanIndex + 1;
         this.set('targetSpanIndex', nextSpan);
-        console.log('new target:', nextSpan);
+        // console.log('new target:', nextSpan);
 
         if (this.allSpans[nextSpan]) {
           this.set('targetSpanStartTime', this.allSpans[nextSpan].data('stime'));
@@ -134,7 +136,54 @@ export default Component.extend({
       let reader = new FileReader();
       reader.onload = function (e) {
         // get file content
-        var notes = JSON.parse(e.target.result);
+        var xml = e.target.result;
+        // console.log(notes);
+        var json = convert.xml2json(xml, {compact: true, spaces: 4});
+        console.log(json);
+
+        var obj = JSON.parse(json);
+        console.log(obj);
+        let segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
+        let notes = [];
+        let spanIndex = 0;
+        function getColor(score) {
+          if(parseFloat(score) < 0.7) {
+            return 'red';
+          }
+          else {
+            return '';
+          }
+        }
+        segmentsList = segmentsList.sort(function(a,b) {
+          return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
+        });
+        segmentsList.forEach(function(segment) {
+          console.log(segment.Word.length);
+          let sentence = segment.Word;
+          if (sentence.length) {
+            //handle sentences
+            let line = "";
+            sentence.forEach(function(word) {
+              console.log("Start Time", word['_attributes']['stime']);
+              line = `${line} <span class='transcriptor ${getColor(word['_attributes']['score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(word['_attributes']['stime'])}' data-etime='${parseFloat(word['_attributes']['stime']) + parseFloat(word['_attributes']['dur'])}'>${word['_text']}</span>`;
+            });
+            // based on start and end times of words
+            // o = {begin: sentence[0]['-stime'], children: [], end: String((parseFloat(sentence[sentence.length-1]['-stime'])+ parseFloat(sentence[sentence.length-1]['-dur']))), id: notes.length, language: 'eng', lines: [line] }
+            let o = {begin: segment['_attributes']['stime'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
+
+            notes.push(o);
+          }
+          else {
+            //handle single word sentences
+            //based on start and end times of words
+            // o = {begin: sentence['-stime'], children: [], end: String((parseFloat(sentence['-stime'])+ parseFloat(sentence['-dur']))), id: notes.length, language: 'eng', lines: [sentence['#text']] }
+            let line = `<span class='transcriptor ${getColor(sentence['_attributes']['score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(sentence['_attributes']['stime'])}' data-etime='${parseFloat(sentence['_attributes']['stime']) + parseFloat(sentence['_attributes']['dur'])}'>${sentence['_text']}</span>`
+            let o = {begin: segment['_attributes']['stime'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
+            notes.push(o);
+          }
+
+
+        });
         console.log(notes);
         _this.set('notes', notes);
         _this.set('isStep1Complete', true);
@@ -356,7 +405,7 @@ export default Component.extend({
           startTime = start;
           endTime = end;
           let currentTargetSpan = _this.currentTargetSpan;
-          console.log(currentTargetSpan);
+          console.log('currentTargetSpan: ', currentTargetSpan);
           _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
           _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
           _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
