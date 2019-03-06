@@ -176,6 +176,19 @@ text {
   flex-grow: 10;
   margin: 20px;
 }
+/*----------------------experiment------------*/
+
+/*.playlist .annotations .annotations-text .annotation .annotation-lines {*/
+  /*font-size:0;*/
+/*}*/
+
+/*.playlist .annotations .annotations-text .annotation .annotation-lines span{*/
+  /*font-size:18px;*/
+  /*!*margin-right: 5px !important;*!*/
+/*}*/
+
+/*----------------------experiment------------*/
+
 .playlist .annotations .annotations-text .annotation .annotation-actions {
   visibility: hidden;
   flex-basis: auto;

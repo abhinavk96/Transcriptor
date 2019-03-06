@@ -804,12 +804,16 @@ export default Component.extend({
         $($(this).children()[4]).css("visibility","hidden");
       });
       $('.annotation-lines').blur(function(evt) {
-        console.log($(this)[0].childNodes);
-        console.log(this, evt.target);
-        this.content = evt.target.innerText
+        // console.log($(this)[0].childNodes);
+        // console.log(this, evt.target);
+        // this.content = evt.target.innerText;
+        console.log(this.content);
         // $(this)[0].innerHTML = $(this).children();
         console.log('losing focus...');
         $($($(this).parent()[0])[4]).css("visibility","hidden");
+      });
+      $('.annotation-lines').focusout(function(evt) {
+        console.log('focusout')
       });
       // $('.annotation-lines').hover(function() {
       //
