@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
+body {
+  overflow-y:hidden;
+}
 .playlist {
   margin: 2em 0; }
 .playlist .playlist-time-scale {
@@ -124,10 +126,17 @@
   font-size: 18px;
   /*font-weight: 100;*/
   margin-top: 1em;
-  /*height: 460px;*/
+  height: 460px;
   /*width:80%;*/
   overflow-x: hidden;
-  overflow-y: auto; }
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.playlist .annotations .annotations-text::-webkit-scrollbar { width: 0 !important }
+
+
 .playlist .annotations .annotations-text .annotation {
   display: flex;
   /*flex-direction: row;*/

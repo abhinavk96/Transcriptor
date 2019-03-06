@@ -815,6 +815,7 @@ export default Component.extend({
       $('.annotation-lines').focusout(function(evt) {
         console.log('focusout')
       });
+
       // $('.annotation-lines').hover(function() {
       //
       // });
