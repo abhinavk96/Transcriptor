@@ -20,6 +20,7 @@ export default Component.extend({
   isStep1Complete: false,
   isStep2Complete:false,
   notes: [],
+  autoScroll: true,
   findApproxTargetSpan: function(time){
     console.log("Finding approx..")
     let closestKey = 0;
@@ -93,6 +94,11 @@ export default Component.extend({
 
   }),
   didInsertElement(){
+    $('.settings').popup({
+      "hoverable":true,
+      "position": "bottom left"
+    });
+
     var _this = this;
     var $container = $("body");
   // .playlist .annotations .annotations-text .annotation span
@@ -217,7 +223,12 @@ export default Component.extend({
 
 
   },
-  actions:{ loadWaveFile(audioFile, notes) {
+  actions:{
+    openModal: function(name) {
+      $('.ui.' + name + '.modal').modal('show');
+    },
+
+    loadWaveFile(audioFile, notes) {
       this.set('isPlayerLoading', true);
       var actions = [
         {
@@ -350,6 +361,8 @@ export default Component.extend({
         var downloadUrl = undefined;
         var isLooping = false;
         var playoutPromises;
+
+        ee.emit("automaticscroll", _this.autoScroll);
 
         function toggleActive(node) {
           var active = node.parentNode.querySelectorAll('.active');
@@ -859,6 +872,9 @@ export default Component.extend({
   keyDown(key) {
     if(key.which === 9) {
       key.preventDefault();
+      console.log(key.target.parentElement.firstChild.innerText);
+      let annotation = parseFloat(key.target.parentElement.firstChild.innerText);
+      $($('.annotation-box').get(annotation).children[1]).click();
     }
     console.log(key.which);
   },

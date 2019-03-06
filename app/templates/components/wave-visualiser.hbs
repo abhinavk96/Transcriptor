@@ -28,6 +28,7 @@
                 <i class="ui zoom-out blue icon"></i>
               </button>
             </div>
+
             <div class="ui basic icon buttons btn-playlist-state-group">
                <button class="btn-cursor ui button active" title="select cursor">
                <i class="headphones icon"></i>
@@ -46,7 +47,53 @@
               <!--<span class="btn-fadeout btn btn-default" title="set audio fade out">-->
                      <!--<i class="fa fa-long-arrow-right"></i>-->
               <!--</span>-->
+
             </div>
+            <div class="ui basic icon buttons btn-playlist-state-group">
+              <button class="ui button settings">
+                <i class="settings icon"></i>
+              </button>
+              <div class="ui flowing  popup bottom right transition visible animating scale out">
+                <div class="ui three column divided center aligned grid">
+                  <div class="column">
+                    <h4 class="ui header">Volume</h4>
+                    <div class="ui input">
+                    <input type="range" min="0" max="100" value="100" class="master-gain form-control" id="master-gain">
+                    </div>
+                  </div>
+                  <div class="column">
+                    <h4 class="ui header">Word level highlighting</h4>
+                    {{ui-checkbox class="toggle" checked=wordLevelHighlighting onChange=(action (mut wordLevelHighlighting))}}
+                  </div>
+                  <div class="column">
+                    <h4 class="ui header">Automatic Scroll</h4>
+                    {{ui-checkbox class="toggle automatic-scroll" checked=autoScroll onChange=(action (mut autoScroll))}}
+
+                    <div class="ui checkbox">
+                      <input type="checkbox" class="automatic-scroll toggle ui checkbox">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="ui button help" {{action 'openModal' 'help'}}>
+                <i class="help icon"></i>
+              </button>
+              {{#ui-modal name="help" class="basic help"}}
+                <div class="ui icon header">
+                  <i class="help"></i>
+                  Instructions
+                </div>
+                <div class="content">
+                  <ul>
+                    <li>Shortcut 1</li>
+                    <li>Shortcut 2</li>
+                    <li>Shortcut 3</li>
+                    <li>Shortcut 4</li>
+                  </ul>
+                </div>
+              {{/ui-modal}}
+            </div>
+
             <!--<div class="btn-group btn-fade-state-group">-->
               <!--<span class="btn btn-default btn-logarithmic active">logarithmic</span>-->
               <!--<span class="btn btn-default btn-linear">linear</span>-->
@@ -92,40 +139,26 @@
         <div id="playlist"></div>
         <div class="playlist-bottom-bar">
           <form class="form-inline">
-            <select class="time-format form-control">
-              <option value="seconds">seconds</option>
-              <option value="hundredths">hundredths</option>
-              <option value="thousandths" selected="selected">thousandths</option>
-              <option value="hh:mm:ss">hh:mm:ss</option>
-              <option value="hh:mm:ss.u">hh:mm:ss + tenths</option>
-              <option value="hh:mm:ss.uu">hh:mm:ss + hundredths</option>
-              <option value="hh:mm:ss.uuu">hh:mm:ss + milliseconds</option>
-            </select>
-            <input type="text" class="audio-start input-small form-control">
-            <input type="text" class="audio-end form-control">
-            {{input class="audio-pos"}}{{currentSpan}}
-          </form>
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="master-gain">Master Volume</label>
-              <input type="range" min="0" max="100" value="100" class="master-gain form-control" id="master-gain">
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" class="automatic-scroll"> Automatic Scroll
-              </label>
-            </div>
-            <br><br>
-            {{ui-checkbox class="toggle" label="Word level Highlighting" checked=wordLevelHighlighting onChange=(action (mut wordLevelHighlighting))}}
-
+            <!--<select class="time-format form-control">-->
+              <!--<option value="seconds">seconds</option>-->
+              <!--<option value="hundredths">hundredths</option>-->
+              <!--<option value="thousandths" selected="selected">thousandths</option>-->
+              <!--<option value="hh:mm:ss">hh:mm:ss</option>-->
+              <!--<option value="hh:mm:ss.u">hh:mm:ss + tenths</option>-->
+              <!--<option value="hh:mm:ss.uu">hh:mm:ss + hundredths</option>-->
+              <!--<option value="hh:mm:ss.uuu">hh:mm:ss + milliseconds</option>-->
+            <!--</select>-->
+            <!--<input type="text" class="audio-start input-small form-control">-->
+            <!--<input type="text" class="audio-end form-control">-->
+            {{input class="audio-pos" type="hidden"}}<span style="opacity:0">{{currentSpan}}</span>
           </form>
 
-          seek to time
-          <form class="ui form" onsubmit="preventDefault();">
-            <div class="ui small icon input">
-              <input type="text"  value="14" id="seektime"/>
-            </div>
-          </form>            <button class="ui basic primary button btn-seektotime">Seek !</button>
+          <!--seek to time-->
+          <!--<form class="ui form" onsubmit="preventDefault();">-->
+            <!--<div class="ui small icon input">-->
+              <!--<input type="text"  value="14" id="seektime"/>-->
+            <!--</div>-->
+          <!--</form>            <button class="ui basic primary button btn-seektotime">Seek !</button>-->
 
           <div class="sound-status">
 
