@@ -78,18 +78,34 @@
               <button class="ui button help" {{action 'openModal' 'help'}}>
                 <i class="help icon"></i>
               </button>
-              {{#ui-modal name="help" class="basic help"}}
-                <div class="ui icon header">
+              {{#ui-modal name="help" class="help"}}
+                <h2 class="ui icon header">
                   <i class="help"></i>
                   Instructions
-                </div>
+                </h2>
                 <div class="content">
-                  <ul>
-                    <li>Shortcut 1</li>
-                    <li>Shortcut 2</li>
-                    <li>Shortcut 3</li>
-                    <li>Shortcut 4</li>
-                  </ul>
+                  <div class="ui bulleted big list">
+                    <div class="item">
+                      <div class="content">
+                        Use Tab <i class="keyboard icon"></i> while editing a segment to play the segment
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="content">
+                        Use Return <i class="keyboard icon"></i> key to stop editing a segment.
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="content">
+                        Use Tab <i class="keyboard icon"></i> while not editing a segment to start editing the next segment
+                      </div>
+                    </div>
+                    <!--<div class="item">-->
+                      <!--<div class="content">-->
+                        <!--Use ctrl + P to toggle between play and pause.-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  </div>
                 </div>
               {{/ui-modal}}
             </div>
