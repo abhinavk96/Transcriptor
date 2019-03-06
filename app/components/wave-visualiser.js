@@ -317,7 +317,7 @@ export default Component.extend({
           linkEndpoints: true
         },
         seekStyle : 'line',
-        zoomLevels: [100, 500, 1000, 3000, 5000],
+        zoomLevels: [1000, 3000, 5000],
         // isAutomaticScroll: true,
         options: {
           isAutomaticScroll: true
