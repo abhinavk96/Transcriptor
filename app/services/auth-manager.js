@@ -69,7 +69,6 @@ export default Service.extend({
     } else {
       this.set('currentUserModel', user);
     }
-    alert('avcd');
     let userData = user.serialize(false).data.attributes;
     userData.id = user.get('id');
     this.get('session').set('data.currentUserFallback', userData);

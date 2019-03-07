@@ -2,10 +2,12 @@
   <a class="active item">
     Home
   </a>
-  <div class="right menu">
-    <a class="ui item" {{action 'logout'}}>
-      Logout
-    </a>
-  </div>
+  {{#if session.isAuthenticated}}
+    <div class="right menu">
+      <a class="ui item" {{action 'logout'}}>
+        Logout
+      </a>
+    </div>
+  {{/if}}
 </div>
 {{outlet}}
