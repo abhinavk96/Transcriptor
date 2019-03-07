@@ -6,6 +6,7 @@ import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
   disablePlay: true,
   loadProgress: 0,
+  modalOffset: 200,
   timeMappings: new Object(),
   targetSpan: null,
   allSpans: [],
@@ -344,6 +345,7 @@ export default Component.extend({
       ]).then(function () {
         //can do stuff with the playlist.
         _this.set('isPlayerLoading', false);
+        _this.set('modalOffset', 400);
         //initialize the WAV exporter.
         // console.log('Player initialised successfully.')
         playlist.initExporter();
@@ -520,8 +522,6 @@ export default Component.extend({
 
         $container.on("click", ".btn-play", function () {
           ee.emit("play");
-          _this.toggleProperty('isPlaying');
-
         });
 
         $container.on("click", ".btn-pause", function () {
@@ -875,6 +875,18 @@ export default Component.extend({
       console.log(key.target.parentElement.firstChild.innerText);
       let annotation = parseFloat(key.target.parentElement.firstChild.innerText);
       $($('.annotation-box').get(annotation).children[1]).click();
+      this.set('isPlaying', true);
+    }
+    else if(key.which === 18) {
+      key.preventDefault();
+      if(this.isPlaying) {
+        $('.btn-pause').click();
+      }
+      else {
+        $('.btn-play').click();
+      }
+      this.toggleProperty('isPlaying');
+
     }
     console.log(key.which);
   },
