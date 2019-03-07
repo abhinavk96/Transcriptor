@@ -294,8 +294,8 @@ export default Component.extend({
       ];
 
       var playlist = WaveformPlaylist.init({
-        samplesPerPixel: 1000,
-        waveHeight: 400,
+        samplesPerPixel: 3000,
+        waveHeight: 100,
         // isAutomaticScroll: true,
         container: document.getElementById("playlist"),
         state: 'cursor',

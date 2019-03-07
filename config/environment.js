@@ -20,7 +20,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      apiHost      : process.env.API_HOST || 'http://127.0.0.1:5000',
+      apiHost      : process.env.API_HOST || 'http://172.21.149.125:5000',
 
     },
     fastboot: {
