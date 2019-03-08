@@ -20,6 +20,7 @@ export default Component.extend({
   timeUpdate: false,
   isStep1Complete: false,
   isStep2Complete:false,
+  previousScroll: 0,
   notes: [],
   autoScroll: true,
   findApproxTargetSpan: function(time){
@@ -688,6 +689,10 @@ export default Component.extend({
             console.log("Move to next segment");
             moveToNextSegment();
           }
+          else if(keys[17] && keys[37]) {
+            console.log("Move to previous segment");
+            moveToPreviousSegment();
+          }
         }
 
         function moveToNextSegment() {
@@ -698,8 +703,25 @@ export default Component.extend({
             console.log('select');
             ee.emit('select', parseFloat(nextSegment.begin), parseFloat(nextSegment.end));
             $('.annotation').removeClass('current');
-            $('.annotation').eq(parseInt(nextSegment.id)).addClass('current');
+            let currentAnnotation = $('.annotation').eq(parseInt(nextSegment.id))
+            currentAnnotation.addClass('current');
+            // playlist.playbackSeconds = parseFloat(nextSegment.start);
+            let currentAnnotationBox = $('.annotation-box').eq(parseInt(nextSegment.id));
+            console.log(currentAnnotationBox.position().left);
+            // if(currentAnnotationBox.position().left > $('.playlist-tracks').outerWidth()) {
+            //   $('.playlist-tracks').scrollLeft((currentAnnotationBox.position().left - $('.annotation-box').eq(0).position().left));
+            //   // $('.cursor').css("left", $('.playlist-tracks').outerWidth());
+            // }
+          }
+        }
 
+        function moveToPreviousSegment() {
+          let currentSegmentIndex = findCurrentSegment();
+          let previousSegment = _this.notes[currentSegmentIndex - 1];
+          if(previousSegment) {
+            ee.emit('select', parseFloat(previousSegment.begin), parseFloat(previousSegment.end));
+            $('.annotation').removeClass('current');
+            $('.annotation').eq(parseInt(previousSegment.id)).addClass('current');
           }
         }
 
