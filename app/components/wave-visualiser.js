@@ -672,12 +672,15 @@ export default Component.extend({
         });
 
         let keys = {};
-
         $(document).keydown(function (e) {
           keys[e.which] = true;
           if(e.which  === 69 && keys[17]) {
             e.preventDefault();
           }
+          else if(e.which  === 75 && keys[17] || e.which === 74 & keys[17]) {
+            e.preventDefault();
+          }
+
           handleKeys();
         });
 
@@ -688,16 +691,16 @@ export default Component.extend({
         });
         function handleKeys() {
           console.log(keys);
-          if(keys[17] && keys[39]) {
+          if(keys[17] && keys[39] || keys[17] && keys[75]) {
             console.log("Move to next segment");
             moveToNextSegment();
           }
-          else if(keys[17] && keys[37]) {
+          else if(keys[17] && keys[37] || keys[17] && keys[74]) {
             console.log("Move to previous segment");
             moveToPreviousSegment();
           }
 
-          else if(keys[17] && keys[69]) {
+          else if(keys[17] && keys[73]) {
             editCurrentSegment();
           }
 
