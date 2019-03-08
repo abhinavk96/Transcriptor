@@ -700,6 +700,15 @@ export default Component.extend({
           else if(keys[17] && keys[69]) {
             editCurrentSegment();
           }
+
+          else if(keys[17] && keys[32]) {
+            if(playlist.isPlaying()) {
+              $('.btn-pause').click();
+            }
+            else {
+              $('.btn-play').click();
+            }
+          }
         }
 
         function editCurrentSegment() {
