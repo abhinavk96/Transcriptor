@@ -6,7 +6,7 @@ import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
   disablePlay: true,
   loadProgress: 0,
-  modalOffset: 200,
+  modalOffset: 0,
   timeMappings: new Object(),
   targetSpan: null,
   allSpans: [],
@@ -227,7 +227,7 @@ export default Component.extend({
   },
   actions:{
     openModal: function(name) {
-      $('.ui.' + name + '.modal').modal('show');
+      $('.ui.' + name + '.modal').modal({ detachable:false, observeChanges:true, offset:this.modalOffset }).modal('show').modal('refresh');
     },
 
     loadWaveFile(audioFile, notes) {
@@ -346,6 +346,7 @@ export default Component.extend({
       ]).then(function () {
         //can do stuff with the playlist.
         _this.set('isPlayerLoading', false);
+        _this.set('modalOffset', 200);
         //initialize the WAV exporter.
         // console.log('Player initialised successfully.')
         playlist.initExporter();
