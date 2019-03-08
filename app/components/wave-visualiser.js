@@ -675,6 +675,9 @@ export default Component.extend({
 
         $(document).keydown(function (e) {
           keys[e.which] = true;
+          if(e.which  === 69 && keys[17]) {
+            e.preventDefault();
+          }
           handleKeys();
         });
 
@@ -692,6 +695,17 @@ export default Component.extend({
           else if(keys[17] && keys[37]) {
             console.log("Move to previous segment");
             moveToPreviousSegment();
+          }
+
+          else if(keys[17] && keys[69]) {
+            editCurrentSegment();
+          }
+        }
+
+        function editCurrentSegment() {
+          let currentSegment = $($('.current')[0].querySelector('.annotation-lines'));
+          if(currentSegment) {
+            currentSegment.focus();
           }
         }
 
