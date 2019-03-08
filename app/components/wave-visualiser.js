@@ -346,7 +346,6 @@ export default Component.extend({
       ]).then(function () {
         //can do stuff with the playlist.
         _this.set('isPlayerLoading', false);
-        $('.ui.modal').modal();
         //initialize the WAV exporter.
         // console.log('Player initialised successfully.')
         playlist.initExporter();
