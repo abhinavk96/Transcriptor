@@ -78,46 +78,6 @@
               <button class="ui button help" {{action 'openModal' 'help'}}>
                 <i class="help icon"></i>
               </button>
-              {{#ui-modal name="help" class="help" offset=modalOffset}}
-                <h2 class="ui icon header">
-                  <i class="help"></i>
-                  Instructions
-                </h2>
-                <div class="content">
-                  <div class="ui bulleted big list">
-                    <div class="item">
-                      <div class="content">
-                        Use Ctrl/CMD + Spacebar <i class="keyboard icon"></i> while editing a segment to play and pause the segment
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="content">
-                        Use Return <i class="keyboard icon"></i> key to stop editing a segment.
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="content">
-                        Use Ctrl + <i class="right arrow icon"></i> and Ctrl + <i class="left arrow icon"></i> to navigate between Segments. Alternately, Ctrl + J and Ctrl + K may be used to navigate left and right respectively.
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="content">
-                        Use Ctrl + i to start editing the current segment.
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="content">
-                        <strong>Note: The feature of scrolling, while navigating segments is currently a work in progress, manually adjust scroll bar for current use.</strong>
-                      </div>
-                    </div>
-                    <!--<div class="item">-->
-                      <!--<div class="content">-->
-                        <!--Use ctrl + P to toggle between play and pause.-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  </div>
-                </div>
-              {{/ui-modal}}
             </div>
 
             <!--<div class="btn-group btn-fade-state-group">-->
@@ -162,6 +122,7 @@
             </div>
           </div>
         {{/if}}
+        {{help-modal}}
         <div id="playlist"></div>
         <div class="playlist-bottom-bar">
           <form class="form-inline">
