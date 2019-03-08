@@ -661,6 +661,60 @@ export default Component.extend({
           ee.emit("automaticscroll", $(e.target).is(':checked'));
         });
 
+        $container.on("focus", ".annotation-lines", function(evt) {
+          console.log('focus!!', evt.target.firstElementChild, evt.target.lastElementChild);
+          let startTime = parseFloat($(evt.target.firstElementChild).data("stime"));
+          let endTime = parseFloat($(evt.target.lastElementChild).data("etime"));
+
+          ee.emit('select', startTime, endTime);
+          // $(evt.target.firstElementChild).click();
+        });
+
+        let keys = {};
+
+        $(document).keydown(function (e) {
+          keys[e.which] = true;
+          handleKeys();
+        });
+
+        $(document).keyup(function (e) {
+          delete keys[e.which];
+          handleKeys();
+
+        });
+        function handleKeys() {
+          console.log(keys);
+          if(keys[17] && keys[39]) {
+            console.log("Move to next segment");
+            moveToNextSegment();
+          }
+        }
+
+        function moveToNextSegment() {
+          let currentSegmentIndex = findCurrentSegment();
+          let nextSegment = _this.notes[currentSegmentIndex + 1];
+          console.log(currentSegmentIndex, nextSegment, _this.notes, _this.notes[4]);
+          if(nextSegment) {
+            console.log('select');
+            ee.emit('select', parseFloat(nextSegment.begin), parseFloat(nextSegment.end));
+            $('.annotation').removeClass('current');
+            $('.annotation').eq(parseInt(nextSegment.id)).addClass('current');
+
+          }
+        }
+
+        function findCurrentSegment() {
+          var result = -1;
+          _this.notes.forEach((note, i) => {
+            // console.log(note, i);
+            if(_this.actualTimer >= parseFloat(note.begin) && _this.actualTimer <= parseFloat(note.end)) {
+              console.log("found!",note, i);
+              result = i;
+            }
+          });
+          return result;
+        }
+
         function displaySoundStatus(status) {
           $(".sound-status").html(status);
         }
@@ -817,17 +871,13 @@ export default Component.extend({
         $($(this).children()[4]).css("visibility","hidden");
       });
       $('.annotation-lines').blur(function(evt) {
-        // console.log($(this)[0].childNodes);
-        // console.log(this, evt.target);
-        // this.content = evt.target.innerText;
-        console.log(this.content);
-        // $(this)[0].innerHTML = $(this).children();
-        console.log('losing focus...');
         $($($(this).parent()[0])[4]).css("visibility","hidden");
       });
       $('.annotation-lines').focusout(function(evt) {
-        console.log('focusout')
+        // console.log('focusout')
       });
+
+
 
       // $('.annotation-lines').hover(function() {
       //
@@ -868,40 +918,33 @@ export default Component.extend({
       //
       //
       // },10);
-    }},
-  keyDown(key) {
-    if(key.which === 9) {
-      key.preventDefault();
-      console.log(key.target.parentElement.firstChild.innerText);
-      let annotation = parseFloat(key.target.parentElement.firstChild.innerText);
-      $($('.annotation-box').get(annotation).children[1]).click();
-      this.set('isPlaying', true);
-    }
-    else if(key.which === 18) {
-      key.preventDefault();
-      if(this.isPlaying) {
-        $('.btn-pause').click();
-      }
-      else {
-        $('.btn-play').click();
-      }
-      this.toggleProperty('isPlaying');
+    }}
 
-    }
-    console.log(key.which);
-  },
-  keyPress(evt) {
-    console.log(evt.which);
-    if(evt.which === 112) {
-      if ( $('.annotation-lines:focus').length > 0 ) {
-        console.log('simple key press', $('.annotation-lines:focus'));
-      }
-      else {
-        console.log('play', $('.annotation-lines:focus'));
-        // evt.preventDefault();
-      }
-      console.log('play', $('.annotation-lines:focus'));
+  // keyDown(key) {
+  //   if(key.which === 9) {
+  //     key.preventDefault();
+  //     console.log(key.target.parentElement.firstChild.innerText);
+  //     let annotation = parseFloat(key.target.parentElement.firstChild.innerText);
+  //     $($('.annotation-box').get(annotation).children[1]).click();
+  //     this.set('isPlaying', true);
+  //   }
+  //   else if(key.which === 18 && key.which === 39) {
+  //     console.log('navigate to the next segment');
+  //
+  //     // key.preventDefault();
+  //     // if(this.isPlaying) {
+  //     //   $('.btn-pause').click();
+  //     // }
+  //     // else {
+  //     //   $('.btn-play').click();
+  //     // }
+  //     // this.toggleProperty('isPlaying');
+  //
+  //   }
+  //   console.log(key.which);
+  // }
 
-    }
-  }
+
+
+
 });
