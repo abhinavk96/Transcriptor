@@ -700,7 +700,7 @@ export default Component.extend({
             moveToPreviousSegment();
           }
 
-          else if(keys[17] && keys[73]) {
+          else if(keys[17] && keys[73] || keys[17] && keys[69]) {
             editCurrentSegment();
           }
 
