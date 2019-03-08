@@ -924,7 +924,9 @@ export default Component.extend({
       $('.annotation-lines').focusout(function(evt) {
         // console.log('focusout')
       });
-
+      $(window).on('beforeunload', function(e) {
+            return 'You have unsaved stuff. Are you sure you want to leave?';
+      });
 
 
       // $('.annotation-lines').hover(function() {
