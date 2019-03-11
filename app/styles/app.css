@@ -237,7 +237,7 @@ text {
 
 .currentWord {
   background: yellow;
-  padding: 2px;
+  /*padding: 2px;*/
   border-radius: 5px;
   /*border: 1px dashed #0D3349;*/
 }
