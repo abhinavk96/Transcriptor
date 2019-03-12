@@ -9,6 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('editor');
   this.route('login');
+  this.route('my-transcriptions');
 });
 
 export default Router;
