@@ -6,5 +6,7 @@ export default DS.Model.extend({
   name: attr('string'),
   description: attr('string'),
   fileAddress: attr('string'),
+  createdAt: attr('moment', { readOnly: true }),
+  audioDuration: attr('string'),
   creator: belongsTo('user')
 });
