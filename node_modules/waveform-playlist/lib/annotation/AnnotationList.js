@@ -48,6 +48,7 @@ var AnnotationList = function () {
     this.playlist = playlist;
     this.resizeHandlers = [];
     this.editable = editable;
+
     this.annotations = annotations.map(function (a) {
 
       return (
@@ -150,11 +151,15 @@ var AnnotationList = function () {
     key: 'export',
     value: function _export() {
       var bannotations = this.annotations;
-      var output = this.annotations.map(function (a) {
+      let annotationSpeakerHTML = document.getElementsByClassName('annotation-speaker');
+      console.log(annotationSpeakerHTML)
+      var output = this.annotations.map(function (a, index) {
         // console.log(a);
+        a.speaker = annotationSpeakerHTML[index].innerHTML;
         if(a.htmlLines) {
           a.lines = a.htmlLines;
         }
+        // console.log(a);
 
         return (0, _aeneas4.default)(a);
       });
@@ -295,6 +300,7 @@ var AnnotationList = function () {
             }
           }
         };
+
         // console.log(note);
         var linesConfig = _this4.editable ? editableConfig : {};
 
