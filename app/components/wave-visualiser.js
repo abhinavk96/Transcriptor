@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 import convert from 'npm:xml-js'
 import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
+  hoveredSpeaker: '2',
   disablePlay: true,
   loadProgress: 0,
   modalOffset: 0,
@@ -21,7 +22,9 @@ export default Component.extend({
   isStep1Complete: false,
   isStep2Complete:false,
   previousScroll: 0,
-  notes: [],
+  notes: computed('data.notes', function(){
+    return this.get('data.notes');
+  }),
   autoScroll: true,
   findApproxTargetSpan: function(time){
     console.log("Finding approx..")
@@ -163,6 +166,7 @@ export default Component.extend({
       reader.onload = function (e) {
         // get file content
         var xml = e.target.result;
+        console.log(xml);
         // console.log(notes);
         var json = convert.xml2json(xml, {compact: true, spaces: 4});
         // console.log(json);
@@ -195,7 +199,7 @@ export default Component.extend({
             });
             // based on start and end times of words
             // o = {begin: sentence[0]['-stime'], children: [], end: String((parseFloat(sentence[sentence.length-1]['-stime'])+ parseFloat(sentence[sentence.length-1]['-dur']))), id: notes.length, language: 'eng', lines: [line] }
-            let o = {begin: segment['_attributes']['stime'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
+            let o = {begin: segment['_attributes']['stime'], speaker: segment['_attributes']['spkrid'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
 
             notes.push(o);
           }
@@ -204,7 +208,7 @@ export default Component.extend({
             //based on start and end times of words
             // o = {begin: sentence['-stime'], children: [], end: String((parseFloat(sentence['-stime'])+ parseFloat(sentence['-dur']))), id: notes.length, language: 'eng', lines: [sentence['#text']] }
             let line = `<span class='transcriptor ${getColor(sentence['_attributes']['score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(sentence['_attributes']['stime'])}' data-etime='${parseFloat(sentence['_attributes']['stime']) + parseFloat(sentence['_attributes']['dur'])}'>${sentence['_text']}</span>`
-            let o = {begin: segment['_attributes']['stime'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
+            let o = {begin: segment['_attributes']['stime'], speaker: segment['_attributes']['spkrid'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
             notes.push(o);
           }
 
@@ -222,6 +226,10 @@ export default Component.extend({
       //   ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
       // }
     });
+
+    // _this.set('notes', this.get('model.notes'));
+    _this.set('isStep1Complete', true);
+
 
 
   },
@@ -319,7 +327,7 @@ export default Component.extend({
           linkEndpoints: true
         },
         seekStyle : 'line',
-        zoomLevels: [1000, 3000, 5000],
+        zoomLevels: [50, 100, 200, 300, 400,500,1000, 3000, 5000],
         // isAutomaticScroll: true,
         options: {
           isAutomaticScroll: true
@@ -330,7 +338,8 @@ export default Component.extend({
       var _this = this;
       playlist.load([
         {
-          "src": audioFile,
+          // "src": audioFile,
+          "src" : this.get('data.audio'),
           "name": "Vocals",
           "fadeIn": {
             "duration": 0.5
@@ -914,16 +923,74 @@ export default Component.extend({
         }
       });
       $('.annotation').hover(function() {
-       $($(this).children()[4]).css("visibility","visible");
+       $($(this).children()[5]).css("visibility","visible");
       }, function() {
-        $($(this).children()[4]).css("visibility","hidden");
+        $($(this).children()[5]).css("visibility","hidden");
       });
       $('.annotation-lines').blur(function(evt) {
-        $($($(this).parent()[0])[4]).css("visibility","hidden");
+        $($($(this).parent()[0])[5]).css("visibility","hidden");
       });
       $('.annotation-lines').focusout(function(evt) {
         // console.log('focusout')
       });
+
+      function tagAll(element) {
+        console.log(element);
+      }
+      $('.annotation-speaker').popup({
+          on: 'click',
+          target: false,
+          speaker: 1,
+          content: 'hello',
+          title:'ji',
+          observeChanges: true,
+          html: '<div class="ui basic segment">\n' +
+            '  <div class="ui fluid placeholder">\n' +
+            '    <div class="image header">\n' +
+            '      <div class="line"></div>\n' +
+            '      <div class="line"></div>\n' +
+            '    </div>\n' +
+            '    <div class="paragraph">\n' +
+            '      <div class="medium line"></div>\n' +
+            '      <div class="short line"></div>\n' +
+            '    </div>\n' +
+            '  </div>\n' +
+            '</div>',
+
+          onShow: function(clicked){
+            console.log(clicked);_this.set('hoveredSpeaker', clicked);console.log(_this.hoveredSpeaker);console.log(this);
+            var popup = this;
+            var tag = function() {
+              console.log(clicked, clicked.innerHTML);
+              console.log(popup, popup.find('.speaker-input'));
+            }
+            popup.html('\n' +
+              '<div class="ui right action left icon input">\n' +
+              '  <i class="users icon"></i>\n' +
+              '  <input type="text" value = "" placeholder="Edit Name users...">\n' +
+              '  <button onclick = ' + tag() + ' class="ui tag button">\n' +
+              '    Tag\n' +
+              '  </button>\n' +
+              '\n' +
+              '  <button class="ui tag-all black button">\n' +
+              '    Tag All\n' +
+              '  </button>\n' +
+              '</div>');
+          },
+        onCreate: function(clicked) {
+          $('.tag').on('click', function () {
+            console.log(_this.hoveredSpeaker);
+            console.log('hello')
+          });
+        },
+        className   : {
+          loading     : 'loading',
+          popup       : 'ui flowing  popup',
+          visible     : 'visible'
+        }
+        })
+      ;
+
       $(window).on('beforeunload', function(e) {
             return 'You have unsaved stuff. Are you sure you want to leave?';
       });
