@@ -933,7 +933,10 @@ export default Component.extend({
       $('.annotation-lines').focusout(function(evt) {
         // console.log('focusout')
       });
-
+       function tag(popup) {
+         console.log('hello');
+        console.log(popup, popup.find('input'));
+      }
       function tagAll(element) {
         console.log(element);
       }
@@ -960,15 +963,12 @@ export default Component.extend({
           onShow: function(clicked){
             console.log(clicked);_this.set('hoveredSpeaker', clicked);console.log(_this.hoveredSpeaker);console.log(this);
             var popup = this;
-            var tag = function() {
-              console.log(clicked, clicked.innerHTML);
-              console.log(popup, popup.find('.speaker-input'));
-            }
+
             popup.html('\n' +
               '<div class="ui right action left icon input">\n' +
               '  <i class="users icon"></i>\n' +
-              '  <input type="text" value = "" placeholder="Edit Name users...">\n' +
-              '  <button onclick = ' + tag() + ' class="ui tag button">\n' +
+              '  <input type="text" data-previous = "' + clicked.innerHTML+ '" + value = "'+ clicked.innerHTML + '" placeholder="Edit Name users...">\n' +
+              '  <button class="ui tag button">\n' +
               '    Tag\n' +
               '  </button>\n' +
               '\n' +
@@ -976,13 +976,27 @@ export default Component.extend({
               '    Tag All\n' +
               '  </button>\n' +
               '</div>');
+            $('.tag').on('click', function(speaker){
+              let currentInput = $(speaker.target.parentElement).find('input');
+              console.log('tag button clicked: field value: ', currentInput.val(), currentInput.data('previous'));
+              if(currentInput.val()) {
+                clicked.innerHTML=currentInput.val();
+              }
+
+
+            });
+            $('.tag-all').on('click', function(speaker){
+              let currentInput = $(speaker.target.parentElement).find('input');
+              console.log('tag button clicked: field value: ', currentInput.val());
+              let previousVal = currentInput.data('previous');
+              let allSpeakers = $('.annotation-speaker');
+              allSpeakers.each(index => {
+                if(allSpeakers[index].innerHTML === previousVal) {
+                  allSpeakers[index].innerHTML = currentInput.val();
+                }
+              })
+            });
           },
-        onCreate: function(clicked) {
-          $('.tag').on('click', function () {
-            console.log(_this.hoveredSpeaker);
-            console.log('hello')
-          });
-        },
         className   : {
           loading     : 'loading',
           popup       : 'ui flowing  popup',
