@@ -49,9 +49,9 @@ var AnnotationList = function () {
     this.resizeHandlers = [];
     this.editable = editable;
     this.annotations = annotations.map(function (a) {
+
       return (
         // TODO support different formats later on.
-
         (0, _aeneas2.default)(a)
       );
     });
@@ -295,10 +295,10 @@ var AnnotationList = function () {
             }
           }
         };
-
+        // console.log(note);
         var linesConfig = _this4.editable ? editableConfig : {};
 
-        return (0, _h2.default)('div.annotation' + segmentClass, [(0, _h2.default)('span.annotation-id', [note.id]), (0, _h2.default)('span.annotation-start', [start]), (0, _h2.default)('span.annotation-end', [end]), (0, _h2.default)('span.annotation-lines', linesConfig, [note.lines]), (0, _h2.default)('span.annotation-actions', _this4.renderControls(note, i))]);
+        return (0, _h2.default)('div.annotation' + segmentClass, [(0, _h2.default)('span.annotation-id', [note.id]),(0, _h2.default)('span.annotation-speaker', [note.speaker]), (0, _h2.default)('span.annotation-start', [start]), (0, _h2.default)('span.annotation-end', [end]), (0, _h2.default)('span.annotation-lines', linesConfig, [note.lines]), (0, _h2.default)('span.annotation-actions', _this4.renderControls(note, i))]);
       }));
 
       return (0, _h2.default)('div.annotations', [boxesWrapper, text]);
