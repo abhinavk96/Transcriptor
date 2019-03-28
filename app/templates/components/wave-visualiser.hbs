@@ -6,16 +6,16 @@
         <div id="top-bar" class="playlist-top-bar">
           <div class="playlist-toolbar ui-sticky">
             <div class="ui  basic icon buttons">
-              <button class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
+              <button title="Play" class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
                 <i class="play green icon"></i>
               </button>
-              <button class="btn-pause ui  orange  button">
+              <button title="Pause" class="btn-pause ui  orange  button">
                 <i class="ui pause orange icon"></i>
               </button>
-              <button class="btn-stop btn ui  negative button">
+              <button title="Stop" class="btn-stop btn ui  negative button">
                 <i class="ui stop red icon"></i>
               </button>
-              <button class="btn-rewind btn ui  secondary button">
+              <button title="Rewind" class="btn-rewind btn ui  secondary button">
                 <i class="ui redo icon"></i>
               </button>
               <!--<button class="btn-fast-forward btn ui  secondary button">-->
@@ -75,7 +75,7 @@
                   </div>
                 </div>
               </div>
-              <button class="ui button help" {{action 'openModal' 'help'}}>
+              <button title="Help" class="ui button help" {{action 'openModal' 'help'}}>
                 <i class="help icon"></i>
               </button>
             </div>
