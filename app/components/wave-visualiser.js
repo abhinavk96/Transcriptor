@@ -27,7 +27,7 @@ export default Component.extend({
   }),
   autoScroll: true,
   findApproxTargetSpan: function(time){
-    console.log("Finding approx..")
+    console.log("Finding approx..");
     let closestKey = 0;
     for (var key in this.timeMappings) {
       if (parseFloat(key) < parseFloat(time)) {
@@ -47,12 +47,9 @@ export default Component.extend({
     let closestKey = 0;
     for (var key in this.timeMappings) {
       if (parseFloat(key) < parseFloat(this.actualTimer)) {
-
         closestKey++;
       }
       else {
-        // console.log(key, this.actualTimer);
-
         break;
       }
     }
@@ -962,9 +959,22 @@ export default Component.extend({
 
           onShow: function(clicked){
             console.log(clicked);_this.set('hoveredSpeaker', clicked);console.log(_this.hoveredSpeaker);console.log(this);
+
+            //Speaker's List
+            let speakerList = [];
+            $('.annotation-speaker').each(index=> {
+              speakerList.push($('.annotation-speaker')[index].innerHTML);
+            });
+            speakerList  = Array.from(new Set(speakerList));
+            var el = $.map(speakerList, function(val) {
+              return "<div class=\"item\">" + val + "</div>";
+            }).join('');
+            console.log(el);
             var popup = this;
 
             popup.html('\n' +
+              ' <div class="ui relaxed divided list">\n ' +
+              el + '\n'  +
               '<div class="ui right action left icon input">\n' +
               '  <i class="users icon"></i>\n' +
               '  <input type="text" data-previous = "' + clicked.innerHTML+ '" + value = "'+ clicked.innerHTML + '" placeholder="Edit Name users...">\n' +
@@ -982,9 +992,8 @@ export default Component.extend({
               if(currentInput.val()) {
                 clicked.innerHTML=currentInput.val();
               }
-
-
             });
+
             $('.tag-all').on('click', function(speaker){
               let currentInput = $(speaker.target.parentElement).find('input');
               console.log('tag button clicked: field value: ', currentInput.val());
