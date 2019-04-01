@@ -10,6 +10,9 @@ Router.map(function() {
   this.route('editor');
   this.route('login');
   this.route('my-transcriptions');
+  this.route('jobs', function() {
+    this.route('create');
+  });
 });
 
 export default Router;
