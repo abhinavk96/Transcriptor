@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('my-transcriptions');
   this.route('jobs', function() {
     this.route('create');
+    this.route('edit');
   });
 });
 
