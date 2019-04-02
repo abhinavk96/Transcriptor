@@ -967,17 +967,17 @@ export default Component.extend({
             });
             speakerList  = Array.from(new Set(speakerList));
             var el = $.map(speakerList, function(val) {
-              return "<div class=\"item\">" + val + "</div>";
+              return `<div class="item header"><option value="${val}">${val}</option></div>`;
+
             }).join('');
-            console.log(el);
             var popup = this;
 
             popup.html('\n' +
-              ' <div class="ui relaxed divided list">\n ' +
+              ' <div class="ui relaxed divided selection list" id="list_id">\n ' +
               el + '\n'  +
               '<div class="ui right action left icon input">\n' +
               '  <i class="users icon"></i>\n' +
-              '  <input type="text" data-previous = "' + clicked.innerHTML+ '" + value = "'+ clicked.innerHTML + '" placeholder="Edit Name users...">\n' +
+              '  <input id="enteredSpeaker" type="text" data-previous = "' + clicked.innerHTML+ '" + value = "'+ clicked.innerHTML + '" placeholder="Edit Name users...">\n' +
               '  <button class="ui tag button">\n' +
               '    Tag\n' +
               '  </button>\n' +
@@ -992,6 +992,9 @@ export default Component.extend({
               if(currentInput.val()) {
                 clicked.innerHTML=currentInput.val();
               }
+            });
+            $('.header').on('click', function(evt){
+              document.getElementById('enteredSpeaker').value = evt.currentTarget.children[0].value;
             });
 
             $('.tag-all').on('click', function(speaker){
