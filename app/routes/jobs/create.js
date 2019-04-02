@@ -8,10 +8,12 @@ export default Route.extend({
     let transcriptions = await this.get('authManager.currentUser').get('transcriptions');
     let currentUser= await this.get('authManager.currentUser');
     let availableUsers = this.store.findAll('user');
+    let editorRole = this.store.findRecord('role', 2);
     return {
       transcriptions,
       creator: currentUser,
-      editors: availableUsers
+      editors: availableUsers,
+      role: editorRole
     }
   }
 });

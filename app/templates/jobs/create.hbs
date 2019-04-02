@@ -1,31 +1,4 @@
 {{outlet}}
-{{#ui-dropdown class="selection" selected=selectedTranscription onChange=(action (mut selectedTranscription)) as |execute mapper|}}
-  <div class="default text">Transcription</div>
-  <i class="dropdown icon"></i>
-  <div class="menu">
-    {{#each model.transcriptions as |transcription|}}
-      <div data-value="{{map-value mapper transcription}}" class="item">
-        {{transcription.name}}
-      </div>
-    {{/each}}
-  </div>
-{{/ui-dropdown}}
-
-
-{{#ui-dropdown class="fluid multiple selection" selected=assignees onChange=(action (mut assignees)) as |execute mapper|}}
-  <i class="dropdown icon"></i>
-  <div class="default text">Select Assignees</div>
-  <div class="menu">
-    {{#each model.editors as |editor|}}
-      <div data-value="{{map-value mapper editor}}" class="item">
-        <i class="user icon"></i>
-        {{editor.firstName}} {{editor.lastName}}
-      </div>
-    {{/each}}
-  </div>
-{{/ui-dropdown}}
-
-{{#each model.editors as |editor|}}
-    <i class="user icon"></i>
-    {{editor.firstName}} {{editor.lastName}}
-{{/each}}
+<div class="ui container">
+  {{create-job model=model store=store}}
+</div>
