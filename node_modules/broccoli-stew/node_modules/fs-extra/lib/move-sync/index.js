@@ -68,10 +68,11 @@ function moveFileSyncAcrossDevice (src, dest, overwrite) {
   const fdr = fs.openSync(src, 'r')
   const stat = fs.fstatSync(fdr)
   const fdw = fs.openSync(dest, flags, stat.mode)
+  let bytesRead = 1
   let pos = 0
 
-  while (pos < stat.size) {
-    const bytesRead = fs.readSync(fdr, _buff, 0, BUF_LENGTH, pos)
+  while (bytesRead > 0) {
+    bytesRead = fs.readSync(fdr, _buff, 0, BUF_LENGTH, pos)
     fs.writeSync(fdw, _buff, 0, bytesRead)
     pos += bytesRead
   }
