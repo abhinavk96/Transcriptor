@@ -4,7 +4,9 @@ const { normalizeModelName } = DS;
 import { singularize } from 'ember-inflector';
 // import EventRelationMixin  from 'open-event-frontend/mixins/event-relation';
 
-export default JSONAPISerializer.extend({
+export default JSONAPISerializer.extend(
+
+  {
   modelNameFromPayloadKey(key) {
     return singularize(normalizeModelName(key));
   },
@@ -32,5 +34,8 @@ export default JSONAPISerializer.extend({
       return;
     }
     this._super(...arguments);
-  }
+  },
+    keyForAttribute(attr) {
+      return Ember.String.underscore(attr);
+    }
 });
