@@ -1,0 +1,27 @@
+{{outlet}}
+<table class="ui celled table">
+  <thead>
+  <tr><th>Job Creator</th>
+    <th>Status</th>
+    <th>Rating</th>
+    <th>Created At</th>
+    <th>Transcription</th>
+    <th>Assignee</th>
+    <th>Action</th>
+  </tr></thead>
+  {{#each model.allJobs as |job|}}
+    <tbody>
+    <tr>
+      <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
+      <td>{{job.status}}</td>
+      <td>{{job.rating}}</td>
+      <td>{{job.createdAt}}</td>
+      <td>{{job.transcription.name}}</td>
+      <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
+      <td>
+        <i class="trash icon"></i>
+      </td>
+    </tr>
+    </tbody>
+  {{/each}}
+</table>
