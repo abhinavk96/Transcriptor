@@ -11,6 +11,5 @@ export default DS.Model.extend({
   originalImageUrl: attr('string'),
   thumbnailImageUrl: attr('string'),
   iconImageUrl: attr('string'),
-  transcriptions: hasMany('transcription'),
-  assignedTranscriptions: hasMany('transcription')
+  transcriptions: hasMany('transcription')
 });
