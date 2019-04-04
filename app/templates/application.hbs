@@ -1,7 +1,6 @@
 <div class="ui secondary pointing menu">
-  <a class="active item">
-    Home
-  </a>
+  {{#link-to 'editor' class='item'}}Home{{/link-to}}
+  {{#link-to 'jobs' class='item'}}Jobs{{/link-to}}
   {{#if session.isAuthenticated}}
     <div class="right menu">
       <a class="ui item" {{action 'logout'}}>
