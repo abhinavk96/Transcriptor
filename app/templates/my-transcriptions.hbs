@@ -1,7 +1,11 @@
-<div class="ui container">
-  <div class="ui relaxed items">
-  {{#each model as |transcription|}}
-    {{transcription-card data=transcription}}
-  {{/each}}
+<div class="ui grid">
+  <div class="row">
+    <div class="sixteen wide column">
+    </div>
+  </div>
+  <div class="ui container">
+    {{outlet}}
   </div>
 </div>
+
+
