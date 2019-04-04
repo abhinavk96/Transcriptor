@@ -1,29 +1,38 @@
-{{outlet}}
-<h1><center>Jobs</center></h1>
-<div class="ui hidden divider"></div>
-<table class="ui celled table">
-  <thead>
-  <tr><th>Job Creator</th>
-    <th>Status</th>
-    <th>Rating</th>
-    <th>Created At</th>
-    <th>Transcription</th>
-    <th>Assignee</th>
-    <th>Action</th>
-  </tr></thead>
-  {{#each model.allJobs as |job|}}
-    <tbody>
-    <tr>
-      <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
-      <td>{{job.status}}</td>
-      <td>{{job.rating}}</td>
-      <td>{{job.createdAt}}</td>
-      <td>{{job.transcription.name}}</td>
-      <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
-      <td>
-        <i class="trash icon"></i>
-      </td>
-    </tr>
-    </tbody>
-  {{/each}}
-</table>
+<div class="ui grid container">
+  <div class="ui row">
+    <div class="ui twelve wide column">
+      <h1 class="ui header">Jobs</h1>
+    </div>
+    <div class="ui four wide right aligned column">
+      <button class="ui labeled green icon button"> <i class="ui plus icon"></i> Create a new Job</button>
+    </div>
+  </div>
+  <div class="ui row">
+  <table class="ui celled table">
+    <thead>
+    <tr><th>Job Creator</th>
+      <th>Status</th>
+      <th>Rating</th>
+      <th>Created At</th>
+      <th>Transcription</th>
+      <th>Assignee</th>
+      <th>Action</th>
+    </tr></thead>
+    {{#each model.allJobs as |job|}}
+      <tbody>
+      <tr>
+        <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
+        <td>{{job.status}}</td>
+        <td>{{job.rating}}</td>
+        <td>{{job.createdAt}}</td>
+        <td>{{job.transcription.name}}</td>
+        <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
+        <td>
+          <i class="trash icon"></i>
+        </td>
+      </tr>
+      </tbody>
+    {{/each}}
+  </table>
+  </div>
+</div>
