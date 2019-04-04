@@ -1,6 +1,18 @@
 <div class="ui grid">
   <div class="row">
     <div class="sixteen wide column">
+      <div class="ui container">
+        <h1 class="ui header">My Transcriptions</h1>
+        <div class="ui secondary pointing menu">
+          {{#link-to  'my-transcriptions.list' 'created' class='item'}}
+            Created
+          {{/link-to}}
+          {{#link-to 'my-transcriptions.list' 'assigned' class='item'}}
+            Assigned
+          {{/link-to}}
+
+        </div>
+      </div>
     </div>
   </div>
   <div class="ui container">
