@@ -4,7 +4,7 @@
       <h1 class="ui header">Jobs</h1>
     </div>
     <div class="ui four wide right aligned column">
-      <button class="ui labeled green icon button"> <i class="ui plus icon"></i> Create a new Job</button>
+      {{#link-to 'jobs.create' class="ui labeled green icon button"}} <i class="ui plus icon"></i> Create a new Job{{/link-to}}
     </div>
   </div>
   <div class="ui row">
@@ -26,7 +26,7 @@
         <td>{{job.rating}}</td>
         <td>{{job.createdAt}}</td>
         <td>{{job.transcription.name}}</td>
-        <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
+        <td>{{job.assignee.firstName}} ( {{job.assignee.email}} )</td>
         <td>
           <i class="trash icon"></i>
         </td>
