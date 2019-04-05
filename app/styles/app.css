@@ -343,3 +343,6 @@ body ::-webkit-scrollbar-thumb
 .upload.header.ui:hover {
   color: black;
 }
+.drag-hover {
+  border: 2px dashed blue;
+}
