@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 
 export default DS.Model.extend({
   name: attr('string'),
@@ -8,5 +8,6 @@ export default DS.Model.extend({
   fileAddress: attr('string'),
   createdAt: attr('moment', { readOnly: true }),
   audioDuration: attr('string'),
-  creator: belongsTo('user')
+  creator: belongsTo('user'),
+  editors:  hasMany('user', { inverse: 'editorTranscriptions'})
 });

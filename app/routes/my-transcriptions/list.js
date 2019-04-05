@@ -14,10 +14,10 @@ export default Route.extend({
     var result = [];
 
     console.log(params);
-    if(params.transcription_type==='created') {
+    if (params.transcription_type === 'created') {
       return this.get('authManager.currentUser').get('transcriptions');
     }
-    if(params.transcription_type==='assigned') {
+    if (params.transcription_type === 'assigned') {
       let data = await this.get('loader').load(`/users/${this.get('authManager.currentUser.id')}/editor-transcriptions`);
       // return this.store.c('transcription', data);
 
@@ -31,6 +31,6 @@ export default Route.extend({
       return this.get('authManager.currentUser').get('editorTranscriptions');
 
     }
-
   }
+
 });
