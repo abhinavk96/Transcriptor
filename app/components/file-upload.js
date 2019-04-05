@@ -1,6 +1,24 @@
 import Component from '@ember/component';
 
 export default Component.extend({
+  processFiles(files) {
+    if (files && files[0]) {
+
+        const reader = new FileReader();
+        reader.onload = e => {
+          const rawaAudioFile = e.target.result;
+          // if (this.get('needsCropper')) {
+          //   this.set('imgData', untouchedImageData);
+          //   this.set('cropperModalIsShown', true);
+          // } else {
+          //   this.uploadImage(untouchedImageData);
+          // }
+          console.log(rawaAudioFile);
+        };
+        reader.readAsDataURL(files[0]);
+
+      }
+  },
   didInsertElement() {
     this._super(...arguments);
     this.$()
@@ -24,7 +42,7 @@ export default Component.extend({
         console.log('hover');
       })
       .on('drop', e => {
-        // this.processFiles(e.originalEvent.dataTransfer.files);
+        this.processFiles(e.originalEvent.dataTransfer.files);
         console.log('dropped');
       });
   }
