@@ -7,8 +7,5 @@ export default Route.extend({
     if(!this.get('session').isAuthenticated){
       this.transitionTo('login');
     }
-    else {
-      this.transitionTo('editor');
-    }
   }
 });
