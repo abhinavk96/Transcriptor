@@ -23,6 +23,7 @@ export default Route.extend({
 
       data.data.forEach(item => {
         item.id = null;
+        item.attributes.createdAt = item.attributes.created_at;
         var model = this.store.createRecord('transcription', item.attributes);
         result.addObject(model);
 

@@ -3,10 +3,12 @@
   </div>
   <div class="content">
     <div class="meta">
-      <span>Mon, 2/25 · 4:38 PM </span>
+      <span> {{moment-format data.createdAt 'hh:mm a / DD-MM-YYYY'}}</span>
     </div>
     {{#link-to 'editor' class='header'}}{{data.name}}{{/link-to}}
     <div class="extra">
-      Additional Details
+      {{#if data.audioDuration}}
+        <div class="small text"><i class="wait icon"></i>{{data.audioDuration}}</div>
+      {{/if}}
     </div>
   </div>
