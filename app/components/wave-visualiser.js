@@ -973,8 +973,9 @@ export default Component.extend({
             var popup = this;
 
             popup.html('\n' +
-              ' <div class="ui relaxed divided selection list" id="list_id">\n ' +
+              ' <div class="ui relaxed divided selection list" style="overflow-y: scroll; height: 150px;" id="list_id">\n ' +
               el + '\n'  +
+              '</div>\n' +
               '<div class="ui right action left icon input">\n' +
               '  <i class="users icon"></i>\n' +
               '  <input id="enteredSpeaker" type="text" data-previous = "' + clicked.innerHTML+ '" + value = "'+ clicked.innerHTML + '" placeholder="Edit Name users...">\n' +
