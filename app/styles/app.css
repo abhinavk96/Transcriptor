@@ -336,3 +336,10 @@ body ::-webkit-scrollbar-thumb
 .transcriptor.red {
   color: #9f3a38;
 }
+
+.upload.header.ui {
+  color:gray;
+}
+.upload.header.ui:hover {
+  color: black;
+}
