@@ -24,6 +24,7 @@ export default Route.extend({
       data.data.forEach(item => {
         item.id = null;
         item.attributes.createdAt = item.attributes.created_at;
+        item.attributes.audioDuration = item.attributes.audio_duration;
         var model = this.store.createRecord('transcription', item.attributes);
         result.addObject(model);
 
