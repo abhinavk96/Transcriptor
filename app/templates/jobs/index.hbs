@@ -24,7 +24,7 @@
         <td>{{job.creator.firstName}} ( {{job.creator.email}} )</td>
         <td>{{job.status}}</td>
         <td>{{job.rating}}</td>
-        <td>{{job.createdAt}}</td>
+        <td> {{moment-format job.createdAt 'DD-MM-YYYY/ hh:mm'}}</td>
         <td>{{job.transcription.name}}</td>
         <td>{{job.assignee.firstName}} ( {{job.assignee.email}} )</td>
         <td>
