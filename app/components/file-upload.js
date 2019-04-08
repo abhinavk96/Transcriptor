@@ -1,19 +1,39 @@
 import Component from '@ember/component';
+import {inject as service} from '@ember/service';
 
 export default Component.extend({
+  loader: service(),
+  uploadAudio(audioData) {
+    // this.set('selectedImage', imageData);
+    // this.set('needsConfirmation', false);
+    // this.set('uploadingImage', true);
+    this.get('loader')
+      .post('/upload/files', {
+        data: {
+         'file': audioData
+        }
+      }, {
+        isFormData: true
+      })
+      .then(audio => {
+        // this.set('uploadingImage', false);
+        // this.set('imageUrl', image.url);
+        console.log(audio.url)
+      })
+      .catch(e => {
+        console.warn(e);
+      });
+  },
   processFiles(files) {
     if (files && files[0]) {
 
         const reader = new FileReader();
         reader.onload = e => {
           const rawaAudioFile = e.target.result;
-          // if (this.get('needsCropper')) {
-          //   this.set('imgData', untouchedImageData);
-          //   this.set('cropperModalIsShown', true);
-          // } else {
-          //   this.uploadImage(untouchedImageData);
-          // }
+
           console.log(rawaAudioFile);
+          this.uploadAudio(rawaAudioFile);
+
         };
         reader.readAsDataURL(files[0]);
 

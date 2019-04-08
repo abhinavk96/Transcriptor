@@ -4,7 +4,7 @@ import $ from 'jquery';
 // import { getErrorMessage } from 'open-event-frontend/utils/errors';
 // import { buildUrl } from 'open-event-frontend/utils/url';
 // import httpStatus from 'npm:http-status';
-// import objectToFormData from 'npm:object-to-formdata';
+import objectToFormData from 'npm:object-to-formdata';
 import fetch from 'fetch';
 import { clone, assign, merge } from 'lodash';
 const bodyAllowedIn = ['PATCH', 'POST', 'PUT'];
@@ -47,7 +47,10 @@ export default Service.extend({
           fetchOptions.body = data;
         } else {
           if (config.isFormData) {
-            // fetchOptions.body = objectToFormData(data);
+            const formData = new FormData(data);
+            fetchOptions.body = formData;
+            fetchOptions.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+            console.log(formData);
           } else {
             fetchOptions.headers['Content-Type'] = 'application/json';
             fetchOptions.body = JSON.stringify(data);
