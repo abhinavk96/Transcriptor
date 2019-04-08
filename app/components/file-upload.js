@@ -1,17 +1,45 @@
 import Component from '@ember/component';
 import {inject as service} from '@ember/service';
+import ENV from 'transcriptor/config/environment';
 
 export default Component.extend({
   loader: service(),
   uploadAudio(audioData) {
-    // this.set('selectedImage', imageData);
-    // this.set('needsConfirmation', false);
-    // this.set('uploadingImage', true);
+    let form = document.createElement('form');
+    let fileInput = document.createElement('input');
+    function dataURItoBlob(data) {
+      var binStr = data.split(',')[1],
+        len = binStr.length,
+        arr = new Uint8Array(len);
+
+      console.log(binStr);
+
+
+      for (var i = 0; i < len; i++) {
+        arr[i] = binStr.charCodeAt(i);
+      }
+      return new Blob(arr);
+    }
+    var blob = dataURItoBlob(audioData);
+
+    fileInput.type = 'file';
+    // fileInput.value=blob;
+    // form.appendChild(
+    //   fileInput
+    // );
+    var formData = new FormData();
+    formData.append('file', blob, 'fileName.ext');
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', `${ENV['APP'].apiHost}/upload/files`);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        console.log(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send(formData)
     this.get('loader')
-      .post('/upload/files', {
-        data: {
-         'file': audioData
-        }
+      .uploadFile('/upload/files', {
+        data: blob
       }, {
         isFormData: true
       })

@@ -47,10 +47,9 @@ export default Service.extend({
           fetchOptions.body = data;
         } else {
           if (config.isFormData) {
-            const formData = new FormData(data);
-            fetchOptions.body = formData;
-            fetchOptions.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-            console.log(formData);
+            // const formData = new FormData(data);
+            fetchOptions.body = data;
+            fetchOptions.headers['Content-Type'] = 'multipart/form-data';
           } else {
             fetchOptions.headers['Content-Type'] = 'application/json';
             fetchOptions.body = JSON.stringify(data);
