@@ -16,6 +16,7 @@ export default Component.extend({
       .uploadFile('/upload/files', audioData, this.trackProgress, {fileName: 'file'}, this)
       .then(audio => {
         console.log(JSON.parse(audio).url);
+        // this.set('uploadComplete', true );
       })
       .catch(e => {
         console.log(e);

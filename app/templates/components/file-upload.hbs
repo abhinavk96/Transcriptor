@@ -5,6 +5,7 @@
         <div class="bar">
           <div class="progress"></div>
         </div>
+        <div class="label">{{if (eq uploadProgress 100) 'File Upload Complete' 'File is uploading'}}</div>
       {{/ui-progress}}
     {{else}}
       <div class="ui upload  center aligned icon header">
