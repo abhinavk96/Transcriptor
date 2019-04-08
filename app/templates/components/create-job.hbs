@@ -1,9 +1,9 @@
 <div class="ui header">
   Create a Job
-
 </div>
 <div class="ui segment">
   <div class="ui form" {{action 'submit' on='submit'}}>
+
     <div class="field">
       {{#ui-dropdown class="selection" selected=selectedTranscription onChange=(action (mut selectedTranscription)) as |execute mapper|}}
         <div class="default text">Transcription</div>
@@ -16,11 +16,8 @@
           {{/each}}
         </div>
       {{/ui-dropdown}}
-
-
-
-
     </div>
+
     <div class="field">
       {{#ui-dropdown class="multiple selection" selected=assignees onChange=(action (mut assignees)) as |execute mapper|}}
         <i class="dropdown icon"></i>

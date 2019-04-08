@@ -2,6 +2,12 @@
     <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/image/AppleInc/aos/published/images/M/Q5/MQ562/MQ562?wid=2104&hei=2980&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1502831061423" style="width: 150px; height: 150px;">
   </div>
   <div class="content">
+    <button class="ui animated right floated blue button" {{action 'redirectCreateJob' data}} tabindex="0">
+      <div class="visible content">Assign</div>
+      <div class="hidden content">
+        <i class="clipboard check icon"></i>
+      </div>
+    </button>
     <div class="meta">
       <span> {{moment-format data.createdAt 'hh:mm a / DD-MM-YYYY'}}</span>
     </div>
