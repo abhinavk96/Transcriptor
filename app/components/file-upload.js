@@ -4,66 +4,31 @@ import ENV from 'transcriptor/config/environment';
 
 export default Component.extend({
   loader: service(),
+  trackProgress(e) {
+    console.log('progress',e);
+  },
   uploadAudio(audioData) {
-    let form = document.createElement('form');
-    let fileInput = document.createElement('input');
-    function dataURItoBlob(data) {
-      var binStr = data.split(',')[1],
-        len = binStr.length,
-        arr = new Uint8Array(len);
-
-      console.log(binStr);
-
-
-      for (var i = 0; i < len; i++) {
-        arr[i] = binStr.charCodeAt(i);
-      }
-      return new Blob(arr);
-    }
-    var blob = dataURItoBlob(audioData);
-
-    fileInput.type = 'file';
-    // fileInput.value=blob;
-    // form.appendChild(
-    //   fileInput
-    // );
-    var formData = new FormData();
-    formData.append('file', blob, 'fileName.ext');
-    var xhr = new XMLHttpRequest();
-    xhr.open('post', `${ENV['APP'].apiHost}/upload/files`);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == XMLHttpRequest.DONE) {
-        console.log(JSON.parse(xhr.responseText));
-      }
-    };
-    xhr.send(formData)
     this.get('loader')
-      .uploadFile('/upload/files', {
-        data: blob
-      }, {
-        isFormData: true
-      })
+      .uploadFile('/upload/files', audioData, this.trackProgress, {fileName: 'file'})
       .then(audio => {
-        // this.set('uploadingImage', false);
-        // this.set('imageUrl', image.url);
-        console.log(audio.url)
+        console.log(JSON.parse(audio).url);
       })
       .catch(e => {
-        console.warn(e);
+        console.log(e);
       });
   },
   processFiles(files) {
     if (files && files[0]) {
-
-        const reader = new FileReader();
-        reader.onload = e => {
-          const rawaAudioFile = e.target.result;
-
-          console.log(rawaAudioFile);
-          this.uploadAudio(rawaAudioFile);
-
-        };
-        reader.readAsDataURL(files[0]);
+        this.uploadAudio(files[0])
+        // const reader = new FileReader();
+        // reader.onload = e => {
+        //   const rawaAudioFile = e.target.result;
+        //
+        //   // console.log(rawaAudioFile);
+        //   this.uploadAudio(rawaAudioFile);
+        //
+        // };
+        // reader.readAsDataURL(files[0]);
 
       }
   },
@@ -90,6 +55,7 @@ export default Component.extend({
         console.log('hover');
       })
       .on('drop', e => {
+        console.log(e.originalEvent.dataTransfer.files);
         this.processFiles(e.originalEvent.dataTransfer.files);
         console.log('dropped');
       });

@@ -138,6 +138,7 @@ export default Service.extend({
       ) {
         return reject('service:loader.uploadFile can only be used for an input, blob or File.');
       }
+      console.log('here');
 
       if (source.jquery || source.nodeType) {
         const [{ files }] = $(source);
@@ -153,7 +154,6 @@ export default Service.extend({
       let formData = new FormData();
       formData.append(config.fileName, source);
       config.skipDataTransform = true;
-
       const { url, fetchOptions } = this.getFetchOptions(urlPath, method, formData, config);
       const xhr = new XMLHttpRequest();
       xhr.open(fetchOptions.method || 'get', url);
