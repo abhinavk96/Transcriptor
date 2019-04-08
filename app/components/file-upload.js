@@ -4,12 +4,16 @@ import ENV from 'transcriptor/config/environment';
 
 export default Component.extend({
   loader: service(),
-  trackProgress(e) {
-    console.log('progress',e);
+  isUploading: false,
+  uploadProgress:0,
+  trackProgress(e, component) {
+    console.log(e, component);
+    // return
+    e.set('uploadProgress', parseInt(parseInt(component.loaded)*100/parseInt(component.total)));
   },
   uploadAudio(audioData) {
     this.get('loader')
-      .uploadFile('/upload/files', audioData, this.trackProgress, {fileName: 'file'})
+      .uploadFile('/upload/files', audioData, this.trackProgress, {fileName: 'file'}, this)
       .then(audio => {
         console.log(JSON.parse(audio).url);
       })
@@ -57,6 +61,7 @@ export default Component.extend({
       .on('drop', e => {
         console.log(e.originalEvent.dataTransfer.files);
         this.processFiles(e.originalEvent.dataTransfer.files);
+        this.set('isUploading', true);
         console.log('dropped');
       });
   }

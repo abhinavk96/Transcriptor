@@ -127,7 +127,7 @@ export default Service.extend({
     return this.makePromise(url, 'DELETE', null, config);
   },
 
-  uploadFile(urlPath, source, onProgressUpdate = null, config = {}, method = 'POST') {
+  uploadFile(urlPath, source, onProgressUpdate = null, config = {},caller = null, method = 'POST') {
     return new Promise((resolve, reject) => {
       if (
         !((window.File && source instanceof window.File)
@@ -166,7 +166,8 @@ export default Service.extend({
       }
       xhr.onload = e => resolve(e.target.responseText);
       xhr.onerror = reject;
-      if (xhr.upload && onProgressUpdate) {xhr.upload.onprogress = onProgressUpdate}
+      console.log(caller);
+      if (xhr.upload && onProgressUpdate) {xhr.upload.onprogress = onProgressUpdate.bind(null, caller)}
       xhr.send(fetchOptions.body);
     });
   }

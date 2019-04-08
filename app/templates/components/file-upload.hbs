@@ -1,12 +1,22 @@
 <div class="ui container">
   <div id="file-upload" class="ui file-upload very padded center aligned piled segment">
-    <div class="ui upload  center aligned icon header">
-      <i class="music icon"></i>
-      <div class="ui hidden divider"></div>
-      Select an Audio File to continue
-      <div class="sub header">
-        Click or drag n drop
+    {{#if isUploading}}
+      {{#ui-progress percent=uploadProgress class="success indicating"}}
+        <div class="bar">
+          <div class="progress"></div>
+        </div>
+      {{/ui-progress}}
+    {{else}}
+      <div class="ui upload  center aligned icon header">
+        <i class="music icon"></i>
+        <div class="ui hidden divider"></div>
+        Select an Audio File to continue
+        <div class="sub header">
+          Click or drag n drop
+        </div>
       </div>
-    </div>
+    {{/if}}
+
+
   </div>
 </div>
