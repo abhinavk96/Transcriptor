@@ -13,6 +13,7 @@ export default Component.extend({
           role: this.model.role
         }).save()
           .then(()=>{
+            this.redirectSuccess();
             console.log('Job Created Successfully');
           })
           .catch(e => {
