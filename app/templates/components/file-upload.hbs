@@ -1,11 +1,24 @@
 <div class="ui container">
   <div id="file-upload" class="ui file-upload very padded center aligned piled segment">
     {{#if isUploading}}
+      {{#if (eq uploadProgress 100)}}
+        <div class="ui active centered inline loader"></div>
+        <div class="ui hidden divider"></div>
+      {{/if}}
       {{#ui-progress percent=uploadProgress class="success indicating"}}
         <div class="bar">
           <div class="progress"></div>
         </div>
-        <div class="label">{{if (eq uploadProgress 100) 'File Upload Complete' 'File is uploading'}}</div>
+        <div class="label">
+        {{#if (eq uploadProgress 100)}}
+          <p>File Upload Complete. The ASR is transcribing now. </p>
+          <p>You may go to {{#link-to 'my-transcriptions'}}my transcriptions{{/link-to}} to view the status.
+            You will also receive an e-mail when transcript is ready.</p>
+
+        {{else}}
+          'File is uploading'
+        {{/if}}
+        </div>
       {{/ui-progress}}
     {{else}}
       <div class="ui upload  center aligned icon header">
