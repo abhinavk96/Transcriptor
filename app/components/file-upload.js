@@ -4,6 +4,7 @@ import ENV from 'transcriptor/config/environment';
 
 export default Component.extend({
   loader: service(),
+  store: service(),
   isUploading: false,
   uploadProgress:0,
   trackProgress(e, component) {
@@ -11,12 +12,35 @@ export default Component.extend({
     // return
     e.set('uploadProgress', parseInt(parseInt(component.loaded)*100/parseInt(component.total)));
   },
+  transcribe(transcription) {
+    transcription.save()
+      .then(createdTranscription => {
+        console.log(createdTranscription);
+        let payload = {
+          'name': createdTranscription.asrName
+        }
+        this.get('loader').post('/transcribe/trigger', payload)
+          .then(response => {
+            console.log(response);
+          })
+          .catch(e => {console.log(e)})
+      });
+  },
   uploadAudio(audioData) {
+    console.log(audioData);
     this.get('loader')
       .uploadFile('/upload/files', audioData, this.trackProgress, {fileName: 'file'}, this)
       .then(audio => {
-        console.log(JSON.parse(audio).url);
-        // this.set('uploadComplete', true );
+        console.log(JSON.parse(audio).ASR);
+        let newTranscription = this.store.createRecord('transcription', {
+          name: audioData.name,
+          asrName:JSON.parse(audio).ASR.file.fileName,
+          fileAddress: JSON.parse(audio).url,
+          status: 'CREATED'
+
+        });
+        this.transcribe(newTranscription);
+        // this.set('uploadComplete', true )
       })
       .catch(e => {
         console.log(e);
