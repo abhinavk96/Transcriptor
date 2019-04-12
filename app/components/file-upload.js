@@ -18,7 +18,7 @@ export default Component.extend({
       console.log('transcription status check');
       this.get('loader').post('/transcribe/status', payload)
         .then(response => {
-          console.log(response);
+          console.log(response.response.status[0].status);
         })
         .catch(e => {console.log(e)})
     }, 5000)
