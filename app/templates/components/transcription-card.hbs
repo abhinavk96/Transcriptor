@@ -24,7 +24,7 @@
       <div class="ui basic blue circular label">
         {{data.status}}
       </div>
-      <span data-tooltip="Refresh" data-variation="mini" data-inverted="">
+      <span data-tooltip="Refresh" data-variation="mini" data-inverted="" {{action "refreshStatus" data.status data}}>
         <i class="basic green sync icon"></i>
       </span>
     {{/if}}

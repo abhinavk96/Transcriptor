@@ -6,6 +6,10 @@ export default Component.extend({
     redirectCreateJob(data) {
       this.redirectSuccess(data);
       console.log('Switching to create job route');
+    },
+    refreshStatus(status, model) {
+      model.reload();
+      console.log(status);
     }
   }
 });
