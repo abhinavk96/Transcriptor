@@ -21,11 +21,11 @@
     </div>
     <div class="ui hidden divider"></div>
     {{#if data.status}}
-      <div class="ui basic blue circular mini  button">
+      <div class="ui basic blue circular mini  {{if isLoading 'disabled' }} button">
         <b>{{data.status}}</b>
       </div>
-      <a data-tooltip="Refresh" data-variation="mini" data-inverted="" {{action "refreshStatus" data.status data}}>
-        <i class="basic green sync icon"></i>
+      <a data-tooltip="Refresh" data-variation="mini" data-inverted="" onclick={{action "refreshStatus"  data.status data}}>
+        <i class="basic green  {{if isLoading 'loading'}} sync icon"></i>
       </a>
     {{/if}}
   </div>
