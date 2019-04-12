@@ -3,7 +3,7 @@
   </div>
   <div class="content">
     {{#if (eq value 'created')}}
-      <button class="ui animated right floated blue button" {{action 'redirectCreateJob' data}} tabindex="0">
+      <button class="ui animated right floated basic blue button" {{action 'redirectCreateJob' data}} tabindex="0">
         <div class="visible content">Assign</div>
         <div class="hidden content">
           <i class="clipboard check icon"></i>
@@ -19,4 +19,13 @@
         <div class="small text"><i class="wait icon"></i>{{data.audioDuration}} hour</div>
       {{/if}}
     </div>
+    <div class="ui hidden divider"></div>
+    {{#if data.status}}
+      <div class="ui basic blue circular label">
+        {{data.status}}
+      </div>
+      <span data-tooltip="Refresh" data-variation="mini">
+        <i class="basic green sync icon"></i>
+      </span>
+    {{/if}}
   </div>
