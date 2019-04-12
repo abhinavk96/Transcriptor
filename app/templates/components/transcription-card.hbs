@@ -1,5 +1,5 @@
   <div class="image">
-    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/image/AppleInc/aos/published/images/M/Q5/MQ562/MQ562?wid=2104&hei=2980&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1502831061423" style="width: 150px; height: 150px;">
+    <i class="file audio icon massive"></i>
   </div>
   <div class="content">
     {{#if (eq value 'created')}}
@@ -19,6 +19,12 @@
         <div class="small text"><i class="wait icon"></i>{{data.audioDuration}} hour</div>
       {{/if}}
     </div>
+    {{#if data.editors}}
+      <h5 class="ui disabled header">Assigned to: </h5>
+      {{#each data.editors as |assignee|}}
+        <h5 class="ui disabled header"> {{ assignee.firstName}} {{assignee.lastName}} |</h5>
+      {{/each}}
+    {{/if}}
     <div class="ui hidden divider"></div>
     {{#if data.status}}
       <div class="ui basic blue circular mini  {{if isLoading 'disabled' }} button">
