@@ -1,12 +1,28 @@
 import Component from '@ember/component';
 import {inject as service} from '@ember/service';
+import { later } from '@ember/runloop';
+
 import ENV from 'transcriptor/config/environment';
 
 export default Component.extend({
   loader: service(),
   store: service(),
   isUploading: false,
+  isTranscribing: false,
   uploadProgress:0,
+  checkStatus(transcription) {
+    let payload = {
+      'name': transcription.asrName
+    };
+    setInterval(() => {
+      console.log('transcription status check');
+      this.get('loader').post('/transcribe/status', payload)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(e => {console.log(e)})
+    }, 5000)
+  },
   trackProgress(e, component) {
     console.log(e, component);
     // return
@@ -18,10 +34,17 @@ export default Component.extend({
         console.log(createdTranscription);
         let payload = {
           'name': createdTranscription.asrName
-        }
+        };
         this.get('loader').post('/transcribe/trigger', payload)
           .then(response => {
             console.log(response);
+            createdTranscription.set('status', 'TRANSCRIBING');
+            this.set('isTranscribing', true);
+            createdTranscription.save()
+              .then(initialisedTranscription => {
+                this.checkStatus(initialisedTranscription);
+              })
+
           })
           .catch(e => {console.log(e)})
       });
