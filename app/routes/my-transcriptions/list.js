@@ -15,7 +15,10 @@ export default Route.extend({
 
     console.log(params);
     if (params.transcription_type === 'created') {
-      return this.get('authManager.currentUser').get('transcriptions');
+      return {
+        session: this.get('authManager.currentUser').get('transcriptions'),
+        field: 'created'
+      }
     }
     if (params.transcription_type === 'assigned') {
       let data = await this.get('loader').load(`/users/${this.get('authManager.currentUser.id')}/editor-transcriptions`);
@@ -30,7 +33,10 @@ export default Route.extend({
 
       });
       this.get('authManager.currentUser').set('editorTranscriptions', result);
-      return this.get('authManager.currentUser').get('editorTranscriptions');
+      return {
+        session: this.get('authManager.currentUser').get('editorTranscriptions'),
+        field: 'assigned'
+      }
 
     }
   }
