@@ -1,10 +1,7 @@
 <div class="ui container">
   <div id="file-upload" class="ui file-upload very padded center aligned piled segment">
     {{#if isUploading}}
-      {{#if (eq uploadProgress 100)}}
-        <div class="ui active centered inline loader"></div>
-        <div class="ui hidden divider"></div>
-      {{/if}}
+
       {{#ui-progress percent=uploadProgress class="success indicating"}}
         <div class="bar">
           <div class="progress"></div>
@@ -20,6 +17,25 @@
         {{/if}}
         </div>
       {{/ui-progress}}
+      {{#if (eq uploadProgress 100)}}
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+      {{/if}}
+    <div class="ui horizontal divider"></div>
+    {{#if isTranscribing}}
+      {{#ui-progress percent=transcriptionProgress class="success indicating"}}
+        <div class="bar">
+          <div class="progress"></div>
+        </div>
+        <div class="label">
+          {{#if (eq transcriptionProgress 100)}}
+            <p>Transcription complete. </p>
+          {{else}}
+            {{transcriptionStatus}}... <i class="spinner loading icon"></i>
+          {{/if}}
+        </div>
+      {{/ui-progress}}
+    {{/if}}
     {{else}}
       <div class="ui upload  center aligned icon header">
         <i class="music icon"></i>

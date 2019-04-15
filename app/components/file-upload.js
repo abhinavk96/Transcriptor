@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import {inject as service} from '@ember/service';
-import { later } from '@ember/runloop';
+import { computed } from '@ember/object';
 
 import ENV from 'transcriptor/config/environment';
 
@@ -10,15 +10,47 @@ export default Component.extend({
   isUploading: false,
   isTranscribing: false,
   uploadProgress:0,
+  transcriptionStatus: null,
+  transcriptionProgress: computed('transcriptionStatus', function() {
+    switch(this.transcriptionStatus) {
+      case 'CREATED':
+        return 10;
+      case 'STARTING':
+        return 20;
+      case 'MONOLIZE-RESAMPLE':
+        return 30;
+      case 'DIARIZATION':
+        return 40;
+      case 'KALDI-DATA-PREPARATION':
+        return 50;
+      case 'FEATURE-EXTRACTION':
+        return 60;
+      case 'DECODING':
+        return 70;
+      case 'POST-PROCESSING':
+        return 80;
+      case 'DONE':
+        return 100;
+      default:
+        return 50;
+    }
+  }),
   checkStatus(transcription) {
     let payload = {
       'name': transcription.asrName
     };
-    setInterval(() => {
+    var timeloop = setInterval(() => {
       console.log('transcription status check');
       this.get('loader').post('/transcribe/status', payload)
         .then(response => {
-          console.log(response.response.status[0].status);
+          console.log(response, response.response.status.slice(-1)[0].status);
+          if (response.response.status.slice(-1)[0].status !== this.transcriptionStatus) {
+            this.set('transcriptionStatus', response.response.status.slice(-1)[0].status);
+          }
+          if(response.response.status.slice(-1)[0].status=='DONE') {
+            this.set('transcriptionStatus', 'DONE');
+            clearInterval(timeloop);
+          }
         })
         .catch(e => {console.log(e)})
     }, 5000)
@@ -35,13 +67,15 @@ export default Component.extend({
         let payload = {
           'name': createdTranscription.asrName
         };
+        this.set('transcriptionStatus', 'CREATED');
         this.get('loader').post('/transcribe/trigger', payload)
           .then(response => {
             console.log(response);
-            createdTranscription.set('status', 'TRANSCRIBING');
+            createdTranscription.set('status', 'STARTING');
             this.set('isTranscribing', true);
             createdTranscription.save()
               .then(initialisedTranscription => {
+                this.set('transcriptionStatus', 'STARTING');
                 this.checkStatus(initialisedTranscription);
               })
 
