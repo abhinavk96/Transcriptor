@@ -8,6 +8,8 @@ export default DS.Model.extend({
   status:attr('string'),
   asrName: attr('string'),
   fileAddress: attr('string'),
+  xmlFile: attr('string'),
+  xmlName: attr('string'),
   createdAt: attr('moment', { readOnly: true }),
   audioDuration: attr('string'),
   creator: belongsTo('user'),
