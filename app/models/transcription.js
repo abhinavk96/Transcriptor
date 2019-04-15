@@ -10,7 +10,7 @@ export default DS.Model.extend({
   fileAddress: attr('string'),
   xmlFile: attr('string'),
   xmlName: attr('string'),
-  rawXml :attr('string'),
+  rawXml :attr('string', { readOnly: true}),
   createdAt: attr('moment', { readOnly: true }),
   audioDuration: attr('string'),
   creator: belongsTo('user'),
