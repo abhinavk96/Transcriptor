@@ -35,6 +35,26 @@ export default Component.extend({
         return 50;
     }
   }),
+  generateXML(transcription) {
+    transcription.set('status', 'DONE');
+    let payload = {
+      'name': transcription.asrName
+    };
+    transcription.save()
+      .then(finishedTransription => {
+
+        this.get('loader').post('/transcribe/download', payload)
+          .then(response => {
+            console.log(response, response.xmlFile);
+            finishedTransription.set('xmlFile', response.xmlFile);
+            finishedTransription.set('xmlName', response.xmlName);
+            finishedTransription.save()
+              .then(response => {
+                console.log("success", response);
+              })
+          })
+      })
+  },
   checkStatus(transcription) {
     let payload = {
       'name': transcription.asrName
@@ -49,6 +69,7 @@ export default Component.extend({
           }
           if(response.response.status.slice(-1)[0].status=='DONE') {
             this.set('transcriptionStatus', 'DONE');
+            this.generateXML(transcription);
             clearInterval(timeloop);
           }
         })
