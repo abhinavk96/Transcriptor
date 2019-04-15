@@ -41,14 +41,14 @@ export default Component.extend({
       'name': transcription.asrName
     };
     transcription.save()
-      .then(finishedTransription => {
+      .then(finishedTranscription => {
 
         this.get('loader').post('/transcribe/download', payload)
           .then(response => {
             console.log(response, response.xmlFile);
-            finishedTransription.set('xmlFile', response.xmlFile);
-            finishedTransription.set('xmlName', response.xmlName);
-            finishedTransription.save()
+            finishedTranscription.set('xmlFile', response.xmlFile);
+            finishedTranscription.set('xmlName', response.xmlName);
+            finishedTranscription.save()
               .then(response => {
                 console.log("success", response);
               })
