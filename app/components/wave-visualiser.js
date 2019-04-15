@@ -226,7 +226,7 @@ export default Component.extend({
 
     // _this.set('notes', this.get('model.notes'));
     _this.set('isStep1Complete', true);
-
+    this.send('loadWaveFile', this.get('audioFile'), this.get('notes'));
 
 
   },
