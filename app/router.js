@@ -7,7 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('editor');
+  this.route('editor', function() {
+    this.route('list' ,{ path: '/:transcription_id'});
+  });
   this.route('login');
   this.route('my-transcriptions', function() {
     this.route('list',{ path: '/:transcription_type' });
