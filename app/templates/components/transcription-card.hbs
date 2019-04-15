@@ -13,7 +13,7 @@
     <div class="meta">
       <span> {{moment-format data.createdAt 'hh:mm a / DD-MM-YYYY'}}</span>
     </div>
-    {{#link-to 'editor' class='header'}}{{data.name}}{{/link-to}}
+    {{#link-to 'editor.list' data.id class='header'}}{{data.name}}{{/link-to}}
     <div class="extra">
       {{#if data.audioDuration}}
         <div class="small text"><i class="wait icon"></i>{{data.audioDuration}} hour</div>
