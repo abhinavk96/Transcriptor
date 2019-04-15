@@ -35,7 +35,8 @@ var _timeformat2 = _interopRequireDefault(_timeformat);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
+// import convert from 'npm:xml-js'
+var convert = require('xml-js');
 var AnnotationList = function () {
   function AnnotationList(playlist, annotations) {
     var controls = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -141,15 +142,15 @@ var AnnotationList = function () {
         _this2.playlist.linkEndpoints = val;
       });
 
-      ee.on('annotationsrequest', function () {
-        _this2.export();
+      ee.on('annotationsrequest', function (something) {
+        _this2.export(something);
       });
 
       return ee;
     }
   }, {
     key: 'export',
-    value: function _export() {
+    value: function _export(something) {
       var bannotations = this.annotations;
       let annotationSpeakerHTML = document.getElementsByClassName('annotation-speaker');
       console.log(annotationSpeakerHTML)
@@ -159,11 +160,19 @@ var AnnotationList = function () {
         if(a.htmlLines) {
           a.lines = a.htmlLines;
         }
-        // console.log(a);
+        console.log(something);
 
         return (0, _aeneas4.default)(a);
       });
-      console.log(output);
+      // console.log(output);
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", 'http://localhost:5000/convert/json-xml', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({
+        content: output,
+        transcriptionId: 61
+      }));
+
       var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(output));
       var a = document.createElement('a');
 

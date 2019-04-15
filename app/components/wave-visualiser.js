@@ -519,7 +519,7 @@ export default Component.extend({
         });
 
         $container.on("click", ".btn-annotations-download", function () {
-          ee.emit("annotationsrequest");
+          ee.emit("annotationsrequest", 'hellooo....helllo..hello');
         });
 
         $container.on("click", ".btn-loop", function () {
