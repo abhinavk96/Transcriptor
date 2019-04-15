@@ -5,11 +5,12 @@ export default Route.extend({
   async model(params) {
     console.log(params)
     const transcription = await this.store.findRecord('transcription', params.transcription_id);
-    const rawXML = await ($.get(`http://localhost:5000${transcription.xmlFile}`));
+    const rawXML = transcription.rawXml;
     let xmlSerializer = new XMLSerializer()
     // console.log(xmlSerializer.serializeToString(rawXML.documentElement));
 
-    var xml = xmlSerializer.serializeToString(rawXML.documentElement);
+    // var xml = xmlSerializer.serializeToString(rawXML.documentElement);
+    var xml = rawXML;
     // console.log(notes);
     var json = convert.xml2json(xml, {compact: true, spaces: 4});
     // console.log(json);
