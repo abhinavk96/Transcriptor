@@ -26,12 +26,14 @@
       {{/each}}
     {{/if}}
     <div class="ui hidden divider"></div>
-    {{#if data.status}}
-      <div class="ui basic blue circular mini  {{if isLoading 'disabled' }} button">
-        <b>{{data.status}}</b>
-      </div>
-      <a data-tooltip="Refresh" data-variation="mini" data-inverted="" onclick={{action "refreshStatus"  data.status data}}>
-        <i class="basic green  {{if isLoading 'loading'}} sync icon"></i>
-      </a>
+    {{#if (eq value 'created')}}
+      {{#if data.status}}
+        <div class="ui basic blue circular mini  {{if isLoading 'disabled' }} button">
+          <b>{{data.status}}</b>
+        </div>
+        <a data-tooltip="Refresh" data-variation="mini" data-inverted="" onclick={{action "refreshStatus"  data.status data}}>
+          <i class="basic green  {{if isLoading 'loading'}} sync icon"></i>
+        </a>
+      {{/if}}
     {{/if}}
   </div>
