@@ -2,10 +2,12 @@ import Route from '@ember/routing/route';
 import convert from 'npm:xml-js'
 import { inject as service } from '@ember/service';
 export default Route.extend({
-  async model() {
-    const rawXML = await ($.get('http://localhost:5000/static/media/temp/cbb18609-30f0-496a-b8c0-c68f8373bd65/cUt2bEhjYm/fc381730-051d-4c60-989b-a0ed6308e929.xml'));
+  async model(params) {
+    console.log(params)
+    const transcription = await this.store.findRecord('transcription', params.transcription_id);
+    const rawXML = await ($.get(`http://localhost:5000${transcription.xmlFile}`));
     let xmlSerializer = new XMLSerializer()
-    console.log(xmlSerializer.serializeToString(rawXML.documentElement));
+    // console.log(xmlSerializer.serializeToString(rawXML.documentElement));
 
     var xml = xmlSerializer.serializeToString(rawXML.documentElement);
     // console.log(notes);
@@ -58,7 +60,7 @@ export default Route.extend({
 
     return {
       notes: notes,
-      audio : 'http://localhost:5000/static/media/temp/f6955d8e-2f3d-4a1d-9035-1bcd11abfd52/Q2Vsc0srcE/dc60c28a-fa8b-4246-bc5f-5cb7415b4e5b.mp3'
+      audio : transcription.fileAddress
     }
   }
 });
