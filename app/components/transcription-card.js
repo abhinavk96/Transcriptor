@@ -18,7 +18,14 @@ export default Component.extend({
         });
       }, 2000);
       console.log(status);
-      console.log($(event.srcElement).transition('pulse'));
+      if(event && event.srcElement) {
+        $(event.srcElement).transition('pulse');
+      }
     }
+  },
+  didInsertElement() {
+    later(() => {
+      this.send('refreshStatus', this.data.status, this.data)
+    })
   }
 });

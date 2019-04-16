@@ -47,12 +47,6 @@ export default Component.extend({
         this.get('loader').post('/transcribe/download', payload)
           .then(response => {
             console.log(response, response.xmlFile);
-            finishedTranscription.set('xmlFile', response.xmlFile);
-            finishedTranscription.set('xmlName', response.xmlName);
-            finishedTranscription.save()
-              .then(response => {
-                console.log("success", response);
-              })
           })
       })
   },
