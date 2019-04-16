@@ -38,7 +38,8 @@ export default Component.extend({
   generateXML(transcription) {
     transcription.set('status', 'DONE');
     let payload = {
-      'name': transcription.asrName
+      'name': transcription.asrName,
+      'transcription_id': transcription.id
     };
     transcription.save()
       .then(finishedTranscription => {
