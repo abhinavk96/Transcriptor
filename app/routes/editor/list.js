@@ -61,7 +61,8 @@ export default Route.extend({
 
     return {
       notes: notes,
-      audio : transcription.fileAddress
+      audio : transcription.fileAddress,
+      transcription: transcription
     }
   }
 });

@@ -150,7 +150,7 @@ var AnnotationList = function () {
     }
   }, {
     key: 'export',
-    value: function _export(something) {
+    value: function _export(transcription) {
       var bannotations = this.annotations;
       let annotationSpeakerHTML = document.getElementsByClassName('annotation-speaker');
       console.log(annotationSpeakerHTML)
@@ -160,7 +160,7 @@ var AnnotationList = function () {
         if(a.htmlLines) {
           a.lines = a.htmlLines;
         }
-        console.log(something);
+        console.log(transcription);
 
         return (0, _aeneas4.default)(a);
       });
@@ -170,7 +170,7 @@ var AnnotationList = function () {
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({
         content: output,
-        transcriptionId: 61
+        transcriptionId: transcription
       }));
 
       var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(output));
@@ -179,7 +179,7 @@ var AnnotationList = function () {
       document.body.appendChild(a);
       a.href = dataStr;
       a.download = 'annotations.json';
-      a.click();
+      // a.click();
       document.body.removeChild(a);
     }
   }, {
