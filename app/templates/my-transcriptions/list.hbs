@@ -1,6 +1,7 @@
 <div class="ui relaxed items">
   {{#each model.session as |transcription|}}
     {{transcription-card data=transcription value=model.field redirectSuccess=(action 'redirectSuccess')}}
+     <div class="ui hidden divider"></div>
   {{else}}
     <div class="ui disabled header">No transcriptions.</div>
   {{/each}}

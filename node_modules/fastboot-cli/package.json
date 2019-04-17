@@ -1,0 +1,43 @@
+{
+  "name": "fastboot-cli",
+  "version": "0.1.0",
+  "description": "CLI utility for running Ember FastBoot apps over HTTP",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test mocha"
+  },
+  "bin": {
+    "ember-fastboot": "./bin/ember-fastboot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ember-fastboot/fastboot-cli.git"
+  },
+  "keywords": [
+    "ember",
+    "fastboot",
+    "cli"
+  ],
+  "author": "Tom Dale <tom@tomdale.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ember-fastboot/fastboot-cli/issues"
+  },
+  "homepage": "https://github.com/ember-fastboot/fastboot-cli#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "fs-promise": "^0.5.0",
+    "mocha": "^2.4.5",
+    "request-promise": "^3.0.0",
+    "temp": "^0.8.3"
+  },
+  "dependencies": {
+    "fastboot-app-server": "^1.0.0-beta.2",
+    "minimist": "^1.2.0",
+    "rsvp": "^3.2.1"
+  }
+}
