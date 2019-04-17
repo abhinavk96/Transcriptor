@@ -13,8 +13,11 @@
             </div>
           {{/if}}
           {{#if newUser}}
-            <div class="ui info message">
-              <p>You have been registered successfully. Please login to continue.</p>
+            <div class="ui positive icon message">
+              <i class="check circle icon"></i>
+              <div class="header">
+                Registration was successful!
+              </div>
             </div>
           {{/if}}
           <div class="field">
@@ -36,18 +39,16 @@
           </div>
           <div class="ui center aligned segment basic">
             <div class="ui vertical buttons">
-              <button type="submit" class="ui fluid green submit button register">
+              <button type="submit" class="ui fluid teal submit button register">
                Login
               </button>
-              <div class="ui center aligned segment basic">
-                <a href="{{href-to 'editor'}}" class="text muted"> Forgot your password ?</a><br>
-                <a href="{{href-to 'editor'}}" class="text muted"> Register</a>
-
-              </div>
             </div>
           </div>
         </div>
+        <div class="ui center aligned segment basic">
+          <a href="{{href-to 'register'}}" class="text muted">New to the site? Register</a>
 
+        </div>
       </div>
     </form>
   </div>

@@ -1,1 +1,50 @@
-{{yield}}
+<form class="ui large form" {{action 'submit' on='submit'}}>
+  <div class="ui aligned segment basic less margin less padding">
+    <h3 class="weight-400">Create User</h3>
+  </div>
+  <div class="ui segments">
+    <div class="ui segment {{if isLoading 'loading' ''}}">
+      {{#if isRegistrationComplete}}
+        <div class="ui positive icon message">
+          <i class="check circle icon"></i>
+          <div class="header">
+            User created successfully.
+          </div>
+        </div>
+      {{/if}}
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          {{input name='firstName' type='text' placeholder='First Name' value=data.firstName}}
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          {{input name='lastName' type='text' placeholder='Last Name' value=data.lastName}}
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="mail icon"></i>
+          {{input name='email' type='email' placeholder='Email' value=data.email}}
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+            {{input type='password' name='password' placeholder='Password' value=data.password}}
+        </div>
+      </div>
+      <div class="ui center aligned segment basic">
+        <button class="ui fluid large teal submit button register">
+          Register
+        </button>
+      </div>
+    </div>
+    <div class="ui center aligned segment basic">
+      <a href="{{href-to 'login'}}" class="text muted">Already have an account? LogIn</a>
+
+    </div>
+  </div>
+</form>
