@@ -4,9 +4,11 @@
       <div class="ui container">
         <h1 class="ui header">My Transcriptions</h1>
         <div class="ui secondary pointing menu">
-          {{#link-to  'my-transcriptions.list' 'created' class='item'}}
-            Created
-          {{/link-to}}
+          {{#if model.isAdmin}}
+            {{#link-to  'my-transcriptions.list' 'created' class='item'}}
+              Created
+            {{/link-to}}
+          {{/if}}
           {{#link-to 'my-transcriptions.list' 'assigned' class='item'}}
             Assigned
           {{/link-to}}
