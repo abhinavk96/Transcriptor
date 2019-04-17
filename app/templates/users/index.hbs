@@ -1,0 +1,45 @@
+<div class="ui grid container">
+  <div class="ui row">
+    <div class="ui sixteen wide column">
+      <h1 class="ui header">Users</h1>
+    </div>
+  </div>
+  <div class="ui row">
+    <table class="ui very basic celled table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Admin Access</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.allUsers as |user|}}
+          <tr>
+            <td>
+              <h4 class="ui image header">
+                {{#if user.originalImageUrl}}
+                  <img src="{{user.originalImageUrl}}" class="ui mini rounded image">
+                {{else}}
+                  <img src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="ui mini rounded image">
+                {{/if}}
+                <div class="content">
+                  {{user.firstName}} {{user.lastName}}
+                  <div class="sub header">
+                    {{user.email}}
+                  </div>
+                  </div>
+                </h4>
+              </td>
+              <td>
+                {{ui-checkbox class="toggle" checked=user.isAdmin onChange=(pipe-action (action (mut user.isAdmin)) (action 'save' user))}}
+              </td>
+            </tr>
+    {{else}}
+      <div class="ui disabled header">
+        No created User
+      </div>
+    {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>

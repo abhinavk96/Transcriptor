@@ -37,6 +37,7 @@
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.1",
     "ember-cli-uglify": "^2.1.0",
+    "ember-composable-helpers": "^2.2.0",
     "ember-data": "^3.8.0",
     "ember-data-has-many-query": "^0.2.0",
     "ember-export-application-global": "^2.0.0",
@@ -70,6 +71,7 @@
     "ember-simple-auth": "^1.8.1",
     "ember-truth-helpers": "^2.1.0",
     "lodash": "^4.17.11",
+    "object-to-formdata": "^1.6.4",
     "waveform-playlist": "^3.0.4",
     "xml-js": "^1.6.11"
   }

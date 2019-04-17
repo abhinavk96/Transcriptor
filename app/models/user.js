@@ -7,7 +7,7 @@ export default DS.Model.extend({
   lastName: attr('string'),
   email: attr('string'),
   isVerified: attr('string', {readOnly: true}),
-  isAdmin: attr('string', {readOnly: true}),
+  isAdmin: attr('boolean'),
   originalImageUrl: attr('string'),
   thumbnailImageUrl: attr('string'),
   iconImageUrl: attr('string'),

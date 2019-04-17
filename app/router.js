@@ -18,6 +18,7 @@ Router.map(function() {
     this.route('create');
     this.route('edit');
   });
+  this.route('users', function() {});
 });
 
 export default Router;
