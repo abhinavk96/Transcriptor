@@ -14,5 +14,5 @@ export default DS.Model.extend({
   createdAt: attr('moment', { readOnly: true }),
   audioDuration: attr('string'),
   creator: belongsTo('user'),
-  editors:  hasMany('user', { inverse: 'editorTranscriptions'})
+  editors:  hasMany('user', { inverse: null})
 });
