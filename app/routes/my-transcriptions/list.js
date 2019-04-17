@@ -7,6 +7,7 @@ export default Route.extend({
   authManager: service(),
   session: service(),
   loader: service(),
+  store: service(),
   async model(params) {
     const MyObject = EmberObject.extend({
       // empty object
@@ -23,16 +24,18 @@ export default Route.extend({
     if (params.transcription_type === 'assigned') {
       let data = await this.get('loader').load(`/users/${this.get('authManager.currentUser.id')}/editor-transcriptions`);
       // return this.store.c('transcription', data);
-
+      let t = []
       data.data.forEach(item => {
-        item.id = null;
-        item.attributes.createdAt = item.attributes.created_at;
-        item.attributes.audioDuration = item.attributes.audio_duration;
-        var model = this.store.createRecord('transcription', item.attributes);
-        result.addObject(model);
+        t.push(this.store.push(this.store.normalize('transcription', item)));
+
+        // item.id = null;
+        // item.attributes.createdAt = item.attributes.created_at;
+        // item.attributes.audioDuration = item.attributes.audio_duration;
+        // var model = this.store.createRecord('transcription', item.attributes);
+        // result.addObject(model);
 
       });
-      this.get('authManager.currentUser').set('editorTranscriptions', result);
+      this.get('authManager.currentUser').set('editorTranscriptions', t);
       return {
         session: this.get('authManager.currentUser').get('editorTranscriptions'),
         field: 'assigned'
