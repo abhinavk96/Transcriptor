@@ -1,9 +1,10 @@
-  <div class="image">
-    <i class="file audio icon massive"></i>
+  <div class="     image">
+<!--    <img src="../assets/images/audio-file.png" alt="" class="ui mini image">-->
+    <div class="ui basic center aligned segment"><i class="ui icon huge blue music"></i></div>
   </div>
   <div class="content">
     {{#if (eq value 'created')}}
-      <button class="ui animated right floated basic blue button" {{action 'redirectCreateJob' data}} tabindex="0">
+      <button class="ui animated right floated basic compact blue button" {{action 'redirectCreateJob' data}} tabindex="0">
         <div class="visible content">Assign</div>
         <div class="hidden content">
           <i class="clipboard check icon"></i>
@@ -20,25 +21,27 @@
       {{/if}}
     </div>
     <div class="description">
+    <div class="ui hidden divider"></div>
       {{#if data.editors}}
         {{#each data.editors as |assignee|}}
-          <div class="ui image small basic circular label">
-            <i class="user circle icon"></i>
+          <div class="ui image mini  circular label">
+            <img src="../assets/images/user.png" alt="" class="src">
             {{ assignee.firstName}}
+
           </div>
         {{/each}}
       {{/if}}
     </div>
     <div class="extra">
-      {{#if (eq value 'created')}}
         {{#if data.status}}
-          <div class="ui basic blue circular mini  {{if isLoading 'disabled' }} button">
+          <div class="ui basic compact blue mini  {{if isLoading 'disabled' }} right  icon   button">
             <b>{{data.status}}</b>
+
           </div>
           <a data-tooltip="Refresh" data-variation="mini" data-inverted="" onclick={{action "refreshStatus"  data.status data}}>
-            <i class="basic green  {{if isLoading 'loading'}} sync icon"></i>
+            <i class="basic green  {{if isLoading 'loading'}} sync  icon"></i>
+
           </a>
         {{/if}}
-      {{/if}}
     </div>
   </div>
