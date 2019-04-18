@@ -1,16 +1,18 @@
-<div class="ui secondary pointing menu">
-  {{#link-to 'index' class='item'}}Home{{/link-to}}
-  {{#link-to  'my-transcriptions' class='item'}}My Transcriptions{{/link-to}}
-{{#if authManager.currentUser.isAdmin}}
-  {{#link-to 'jobs' class='item'}}Jobs{{/link-to}}
-  {{#link-to 'users' class='item'}}Users{{/link-to}}
+{{#if (and (not-eq router.currentRouteName 'register') (not-eq router.currentRouteName 'login'))}}
+  <div class="ui secondary pointing menu">
+    {{#link-to 'index' class='item'}}Home{{/link-to}}
+    {{#link-to  'my-transcriptions' class='item'}}My Transcriptions{{/link-to}}
+    {{#if authManager.currentUser.isAdmin}}
+      {{#link-to 'jobs' class='item'}}Jobs{{/link-to}}
+      {{#link-to 'users' class='item'}}Users{{/link-to}}
+    {{/if}}
+    {{#if session.isAuthenticated}}
+      <div class="right menu">
+        <a class="ui item" {{action 'logout'}}>
+          Logout
+        </a>
+      </div>
+    {{/if}}
+  </div>
 {{/if}}
-  {{#if session.isAuthenticated}}
-    <div class="right menu">
-      <a class="ui item" {{action 'logout'}}>
-        Logout
-      </a>
-    </div>
-  {{/if}}
-</div>
 {{outlet}}
