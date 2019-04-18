@@ -5,13 +5,12 @@ WORKDIR /app
 
 RUN apk add git python-dev make g++ gettext
 
-COPY package.json yarn.lock ./
-
-RUN yarn install
-
-COPY . .
-
-RUN  JOBS=1 yarn build -prod
+COPY dist ./dist
+RUN ls
+#
+#COPY . .
+#RUN pwd
+#RUN  JOBS=1 yarn build -prod
 
 ##
 ##
