@@ -1,4 +1,4 @@
-import ApplicationSerializer from 'Transcriptor/serializers/application';
+import ApplicationSerializer from 'transcriptor/serializers/application';
 import { pick, omit } from 'lodash';
 
 export default ApplicationSerializer.extend({
