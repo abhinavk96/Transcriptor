@@ -20,7 +20,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      apiHost      : process.env.API_HOST || 'http://172.21.149.125:5000',
+      apiHost      : process.env.API_HOST || 'http://52.148.80.30:5000',
 
     },
     fastboot: {
@@ -41,7 +41,7 @@ module.exports = function(environment) {
     authorizationHeaderName  : 'Authorization',
     headers                  : {}
   };
-  ENV.contentSecurityPolicy = { 'default-src': ['*', '', 'data:', 'blob:', '\'unsafe-inline\'', '\'unsafe-eval\''], 'script-src': ['*', 'unsafe-inline', '\'unsafe-eval\''], 'connect-src': ['*', 'http://127.0.0.1:5000', 'http://172.21.149.125:5000/', '\'unsafe-inline\''], 'img-src': ['*', 'data:', 'blob:', '\'unsafe-inline\''], 'frame-src': ['*'], 'style-src': ['*', 'data:', 'blob:', '\'unsafe-inline\''], 'font-src': ['*', 'data:', 'blob:', '\'unsafe-inline\''] };
+  ENV.contentSecurityPolicy = { 'default-src': ['*', '', 'data:', 'blob:', '\'unsafe-inline\'', '\'unsafe-eval\''], 'script-src': ['*', 'unsafe-inline', '\'unsafe-eval\''], 'connect-src': ['*', 'http://52.148.80.30:5000','http://127.0.0.1:5000', 'http://172.21.149.125:5000/', '\'unsafe-inline\''], 'img-src': ['*', 'data:', 'blob:', '\'unsafe-inline\''], 'frame-src': ['*'], 'style-src': ['*', 'data:', 'blob:', '\'unsafe-inline\''], 'font-src': ['*', 'data:', 'blob:', '\'unsafe-inline\''] };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
