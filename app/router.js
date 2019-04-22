@@ -20,6 +20,7 @@ Router.map(function() {
   });
   this.route('users', function() {});
   this.route('register');
+  this.route('ui-testing');
 });
 
 export default Router;

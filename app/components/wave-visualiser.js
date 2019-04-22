@@ -21,6 +21,7 @@ export default Component.extend({
   timeUpdate: false,
   isStep1Complete: false,
   isStep2Complete:false,
+  annotationBoxLeftScrolls: [],
   previousScroll: 0,
   notes: computed('data.notes', function(){
     return this.get('data.notes');
@@ -673,7 +674,7 @@ export default Component.extend({
           let startTime = parseFloat($(evt.target.firstElementChild).data("stime"));
           let endTime = parseFloat($(evt.target.lastElementChild).data("etime"));
 
-          ee.emit('select', startTime, endTime);
+          // ee.emit('select', startTime, endTime);
           // $(evt.target.firstElementChild).click();
         });
 
@@ -710,17 +711,20 @@ export default Component.extend({
             editCurrentSegment();
           }
 
-          else if(keys[17] && keys[32]) {
-            if(playlist.isPlaying()) {
-              $('.btn-pause').click();
-            }
-            else {
+          else if(keys[17] && keys[190]) {
+            // if(playlist.isPlaying()) {
               $('.btn-play').click();
-            }
+            // }
+            // else {
+            // }
+          }
+          else if(keys[17] && keys[188]) {
+            $('.btn-pause').click();
           }
         }
 
         function editCurrentSegment() {
+          $('.btn-pause').click();
           let currentSegment = $($('.current')[0].querySelector('.annotation-lines'));
           if(currentSegment) {
             currentSegment.focus();
@@ -737,13 +741,13 @@ export default Component.extend({
             $('.annotation').removeClass('current');
             let currentAnnotation = $('.annotation').eq(parseInt(nextSegment.id))
             currentAnnotation.addClass('current');
-            // playlist.playbackSeconds = parseFloat(nextSegment.start);
             let currentAnnotationBox = $('.annotation-box').eq(parseInt(nextSegment.id));
-            console.log(currentAnnotationBox.position().left);
-            // if(currentAnnotationBox.position().left > $('.playlist-tracks').outerWidth()) {
-            //   $('.playlist-tracks').scrollLeft((currentAnnotationBox.position().left - $('.annotation-box').eq(0).position().left));
-            //   // $('.cursor').css("left", $('.playlist-tracks').outerWidth());
-            // }
+            let currentAnnotationBoxLeft = parseInt(_this.annotationBoxLeftScrolls[currentSegmentIndex+1]);
+            console.log("Cuurent annotation box position: ", currentAnnotationBoxLeft);
+            // if(currentAnnotationBoxLeft > $('.playlist-tracks').outerWidth()) {
+            console.log('repositioning ... vuup');
+            $('.playlist-tracks').scrollLeft((currentAnnotationBoxLeft <  $('.playlist-tracks')[0].scrollWidth - $('.playlist-tracks').outerWidth())? currentAnnotationBoxLeft -200: currentAnnotationBoxLeft - $('.playlist-tracks').outerWidth() + 300);
+            $('.cursor').css("left", $('.playlist-tracks').outerWidth());
           }
         }
 
@@ -754,6 +758,13 @@ export default Component.extend({
             ee.emit('select', parseFloat(previousSegment.begin), parseFloat(previousSegment.end));
             $('.annotation').removeClass('current');
             $('.annotation').eq(parseInt(previousSegment.id)).addClass('current');
+            let currentAnnotationBox = $('.annotation-box').eq(parseInt(previousSegment.id));
+            let currentAnnotationBoxLeft = parseInt(_this.annotationBoxLeftScrolls[currentSegmentIndex-1]);
+            console.log("Cuurent annotation box position: ", currentAnnotationBoxLeft);
+            // if(currentAnnotationBoxLeft > $('.playlist-tracks').outerWidth()) {
+            console.log('repositioning ... vuup');
+            $('.playlist-tracks').scrollLeft((currentAnnotationBoxLeft <  $('.playlist-tracks')[0].scrollWidth - $('.playlist-tracks').outerWidth())? currentAnnotationBoxLeft -200: currentAnnotationBoxLeft - $('.playlist-tracks').outerWidth() + 300);
+            $('.cursor').css("left", $('.playlist-tracks').outerWidth());
           }
         }
 
@@ -1022,7 +1033,9 @@ export default Component.extend({
             return 'You have unsaved stuff. Are you sure you want to leave?';
       });
 
-
+      $('.annotation-box').each(index => {
+        _this.annotationBoxLeftScrolls.push($('.annotation-box').eq(index).position().left);
+      });
       // $('.annotation-lines').hover(function() {
       //
       // });
