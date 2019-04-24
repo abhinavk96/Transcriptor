@@ -346,3 +346,23 @@ body ::-webkit-scrollbar-thumb
 .drag-hover {
   border: 2px dashed blue;
 }
+.audio.outer {
+  overflow-x: scroll;
+  position: relative;
+}
+.audio.segments {
+  position: relative;
+  height:40px;
+}
+.segment.box {
+  display:inline-block;
+  margin: 0 auto !important;
+  border: 1px dashed;
+  overflow:hidden;
+  position: absolute;
+  text-align: center;
+  /*float:left;*/
+}
+.outer.audio.segment {
+  padding: 0 !important;
+}

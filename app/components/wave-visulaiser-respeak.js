@@ -8,7 +8,7 @@ export default Component.extend({
   isPlayerLoading: false,
   didInsertElement() {
     this._super(...arguments);
-    this.send('loadWaveFile')
+    this.send('loadWaveFile');
   },
   actions: {
     loadWaveFile() {
@@ -30,7 +30,28 @@ export default Component.extend({
           "src": this.get('data.transcription.fileAddress'),
           "name": "Vocals"
         }
-      ]).then(function() {
+      ]).then(() => {
+        let duration = parseFloat(playlist.duration);
+
+        let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
+        let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
+        let segmentBoxes = [];
+          $('#segment-container').css({"width": waveFormOuterWidth + "px"});
+        this.data.segmentsList.forEach((segment, index) => {
+          console.log(segment._attributes);
+          let segmentBox = document.createElement('div');
+          segmentBox.classList.add("segment", "box");
+          segmentBox.innerHTML = index+1;
+          segmentBox.style.left=`${timePixel*parseFloat(segment._attributes.stime)}px`;
+          segmentBox.style.width=`${timePixel*parseFloat(segment._attributes.dur)}px`;
+          console.log(segmentBox.style.width);
+          segmentBoxes.push(segmentBox);
+
+        });
+        console.log(segmentBoxes);
+        segmentBoxes.forEach(segmentBox => {
+          $('#segment-container').append(segmentBox);
+        })
         //can do stuff with the playlist.
       });
 

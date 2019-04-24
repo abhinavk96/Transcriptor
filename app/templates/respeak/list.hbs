@@ -1,24 +1,29 @@
 {{model.transcription.name}}
-{{wave-visulaiser-respeak currentTimer=0.01 data=model}}
-<div class="ui inline segment">
-</div>
-<div class="ui hidden divider"></div>
-<div class="ui hidden divider"></div>
-<div class="ui stackable five column doubling centered grid">
-  <div class="column">
-<div class="ui icon basic massive buttons">
-  <button class="ui button" title="Record">
-    <i class="red microphone icon"></i>
-  </button>
-  <button class="ui button" title="Play">
-    <i class="green play icon"></i>
-  </button>
-  <button class="ui button" title="Reset">
-    <i class="teal undo icon"></i>
-  </button>
-  <button class="ui button" title="Stop">
-    <i class="red stop icon"></i>
-  </button>
-</div>
+<div class="ui very relaxed container">
+    {{wave-visulaiser-respeak currentTimer=0.01 data=model}}
+    <div class="ui inline outer audio segment">
+      <div class="audio segments" id="segment-container">
+
+      </div>
+    </div>
+  <div class="ui hidden divider"></div>
+  <div class="ui hidden divider"></div>
+  <div class="ui stackable five column doubling centered grid">
+    <div class="column">
+      <div class="ui icon basic massive buttons">
+        <button class="ui button" title="Record">
+          <i class="red microphone icon"></i>
+        </button>
+        <button class="ui button" title="Play">
+          <i class="green play icon"></i>
+        </button>
+        <button class="ui button" title="Reset">
+          <i class="teal undo icon"></i>
+        </button>
+        <button class="ui button" title="Stop">
+          <i class="red stop icon"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
