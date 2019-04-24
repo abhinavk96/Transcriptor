@@ -1,1 +1,41 @@
-{{outlet}}
+{{#if (eq router.currentRouteName 'respeak.index')}}
+<div class="ui grid">
+  <div class="row">
+    <div class="sixteen wide column">
+      <div class="ui container">
+        <h1 class="ui header">Transcriptions</h1>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+          <div class="ui list">
+            {{#each model.allTranscriptions as |transcription|}}
+              {{#if (eq transcription.status 'DONE')}}
+                <div class="ui item">
+                  <i class="ui blue large music icon"></i>
+                  <div class="content">
+                    <div class="meta">
+                      <span> {{moment-format transcription.createdAt 'hh:mm a / DD-MM-YYYY'}}</span>
+                    </div>
+                    {{#link-to 'respeak.list' transcription.id class='header'}}{{transcription.name}}{{/link-to}}
+                    <div class="extra">
+                      {{#if transcription.audioDuration}}
+                        <div class="small text"><i class="wait icon"></i>{{transcription.audioDuration}} hour</div>
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+                <div class="ui hidden divider"></div>
+              {{/if}}
+            {{else}}
+              <div class="ui disabled header">No transcriptions.</div>
+            {{/each}}
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+<div class="ui container">
+  {{outlet}}
+</div>
+
+

@@ -32,7 +32,9 @@ export default Component.extend({
         }
       ]).then(() => {
         let duration = parseFloat(playlist.duration);
-
+        $container.on("click", ".btn-play", function () {
+          ee.emit("play");
+        });
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
         let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
         let segmentBoxes = [];
