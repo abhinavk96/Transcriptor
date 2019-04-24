@@ -11,7 +11,7 @@
   <div class="ui stackable five column doubling centered grid">
     <div class="column">
       <div class="ui icon basic massive buttons">
-        <button class="ui button" title="Record">
+        <button class="ui button" {{action 'record'}} title="Record">
           <i class="red microphone icon"></i>
         </button>
         <button class="ui button" title="Play">
@@ -20,7 +20,7 @@
         <button class="ui button" title="Reset">
           <i class="teal undo icon"></i>
         </button>
-        <button class="ui button" title="Stop">
+        <button class="ui button" {{action 'stop'}} title="Stop">
           <i class="red stop icon"></i>
         </button>
       </div>
