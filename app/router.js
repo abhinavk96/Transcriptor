@@ -21,6 +21,9 @@ Router.map(function() {
   this.route('users', function() {});
   this.route('register');
   this.route('ui-testing');
+  this.route('respeak', function() {
+    this.route('list',{path: '/:transcription_id'});
+  });
 });
 
 export default Router;

@@ -2,6 +2,7 @@
   <div class="ui secondary pointing menu">
     {{#link-to 'index' class='item'}}Home{{/link-to}}
     {{#link-to  'my-transcriptions' class='item'}}My Transcriptions{{/link-to}}
+    {{#link-to 'respeak' class='item'}}Re-speak{{/link-to}}
     {{#if authManager.currentUser.isAdmin}}
       {{#link-to 'jobs' class='item'}}Jobs{{/link-to}}
       {{#link-to 'users' class='item'}}Users{{/link-to}}
