@@ -10,17 +10,19 @@ export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
     let recorder = this.get('recorder');
-    recorder.set('recordingTime', 5000);
+    recorder.set('recordingTime', false);
     controller.set('recorder', recorder);
+    controller.set('recordingSegment', null);
+    controller.set('currentSegment', null);
   },
   actions: {
     async record() {
-      console.log('Record')
+      this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
+      console.log('Record', this.get('controller').recordingSegment + 1);
       let recorder = this.get('recorder');
       await recorder.start();
 
-      let { base64, audioURL, blob } = await recorder.getAudio();
-      console.log(base64, audioURL, blob);
+
     },
     async play() {
       let recorder = this.get('recorder');
@@ -29,7 +31,18 @@ export default Route.extend({
     async stop() {
       let recorder = this.get('recorder');
       recorder.stop();
+      let { base64, audioURL, blob } = await recorder.getAudio();
+      console.log(base64, audioURL, blob);
       recorder.close(); // Cloase audio context
+      var au = document.createElement('audio');
+      au.src = audioURL;
+      au.controls = true;
+      var filename = `Segment :: ${this.get('controller').recordingSegment}.wav`
+      document.body.appendChild(au);
+      document.body.appendChild(document.createTextNode(filename));
+
+
+
     }
   },
 

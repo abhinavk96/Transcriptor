@@ -49,8 +49,11 @@ export default Component.extend({
         const ee = playlist.getEventEmitter();
 
         let duration = parseFloat(playlist.duration);
-        $container.on("click", ".btn-play", function () {
+        $('body').on("click", ".btn-play", function () {
           ee.emit("play");
+        });
+        $('body').on("click", ".btn-pause", function () {
+          ee.emit("pause");
         });
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
         let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
