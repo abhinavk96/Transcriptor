@@ -55,6 +55,14 @@ export default Component.extend({
         $('body').on("click", ".btn-pause", function () {
           ee.emit("pause");
         });
+        $('.playlist-tracks').on('scroll', (e) => {
+          $('#outer-segment-container').scrollLeft($(e.target).scrollLeft());
+          console.log('A');
+        });
+        $('#outer-segment-container').on('scroll', (e) => {
+          $('.playlist-tracks' ).scrollLeft($(e.target).scrollLeft());
+          console.log('B');
+        });
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
         let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
         let segmentBoxes = [];
@@ -76,7 +84,7 @@ export default Component.extend({
         this.set('segmentTimes', startTimeSegments);
         segmentBoxes.forEach(segmentBox => {
           $('#segment-container').append(segmentBox);
-        })
+        });
         //can do stuff with the playlist.
         const updateTime = time => {
           this.set('currentTime', time);
