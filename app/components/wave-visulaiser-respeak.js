@@ -46,7 +46,9 @@ export default Component.extend({
           "name": "Vocals"
         }
       ]).then(() => {
+        this.set('isPlayerLoading', false);
         const ee = playlist.getEventEmitter();
+        ee.emit("automaticscroll", true);
 
         let duration = parseFloat(playlist.duration);
         $('body').on("click", ".btn-play", function () {
@@ -57,11 +59,9 @@ export default Component.extend({
         });
         $('.playlist-tracks').on('scroll', (e) => {
           $('#outer-segment-container').scrollLeft($(e.target).scrollLeft());
-          console.log('A');
         });
         $('#outer-segment-container').on('scroll', (e) => {
           $('.playlist-tracks' ).scrollLeft($(e.target).scrollLeft());
-          console.log('B');
         });
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
         let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
@@ -97,7 +97,9 @@ export default Component.extend({
 
 
 
+
     }
+
   },
 
 });
