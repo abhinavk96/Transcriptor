@@ -6,24 +6,29 @@
 
       </div>
     </div>
+  <div class="ui icon basic tiny buttons">
+    <button class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}" title="Play"><i class="green play icon"></i></button>
+    <button class="btn-pause ui orange button" title="Pause"><i class="orange pause icon"></i></button>
+    <button class="btn-redo ui teal button" title="Redo"><i class="teal redo icon"></i></button>
+  </div>
   <div class="ui hidden divider"></div>
   <div class="ui hidden divider"></div>
   <div class="ui stackable five column doubling centered grid">
     <div class="column">
       <div class="ui icon basic massive buttons">
         <button class="ui button" {{action 'record'}} title="Record">
-          <i class="red microphone icon"></i>
-        </button>
-        <button class="ui button" title="Play">
-          <i class="green play icon"></i>
-        </button>
-        <button class="ui button" title="Reset">
-          <i class="teal undo icon"></i>
+          <i class="orange microphone icon"></i>
         </button>
         <button class="ui button" {{action 'stop'}} title="Stop">
           <i class="red stop icon"></i>
         </button>
       </div>
+    </div>
+  </div>
+</div>
+<div class="ui raised white segment">
+  <div class="ui feed">
+    <div class="content" id="storeFile">
     </div>
   </div>
 </div>

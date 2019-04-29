@@ -13,6 +13,8 @@ export default Component.extend({
 
   currentSegment: null,
   segmentTimes: [],
+  isLooping : false,
+
 
   actions: {
 
@@ -29,8 +31,8 @@ export default Component.extend({
     loadWaveFile() {
       this.set('isPlayerLoading', true);
       var playlist = WaveformPlaylist.init({
-        samplesPerPixel: 5000,
-        zoomLevels: [1000, 5000, 9000],
+        samplesPerPixel: 1200,
+        zoomLevels: [1200],
         waveHeight: 100,
         container: document.getElementById("playlist"),
         state: 'cursor',
@@ -46,16 +48,42 @@ export default Component.extend({
           "name": "Vocals"
         }
       ]).then(() => {
+        var playoutPromises;
         this.set('isPlayerLoading', false);
         const ee = playlist.getEventEmitter();
         ee.emit("automaticscroll", true);
 
         let duration = parseFloat(playlist.duration);
-        $('body').on("click", ".btn-play", function () {
-          ee.emit("play");
+        $('body').on("click", ".btn-play",  ()=>{
+          if(this.isLooping){
+            this.set('isLooping', false);
+            ee.emit("play", this.segmentTimes[this.currentSegment]['end']);
+          }
+          else {
+            ee.emit("play");
+          }
         });
-        $('body').on("click", ".btn-pause", function () {
-          ee.emit("pause");
+        $('body').on("click", ".btn-redo",  () => {
+          this.set('isLooping',true);
+          console.log(this.segmentTimes[this.currentSegment]['start'], this.segmentTimes[this.currentSegment]['end']);
+          playlist.play(this.segmentTimes[this.currentSegment]['start'], this.segmentTimes[this.currentSegment]['end']);
+          let loopInterval = setInterval(()=>{
+            if(!this.isLooping) {
+              clearInterval(loopInterval);
+            }
+            else{
+              playoutPromises = playlist.play(this.segmentTimes[this.currentSegment]['start'], this.segmentTimes[this.currentSegment]['end']);
+            }
+          }, (this.segmentTimes[this.currentSegment]['end'] - this.segmentTimes[this.currentSegment]['start'])*1000)
+        });
+        $('body').on("click", ".btn-pause", ()=> {
+          if(this.isLooping) {
+            this.set('isLooping', false);
+            ee.emit("pause");
+          }
+          else {
+            ee.emit("pause");
+          }
         });
         $('.playlist-tracks').on('scroll', (e) => {
           $('#outer-segment-container').scrollLeft($(e.target).scrollLeft());
@@ -78,6 +106,9 @@ export default Component.extend({
           segmentBox.style.width=`${timePixel*parseFloat(segment._attributes.dur)}px`;
           console.log(segmentBox.style.width);
           segmentBoxes.push(segmentBox);
+          segmentBox.addEventListener("click",  ()=> {
+            ee.emit("select", parseFloat(segment._attributes.stime));
+          });
 
         });
         console.log(segmentBoxes);
@@ -91,13 +122,11 @@ export default Component.extend({
           this.send('setCurrentSegment', time);
         };
         ee.on("timeupdate", updateTime);
-        ee.emit('play');
+        ee.on('finished', function () {
+          console.log("The cursor has reached the end of the selection !");
+
+        });
       });
-
-
-
-
-
     }
 
   },

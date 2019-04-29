@@ -37,9 +37,9 @@ export default Route.extend({
       var au = document.createElement('audio');
       au.src = audioURL;
       au.controls = true;
-      var filename = `Segment :: ${this.get('controller').recordingSegment}.wav`
-      document.body.appendChild(au);
-      document.body.appendChild(document.createTextNode(filename));
+      var filename = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      document.getElementById("storeFile").appendChild(au);
+      document.getElementById("storeFile").appendChild(document.createTextNode(filename));
 
 
 
