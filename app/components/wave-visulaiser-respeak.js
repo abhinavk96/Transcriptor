@@ -31,8 +31,8 @@ export default Component.extend({
     loadWaveFile() {
       this.set('isPlayerLoading', true);
       var playlist = WaveformPlaylist.init({
-        samplesPerPixel: 1200,
-        zoomLevels: [1200],
+        samplesPerPixel: 500,
+        zoomLevels: [500],
         waveHeight: 100,
         container: document.getElementById("playlist"),
         state: 'cursor',
@@ -126,6 +126,35 @@ export default Component.extend({
           console.log("The cursor has reached the end of the selection !");
 
         });
+        let keys = {};
+        $(document).keydown(function (e) {
+          keys[e.which] = true;
+          if(e.which  === 69 && keys[17]) {
+            e.preventDefault();
+          }
+          else if(e.which  === 75 && keys[17] || e.which === 74 & keys[17]) {
+            e.preventDefault();
+          }
+
+          handleKeys();
+        });
+        $(document).keyup(function (e) {
+          delete keys[e.which];
+          handleKeys();
+
+        });
+        function handleKeys() {
+          console.log(keys);
+          if(keys[17] && keys[188]) {
+            $('.btn-play').click();
+          }
+          else if(keys[17] && keys[190]) {
+            $('.btn-pause').click();
+          }
+          else if(keys[17] && keys[191]) {
+            $('.btn-redo').click();
+          }
+        }
       });
     }
 

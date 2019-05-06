@@ -16,6 +16,15 @@ export default Route.extend({
     controller.set('currentSegment', null);
   },
   actions: {
+    handleKeys (keys) {
+      console.log(keys);
+      if(keys[17] && keys[38]) {
+        this.send('record');
+      }
+      if(keys[17] && keys[40]) {
+        this.send('stop');
+      }
+    },
     async record() {
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
       console.log('Record', this.get('controller').recordingSegment + 1);
@@ -53,6 +62,21 @@ export default Route.extend({
     let xml = rawXML;
     let json = convert.xml2json(xml, {compact: true, spaces: 4});
     let obj = JSON.parse(json);
+    let keys={};
+    $(document).keydown((e) => {
+      keys[e.which] = true;
+      if (e.which === 69 && keys[17]) {
+        e.preventDefault();
+      } else if (e.which === 75 && keys[17] || e.which === 74 & keys[17]) {
+        e.preventDefault();
+      }
+      this.send('handleKeys', keys);
+    });
+    $(document).keyup((e) => {
+      delete keys[e.which];
+      this.send('handleKeys', keys);
+
+    });
     var segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
     segmentsList = segmentsList.sort(function(a,b) {
       return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
