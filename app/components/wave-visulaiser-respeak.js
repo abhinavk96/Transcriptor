@@ -108,6 +108,16 @@ export default Component.extend({
           segmentBoxes.push(segmentBox);
           segmentBox.addEventListener("click",  ()=> {
             ee.emit("select", parseFloat(segment._attributes.stime));
+            for(let i=0; i< this.fileNames.length; i++) {
+              if(`Segment :: ${index+1}.wav` === this.fileNames[i].innerHTML) {
+                $(this.audioFileArray[i]).show();
+                $(this.fileNames[i]).show();
+              }
+              else {
+                $(this.audioFileArray[i]).hide();
+                $(this.fileNames[i]).hide();
+              }
+            }
           });
 
         });
@@ -145,7 +155,7 @@ export default Component.extend({
         });
         function handleKeys() {
           console.log(keys);
-          if(keys[17] && keys[188]) {
+          if(keys[17] && keys[32]) {
             $('.btn-play').click();
           }
           else if(keys[17] && keys[190]) {

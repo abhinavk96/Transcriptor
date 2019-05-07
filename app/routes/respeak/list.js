@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import convert from 'npm:xml-js';
 import { inject } from '@ember/service';
-
 export default Route.extend({
   recorder: inject(),
   init() {
@@ -11,6 +10,8 @@ export default Route.extend({
     this._super(...arguments);
     let recorder = this.get('recorder');
     recorder.set('recordingTime', false);
+    controller.set('audioFileArray', null);
+    controller.set('fileNames', null);
     controller.set('recorder', recorder);
     controller.set('recordingSegment', null);
     controller.set('currentSegment', null);
@@ -44,14 +45,36 @@ export default Route.extend({
       console.log(base64, audioURL, blob);
       recorder.close(); // Cloase audio context
       var au = document.createElement('audio');
+      au.setAttribute('class', 'audio-file');
       au.src = audioURL;
       au.controls = true;
-      var filename = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      var fileName = document.createElement('div');
+      fileName.innerHTML = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      fileName.setAttribute('class', 'file-name');
       document.getElementById("storeFile").appendChild(au);
-      document.getElementById("storeFile").appendChild(document.createTextNode(filename));
-
-
-
+       document.getElementById("storeFile").appendChild(fileName);
+      this.set('controller.audioFileArray', $('.audio-file'));
+      this.set('controller.fileNames', $('.file-name'));
+      var lengthOfFiles = $('.audio-file').length;
+      for(let i = 0; i < $('.audio-file').length; i++) {
+        if(i === lengthOfFiles-1) {
+          $($('.audio-file')[i]).show();
+          $($('.file-name')[i]).show();
+        }
+        else {
+          $($('.audio-file')[i]).hide();
+          $($('.file-name')[i]).hide();
+        }
+      }
+      console.log(lengthOfFiles, 'This too');
+      console.log($($('.file-name')[lengthOfFiles-1])[0].innerHTML, 'This');
+      for(let i = 0; i < lengthOfFiles-1; i++) {
+        if(($($('.file-name')[lengthOfFiles-1])[0].innerHTML) === ($($('.file-name')[i])[0].innerHTML)) {
+          console.log($($('.file-name')[i]), 'ABC');
+          $($('.audio-file')[i]).remove();
+          $($('.file-name')[i]).remove();
+        }
+      }
     }
   },
 
@@ -87,3 +110,4 @@ export default Route.extend({
     }
   }
 });
+// this.set('audioFileArray', $());\
