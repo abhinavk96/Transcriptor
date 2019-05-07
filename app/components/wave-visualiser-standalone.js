@@ -329,7 +329,8 @@ export default Component.extend({
         // isAutomaticScroll: true,
         options: {
           isAutomaticScroll: true
-        }
+        },
+        mono:false
       });
       // console.log('playlist defined', playlist);
 
