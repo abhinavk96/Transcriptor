@@ -108,6 +108,7 @@ export default Component.extend({
           segmentBoxes.push(segmentBox);
           segmentBox.addEventListener("click",  ()=> {
             ee.emit("select", parseFloat(segment._attributes.stime));
+            $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left);
             for(let i=0; i< this.fileNames.length; i++) {
               if(`Segment :: ${index+1}.wav` === this.fileNames[i].innerHTML) {
                 $(this.audioFileArray[i]).show();
