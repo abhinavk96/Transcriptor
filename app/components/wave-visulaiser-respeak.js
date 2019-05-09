@@ -52,7 +52,7 @@ export default Component.extend({
         var playoutPromises;
         this.set('isPlayerLoading', false);
         const ee = playlist.getEventEmitter();
-        ee.emit("automaticscroll", true);
+        // ee.emit("automaticscroll", true);
 
 
         let recursivePlay = (start,end, segment) => {
@@ -118,7 +118,7 @@ export default Component.extend({
           segmentBox.addEventListener("click",  ()=> {
             ee.emit("play", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
 
-            $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left);
+            $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
 
             for(let i=0; i< this.fileNames.length; i++) {
 
@@ -240,21 +240,23 @@ export default Component.extend({
           if(keys[17] && keys[32]) {
             ee.emit('play');
           }
-          else if(keys[17] && keys[190]) {
+          else if(keys[17] && keys[18]) {
             $('.btn-pause').click();
           }
           else if(keys[17] && keys[191]) {
             $('.btn-redo').click();
           }
           else if(keys[17] && keys[37]) {
-            $('.btn-pause').click();
-            moveToPreviousSegment();
+            playlist.pause()
+              .then(() => {
+                moveToPreviousSegment();
+              });
           }
           else if(keys[17] && keys[39]) {
             playlist.pause()
               .then(()=>{
                 moveToNextSegment();
-              })
+              });
           }
         }
       });
