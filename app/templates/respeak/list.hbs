@@ -1,9 +1,19 @@
-{{model.transcription.name}}
+<h2 class="ui header">
+  <i class="headphones icon"></i>
+  <div class="content">
+    {{model.transcription.name}}
+    <div class="sub header">Respeak the segments</div>
+  </div>
+</h2>
+<button title="Help" class="ui basic button right floated teal mini" {{action 'openModal' 'help'}}>
+  <i class="help icon"></i>
+</button>
+<div class="ui divider hidden"></div>
+<div class="ui divider hidden"></div>
 <div class="ui very relaxed container">
     {{wave-visulaiser-respeak currentSegment=currentSegment data=model audioFileArray=audioFileArray fileNames=fileNames}}
     <div class="ui inline outer audio segment basic" id="outer-segment-container">
       <div class="audio segments" id="segment-container">
-
       </div>
     </div>
 

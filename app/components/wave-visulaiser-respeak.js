@@ -18,7 +18,6 @@ export default Component.extend({
 
 
   actions: {
-
     setCurrentSegment(time) {
       this.segmentTimes.forEach((times, index) => {
         if(time>=times.start && time<=times.end) {
@@ -127,14 +126,12 @@ export default Component.extend({
                 $(this.fileNames[i]).show();
 
               }
-
               else {
                 $(this.audioFileArray[i]).hide();
                 $(this.fileNames[i]).hide();
               }
             }
           });
-
         });
         console.log(segmentBoxes);
         this.set('segmentTimes', startTimeSegments);
