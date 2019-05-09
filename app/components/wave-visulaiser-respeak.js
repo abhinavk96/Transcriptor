@@ -13,6 +13,7 @@ export default Component.extend({
 
   currentSegment: null,
   segmentTimes: [],
+  segmentBoxList: [],
   isLooping : false,
 
 
@@ -31,8 +32,8 @@ export default Component.extend({
     loadWaveFile() {
       this.set('isPlayerLoading', true);
       var playlist = WaveformPlaylist.init({
-        samplesPerPixel: 500,
-        zoomLevels: [500],
+        samplesPerPixel: 1000,
+        zoomLevels: [1000],
         waveHeight: 100,
         container: document.getElementById("playlist"),
         state: 'cursor',
@@ -53,16 +54,23 @@ export default Component.extend({
         const ee = playlist.getEventEmitter();
         ee.emit("automaticscroll", true);
 
+
+        let recursivePlay = (start,end, segment) => {
+          if (this.currentSegment!==segment) {
+            return;
+          }
+          ee.emit('play',start,end);
+        };
+
+
         let duration = parseFloat(playlist.duration);
         $('body').on("click", ".btn-play",  ()=>{
-          if(this.isLooping){
-            this.set('isLooping', false);
-            ee.emit("play", this.segmentTimes[this.currentSegment]['end']);
-          }
-          else {
-            ee.emit("play");
-          }
+            recursivePlay(this.currentTime, this.segmentTimes[this.currentSegment]['end'], this.currentSegment);
         });
+
+
+
+
         $('body').on("click", ".btn-redo",  () => {
           this.set('isLooping',true);
           console.log(this.segmentTimes[this.currentSegment]['start'], this.segmentTimes[this.currentSegment]['end']);
@@ -106,14 +114,20 @@ export default Component.extend({
           segmentBox.style.width=`${timePixel*parseFloat(segment._attributes.dur)}px`;
           console.log(segmentBox.style.width);
           segmentBoxes.push(segmentBox);
+
           segmentBox.addEventListener("click",  ()=> {
-            ee.emit("select", parseFloat(segment._attributes.stime));
+            ee.emit("play", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
+
             $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left);
+
             for(let i=0; i< this.fileNames.length; i++) {
+
               if(`Segment :: ${index+1}.wav` === this.fileNames[i].innerHTML) {
                 $(this.audioFileArray[i]).show();
                 $(this.fileNames[i]).show();
+
               }
+
               else {
                 $(this.audioFileArray[i]).hide();
                 $(this.fileNames[i]).hide();
@@ -127,6 +141,7 @@ export default Component.extend({
         segmentBoxes.forEach(segmentBox => {
           $('#segment-container').append(segmentBox);
         });
+        this.set('segmentBoxList', segmentBoxes);
         //can do stuff with the playlist.
         const updateTime = time => {
           this.set('currentTime', time);
@@ -154,16 +169,92 @@ export default Component.extend({
           handleKeys();
 
         });
+        let  moveToNextSegment = () => {
+          let currentSegmentIndex = findCurrentSegment();
+          console.log(currentSegmentIndex);
+          let nextSegment = this.segmentTimes[currentSegmentIndex + 1];
+          if(nextSegment) {
+            ee.emit('pause');
+            ee.emit('select', parseFloat(nextSegment['start']), parseFloat(nextSegment['end']));
+            $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex+1]).position().left-100);
+
+            for(let i=0; i< this.fileNames.length; i++) {
+
+              if(`Segment :: ${currentSegmentIndex+2}.wav` === this.fileNames[i].innerHTML) {
+                $(this.audioFileArray[i]).show();
+                $(this.fileNames[i]).show();
+
+              }
+
+              else {
+                $(this.audioFileArray[i]).hide();
+                $(this.fileNames[i]).hide();
+              }
+            }
+
+          }
+
+        };
+
+        let moveToPreviousSegment =() => {
+          let currentSegmentIndex = findCurrentSegment();
+          let previousSegment = this.segmentTimes[currentSegmentIndex - 1];
+          if(previousSegment) {
+            ee.emit('pause');
+            ee.emit('select', parseFloat(previousSegment['start']), parseFloat(previousSegment['end']));
+            $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex-1]).position().left-100);
+
+
+            for(let i=0; i< this.fileNames.length; i++) {
+
+              if(`Segment :: ${currentSegmentIndex}.wav` === this.fileNames[i].innerHTML) {
+                $(this.audioFileArray[i]).show();
+                $(this.fileNames[i]).show();
+
+              }
+
+              else {
+                $(this.audioFileArray[i]).hide();
+                $(this.fileNames[i]).hide();
+              }
+            }
+
+          }
+        };
+
+         let findCurrentSegment = () => {
+          var result = -1;
+          this.segmentTimes.forEach((segment, i) => {
+            // console.log(note, i);
+            if(this.currentTime >= parseFloat(segment['start']) && this.currentTime <= parseFloat(segment['end'])) {
+              console.log("found!",segment, i);
+              result = i;
+            }
+          });
+          return result;
+        };
+
+
         function handleKeys() {
           console.log(keys);
           if(keys[17] && keys[32]) {
-            $('.btn-play').click();
+            ee.emit('play');
           }
           else if(keys[17] && keys[190]) {
             $('.btn-pause').click();
           }
           else if(keys[17] && keys[191]) {
             $('.btn-redo').click();
+          }
+          else if(keys[17] && keys[37]) {
+            $('.btn-pause').click();
+            moveToPreviousSegment();
+          }
+          else if(keys[17] && keys[39]) {
+            playlist.pause()
+              .then(()=>{
+                moveToNextSegment();
+              })
           }
         }
       });

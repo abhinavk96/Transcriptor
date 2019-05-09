@@ -15,6 +15,7 @@ export default Route.extend({
     controller.set('recorder', recorder);
     controller.set('recordingSegment', null);
     controller.set('currentSegment', null);
+    controller.set('isRecording', false);
   },
   actions: {
     handleKeys (keys) {
@@ -28,6 +29,7 @@ export default Route.extend({
     },
     async record() {
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
+      this.get('controller').set('isRecording', true);
       console.log('Record', this.get('controller').recordingSegment + 1);
       let recorder = this.get('recorder');
       await recorder.start();
@@ -39,6 +41,7 @@ export default Route.extend({
       recorder.play();
     },
     async stop() {
+      this.get('controller').set('isRecording', false);
       let recorder = this.get('recorder');
       recorder.stop();
       let { base64, audioURL, blob } = await recorder.getAudio();
