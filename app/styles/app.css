@@ -274,7 +274,9 @@ body ::-webkit-scrollbar-thumb {
   -webkit-transition: color 0.2s ease;
   /* transition: color 0.2s ease; */
 }
-
+.ui.inline.outer.audio.segment::-webkit-scrollbar {
+  display:none !important;
+}
 body ::-webkit-scrollbar-thumb:window-inactive {
   background-color: #0ae;
 

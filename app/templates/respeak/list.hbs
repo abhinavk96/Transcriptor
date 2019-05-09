@@ -1,7 +1,7 @@
 {{model.transcription.name}}
 <div class="ui very relaxed container">
     {{wave-visulaiser-respeak currentSegment=currentSegment data=model audioFileArray=audioFileArray fileNames=fileNames}}
-    <div class="ui inline outer audio segment" id="outer-segment-container">
+    <div class="ui inline outer audio segment basic" id="outer-segment-container">
       <div class="audio segments" id="segment-container">
 
       </div>
@@ -15,11 +15,17 @@
   <div class="ui hidden divider"></div>
   <div class="ui stackable five column doubling centered grid">
     <div class="column">
-      <div class="ui icon basic massive buttons">
-        <button class="ui button" {{action 'record'}} title="Record">
-          <i class="orange microphone icon"></i>
-        </button>
-        <button class="ui button" {{action 'stop'}} title="Stop">
+      {{#if isRecording}}
+          Recording
+          <i class="loading circle notch icon"></i>
+      {{/if}}
+      <div class="ui icon massive buttons">
+        {{#unless isRecording}}
+          <button class="ui  basic  ompact button" {{action 'record'}} title="Record">
+            <i class="orange microphone icon"></i>
+          </button>
+        {{/unless}}
+        <button class="ui basic button {{unless isRecording 'disabled' }}" {{action 'stop'}} title="Stop">
           <i class="red stop icon"></i>
         </button>
       </div>
