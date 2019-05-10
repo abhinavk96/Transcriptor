@@ -359,16 +359,16 @@ body ::-webkit-scrollbar-thumb
 .segment.box {
   display:inline-block;
   margin: 0 auto !important;
-  border: 1px dashed;
+  border: 1px dashed dodgerblue;
   overflow:hidden;
   position: absolute;
   text-align: center;
   /*float:left;*/
 }
 .segment.box.current {
-  border-color: black;
+  border-color: dodgerblue;
   border-style: solid;
-  background-color: greenyellow;
+  background-color: #B6F0FE;
 
 }
 
