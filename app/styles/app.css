@@ -366,8 +366,9 @@ body ::-webkit-scrollbar-thumb
   /*float:left;*/
 }
 .segment.box.current {
-  border-color: red;
+  border-color: black;
   border-style: solid;
+  background: red;
 }
 .outer.audio.segment {
   padding: 0 !important;
