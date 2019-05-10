@@ -1,47 +1,78 @@
-<h2 class="ui header">
-  <i class="headphones icon"></i>
-  <div class="content">
-    {{model.transcription.name}}
-    <div class="sub header">Respeak the segments</div>
-  </div>
-</h2>
-<button title="Help" class="ui basic button right floated teal mini" {{action 'openModal' 'respeak'}}>
-  <i class="help icon"></i>
-</button>
+<div class="ui container">
+  <h2 class="ui header">
+    <i class="headphones icon"></i>
+    <div class="content">
+      {{model.transcription.name}}
+      <div class="sub header">Respeak the segments</div>
+    </div>
+  </h2>
+  <button title="Help" class="ui basic button right floated teal mini" {{action 'openModal' 'respeak'}}>
+    <i class="help icon"></i>
+  </button>
+</div>
 {{respeak-modal}}
 <div class="ui divider hidden"></div>
 <div class="ui divider hidden"></div>
-<div class="ui very relaxed container">
-    {{wave-visulaiser-respeak currentSegment=currentSegment data=model audioFileArray=audioFileArray fileNames=fileNames}}
-    <div class="ui inline outer audio segment basic" id="outer-segment-container">
-      <div class="audio segments" id="segment-container">
+<div class="ui relaxed grid">
+  <div class="row">
+    <div class="four wide column">
+      <div class="ui mini header center aligned">Recorded Segments:</div>
+      <div class="ui list">
+        <center>
+          {{#each fileNames as |fileName|}}
+            <div class="item">
+              <div class="content">
+                <div class="ui tiny disabled header"><i class="tiny music icon"></i> {{fileName.innerHTML}}</div>
+                <div class="ui hidden divider"></div>
+              </div>
+            </div>
+          {{else}}
+            <div class="ui hidden container">
+              <div class="ui tiny disabled header">
+                No re-spoken segments yet
+              </div>
+            </div>
+          {{/each}}
+        </center>
       </div>
     </div>
+    <div class="twelve wide column">
+      <div class="ui very relaxed container">
+          {{wave-visulaiser-respeak currentSegment=currentSegment data=model audioFileArray=audioFileArray fileNames=fileNames}}
+          <div class="ui inline outer audio segment basic" id="outer-segment-container">
+            <div class="audio segments" id="segment-container">
+            </div>
+          </div>
 
-  <div class="ui hidden divider"></div>
-  <div class="ui hidden divider"></div>
-  <div class="ui stackable five column doubling centered grid">
-    <div class="column">
-      {{#if isRecording}}
-          Recording
-          <i class="loading circle notch icon"></i>
-      {{/if}}
-      <div class="ui icon massive buttons">
-        {{#unless isRecording}}
-          <button class="ui  basic  ompact button" {{action 'record'}} title="Record">
-            <i class="orange microphone icon"></i>
-          </button>
-        {{/unless}}
-        <button class="ui basic button {{unless isRecording 'disabled' }}" {{action 'stop'}} title="Stop">
-          <i class="red stop icon"></i>
-        </button>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <div class="ui stackable five column doubling centered grid">
+          <div class="column">
+            {{#if isRecording}}
+                Recording
+                <i class="loading circle notch icon"></i>
+            {{/if}}
+            <div class="ui icon massive buttons">
+              {{#unless isRecording}}
+                <button class="ui  basic  ompact button" {{action 'record'}} title="Record">
+                  <i class="orange microphone icon"></i>
+                </button>
+              {{/unless}}
+              <button class="ui basic button {{unless isRecording 'disabled' }}" {{action 'stop'}} title="Stop">
+                <i class="red stop icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="ui raised white segment">
-  <div class="ui feed">
-    <div class="content" id="storeFile">
+<div class="ui container">
+  <div class="ui raised white segment">
+    <div class="ui feed">
+      <div class="content" id="storeFile">
+      </div>
     </div>
   </div>
 </div>
