@@ -151,7 +151,8 @@ export default Component.extend({
         });
         let keys = {};
         $(document).keydown(function (e) {
-          keys[e.which] = true;
+          if(e.which!==18)
+          {keys[e.which] = true}
           if(e.which  === 69 && keys[17]) {
             e.preventDefault();
           }
@@ -244,6 +245,7 @@ export default Component.extend({
             $('.btn-redo').click();
           }
           else if(keys[17] && keys[37]) {
+            console.log(playlist);
             playlist.pause()
               .then(() => {
                 moveToPreviousSegment();
