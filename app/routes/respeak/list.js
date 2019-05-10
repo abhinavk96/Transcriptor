@@ -56,6 +56,10 @@ export default Route.extend({
       fileName.setAttribute('class', 'file-name');
       document.getElementById("storeFile").appendChild(au);
        document.getElementById("storeFile").appendChild(fileName);
+       console.log($('.segment.box').eq(this.get('controller').recordingSegment),this.get('controller').recordingSegment);
+       $('.segment.box').eq(this.get('controller').recordingSegment-1).addClass(
+         'recorded'
+       );
       this.set('controller.audioFileArray', $('.audio-file'));
       this.set('controller.fileNames', $('.file-name'));
       var lengthOfFiles = $('.audio-file').length;

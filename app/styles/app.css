@@ -368,8 +368,17 @@ body ::-webkit-scrollbar-thumb
 .segment.box.current {
   border-color: black;
   border-style: solid;
-  background: red;
+  background-color: greenyellow;
+
 }
+
+.segment.box.recorded:after{
+  position:absolute;
+  color:green;
+  margin-left: 20px;
+  content: "\1F509 \2714";
+}
+
 .outer.audio.segment {
   padding: 0 !important;
 }
