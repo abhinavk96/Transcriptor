@@ -677,7 +677,32 @@ export default Component.extend({
           // ee.emit('select', startTime, endTime);
           // $(evt.target.firstElementChild).click();
         });
+        function handleKeys() {
+          console.log(keys);
+          if(keys[17] && keys[39] || keys[17] && keys[75]) {
+            console.log("Move to next segment");
+            moveToNextSegment();
+          }
+          else if(keys[17] && keys[37] || keys[17] && keys[74]) {
+            console.log("Move to previous segment");
+            moveToPreviousSegment();
+          }
 
+          else if(keys[17] && keys[73] || keys[17] && keys[69]) {
+            editCurrentSegment();
+          }
+
+          else if(keys[17] && keys[190]) {
+            // if(playlist.isPlaying()) {
+            $('.btn-play').click();
+            // }
+            // else {
+            // }
+          }
+          else if(keys[17] && keys[188]) {
+            $('.btn-pause').click();
+          }
+        }
         let keys = {};
         $(document).keydown(function (e) {
           keys[e.which] = true;
@@ -696,32 +721,7 @@ export default Component.extend({
           handleKeys();
 
         });
-        function handleKeys() {
-          console.log(keys);
-          if(keys[17] && keys[39] || keys[17] && keys[75]) {
-            console.log("Move to next segment");
-            moveToNextSegment();
-          }
-          else if(keys[17] && keys[37] || keys[17] && keys[74]) {
-            console.log("Move to previous segment");
-            moveToPreviousSegment();
-          }
 
-          else if(keys[17] && keys[73] || keys[17] && keys[69]) {
-            editCurrentSegment();
-          }
-
-          else if(keys[17] && keys[190]) {
-            // if(playlist.isPlaying()) {
-              $('.btn-play').click();
-            // }
-            // else {
-            // }
-          }
-          else if(keys[17] && keys[188]) {
-            $('.btn-pause').click();
-          }
-        }
 
         function editCurrentSegment() {
           $('.btn-pause').click();

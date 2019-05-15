@@ -238,8 +238,8 @@ export default Component.extend({
           if(keys[17] && keys[32]) {
             ee.emit('play');
           }
-          else if(keys[17] && keys[18]) {
-            $('.btn-pause').click();
+          else if(keys[17] && keys[190]) {
+            ee.emit('pause');
           }
           else if(keys[17] && keys[191]) {
             $('.btn-redo').click();

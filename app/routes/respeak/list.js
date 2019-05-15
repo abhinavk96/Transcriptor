@@ -24,7 +24,9 @@ export default Route.extend({
         this.send('record');
       }
       if(keys[17] && keys[40]) {
-        this.send('stop');
+        if (this.get('controller').isRecording) {
+          this.send('stop');
+        }
       }
     },
     async record() {
