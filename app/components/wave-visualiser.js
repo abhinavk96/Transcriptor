@@ -681,11 +681,17 @@ export default Component.extend({
           console.log(keys);
           if(keys[17] && keys[39] || keys[17] && keys[75]) {
             console.log("Move to next segment");
-            moveToNextSegment();
+            playlist.pause()
+              .then(() => {
+                moveToNextSegment();
+              });
           }
           else if(keys[17] && keys[37] || keys[17] && keys[74]) {
             console.log("Move to previous segment");
-            moveToPreviousSegment();
+            playlist.pause()
+              .then(() => {
+                moveToPreviousSegment();
+              });
           }
 
           else if(keys[17] && keys[73] || keys[17] && keys[69]) {
