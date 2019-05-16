@@ -1,5 +1,6 @@
 {{#if (and (not-eq router.currentRouteName 'register') (not-eq router.currentRouteName 'login'))}}
   <div class="ui secondary pointing menu">
+    <div class="item"><div class="ui tiny image"><img src="../assets/images/ntu-logo.png"></div></div>
     {{#link-to 'index' class='item'}}Home{{/link-to}}
     {{#link-to  'my-transcriptions' class='item'}}My Transcriptions{{/link-to}}
     {{#link-to 'respeak' class='item'}}Re-speak{{/link-to}}
