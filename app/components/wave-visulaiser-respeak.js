@@ -115,7 +115,7 @@ export default Component.extend({
           segmentBoxes.push(segmentBox);
 
           segmentBox.addEventListener("click",  ()=> {
-            ee.emit("play", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
+            ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
 
             $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
 
