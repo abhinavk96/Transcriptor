@@ -33,6 +33,11 @@
               </div>
             </div>
           {{/each}}
+          {{#if fileNames}}
+            <button class="ui basic blue icon button" title="Submit">
+              <i class="check icon"></i>
+            </button>
+          {{/if}}
         </center>
       </div>
     </div>
@@ -75,6 +80,4 @@
       </div>
     </div>
   </div>
-</div><button title="Pause" class="btn-pause ui  orange  button">
-  <i class="ui pause orange icon"></i>
-</button>
+</div>
