@@ -1,7 +1,6 @@
 <div class="ui container">
   <div class="wrapper">
     <article class="post">
-
       <div class="post-content">
         <div id="top-bar" class="playlist-top-bar">
           <div class="playlist-toolbar ui-sticky">
@@ -156,35 +155,6 @@
                <div class="label loading-data"></div>
              {{/ui-progress}}
            {{/if}}
-
-
-          <!--<div class="track-drop"></div>-->
-          <div class="ui horizontal segments">
-            <div class="ui placeholder transcription-drop segment">
-              <div class="ui icon header">
-                {{#if isStep1Complete}}
-                  <i class="green check circle icon"></i>
-                  Transcriptions loaded successfully!
-                {{else}}
-                  <i class="audio description icon"></i>
-                  Drop your transcription file here.
-                {{/if}}
-              </div>
-            </div>
-            <div class="ui {{unless isStep1Complete 'disabled'}} placeholder track-drop segment">
-              <div class="ui icon header">
-                <i class="file audio icon"></i>
-                Drop your audio file here.
-              </div>
-            </div>
-
-          </div>
-          <div class="ui pp button">Show flowing popup</div>
-          <div class="ui speaker flowing popup top left transition hidden">
-
-          </div>
-
-          <!--<div class="loading-data"></div>-->
         </div>
       </div>
     </article>
