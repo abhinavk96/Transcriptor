@@ -52,7 +52,9 @@ export default Route.extend({
       var au = document.createElement('audio');
       au.setAttribute('class', 'audio-file');
       au.src = audioURL;
+      au.blob = blob;
       au.controls = true;
+      au.name = `Segment :: ${this.get('controller').recordingSegment}.wav`;
       var fileName = document.createElement('div');
       fileName.innerHTML = `Segment :: ${this.get('controller').recordingSegment}.wav`;
       fileName.setAttribute('class', 'file-name');
