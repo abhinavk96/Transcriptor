@@ -66,23 +66,6 @@ export default Component.extend({
         $('body').on("click", ".btn-play",  ()=>{
             recursivePlay(this.currentTime, this.segmentTimes[this.currentSegment]['end'], this.currentSegment);
         });
-
-
-
-
-        $('body').on("click", ".btn-redo",  () => {
-          this.set('isLooping',true);
-          console.log(this.segmentTimes[this.currentSegment]['start'], this.segmentTimes[this.currentSegment]['end']);
-          playlist.play(this.segmentTimes[this.currentSegment]['start'], this.segmentTimes[this.currentSegment]['end']);
-          let loopInterval = setInterval(()=>{
-            if(!this.isLooping) {
-              clearInterval(loopInterval);
-            }
-            else{
-              playoutPromises = playlist.play(this.segmentTimes[this.currentSegment]['start'], this.segmentTimes[this.currentSegment]['end']);
-            }
-          }, (this.segmentTimes[this.currentSegment]['end'] - this.segmentTimes[this.currentSegment]['start'])*1000)
-        });
         $('body').on("click", ".btn-pause", ()=> {
           if(this.isLooping) {
             this.set('isLooping', false);
@@ -240,9 +223,6 @@ export default Component.extend({
           }
           else if(keys[17] && keys[190]) {
             ee.emit('pause');
-          }
-          else if(keys[17] && keys[191]) {
-            $('.btn-redo').click();
           }
           else if(keys[17] && keys[37]) {
             console.log(playlist);
