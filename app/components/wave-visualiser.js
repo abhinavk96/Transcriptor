@@ -28,7 +28,7 @@ export default Component.extend({
   }),
   autoScroll: true,
   findApproxTargetSpan: function(time){
-    console.log("Finding approx..");
+    //console.log("Finding approx..");
     let closestKey = 0;
     for (var key in this.timeMappings) {
       if (parseFloat(key) < parseFloat(time)) {
@@ -445,7 +445,7 @@ export default Component.extend({
           startTime = start;
           endTime = end;
           let currentTargetSpan =  parseFloat(_this.findApproxTargetSpan(start));
-          console.log('currentTargetSpan: ', currentTargetSpan);
+          //console.log('currentTargetSpan: ', currentTargetSpan);
           _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
           _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
           _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
@@ -670,7 +670,7 @@ export default Component.extend({
         });
 
         $container.on("focus", ".annotation-lines", function(evt) {
-          console.log('focus!!', evt.target.firstElementChild, evt.target.lastElementChild);
+          //console.log('focus!!', evt.target.firstElementChild, evt.target.lastElementChild);
           let startTime = parseFloat($(evt.target.firstElementChild).data("stime"));
           let endTime = parseFloat($(evt.target.lastElementChild).data("etime"));
 
@@ -685,6 +685,16 @@ export default Component.extend({
               .then(() => {
                 moveToNextSegment();
               });
+          }
+          else if(keys[13]) {
+            var htmlPart = $('.annotation-box')[findCurrentSegment()].innerHTML;
+            var textPart = $('.annotation-box')[findCurrentSegment()].innerText;
+            $('.annotation-box')[findCurrentSegment()].innerHTML = "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; left: -2px\" draggable=\"true\" class=\"resize-handle resize-w\"></div>" +
+              "<span class=\"id\">" +
+              textPart +
+              "<i class='small green edit icon' style='position: absolute; margin-top: 5px; margin-left: 2px'></i></span>" +
+              "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; right: -2px\" draggable=\"true\" class=\"resize-handle resize-e\"></div>";
+            //console.log(htmlPart);
           }
           else if(keys[17] && keys[37] || keys[17] && keys[74]) {
             //console.log("Move to previous segment");
@@ -740,7 +750,7 @@ export default Component.extend({
         function moveToNextSegment() {
           let currentSegmentIndex = findCurrentSegment();
           let nextSegment = _this.notes[currentSegmentIndex + 1];
-          console.log(currentSegmentIndex, nextSegment, _this.notes, _this.notes[4]);
+          //console.log(currentSegmentIndex, nextSegment, _this.notes, _this.notes[4]);
           if(nextSegment) {
             //console.log('select');
             ee.emit('select', parseFloat(nextSegment.begin), parseFloat(nextSegment.end));
@@ -766,9 +776,9 @@ export default Component.extend({
             $('.annotation').eq(parseInt(previousSegment.id)).addClass('current');
             let currentAnnotationBox = $('.annotation-box').eq(parseInt(previousSegment.id));
             let currentAnnotationBoxLeft = parseInt(_this.annotationBoxLeftScrolls[currentSegmentIndex-1]);
-            console.log("Cuurent annotation box position: ", currentAnnotationBoxLeft);
+            //console.log("Cuurent annotation box position: ", currentAnnotationBoxLeft);
             // if(currentAnnotationBoxLeft > $('.playlist-tracks').outerWidth()) {
-            console.log('repositioning ... vuup');
+            //console.log('repositioning ... vuup');
             $('.playlist-tracks').scrollLeft((currentAnnotationBoxLeft <  $('.playlist-tracks')[0].scrollWidth - $('.playlist-tracks').outerWidth())? currentAnnotationBoxLeft -200: currentAnnotationBoxLeft - $('.playlist-tracks').outerWidth() + 300);
             $('.cursor').css("left", $('.playlist-tracks').outerWidth());
           }
@@ -779,7 +789,7 @@ export default Component.extend({
           _this.notes.forEach((note, i) => {
             // console.log(note, i);
             if(_this.actualTimer >= parseFloat(note.begin) && _this.actualTimer <= parseFloat(note.end)) {
-              console.log("found!",note, i);
+              //console.log("found!",note, i);
               result = i;
             }
           });
@@ -894,7 +904,7 @@ export default Component.extend({
         });
 
         ee.on("statechange", function (state) {
-          console.log("State Change" + state);
+          //console.log("State Change" + state);
         });
       })
         .catch(e => {
@@ -975,7 +985,7 @@ export default Component.extend({
             '</div>',
 
           onShow: function(clicked){
-            console.log(clicked);_this.set('hoveredSpeaker', clicked);console.log(_this.hoveredSpeaker);console.log(this);
+            //console.log(clicked);_this.set('hoveredSpeaker', clicked);console.log(_this.hoveredSpeaker);console.log(this);
 
             //Speaker's List
             let speakerList = [];
