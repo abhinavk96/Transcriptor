@@ -116,7 +116,7 @@ export default Component.extend({
             }
           });
         });
-        console.log(segmentBoxes);
+        //console.log(segmentBoxes);
         this.set('segmentTimes', startTimeSegments);
         segmentBoxes.forEach(segmentBox => {
           $('#segment-container').append(segmentBox);
@@ -152,7 +152,7 @@ export default Component.extend({
         });
         let  moveToNextSegment = () => {
           let currentSegmentIndex = findCurrentSegment();
-          console.log(currentSegmentIndex);
+          //console.log(currentSegmentIndex);
           let nextSegment = this.segmentTimes[currentSegmentIndex + 1];
           if(nextSegment) {
             ee.emit('pause');
@@ -208,7 +208,7 @@ export default Component.extend({
           this.segmentTimes.forEach((segment, i) => {
             // console.log(note, i);
             if(this.currentTime >= parseFloat(segment['start']) && this.currentTime <= parseFloat(segment['end'])) {
-              console.log("found!",segment, i);
+              //console.log("found!",segment, i);
               result = i;
             }
           });
@@ -217,7 +217,7 @@ export default Component.extend({
 
 
         function handleKeys() {
-          console.log(keys);
+          //console.log(keys);
           if(keys[17] && keys[32]) {
             ee.emit('play');
           }

@@ -75,7 +75,7 @@ export default Component.extend({
         $(`#${this.targetSpan}`).addClass('currentWord');
         // console.log('encountetred! encountered!', this.targetSpan);
       } else if (this.currentTimer >= this.targetSpanEndTime) {
-        console.log("Should update automatically");
+        //console.log("Should update automatically");
         $(`#${this.targetSpan}`).removeClass('currentWord');
         let nextSpan = this.targetSpanIndex + 1;
         this.set('targetSpanIndex', nextSpan);
@@ -496,7 +496,7 @@ export default Component.extend({
         $container.on("click", ".annotation-box", function (box) {
           console.log(box.target.innerText);
           let currentTargetSpan =  parseFloat(_this.findApproxTargetSpan(_this.notes[parseFloat(box.target.innerText)].begin));
-          console.log('currentTargetSpan: ', currentTargetSpan);
+          //console.log('currentTargetSpan: ', currentTargetSpan);
           _this.set('targetSpan', _this.allSpans[currentTargetSpan].attr('id'));
           _this.set('targetSpanStartTime', _this.allSpans[currentTargetSpan].data('stime').toFixed(3));
           _this.set('targetSpanEndTime', _this.allSpans[currentTargetSpan].data('etime').toFixed(3));
@@ -568,7 +568,7 @@ export default Component.extend({
         });
 
         $container.on("click", ".btn-select", function () {
-          console.log('selection mode');
+          //console.log('selection mode');
           ee.emit("statechange", "select");
           toggleActive(this);
         });
@@ -678,16 +678,16 @@ export default Component.extend({
           // $(evt.target.firstElementChild).click();
         });
         function handleKeys() {
-          console.log(keys);
+          //console.log(keys);
           if(keys[17] && keys[39] || keys[17] && keys[75]) {
-            console.log("Move to next segment");
+            //console.log("Move to next segment");
             playlist.pause()
               .then(() => {
                 moveToNextSegment();
               });
           }
           else if(keys[17] && keys[37] || keys[17] && keys[74]) {
-            console.log("Move to previous segment");
+            //console.log("Move to previous segment");
             playlist.pause()
               .then(() => {
                 moveToPreviousSegment();
@@ -742,16 +742,16 @@ export default Component.extend({
           let nextSegment = _this.notes[currentSegmentIndex + 1];
           console.log(currentSegmentIndex, nextSegment, _this.notes, _this.notes[4]);
           if(nextSegment) {
-            console.log('select');
+            //console.log('select');
             ee.emit('select', parseFloat(nextSegment.begin), parseFloat(nextSegment.end));
             $('.annotation').removeClass('current');
             let currentAnnotation = $('.annotation').eq(parseInt(nextSegment.id))
             currentAnnotation.addClass('current');
             let currentAnnotationBox = $('.annotation-box').eq(parseInt(nextSegment.id));
             let currentAnnotationBoxLeft = parseInt(_this.annotationBoxLeftScrolls[currentSegmentIndex+1]);
-            console.log("Cuurent annotation box position: ", currentAnnotationBoxLeft);
+           // console.log("Cuurent annotation box position: ", currentAnnotationBoxLeft);
             // if(currentAnnotationBoxLeft > $('.playlist-tracks').outerWidth()) {
-            console.log('repositioning ... vuup');
+            //console.log('repositioning ... vuup');
             $('.playlist-tracks').scrollLeft((currentAnnotationBoxLeft <  $('.playlist-tracks')[0].scrollWidth - $('.playlist-tracks').outerWidth())? currentAnnotationBoxLeft -200: currentAnnotationBoxLeft - $('.playlist-tracks').outerWidth() + 300);
             $('.cursor').css("left", $('.playlist-tracks').outerWidth());
           }
@@ -884,7 +884,7 @@ export default Component.extend({
         });
 
         ee.on('finished', function () {
-          console.log("The cursor has reached the end of the selection !");
+          //console.log("The cursor has reached the end of the selection !");
 
           if (isLooping) {
             playoutPromises.then(function () {
@@ -948,7 +948,7 @@ export default Component.extend({
         // console.log('focusout')
       });
        function tag(popup) {
-         console.log('hello');
+         //console.log('hello');
         console.log(popup, popup.find('input'));
       }
       function tagAll(element) {

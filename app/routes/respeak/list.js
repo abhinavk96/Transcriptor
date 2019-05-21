@@ -47,7 +47,7 @@ export default Route.extend({
       let recorder = this.get('recorder');
       recorder.stop();
       let { base64, audioURL, blob } = await recorder.getAudio();
-      console.log(base64, audioURL, blob);
+      //console.log(base64, audioURL, blob);
       recorder.close(); // Cloase audio context
       var au = document.createElement('audio');
       au.setAttribute('class', 'audio-file');
@@ -77,8 +77,8 @@ export default Route.extend({
           $($('.file-name')[i]).hide();
         }
       }
-      console.log(lengthOfFiles, 'This too');
-      console.log($($('.file-name')[lengthOfFiles-1])[0].innerHTML, 'This');
+      //console.log(lengthOfFiles, 'This too');
+      //console.log($($('.file-name')[lengthOfFiles-1])[0].innerHTML, 'This');
       for(let i = 0; i < lengthOfFiles-1; i++) {
         if(($($('.file-name')[lengthOfFiles-1])[0].innerHTML) === ($($('.file-name')[i])[0].innerHTML)) {
           console.log($($('.file-name')[i]), 'ABC');
