@@ -709,7 +709,7 @@ export default Component.extend({
           }
 
           else if(keys[17] && keys[190]) {
-            // if(playlist.isPlaying()) {
+            // if(playlist.isPlaying()) { `
             $('.btn-play').click();
             // }
             // else {
@@ -1048,6 +1048,10 @@ export default Component.extend({
       $(window).on('beforeunload', function(e) {
             return 'You have unsaved stuff. Are you sure you want to leave?';
       });
+      setInterval(()=>{
+        $('.btn-annotations-download').click();
+        console.log('transcription saved');
+      }, 15000);
 
       $('.annotation-box').each(index => {
         _this.annotationBoxLeftScrolls.push($('.annotation-box').eq(index).position().left);
