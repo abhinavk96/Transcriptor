@@ -118,6 +118,7 @@ body {
   cursor: pointer;
   display: inline-block;
   width: 100%;
+  width: 100%;
   height: 100%;
 }
 .playlist .annotations .annotations-text {
@@ -163,7 +164,6 @@ text {
 .playlist .annotations .annotations-text .annotation .annotation-id {
   font-size: 16px;
   line-height: 27px;
-  display:none;
 }
 .playlist .annotations .annotations-text .annotation .annotation-speaker {
   font-size: 18px;
