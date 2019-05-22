@@ -1050,7 +1050,7 @@ export default Component.extend({
       });
       setInterval(()=>{
         $('.btn-annotations-download').click();
-        console.log('Show');
+        //console.log('Show');
         document.getElementById('showMessage').innerHTML = "<div class=\"ui compact positive message right floated\">\n" +
           "  <i class=\"close icon\"></i>\n" +
           "  <div class=\"header\">\n" +
