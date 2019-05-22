@@ -1050,9 +1050,18 @@ export default Component.extend({
       });
       setInterval(()=>{
         $('.btn-annotations-download').click();
-        console.log('transcription saved');
+        console.log('Show');
+        document.getElementById('showMessage').innerHTML = "<div class=\"ui compact positive message right floated\">\n" +
+          "  <i class=\"close icon\"></i>\n" +
+          "  <div class=\"header\">\n" +
+          "    AutoSave\n" +
+          "  </div>\n" +
+          "  <p>The edited transcription has been saved.</p>\n" +
+          "</div>";
       }, 15000);
-
+      setInterval(() => {
+        document.getElementById('showMessage').innerHTML = "";
+      }, 7000);
       $('.annotation-box').each(index => {
         _this.annotationBoxLeftScrolls.push($('.annotation-box').eq(index).position().left);
       });
