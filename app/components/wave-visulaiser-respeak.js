@@ -87,31 +87,31 @@ export default Component.extend({
           $('#segment-container').css({"width": waveFormOuterWidth + "px"});
           let startTimeSegments = [];
         this.data.segmentsList.forEach((segment, index) => {
-          console.log(segment._attributes);
+          //console.log(segment._attributes);
           startTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
           let segmentBox = document.createElement('div');
           segmentBox.classList.add("segment", "box");
           segmentBox.innerHTML = index+1;
           segmentBox.style.left=`${timePixel*parseFloat(segment._attributes.stime)}px`;
           segmentBox.style.width=`${timePixel*parseFloat(segment._attributes.dur)}px`;
-          console.log(segmentBox.style.width);
+          //console.log(segmentBox.style.width);
           segmentBoxes.push(segmentBox);
 
           segmentBox.addEventListener("click",  ()=> {
             ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
 
             $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
+            if(this.fileNames.length) {
+              for(let i = 0; i < this.fileNames.length; i++) {
 
-            for(let i=0; i< this.fileNames.length; i++) {
-
-              if(`Segment :: ${index+1}.wav` === this.fileNames[i].innerHTML) {
-                $(this.audioFileArray[i]).show();
-                $(this.fileNames[i]).show();
-
-              }
-              else {
-                $(this.audioFileArray[i]).hide();
-                $(this.fileNames[i]).hide();
+                if(`Segment :: ${index+1}.wav` === this.fileNames[i].innerHTML) {
+                  $(this.audioFileArray[i]).show();
+                  $(this.fileNames[i]).show();
+                }
+                else {
+                  $(this.audioFileArray[i]).hide();
+                  $(this.fileNames[i]).hide();
+                }
               }
             }
           });
@@ -158,23 +158,17 @@ export default Component.extend({
             ee.emit('pause');
             ee.emit('select', parseFloat(nextSegment['start']), parseFloat(nextSegment['end']));
             $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex+1]).position().left-100);
-
             for(let i=0; i< this.fileNames.length; i++) {
-
-              if(`Segment :: ${currentSegmentIndex+2}.wav` === this.fileNames[i].innerHTML) {
+                if(`Segment :: ${currentSegmentIndex+2}.wav` === this.fileNames[i].innerHTML) {
                 $(this.audioFileArray[i]).show();
                 $(this.fileNames[i]).show();
-
               }
-
               else {
                 $(this.audioFileArray[i]).hide();
                 $(this.fileNames[i]).hide();
               }
             }
-
           }
-
         };
 
         let moveToPreviousSegment =() => {
@@ -225,7 +219,7 @@ export default Component.extend({
             ee.emit('pause');
           }
           else if(keys[17] && keys[37]) {
-            console.log(playlist);
+           // console.log(playlist);
             playlist.pause()
               .then(() => {
                 moveToPreviousSegment();

@@ -19,7 +19,7 @@ export default Route.extend({
   },
   actions: {
     handleKeys (keys) {
-      console.log(keys);
+      //console.log(keys);
       if(keys[17] && keys[38]) {
         this.send('record');
       }
@@ -32,7 +32,7 @@ export default Route.extend({
     async record() {
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
       this.get('controller').set('isRecording', true);
-      console.log('Record', this.get('controller').recordingSegment + 1);
+      //console.log('Record', this.get('controller').recordingSegment + 1);
       let recorder = this.get('recorder');
       await recorder.start();
 
@@ -60,7 +60,7 @@ export default Route.extend({
       fileName.setAttribute('class', 'file-name');
       document.getElementById("storeFile").appendChild(au);
        document.getElementById("storeFile").appendChild(fileName);
-       console.log($('.segment.box').eq(this.get('controller').recordingSegment),this.get('controller').recordingSegment);
+       //console.log($('.segment.box').eq(this.get('controller').recordingSegment),this.get('controller').recordingSegment);
        $('.segment.box').eq(this.get('controller').recordingSegment-1).addClass(
          'recorded'
        );
@@ -81,7 +81,7 @@ export default Route.extend({
       //console.log($($('.file-name')[lengthOfFiles-1])[0].innerHTML, 'This');
       for(let i = 0; i < lengthOfFiles-1; i++) {
         if(($($('.file-name')[lengthOfFiles-1])[0].innerHTML) === ($($('.file-name')[i])[0].innerHTML)) {
-          console.log($($('.file-name')[i]), 'ABC');
+         // console.log($($('.file-name')[i]), 'ABC');
           $($('.audio-file')[i]).remove();
           $($('.file-name')[i]).remove();
         }
@@ -90,7 +90,7 @@ export default Route.extend({
   },
 
   async model(params) {
-    console.log(params);
+    //console.log(params);
     const transcription = await this.store.findRecord('transcription', params.transcription_id);
     const rawXML = transcription.rawXml;
     let xml = rawXML;
