@@ -20,8 +20,9 @@ export default Controller.extend({
         if(this.audioFileArray[file].src) {
           let fileBlob=this.audioFileArray[file].blob;
           fileBlob.lastModifiedDate = new Date();
-          fileBlob.name = `${file}.wav`;
-          formData.append("files[]", fileBlob);
+          console.log(file, this.audioFileArray);
+          fileBlob.name = `${file.name}.wav`;
+          formData.append("files[]", fileBlob, `${this.audioFileArray[file].name}.wav`);
           console.log(formData);
         }
       }
