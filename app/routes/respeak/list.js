@@ -15,6 +15,11 @@ export default Route.extend({
     controller.set('recorder', recorder);
     controller.set('recordingSegment', null);
     controller.set('currentSegment', null);
+    controller.set('recordingSegmentStartTime', null);
+    controller.set('recordingSegmentEndTime', null);
+    controller.set('currentSegmentStartTime', null);
+    controller.set('currentSegmentEndTime', null);
+
     controller.set('isRecording', false);
   },
   actions: {
@@ -31,6 +36,8 @@ export default Route.extend({
     },
     async record() {
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
+      this.get('controller').set('recordingSegmentStartTime', this.get('controller').currentSegmentStartTime);
+      this.get('controller').set('recordingSegmentEndTime', this.get('controller').currentSegmentEndTime);
       this.get('controller').set('isRecording', true);
       //console.log('Record', this.get('controller').recordingSegment + 1);
       let recorder = this.get('recorder');
@@ -54,9 +61,11 @@ export default Route.extend({
       au.src = audioURL;
       au.blob = blob;
       au.controls = true;
-      au.name = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      au.iname = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      au.name= `${this.get('controller').recordingSegmentStartTime}-${this.get('controller').recordingSegmentEndTime}`;
       var fileName = document.createElement('div');
-      fileName.innerHTML = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      fileName.innerHTML = au.name;
+      fileName.iname = au.iname;
       fileName.setAttribute('class', 'file-name');
       document.getElementById("storeFile").appendChild(au);
        document.getElementById("storeFile").appendChild(fileName);
