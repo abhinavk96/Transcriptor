@@ -24,7 +24,7 @@ export default Component.extend({
       this.segmentTimes.forEach((times, index) => {
         if(time>=times.start && time<=times.end) {
           if(this.currentSegment !== index)
-          this.set('currentSegment', index);
+            this.set('currentSegment', index);
           this.set('currentSegmentStartTime', times.start);
           this.set('currentSegmentEndTime', times.end);
           $('.segment.box').removeClass('current');
@@ -68,7 +68,7 @@ export default Component.extend({
 
         let duration = parseFloat(playlist.duration);
         $('body').on("click", ".btn-play",  ()=>{
-            recursivePlay(this.currentTime, this.segmentTimes[this.currentSegment]['end'], this.currentSegment);
+          recursivePlay(this.currentTime, this.segmentTimes[this.currentSegment]['end'], this.currentSegment);
         });
         $('body').on("click", ".btn-pause", ()=> {
           if(this.isLooping) {
@@ -88,8 +88,8 @@ export default Component.extend({
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
         let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
         let segmentBoxes = [];
-          $('#segment-container').css({"width": waveFormOuterWidth + "px"});
-          let startTimeSegments = [];
+        $('#segment-container').css({"width": waveFormOuterWidth + "px"});
+        let startTimeSegments = [];
         this.data.segmentsList.forEach((segment, index) => {
           //console.log(segment._attributes);
           startTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
@@ -106,21 +106,20 @@ export default Component.extend({
 
             $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
             if(this.fileNames.length) {
+              for(let i = 0; i < this.fileNames.length; i++) {
 
-
-            for(let i=0; i< this.fileNames.length; i++) {
-
-              if(`Segment :: ${index+1}.wav` === this.fileNames[i].iname) {
-                $(this.audioFileArray[i]).show();
-                $(this.fileNames[i]).show();
-
-              }
-              else {
-                $(this.audioFileArray[i]).hide();
-                $(this.fileNames[i]).hide();
+                if(`Segment :: ${index+1}.wav` === this.fileNames[i].iname) {
+                  $(this.audioFileArray[i]).show();
+                  $(this.fileNames[i]).show();
+                }
+                else {
+                  $(this.audioFileArray[i]).hide();
+                  $(this.fileNames[i]).hide();
+                }
               }
             }
-        }});
+          });
+        });
         //console.log(segmentBoxes);
         this.set('segmentTimes', startTimeSegments);
         segmentBoxes.forEach(segmentBox => {
@@ -164,8 +163,6 @@ export default Component.extend({
             ee.emit('select', parseFloat(nextSegment['start']), parseFloat(nextSegment['end']));
             $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex+1]).position().left-100);
             for(let i=0; i< this.fileNames.length; i++) {
-
-
               if(`Segment :: ${currentSegmentIndex+2}.wav` === this.fileNames[i].iname) {
                 $(this.audioFileArray[i]).show();
                 $(this.fileNames[i]).show();
@@ -185,16 +182,11 @@ export default Component.extend({
             ee.emit('pause');
             ee.emit('select', parseFloat(previousSegment['start']), parseFloat(previousSegment['end']));
             $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex-1]).position().left-100);
-
-
             for(let i=0; i< this.fileNames.length; i++) {
-
               if(`Segment :: ${currentSegmentIndex}.wav` === this.fileNames[i].iname) {
                 $(this.audioFileArray[i]).show();
                 $(this.fileNames[i]).show();
-
               }
-
               else {
                 $(this.audioFileArray[i]).hide();
                 $(this.fileNames[i]).hide();
@@ -203,8 +195,7 @@ export default Component.extend({
 
           }
         };
-
-         let findCurrentSegment = () => {
+        let findCurrentSegment = () => {
           var result = -1;
           this.segmentTimes.forEach((segment, i) => {
             // console.log(note, i);
@@ -226,7 +217,7 @@ export default Component.extend({
             ee.emit('pause');
           }
           else if(keys[17] && keys[37]) {
-           // console.log(playlist);
+            // console.log(playlist);
             playlist.pause()
               .then(() => {
                 moveToPreviousSegment();
@@ -240,8 +231,6 @@ export default Component.extend({
           }
         }
       });
-    })
-
+    }
   },
-
-}});
+});
