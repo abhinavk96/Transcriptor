@@ -7,10 +7,11 @@ export default Controller.extend({
       //console.log(name);
       $('.ui.' + name + '.modal').modal({ detachable:false, observeChanges:true, offset:this.modalOffset }).modal('show').modal('refresh');
     },
-    uploadFiles() {
+    uploadFiles(transcription) {
       console.log(this.audioFileArray);
       var xhr = new XMLHttpRequest();
       var formData = new FormData();
+      formData.append('transcription', transcription)
       xhr.onload = (r)=>{
         console.log('sent',r);
       };

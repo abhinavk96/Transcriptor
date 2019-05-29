@@ -34,7 +34,7 @@
             </div>
           {{/each}}
           {{#if fileNames}}
-            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles'}}>
+            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles' model.transcription.id}}>
               <i class="check icon"></i>
             </button>
           {{/if}}
