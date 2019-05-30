@@ -16,5 +16,6 @@ export default DS.Model.extend({
   creator: belongsTo('user'),
   editors:  hasMany('user', { inverse: null}),
   respeakJob: attr('string'),
-  respeakXml: attr('string')
+  respeakXml: attr('string'),
+  respeakDone: attr('boolean')
 });
