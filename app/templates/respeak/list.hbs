@@ -19,6 +19,9 @@
       <div class="ui mini header center aligned">Recorded Segments:</div>
       <div class="ui list">
         <center>
+          {{#if model.transcription.respeakFiles}}
+            {{model.transcription.respeakFiles}}
+          {{/if}}
           {{#each fileNames as |fileName|}}
             <div class="item">
               <div class="content">

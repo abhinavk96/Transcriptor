@@ -9,6 +9,8 @@ export default Controller.extend({
     },
     uploadFiles(transcription) {
       let listOfFileNames = [];
+      let previousRespokenSegments = transcription.get('respeakFiles');
+      previousRespokenSegments = JSON.parse(previousRespokenSegments);
       console.log(this.audioFileArray);
       for(let i = 0; i < this.audioFileArray.length; i++) {
         listOfFileNames[i] = this.audioFileArray[i].name;
@@ -25,6 +27,12 @@ export default Controller.extend({
           listOfUrls[i] = URLJson.urls[i];
         }
         var finalJson = {};
+        if(Object.keys(previousRespokenSegments).length) {
+          for(let i = 0; i < Object.keys(previousRespokenSegments).length; i++) {
+            finalJson[Object.keys(previousRespokenSegments)[i]] = Object.values(previousRespokenSegments)[i];
+            //console.log(finalJson, "Prev");
+          }
+        }
         for(let i = 0; i < this.audioFileArray.length; i++) {
           finalJson[listOfFileNames[i]] = listOfUrls[i];
         }
