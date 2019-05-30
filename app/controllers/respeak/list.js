@@ -8,12 +8,27 @@ export default Controller.extend({
       $('.ui.' + name + '.modal').modal({ detachable:false, observeChanges:true, offset:this.modalOffset }).modal('show').modal('refresh');
     },
     uploadFiles(transcription) {
+      let listOfFileNames = [];
       console.log(this.audioFileArray);
+      for(let i = 0; i < this.audioFileArray.length; i++) {
+        listOfFileNames[i] = this.audioFileArray[i].name;
+      }
       var xhr = new XMLHttpRequest();
       var formData = new FormData();
-      formData.append('transcription', transcription)
+      formData.append('transcription', transcription);
       xhr.onload = (r)=>{
         console.log('sent',r);
+        let URLJson = r.target.response;
+        let listOfUrls = [];
+        URLJson = JSON.parse(URLJson);
+        for(let  i =0; i < URLJson.urls.length-1; i++) {
+          listOfUrls[i] = URLJson.urls[i];
+        }
+        var finalJson = {};
+        for(let i = 0; i < this.audioFileArray.length; i++) {
+          finalJson[listOfFileNames[i]] = listOfUrls[i];
+        }
+        console.log(finalJson, "Final JSON");
       };
       xhr.open("POST", "http://localhost:5000/upload/files/multi", true);
       xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
