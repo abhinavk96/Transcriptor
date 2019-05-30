@@ -10,9 +10,11 @@
             {{#each model.allTranscriptions as |transcription|}}
               {{#if (eq transcription.status 'DONE')}}
                 <div class="ui item">
-                  <button class="ui icon basic blue mini button right floated" title="Sync">
-                    <i class="sync icon"></i>
-                  </button>
+                  {{#if transcription.respeakJob}}
+                    <button class="ui icon basic blue mini button right floated" title="Sync">
+                      <i class="sync icon"></i>
+                    </button>
+                  {{/if}}
                   <i class="ui blue large music icon"></i>
                   <div class="content">
                     <div class="meta">
