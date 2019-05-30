@@ -15,7 +15,7 @@ export default Controller.extend({
       }
       var xhr = new XMLHttpRequest();
       var formData = new FormData();
-      formData.append('transcription', transcription);
+      formData.append('transcription', transcription.id);
       xhr.onload = (r)=>{
         console.log('sent',r);
         let URLJson = r.target.response;
@@ -28,7 +28,16 @@ export default Controller.extend({
         for(let i = 0; i < this.audioFileArray.length; i++) {
           finalJson[listOfFileNames[i]] = listOfUrls[i];
         }
-        console.log(finalJson, "Final JSON");
+        // console.log(finalJson, "Final JSON");
+        finalJson = JSON.stringify(finalJson);
+        transcription.set('respeakFiles', finalJson);
+        transcription.save()
+          .then(() => {
+            console.log("Final JSON saved");
+          })
+          .catch(e => {
+            console.warn(e);
+          })
       };
       xhr.open("POST", "http://localhost:5000/upload/files/multi", true);
       xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
