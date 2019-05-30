@@ -20,7 +20,7 @@
       <div class="ui list">
         <center>
           {{#if model.transcription.respeakFiles}}
-            {{model.transcription.respeakFiles}}
+            {{respeakFileKeys}}
           {{/if}}
           {{#each fileNames as |fileName|}}
             <div class="item">

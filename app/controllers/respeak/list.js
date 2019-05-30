@@ -1,7 +1,14 @@
 import Controller from '@ember/controller';
-
+import { computed } from '@ember/object';
 export default Controller.extend({
   modalOffset: 200,
+  respeakFileKeys: computed('model.transcription.respeakFiles', function() {
+    let keys = [];
+   for (const key in JSON.parse(this.model.transcription.respeakFiles)) {
+     keys.push(key);
+   }
+   return keys
+  }),
   actions: {
     openModal: function(name) {
       //console.log(name);
