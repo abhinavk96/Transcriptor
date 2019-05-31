@@ -1,5 +1,28 @@
 # master
 
+# 2.2.0
+
+* no longer write to own symlinks created
+* add heimdall node specifically for handling files
+
+# 2.1.1
+
+* [BUGFIX] FORCE_PERSISTENCE_IN_CI should not override persist option (#149)
+
+# 2.1.0
+
+* disable cache in CI
+
+# 2.0.0
+
+* drop old node support
+* modernize codebase
+* upgrade dpes
+
+# 1.4.3
+
+* use node's own crypto library
+
 # 1.2.11
 
 * instrument walkSync times

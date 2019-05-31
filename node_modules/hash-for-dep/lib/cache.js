@@ -7,8 +7,8 @@ function makeCache() {
   // force the jit to immediately realize this object is a dictionary. This
   // should prevent the JIT from going wastefully one direction (fast mode)
   // then going another (dict mode) after
-  cache['foo'] = 1;
-  delete cache['foo'];
+  cache['_cache'] = 1;
+  delete cache['_cache'];
 
   return cache;
 }

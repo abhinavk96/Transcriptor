@@ -1,5 +1,13 @@
 # master
 
+# 2.2.3
+
+* skip applyPatches phase, if no patches exist
+
+# 2.2.2
+
+* Bump hash-for-dep fixing https://github.com/emberjs/ember.js/issues/17678 (#161)
+
 # 2.2.0
 
 * no longer write to own symlinks created

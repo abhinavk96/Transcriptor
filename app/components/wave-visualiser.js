@@ -958,7 +958,6 @@ export default Component.extend({
         // console.log('focusout')
       });
        function tag(popup) {
-         //console.log('hello');
         console.log(popup, popup.find('input'));
       }
       function tagAll(element) {

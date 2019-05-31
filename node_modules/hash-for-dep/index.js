@@ -1,49 +1,55 @@
 'use strict';
-var helpers = require('broccoli-kitchen-sink-helpers');
-var crypto = require('crypto');
-var statPathsFor = require('./lib/stat-paths-for');
+
+var hashTree = require('./lib/hash-tree');
 var heimdall = require('heimdalljs');
-var Cache = require('./lib/cache');
+var CacheGroup = require('./lib/cache-group');
 var cacheKey = require('./lib/cache-key');
 var logger = require('heimdalljs-logger')('hash-for-dep:');
+var ModuleEntry = require('./lib/module-entry');
 
-var CACHE = new Cache();
+/*
+ * hash-for-dep by default operates by caching all its findings until the
+ * current process exits.
+ *
+ * In some less common scenarios, it may be appropriate to skip this process
+ * cache. To do so, hashForDep can be invoked with the fourth argument = true.
+ *
+ * ```
+ * hashForDep(name, dir, null, true);
+ * ```
+ *
+ * Doing so will not interfere with the existing process cache. Instead, 
+ * the current invocation of hashForDep is given its own unique cache.
+ * This cache is used to prevent duplicate work within that invocation of
+ * hashForDep, and is discarded once the invocation completes.
+ */
+
+/*
+ * PROCESS_CACHE is the default cache used until the process exits.
+ */
+var PROCESS_CACHE = new CacheGroup();
 
 function HashForDepSchema() {
   this.paths = 0;
 }
 
-function cacheGet(key) {
-  return CACHE[key]
-}
-
-function cacheGet(key) {
-  return CACHE[key]
-}
-
-function cacheSet(key, value) {
-  CACHE[key] = value;
-  return value;
-}
 
 /* @public
  *
  * @method hashForDep
- * @param {String} name name of the dependency
+ * @param {String} name name of the dependency module.
  * @param {String} dir (optional) root dir to run the hash resolving from
  * @param {String} _hashTreeOverride (optional) private, used internally for testing
  * @param {Boolean} _skipCache (optional) intended to bypass cache
  * @return {String} a hash representing the stats of this module and all its descendents
  */
 module.exports = function hashForDep(name, dir, _hashTreeOverride, _skipCache) {
-  var skipCache = false;
-  var key, hash;
 
-  if (typeof _hashTreeOverride === 'function' || _skipCache === true) {
-    skipCache = true;
-  } else {
-    key = cacheKey(name, dir);
-  }
+  var skipCache = (typeof _hashTreeOverride === 'function' || _skipCache === true);
+
+  var caches = skipCache ? new CacheGroup() : PROCESS_CACHE;
+
+  var hashTreeFn = (_hashTreeOverride || hashTree);
 
   var heimdallNodeOptions = {
     name: 'hashForDep(' + name + ')',
@@ -51,58 +57,34 @@ module.exports = function hashForDep(name, dir, _hashTreeOverride, _skipCache) {
     dependencyName: name,
     rootDir: dir,
     skipCache: skipCache,
-    cacheKey: key
+    cacheKey: cacheKey(name, dir)
   };
 
-  var heimdallNode = heimdall.start(heimdallNodeOptions, HashForDepSchema);
+  var h = heimdall.start(heimdallNodeOptions, HashForDepSchema);
 
-  if (skipCache === false && CACHE.has(key)) {
-    logger.info('cache hit: %s', key);
-    hash = CACHE.get(key);
-  } else {
-    var start = Date.now();
-
-    var inputHashes = statPathsFor(name, dir).map(function(statPath) {
-      var hashFn = _hashTreeOverride || helpers.hashTree;
-
-      heimdallNode.stats.paths++;
-
-      var key = 'hashOf:' + statPath;
-      var hash;
-
-      if (skipCache === false && CACHE.has(key)) {
-        logger.debug('HIT', key)
-        hash = CACHE.get(key);
-      } else {
-        logger.debug('MISS', key)
-        hash = hashFn(statPath);
-        if (skipCache === false) {
-          CACHE.set(key, hash);
-        }
-      }
-      return hash;
-    }).join(0x00);
-
-    hash = crypto.createHash('sha1').
-      update(inputHashes).digest('hex');
-
-    logger.info('cache miss: %s, paths: %d, took: %dms', key, heimdallNode.stats.paths, Date.now() - start);
-
-    if (skipCache === false) {
-      CACHE.set(key, hash);
-    }
+  try {
+    var moduleEntry = ModuleEntry.locate(caches, name, dir, hashTreeFn);
+    return moduleEntry.getHash(h);
+  } finally {
+    h.stop();
   }
-
-  heimdallNode.stop();
-  return hash;
 };
 
 module.exports._resetCache = function() {
-  CACHE = new Cache();
+  PROCESS_CACHE = new CacheGroup();
 };
 
+// Expose the module entry cache for testing only
 Object.defineProperty(module.exports, '_cache', {
   get: function() {
-    return CACHE;
+    return PROCESS_CACHE.MODULE_ENTRY;
+  }
+});
+
+
+// Expose the process cache for testing only
+Object.defineProperty(module.exports, '_caches', {
+  get: function() {
+    return PROCESS_CACHE;
   }
 });

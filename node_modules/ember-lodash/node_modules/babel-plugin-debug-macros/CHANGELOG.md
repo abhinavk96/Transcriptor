@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.3.1 (2019-04-11)
+
+#### :rocket: Enhancement
+* [#77](https://github.com/ember-cli/babel-plugin-debug-macros/pull/77) Remove requirement for 'debugTools' options ([@chadhietala](https://github.com/chadhietala))
+
+#### Committers: 1
+- Chad Hietala ([@chadhietala](https://github.com/chadhietala))
+
 ## v0.3.0 (2019-01-29)
 
 #### :boom: Breaking Change

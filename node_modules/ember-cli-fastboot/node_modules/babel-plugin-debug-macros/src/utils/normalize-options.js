@@ -3,11 +3,11 @@
 const gt = require('semver').gt;
 
 function parseDebugTools(options) {
-  let debugTools = options.debugTools || {};
-
-  if (!debugTools) {
-    throw new Error('You must specify `debugTools.source`');
-  }
+  let debugTools = options.debugTools || {
+    isDebug: false,
+    source: '',
+    assertPredicateIndex: undefined,
+  };
 
   let isDebug = debugTools.isDebug;
   let debugToolsImport = debugTools.source;
@@ -15,10 +15,6 @@ function parseDebugTools(options) {
 
   if (options.envFlags && isDebug === undefined) {
     isDebug = options.envFlags.flags.DEBUG;
-  }
-
-  if (isDebug === undefined) {
-    throw new Error('You must specify `debugTools.isDebug`');
   }
 
   return {

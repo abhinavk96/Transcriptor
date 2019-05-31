@@ -26,7 +26,6 @@ export default JSONAPIAdapter.extend(AdapterFetch, CachedShoe, {
   session : service(),
 
   headers: computed('session.data.authenticated', function() {
-    console.log('hello', ENV);
     const headers = {
       'Content-Type': 'application/vnd.api+json'
     };

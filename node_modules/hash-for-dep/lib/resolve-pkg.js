@@ -1,5 +1,7 @@
 'use strict';
 var resolve = require('resolve');
+var resolvePackagePath = require('resolve-package-path');
+
 var path = require('path');
 
 /* @private
@@ -10,28 +12,13 @@ var path = require('path');
  * @return {String}
  */
 module.exports = function resolvePkg(name, dir) {
+  if (name.charAt(0) === '/') {
+    return name + '/package.json';
+  }
+
   if (name === './') {
     return path.resolve(name, 'package.json');
   }
 
-  if (name[name.length - 1] !== '/') {
-    name += '/';
-  }
-
-  if (name.charAt(0) === '/') {
-    return name + 'package.json';
-  }
-
-  try {
-    return resolve.sync(name + 'package.json', {
-      basedir: dir || __dirname,
-      preserveSymlinks: false
-    });
-  } catch(err) {
-    if (err.code === 'MODULE_NOT_FOUND') {
-      return null;
-    }
-
-    throw err;
-  }
+  return resolvePackagePath(name, dir || __dirname);
 };

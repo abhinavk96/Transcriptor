@@ -126,11 +126,12 @@ function timeSince(time) {
 Filter.prototype.build = function() {
   if (this._needsReset) {
     this.currentTree = new FSTree();
+    let instrumentation = heimdall.start('reset');
     rimraf.sync(this.outputPath);
     mkdirp.sync(this.outputPath);
+    instrumentation.stop();
   }
 
-  this._needsReset = true;
 
   let srcDir = this.inputPaths[0];
   let destDir = this.outputPath;
@@ -160,9 +161,16 @@ Filter.prototype.build = function() {
 
   instrumentation.stop();
 
+  if (patches.length === 0) {
+    // no work, exit early
+    return Promise.resolve();
+  } else {
+    // do actual work, that may fail
+    this._needsReset = true;
+  }
+
   // used with options.async = true to allow 'create' and 'change' operations to complete async
   const pendingWork = [];
-
   return heimdall.node('applyPatches', ApplyPatchesSchema, instrumentation => {
     let prevTime = process.hrtime();
     return mapSeries(patches, patch => {

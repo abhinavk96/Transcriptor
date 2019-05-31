@@ -28,7 +28,7 @@ module.exports = {
 
 Indicates whether a plugin with the given name is already present in the given target's Babel config.
 
-The `target` may be either an `EmberApp` or `Addon` instance, and `pluginName` may be the full or shorthand name for a Babel plugin (following Babel's [normalization rules](https://babeljs.io/docs/en/next/options#name-normalization)).
+The `target` may be an array of Babel plugin configurations, or an `EmberApp` or `Addon` instance, and `pluginName` may be the full or shorthand name for a Babel plugin (following Babel's [normalization rules](https://babeljs.io/docs/en/next/options#name-normalization)).
 
 Note that `hasPlugin` will make a best-effort attempt at determining a normalized plugin name to compare to for each existing configured plugin. If, for example, the path `/path/to/node_modules/@babel/plugin-proposal-class-features/lib/entry.js` (as returned by e.g. `require.resolve`) were one of the configured plugins, the package name would be extracted from that path and `hasPlugin(target, '@babel/proposal-class-features')` would return `true`.
 
@@ -40,7 +40,7 @@ Operates like `hasPlugin(target, pluginName)`, but returns the corresponding ent
 
 Adds a plugin to the given target's Babel config.
 
-The `target` may be either an `EmberApp` or `Addon` instance, and any necessary configuration containers (e.g. the `babel` hash or the `plugins` array) will be created on the target if they don't already exist.
+The `target` may be an array of Babel plugin configurations, or an `EmberApp` or `Addon` instance, and any necessary configuration containers (e.g. the `babel` hash or the `plugins` array) will be created on the target if they don't already exist.
 
 The `pluginConfig` may be either an array containing up to three elements or a plain string. The [Babel documentation](https://babeljs.io/docs/en/next/options#plugin-preset-entries) has further details on plugin configuration entries, but at a high level the array elements are:
  - A string identifying the plugin to add, either the name of the plugin (e.g. `@babel/plugin-proposal-class-properties`) or the full path to its entry point. Using `require.resolve` to produce the full path is recommended for addons that wish to add specific plugins to ensure that the plugin is loaded correctly by the parent's Babel instance.
