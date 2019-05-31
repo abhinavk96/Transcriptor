@@ -728,6 +728,12 @@ export default Component.extend({
           else if(e.which  === 75 && keys[17] || e.which === 74 & keys[17]) {
             e.preventDefault();
           }
+          $('.transcriptor').bind("DOMSubtreeModified",function(){
+            console.log('changed', this);
+            if (this.innerHTML.length<=1) {
+              this.innerHTML+=" ";
+            }
+          });
 
           handleKeys();
         });
@@ -1061,9 +1067,15 @@ export default Component.extend({
       setInterval(() => {
         document.getElementById('showMessage').innerHTML = "";
       }, 7000);
+      // setInterval(()=>{
+      //   $('.btn-annotations-download').click();
+      //   console.log('transcription saved');
+      // }, 15000);
+
       $('.annotation-box').each(index => {
         _this.annotationBoxLeftScrolls.push($('.annotation-box').eq(index).position().left);
       });
+
       // $('.annotation-lines').hover(function() {
       //
       // });

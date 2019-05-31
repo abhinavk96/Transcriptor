@@ -19,6 +19,9 @@
       <div class="ui mini header center aligned">Recorded Segments:</div>
       <div class="ui list">
         <center>
+          {{#if model.transcription.respeakFiles}}
+            {{respeakFileKeys}}
+          {{/if}}
           {{#each fileNames as |fileName|}}
             <div class="item">
               <div class="content">
@@ -34,7 +37,7 @@
             </div>
           {{/each}}
           {{#if fileNames}}
-            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles'}}>
+            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles' model.transcription}}>
               <i class="check icon"></i>
             </button>
           {{/if}}
@@ -43,7 +46,7 @@
     </div>
     <div class="twelve wide column">
       <div class="ui very relaxed container">
-          {{wave-visulaiser-respeak currentSegment=currentSegment data=model audioFileArray=audioFileArray fileNames=fileNames}}
+          {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames}}
           <div class="ui inline outer audio segment basic" id="outer-segment-container">
             <div class="audio segments" id="segment-container">
             </div>
