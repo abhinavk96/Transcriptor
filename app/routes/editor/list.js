@@ -3,7 +3,6 @@ import convert from 'npm:xml-js'
 import { inject as service } from '@ember/service';
 export default Route.extend({
   async model(params) {
-    console.log(params)
     const transcription = await this.store.findRecord('transcription', params.transcription_id);
     const rawXML = transcription.rawXml;
     let xmlSerializer = new XMLSerializer()
