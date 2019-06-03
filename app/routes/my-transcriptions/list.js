@@ -14,7 +14,6 @@ export default Route.extend({
     });
     var result = [];
 
-    console.log(params);
     if (params.transcription_type === 'created') {
       return {
         session: this.get('authManager.currentUser').get('transcriptions'),
