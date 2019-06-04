@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import ENV from 'transcriptor/config/environment';
 
 import convert from 'npm:xml-js'
 import WaveformPlaylist from 'npm:waveform-playlist';
@@ -337,7 +338,7 @@ export default Component.extend({
       playlist.load([
         {
           // "src": audioFile,
-          "src" : this.get('data.audio'),
+          "src" : `${ENV.APP.apiHost}/${this.get('data.audio')}`,
           "name": "Vocals",
           "fadeIn": {
             "duration": 0.5

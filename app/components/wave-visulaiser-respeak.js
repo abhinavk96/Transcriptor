@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import ENV from 'transcriptor/config/environment';
 
 import convert from 'npm:xml-js'
 import WaveformPlaylist from 'npm:waveform-playlist';
@@ -48,7 +49,7 @@ export default Component.extend({
       });
       playlist.load([
         {
-          "src": this.get('data.transcription.fileAddress'),
+          "src": `${ENV.APP.apiHost}/${this.get('data.transcription.fileAddress')}`,
           "name": "Vocals"
         }
       ]).then(() => {
