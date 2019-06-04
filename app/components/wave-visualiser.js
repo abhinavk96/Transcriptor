@@ -338,7 +338,7 @@ export default Component.extend({
       playlist.load([
         {
           // "src": audioFile,
-          "src" : `${ENV.APP.apiHost}/${this.get('data.audio')}`,
+          "src" : `${ENV.APP.apiHost}${this.get('data.audio')}`,
           "name": "Vocals",
           "fadeIn": {
             "duration": 0.5

@@ -49,7 +49,7 @@ export default Component.extend({
       });
       playlist.load([
         {
-          "src": `${ENV.APP.apiHost}/${this.get('data.transcription.fileAddress')}`,
+          "src": `${ENV.APP.apiHost}${this.get('data.transcription.fileAddress')}`,
           "name": "Vocals"
         }
       ]).then(() => {
