@@ -34,7 +34,7 @@ export default Controller.extend({
           listOfUrls[i] = URLJson.urls[i];
         }
         var finalJson = {};
-        if(Object.keys(previousRespokenSegments).length) {
+        if(previousRespokenSegments && Object.keys(previousRespokenSegments).length) {
           for(let i = 0; i < Object.keys(previousRespokenSegments).length; i++) {
             finalJson[Object.keys(previousRespokenSegments)[i]] = Object.values(previousRespokenSegments)[i];
             //console.log(finalJson, "Prev");
