@@ -5,9 +5,27 @@ export default Controller.extend({
   respeakFileKeys: computed('model.transcription.respeakFiles', function() {
     let keys = [];
    for (const key in JSON.parse(this.model.transcription.respeakFiles)) {
-     keys.push(key);
+     let fileName = document.createElement('div');
+     fileName.innerHTML = key;
+     fileName.iname = "Segment :: 1.wav";
+     fileName.setAttribute('class', 'file-name');
+     console.log(this.recordingSegment);
+     keys.push(fileName);
    }
    return keys
+  }),
+  respeakFileValues: computed('model.transcription.respeakFiles', function () {
+    let values = [];
+    for (const key in JSON.parse(this.model.transcription.respeakFiles)) {
+      let au = document.createElement('audio');
+      au.setAttribute('class', 'audio-file');
+      au.src = JSON.parse(this.model.transcription.respeakFiles)[key];
+      au.name = key;
+      au.iname = "Segment :: 1.wav";
+      au.controls = true;
+      values.push(au);
+    }
+    return values
   }),
   actions: {
     openModal: function(name) {

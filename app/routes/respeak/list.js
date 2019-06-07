@@ -8,10 +8,12 @@ export default Route.extend({
   },
   setupController(controller) {
     this._super(...arguments);
+    console.log(controller.get('respeakFileValues'), 'Printed');
+    console.log(controller.get('respeakFileKeys'), 'Printed');
     let recorder = this.get('recorder');
     recorder.set('recordingTime', false);
-    controller.set('audioFileArray', null);
-    controller.set('fileNames', null);
+    controller.set('audioFileArray', controller.get('respeakFileValues'));
+    controller.set('fileNames', controller.get('respeakFileKeys'));
     controller.set('recorder', recorder);
     controller.set('recordingSegment', null);
     controller.set('currentSegment', null);
@@ -79,7 +81,9 @@ export default Route.extend({
       for(let i = 0; i < $('.audio-file').length; i++) {
         if(i === lengthOfFiles-1) {
           $($('.audio-file')[i]).show();
+          console.log($($('.audio-file')[i]));
           $($('.file-name')[i]).show();
+          console.log($($('.file-name')[i]));
         }
         else {
           $($('.audio-file')[i]).hide();
