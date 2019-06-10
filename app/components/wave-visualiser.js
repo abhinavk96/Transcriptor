@@ -19,6 +19,7 @@ export default Component.extend({
   targetSpanEndTime: 0,
   wordLevelHighlighting: true,
   actualTimer: 0,
+  playlist: null,
   timeUpdate: false,
   isStep1Complete: false,
   isStep2Complete:false,
@@ -102,7 +103,6 @@ export default Component.extend({
       "hoverable":true,
       "position": "bottom left"
     });
-
     var _this = this;
     var $container = $("body");
     $container.on("dragenter", ".track-drop", function (e) {
@@ -203,6 +203,10 @@ export default Component.extend({
     this.send('loadWaveFile', this.get('audioFile'), this.get('notes'));
 
 
+  },
+  didDestroyElement() {
+    var ee = this.playlist.getEventEmitter();
+    ee.emit('clear');
   },
   actions:{
     openModal: function(name) {
@@ -305,7 +309,7 @@ export default Component.extend({
         }
       });
       // console.log('playlist defined', playlist);
-
+      this.set('playlist', playlist);
       var _this = this;
       playlist.load([
         {
