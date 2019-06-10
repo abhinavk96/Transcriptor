@@ -105,10 +105,6 @@ export default Component.extend({
 
     var _this = this;
     var $container = $("body");
-  // .playlist .annotations .annotations-text .annotation span
-
-
-
     $container.on("dragenter", ".track-drop", function (e) {
       e.preventDefault();
       e.target.classList.add("disabled");
@@ -130,17 +126,12 @@ export default Component.extend({
       var dropEvent = e.originalEvent;
 
       for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
-        // ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
-        // console.log('File dropped successfully');
-        // console.log(dropEvent.dataTransfer.files[i]);
         let file = dropEvent.dataTransfer.files[i]
         this.set('audioFile', file);
         this.send('loadWaveFile', this.get('audioFile'), this.get('notes'));
-        // _this.set('sourceAudioFile', dropEvent.dataTransfer.files[i]);
       }
     });
 
-// transcription drop
     $container.on("dragenter", ".transcription-drop", function (e) {
       e.preventDefault();
       e.target.classList.add("disabled");
@@ -163,15 +154,10 @@ export default Component.extend({
       const file = dropEvent.dataTransfer.files[0];
       let reader = new FileReader();
       reader.onload = function (e) {
-        // get file content
         var xml = e.target.result;
         console.log(xml);
-        // console.log(notes);
         var json = convert.xml2json(xml, {compact: true, spaces: 4});
-        // console.log(json);
-
         var obj = JSON.parse(json);
-        // console.log(obj);
         let segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
         let notes = [];
         let spanIndex = 0;
@@ -187,25 +173,17 @@ export default Component.extend({
           return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
         });
         segmentsList.forEach(function(segment) {
-          // console.log(segment.Word.length);
           let sentence = segment.Word;
           if (sentence.length) {
-            //handle sentences
             let line = "";
             sentence.forEach(function(word) {
-              // console.log("Start Time", word['_attributes']['stime']);
               line = `${line} <span class='transcriptor ${getColor(word['_attributes']['score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(word['_attributes']['stime'])}' data-etime='${parseFloat(word['_attributes']['stime']) + parseFloat(word['_attributes']['dur'])}'>${word['_text']}</span>`;
             });
-            // based on start and end times of words
-            // o = {begin: sentence[0]['-stime'], children: [], end: String((parseFloat(sentence[sentence.length-1]['-stime'])+ parseFloat(sentence[sentence.length-1]['-dur']))), id: notes.length, language: 'eng', lines: [line] }
             let o = {begin: segment['_attributes']['stime'], speaker: segment['_attributes']['spkrid'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
 
             notes.push(o);
           }
           else {
-            //handle single word sentences
-            //based on start and end times of words
-            // o = {begin: sentence['-stime'], children: [], end: String((parseFloat(sentence['-stime'])+ parseFloat(sentence['-dur']))), id: notes.length, language: 'eng', lines: [sentence['#text']] }
             let line = `<span class='transcriptor ${getColor(sentence['_attributes']['score'])}' id = 'o-${spanIndex++}' data-stime='${parseFloat(sentence['_attributes']['stime'])}' data-etime='${parseFloat(sentence['_attributes']['stime']) + parseFloat(sentence['_attributes']['dur'])}'>${sentence['_text']}</span>`
             let o = {begin: segment['_attributes']['stime'], speaker: segment['_attributes']['spkrid'], children: [], end: String((parseFloat(segment['_attributes']['stime'])+ parseFloat(segment['_attributes']['dur']))), id: String(notes.length), language: 'eng', lines: [line] };
             notes.push(o);
@@ -213,20 +191,14 @@ export default Component.extend({
 
 
         });
-        // console.log(notes);
         _this.set('notes', notes);
         _this.set('isStep1Complete', true);
-
 
       }
       reader.readAsText(file);
 
-      // for (var i = 0; i < dropEvent.dataTransfer.files.length; i++) {
-      //   ee.emit("newtrack", dropEvent.dataTransfer.files[i]);
-      // }
     });
 
-    // _this.set('notes', this.get('model.notes'));
     _this.set('isStep1Complete', true);
     this.send('loadWaveFile', this.get('audioFile'), this.get('notes'));
 
