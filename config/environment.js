@@ -23,6 +23,10 @@ module.exports = function(environment) {
       apiHost      : process.env.API_HOST || 'https://transcriptor.southeastasia.cloudapp.azure.com:5000',
 
     },
+    ASR: {
+      respeakHost: process.env.RESPEAK_HOST || '',
+      transcribingHost : process.env.TRANSCRIBING_HOST || ''
+    },
     fastboot: {
       hostWhitelist: [/.+/]
     }
