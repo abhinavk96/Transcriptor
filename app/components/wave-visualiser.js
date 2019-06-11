@@ -1,10 +1,11 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import ENV from 'transcriptor/config/environment';
-
+import { inject as service } from '@ember/service';
 import convert from 'npm:xml-js'
 import WaveformPlaylist from 'npm:waveform-playlist';
 export default Component.extend({
+  notify: service(),
   hoveredSpeaker: '2',
   disablePlay: true,
   loadProgress: 0,
@@ -497,7 +498,14 @@ export default Component.extend({
         });
 
         $container.on("click", ".btn-annotations-download", function () {
-          ee.emit("annotationsrequest", ENV.APP.apiHost, _this.data.transcription.id);
+          try {
+            ee.emit("annotationsrequest", ENV.APP.apiHost, _this.data.transcription.id);
+            _this.notify.success('Transcription saved successfully');
+          }
+          catch (e) {
+            _this.notify.error('An unexpected error has occurred');
+          }
+
         });
 
         $container.on("click", ".btn-loop", function () {
