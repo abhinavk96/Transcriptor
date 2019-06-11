@@ -15,7 +15,7 @@ You will need the following things properly installed on your computer.
 
 * `git clone <repository-url>` this repository
 * `cd transcriptor`
-* `npm install`
+* `yarn`
 
 ## Running / Development
 * export FASTBOOT_DISABLED=false
