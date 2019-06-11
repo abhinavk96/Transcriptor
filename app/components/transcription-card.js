@@ -21,6 +21,15 @@ export default Component.extend({
       if(event && event.srcElement) {
         $(event.srcElement).transition('pulse');
       }
+    },
+    deleteTranscription(transcription){
+      transcription.destroyRecord()
+        .then(()=> {
+          console.log('Transcription Deleted Successfully');
+        })
+        .catch(e=>{
+          console.log(e);
+        });
     }
   },
   didInsertElement() {
