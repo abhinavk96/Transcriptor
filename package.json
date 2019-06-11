@@ -51,6 +51,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^0.13.0",
     "ember-moment": "^7.8.1",
+    "ember-notify": "^6.0.0",
     "ember-qunit": "^3.4.1",
     "ember-resolver": "^5.0.1",
     "ember-simple-auth-token": "^4.0.6",
