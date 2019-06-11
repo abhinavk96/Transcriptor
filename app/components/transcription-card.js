@@ -10,6 +10,9 @@ export default Component.extend({
       console.log('Switching to create job route');
     },
     refreshStatus(status, model) {
+      if (this.isDestroyed) {
+        return;
+      }
       this.set('isLoading', true);
       later( () =>{
         model.reload()
