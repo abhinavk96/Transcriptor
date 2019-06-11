@@ -45,4 +45,4 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+All the configuration is controlled by an .env file inside the repository.
