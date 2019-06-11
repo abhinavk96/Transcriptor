@@ -74,7 +74,7 @@
     "ember-truth-helpers": "^2.1.0",
     "lodash": "^4.17.11",
     "object-to-formdata": "^1.6.4",
-    "waveform-playlist": "^3.0.4",
+    "waveform-playlist": "https://github.com/CosmicCoder96/waveform-playlist#production",
     "xml-js": "^1.6.11"
   }
 }
