@@ -10,20 +10,23 @@ export default Component.extend({
       console.log('Switching to create job route');
     },
     refreshStatus(status, model) {
-      if (this.isDestroyed) {
-        return;
-      }
-      this.set('isLoading', true);
-      later( () =>{
-        model.reload()
-        .then(() => {
-          this.set('isLoading', false);
-        });
-      }, 2000);
-      console.log(status);
-      if(event && event.srcElement) {
-        $(event.srcElement).transition('pulse');
-      }
+        if(this.isDestroyed) {
+          return;
+        }
+        this.set('isLoading', true);
+        later(() => {
+          model.reload()
+            .then(() => {
+              if (!this.isDestroyed) {
+
+                this.set('isLoading', false);
+              }
+            });
+        }, 2000);
+        console.log(status);
+        if (event && event.srcElement) {
+          $(event.srcElement).transition('pulse');
+        }
     },
     deleteTranscription(transcription){
       transcription.destroyRecord()
