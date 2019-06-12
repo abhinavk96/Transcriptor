@@ -42,7 +42,7 @@ export default Component.extend({
         zoomLevels: [1000],
         waveHeight: 100,
         container: document.getElementById("playlist"),
-        state: 'cursor',
+        state: 'select',
         colors: {
           waveOutlineColor: 'white',
           timeColor: 'grey',
@@ -181,9 +181,9 @@ export default Component.extend({
 
 
 
-        $('#respeak-area').mousedown((e) => {
-          ee.emit("statechange", "select");
-        });
+        // $('#visualise').mousedown((e) => {
+        //   ee.emit("statechange", "select");
+        // });
 
         ee.on("select", updateSelect);
         ee.on("timeupdate", updateTime);
