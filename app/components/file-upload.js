@@ -7,6 +7,7 @@ import ENV from 'transcriptor/config/environment';
 export default Component.extend({
   loader: service(),
   store: service(),
+  authManager: service(),
   isUploading: false,
   isTranscribing: false,
   uploadProgress:0,
@@ -112,7 +113,8 @@ export default Component.extend({
           name: audioData.name,
           asrName:JSON.parse(audio).ASR.file.fileName,
           fileAddress: JSON.parse(audio).url,
-          status: 'CREATED'
+          status: 'CREATED',
+          creator: this.authManager.currentUser
 
         });
         this.transcribe(newTranscription);
