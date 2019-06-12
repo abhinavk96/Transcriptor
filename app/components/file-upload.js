@@ -51,6 +51,7 @@ export default Component.extend({
       })
   },
   checkStatus(transcription) {
+
     let payload = {
       'name': transcription.asrName
     };
@@ -58,14 +59,16 @@ export default Component.extend({
       console.log('transcription status check');
       this.get('loader').post('/transcribe/status', payload)
         .then(response => {
-          console.log(response, response.response.status.slice(-1)[0].status);
-          if (response.response.status.slice(-1)[0].status !== this.transcriptionStatus) {
-            this.set('transcriptionStatus', response.response.status.slice(-1)[0].status);
-          }
-          if(response.response.status.slice(-1)[0].status=='DONE') {
-            this.set('transcriptionStatus', 'DONE');
-            this.generateXML(transcription);
-            clearInterval(timeloop);
+          if(!this.isDestroyed) {
+            console.log(response, response.response.status.slice(-1)[0].status);
+            if (response.response.status.slice(-1)[0].status !== this.transcriptionStatus) {
+              this.set('transcriptionStatus', response.response.status.slice(-1)[0].status);
+            }
+            if(response.response.status.slice(-1)[0].status=='DONE') {
+              this.set('transcriptionStatus', 'DONE');
+              this.generateXML(transcription);
+              clearInterval(timeloop);
+            }
           }
         })
         .catch(e => {console.log(e)})
