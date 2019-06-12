@@ -680,7 +680,6 @@ export default Component.extend({
                 textPart +
                 "<i class='small green edit icon' style='position: absolute; margin-top: 5px; margin-left: 2px'></i></span>" +
                 "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; right: -2px\" draggable=\"true\" class=\"resize-handle resize-e\"></div>";
-              //console.log(htmlPart);
             }
             catch (e) {
               console.warn('TODO: Find a better implementation which does not throw an exception');
@@ -952,6 +951,31 @@ export default Component.extend({
         $($($(this).parent()[0])[5]).css("visibility","hidden");
       });
       $('.annotation-lines').focusout(function(evt) {
+        console.log(evt.target.childNodes);
+        let childNodes = evt ? evt.target.childNodes : null;
+        let textNodeQueue = [];
+        if(childNodes) {
+          for (let node in childNodes) {
+            console.log(childNodes[node]);
+            if (childNodes[node].nodeName === "#text" && childNodes[node].textContent!= " ") {
+              textNodeQueue.push(document.createTextNode(" " + childNodes[node].textContent + " "));
+              console.log(textNodeQueue);
+              evt.target.removeChild(childNodes[node]);
+            }
+            else if (childNodes[node-1] && childNodes[node-1].tagName === "SPAN" && childNodes[node-1].hasAttribute('data-stime')) {
+              for (let text in textNodeQueue) {
+                if(textNodeQueue[text].textContent) {
+                  console.log('inserting text node here');
+
+                  childNodes[node-1].prepend(textNodeQueue[text].textContent);
+                  childNodes[node-1].normalize();
+                }
+              }
+              textNodeQueue = [];
+            }
+          }
+
+        }
         // console.log('focusout')
       });
        function tag(popup) {
