@@ -672,14 +672,20 @@ export default Component.extend({
               });
           }
           else if(keys[13]) {
-            var htmlPart = $('.annotation-box')[findCurrentSegment()].innerHTML;
-            var textPart = $('.annotation-box')[findCurrentSegment()].innerText;
-            $('.annotation-box')[findCurrentSegment()].innerHTML = "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; left: -2px\" draggable=\"true\" class=\"resize-handle resize-w\"></div>" +
-              "<span class=\"id\">" +
-              textPart +
-              "<i class='small green edit icon' style='position: absolute; margin-top: 5px; margin-left: 2px'></i></span>" +
-              "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; right: -2px\" draggable=\"true\" class=\"resize-handle resize-e\"></div>";
-            //console.log(htmlPart);
+            try {
+              var htmlPart = $('.annotation-box')[findCurrentSegment()].innerHTML;
+              var textPart = $('.annotation-box')[findCurrentSegment()].innerText;
+              $('.annotation-box')[findCurrentSegment()].innerHTML = "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; left: -2px\" draggable=\"true\" class=\"resize-handle resize-w\"></div>" +
+                "<span class=\"id\">" +
+                textPart +
+                "<i class='small green edit icon' style='position: absolute; margin-top: 5px; margin-left: 2px'></i></span>" +
+                "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; right: -2px\" draggable=\"true\" class=\"resize-handle resize-e\"></div>";
+              //console.log(htmlPart);
+            }
+            catch (e) {
+              console.warn('TODO: Find a better implementation which does not throw an exception');
+            }
+
           }
           else if(keys[17] && keys[37] || keys[17] && keys[74]) {
             //console.log("Move to previous segment");
