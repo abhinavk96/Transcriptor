@@ -18,6 +18,8 @@ export default Component.extend({
   segmentTimes: [],
   segmentBoxList: [],
   isLooping : false,
+  allowMouseUpEvent: false,
+
 
 
   actions: {
@@ -26,8 +28,8 @@ export default Component.extend({
         if(time>=times.start && time<=times.end) {
           if(this.currentSegment !== index)
             this.set('currentSegment', index);
-          this.set('currentSegmentStartTime', times.start);
-          this.set('currentSegmentEndTime', times.end);
+          // this.set('currentSegmentStartTime', times.start);
+          // this.set('currentSegmentEndTime', times.end);
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(index).addClass('current');
         }
@@ -57,6 +59,11 @@ export default Component.extend({
         this.set('isPlayerLoading', false);
         const ee = playlist.getEventEmitter();
         // ee.emit("automaticscroll", true);
+
+        var $container = $("body");
+
+        var startTime = 0;
+        var endTime = 0;
 
 
         let recursivePlay = (start,end, segment) => {
@@ -108,6 +115,7 @@ export default Component.extend({
             $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
             if(this.fileNames.length) {
               for(let i = 0; i < this.fileNames.length; i++) {
+                console.log(this.fileNames);
 
                 if(`Segment :: ${index+1}.wav` === this.fileNames[i].iname) {
                   $(this.audioFileArray[i]).show();
@@ -132,6 +140,52 @@ export default Component.extend({
           this.set('currentTime', time);
           this.send('setCurrentSegment', time);
         };
+
+        const that = this;
+
+
+        function updateSelect(start, end) {
+          startTime = start;
+          endTime = end;
+
+          if (start === end) return;
+          that.allowMouseUpEvent = true;
+
+
+
+          let segIndex = that.currentSegment;
+
+        }
+
+        $('#respeak-area').mouseup((e) => {
+
+          if (!that.allowMouseUpEvent) return;
+          that.allowMouseUpEvent = false;
+
+          this.set('currentSegmentStartTime', startTime);
+          this.set('currentSegmentEndTime', endTime);
+
+
+
+
+
+          ee.emit("statechange", "cursor");
+          e.preventDefault();
+          $('.segment.box').removeClass('current');
+        // todo more UI effects
+
+
+        });
+
+
+
+
+
+        $('#respeak-area').mousedown((e) => {
+          ee.emit("statechange", "select");
+        });
+
+        ee.on("select", updateSelect);
         ee.on("timeupdate", updateTime);
         ee.on('finished', function () {
           console.log("The cursor has reached the end of the selection !");

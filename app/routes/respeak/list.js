@@ -61,7 +61,8 @@ export default Route.extend({
       au.src = audioURL;
       au.blob = blob;
       au.controls = true;
-      au.iname = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      // au.iname = `Segment :: ${this.get('controller').recordingSegment}.wav`;
+      au.iname = `${this.get('controller').recordingSegmentStartTime}-${this.get('controller').recordingSegmentEndTime}.wav`;
       au.name= `${this.get('controller').recordingSegmentStartTime}-${this.get('controller').recordingSegmentEndTime}`;
       var fileName = document.createElement('div');
       fileName.innerHTML = au.name;
