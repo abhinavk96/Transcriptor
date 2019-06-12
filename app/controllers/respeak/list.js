@@ -54,7 +54,10 @@ export default Controller.extend({
             console.warn(e);
           })
       };
-      xhr.open("POST", "https://transcriptor.southeastasia.cloudapp.azure.com:5000/upload/files/multi", true);
+      // todo changes done here
+      // xhr.open("POST", "https://transcriptor.southeastasia.cloudapp.azure.com:5000/upload/files/multi", true);
+      xhr.open("POST", "http://localhost:5000/upload/files/multi", true);
+
       xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
       for(var file in this.audioFileArray) {
         if(this.audioFileArray[file].src) {

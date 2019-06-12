@@ -395,3 +395,7 @@ body ::-webkit-scrollbar-thumb
 .outer.audio.segment {
   padding: 0 !important;
 }
+
+#recorded-segments {
+  margin-top: 25px;
+}

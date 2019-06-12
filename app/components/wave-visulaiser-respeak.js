@@ -157,19 +157,22 @@ export default Component.extend({
 
         }
 
-        $('#respeak-area').mouseup((e) => {
+        $('#visualizer').mouseup((e) => {
+
+          console.log("CHECK");
 
           if (!that.allowMouseUpEvent) return;
           that.allowMouseUpEvent = false;
 
           this.set('currentSegmentStartTime', startTime);
           this.set('currentSegmentEndTime', endTime);
+          console.log(startTimeSegments);
 
 
 
 
 
-          ee.emit("statechange", "cursor");
+          // ee.emit("statechange", "cursor");
           e.preventDefault();
           $('.segment.box').removeClass('current');
         // todo more UI effects
@@ -177,12 +180,15 @@ export default Component.extend({
 
         });
 
-
-
-
-
-        // $('#visualise').mousedown((e) => {
+        // $('#visualizer').mousedown((e) => {
+        //
+        //
+        //
+        //
+        //   e.preventDefault();
         //   ee.emit("statechange", "select");
+        //
+        //
         // });
 
         ee.on("select", updateSelect);
