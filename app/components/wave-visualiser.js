@@ -713,12 +713,12 @@ export default Component.extend({
           else if(e.which  === 75 && keys[17] || e.which === 74 & keys[17]) {
             e.preventDefault();
           }
-          $('.transcriptor').bind("DOMSubtreeModified",function(){
-            console.log('changed', this);
-            if (this.innerHTML.length<=1) {
-              this.innerHTML+=" ";
-            }
-          });
+          // $('.transcriptor').bind("DOMSubtreeModified",function(){
+          //   console.log('changed', this);
+          //   if (this.innerHTML.length<=1) {
+          //     this.innerHTML+=" ";
+          //   }
+          // });
 
           handleKeys();
         });
