@@ -121,6 +121,9 @@ export default Route.extend({
 
     });
     var segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
+    if (!segmentsList.length) {
+      segmentsList= [segmentsList];
+    }
     segmentsList = segmentsList.sort(function(a,b) {
       return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
     });

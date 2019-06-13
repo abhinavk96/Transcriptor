@@ -27,6 +27,9 @@ export default Route.extend({
         return '';
       }
     }
+    if (!segmentsList.length) {
+      segmentsList= [segmentsList];
+    }
     segmentsList = segmentsList.sort(function(a,b) {
       return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
     });
