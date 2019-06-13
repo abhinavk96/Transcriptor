@@ -1,7 +1,7 @@
 # Transcriptor
 
 A web based transcription editor with wordlevel highlighting support along with speaker tagging.
-
+![Demo Gif](./docs/demo.gif)
 
 
 ## Prerequisites
