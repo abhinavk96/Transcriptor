@@ -35,6 +35,9 @@ export default Route.extend({
       let sentence = segment.Word;
       if (sentence.length) {
         //handle sentences
+        sentence = sentence.sort(function (a, b) {
+          return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
+        });
         let line = "";
         sentence.forEach(function(word) {
           // console.log("Start Time", word['_attributes']['stime']);
