@@ -15,7 +15,7 @@ export default DS.Model.extend({
   audioDuration: attr('string'),
   creator: belongsTo('user'),
   editors:  hasMany('user', { inverse: null}),
-  respeakJob: attr('string'),
+  respeakJob: attr('string', { readOnly: true}),
   respeakXml: attr('string'),
   respeakDone: attr('boolean'),
   respeakFiles: attr('string')
