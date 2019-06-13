@@ -950,8 +950,7 @@ export default Component.extend({
       $('.annotation-lines').blur(function(evt) {
         $($($(this).parent()[0])[5]).css("visibility","hidden");
       });
-      $('.annotation-lines').focusout(function(evt) {
-        console.log(evt.target.childNodes);
+      $('.annotation-lines').focusout((evt) => {
         let childNodes = evt ? evt.target.childNodes : null;
         let textNodeQueue = [];
         if(childNodes) {
@@ -974,9 +973,35 @@ export default Component.extend({
               textNodeQueue = [];
             }
           }
+          if (textNodeQueue.length > 0) {
+            let segmentId = $('.annotation-lines').index(evt.target);
+            let newSpan=document.createElement('span');
+            newSpan.setAttribute('data-stime', this.notes[segmentId].begin);
+            newSpan.setAttribute('data-etime', this.notes[segmentId].end);
+            newSpan.className = 'transcriptor';
+            newSpan.id = `o-${segmentId}`;
+            for (let text in textNodeQueue) {
+              if(textNodeQueue[text].textContent) {
+                console.log('inserting text node here');
 
+                newSpan.prepend(textNodeQueue[text].textContent);
+              }
+              newSpan.normalize();
+              evt.target.append(newSpan);
+            }
+          }
         }
-        // console.log('focusout')
+        console.log(evt.target.childNodes);
+        if (evt.target.childNodes && evt.target.childNodes.length === 1 && evt.target.childNodes[0].tagName === "BR") {
+          let segmentId = $('.annotation-lines').index(evt.target);
+          let newSpan=document.createElement('span');
+          newSpan.setAttribute('data-stime', this.notes[segmentId].begin);
+          newSpan.setAttribute('data-etime', this.notes[segmentId].end);
+          newSpan.className = 'transcriptor';
+          newSpan.id = `o-${segmentId}`;
+          newSpan.prepend(evt.target.childNodes[0]);
+          evt.target.prepend(newSpan);
+        }
       });
        function tag(popup) {
         console.log(popup, popup.find('input'));
