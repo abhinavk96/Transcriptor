@@ -9,6 +9,9 @@ export default Controller.extend({
     logout() {
       this.get('authManager').logout();
       // this.transitionToRoute('index');
+    },
+    handleKeys() {
+      return;
     }
   }
 

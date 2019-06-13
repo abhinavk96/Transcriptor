@@ -113,11 +113,19 @@ export default Route.extend({
       } else if (e.which === 75 && keys[17] || e.which === 74 & keys[17]) {
         e.preventDefault();
       }
-      this.send('handleKeys', keys);
+      try {
+        this.send('handleKeys', keys);
+      }
+      catch (e) {
+      }
     });
     $(document).keyup((e) => {
       delete keys[e.which];
-      this.send('handleKeys', keys);
+      try {
+        this.send('handleKeys', keys);
+      }
+      catch (e) {
+      }
 
     });
     var segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
