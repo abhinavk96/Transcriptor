@@ -12,9 +12,15 @@ export default Component.extend({
     this.send('loadWaveFile');
   },
 
+  didDestroyElement() {
+    var ee = this.playlist.getEventEmitter();
+    ee.emit('clear');
+  },
+
   currentSegment: null,
   currentSegmentStartTime: null,
   currentSegmentEndTime: null,
+  playlist: null,
   segmentTimes: [],
   segmentBoxList: [],
   isLooping : false,
@@ -47,6 +53,7 @@ export default Component.extend({
           fadeColor: 'black'
         }
       });
+      this.set('playlist', playlist);
       playlist.load([
         {
           "src": `${ENV.APP.apiHost}${this.get('data.transcription.fileAddress')}`,
