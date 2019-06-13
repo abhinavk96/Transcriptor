@@ -2,6 +2,9 @@ import Route from '@ember/routing/route';
 import convert from 'npm:xml-js';
 import { inject } from '@ember/service';
 export default Route.extend({
+  beforeModel() {
+    $(document).add('*').off();
+  },
   recorder: inject(),
   init() {
     let recorder = this.get('recorder');

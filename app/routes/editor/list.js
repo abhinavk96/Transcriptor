@@ -2,6 +2,9 @@ import Route from '@ember/routing/route';
 import convert from 'npm:xml-js'
 import { inject as service } from '@ember/service';
 export default Route.extend({
+  beforeModel() {
+    $(document).add('*').off();
+  },
   async model(params) {
     const transcription = await this.store.findRecord('transcription', params.transcription_id);
     const rawXML = transcription.rawXml;
