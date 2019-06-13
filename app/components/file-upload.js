@@ -7,6 +7,7 @@ import ENV from 'transcriptor/config/environment';
 export default Component.extend({
   loader: service(),
   store: service(),
+  authManager: service(),
   isUploading: false,
   isTranscribing: false,
   uploadProgress:0,
@@ -51,6 +52,7 @@ export default Component.extend({
       })
   },
   checkStatus(transcription) {
+
     let payload = {
       'name': transcription.asrName
     };
@@ -58,14 +60,16 @@ export default Component.extend({
       console.log('transcription status check');
       this.get('loader').post('/transcribe/status', payload)
         .then(response => {
-          console.log(response, response.response.status.slice(-1)[0].status);
-          if (response.response.status.slice(-1)[0].status !== this.transcriptionStatus) {
-            this.set('transcriptionStatus', response.response.status.slice(-1)[0].status);
-          }
-          if(response.response.status.slice(-1)[0].status=='DONE') {
-            this.set('transcriptionStatus', 'DONE');
-            this.generateXML(transcription);
-            clearInterval(timeloop);
+          if(!this.isDestroyed) {
+            console.log(response, response.response.status.slice(-1)[0].status);
+            if (response.response.status.slice(-1)[0].status !== this.transcriptionStatus) {
+              this.set('transcriptionStatus', response.response.status.slice(-1)[0].status);
+            }
+            if(response.response.status.slice(-1)[0].status=='DONE') {
+              this.set('transcriptionStatus', 'DONE');
+              this.generateXML(transcription);
+              clearInterval(timeloop);
+            }
           }
         })
         .catch(e => {console.log(e)})
@@ -109,7 +113,8 @@ export default Component.extend({
           name: audioData.name,
           asrName:JSON.parse(audio).ASR.file.fileName,
           fileAddress: JSON.parse(audio).url,
-          status: 'CREATED'
+          status: 'CREATED',
+          creator: this.authManager.currentUser
 
         });
         this.transcribe(newTranscription);

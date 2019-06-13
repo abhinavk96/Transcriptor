@@ -672,14 +672,19 @@ export default Component.extend({
               });
           }
           else if(keys[13]) {
-            var htmlPart = $('.annotation-box')[findCurrentSegment()].innerHTML;
-            var textPart = $('.annotation-box')[findCurrentSegment()].innerText;
-            $('.annotation-box')[findCurrentSegment()].innerHTML = "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; left: -2px\" draggable=\"true\" class=\"resize-handle resize-w\"></div>" +
-              "<span class=\"id\">" +
-              textPart +
-              "<i class='small green edit icon' style='position: absolute; margin-top: 5px; margin-left: 2px'></i></span>" +
-              "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; right: -2px\" draggable=\"true\" class=\"resize-handle resize-e\"></div>";
-            //console.log(htmlPart);
+            try {
+              var htmlPart = $('.annotation-box')[findCurrentSegment()].innerHTML;
+              var textPart = $('.annotation-box')[findCurrentSegment()].innerText;
+              $('.annotation-box')[findCurrentSegment()].innerHTML = "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; left: -2px\" draggable=\"true\" class=\"resize-handle resize-w\"></div>" +
+                "<span class=\"id\">" +
+                textPart +
+                "<i class='small green edit icon' style='position: absolute; margin-top: 5px; margin-left: 2px'></i></span>" +
+                "<div style=\"position: absolute; height: 30px; width: 10px; top: 0; right: -2px\" draggable=\"true\" class=\"resize-handle resize-e\"></div>";
+            }
+            catch (e) {
+              console.warn('TODO: Find a better implementation which does not throw an exception');
+            }
+
           }
           else if(keys[17] && keys[37] || keys[17] && keys[74]) {
             //console.log("Move to previous segment");
@@ -713,12 +718,12 @@ export default Component.extend({
           else if(e.which  === 75 && keys[17] || e.which === 74 & keys[17]) {
             e.preventDefault();
           }
-          $('.transcriptor').bind("DOMSubtreeModified",function(){
-            console.log('changed', this);
-            if (this.innerHTML.length<=1) {
-              this.innerHTML+=" ";
-            }
-          });
+          // $('.transcriptor').bind("DOMSubtreeModified",function(){
+          //   console.log('changed', this);
+          //   if (this.innerHTML.length<=1) {
+          //     this.innerHTML+=" ";
+          //   }
+          // });
 
           handleKeys();
         });
@@ -945,8 +950,58 @@ export default Component.extend({
       $('.annotation-lines').blur(function(evt) {
         $($($(this).parent()[0])[5]).css("visibility","hidden");
       });
-      $('.annotation-lines').focusout(function(evt) {
-        // console.log('focusout')
+      $('.annotation-lines').focusout((evt) => {
+        let childNodes = evt ? evt.target.childNodes : null;
+        let textNodeQueue = [];
+        if(childNodes) {
+          for (let node in childNodes) {
+            console.log(childNodes[node]);
+            if (childNodes[node].nodeName === "#text" && childNodes[node].textContent!= " ") {
+              textNodeQueue.push(document.createTextNode(" " + childNodes[node].textContent + " "));
+              console.log(textNodeQueue);
+              evt.target.removeChild(childNodes[node]);
+            }
+            else if (childNodes[node-1] && childNodes[node-1].tagName === "SPAN" && childNodes[node-1].hasAttribute('data-stime')) {
+              for (let text in textNodeQueue) {
+                if(textNodeQueue[text].textContent) {
+                  console.log('inserting text node here');
+
+                  childNodes[node-1].prepend(textNodeQueue[text].textContent);
+                  childNodes[node-1].normalize();
+                }
+              }
+              textNodeQueue = [];
+            }
+          }
+          if (textNodeQueue.length > 0) {
+            let segmentId = $('.annotation-lines').index(evt.target);
+            let newSpan=document.createElement('span');
+            newSpan.setAttribute('data-stime', this.notes[segmentId].begin);
+            newSpan.setAttribute('data-etime', this.notes[segmentId].end);
+            newSpan.className = 'transcriptor';
+            newSpan.id = `o-${segmentId}`;
+            for (let text in textNodeQueue) {
+              if(textNodeQueue[text].textContent) {
+                console.log('inserting text node here');
+
+                newSpan.prepend(textNodeQueue[text].textContent);
+              }
+              newSpan.normalize();
+              evt.target.append(newSpan);
+            }
+          }
+        }
+        console.log(evt.target.childNodes);
+        if (evt.target.childNodes && evt.target.childNodes.length === 1 && evt.target.childNodes[0].tagName === "BR") {
+          let segmentId = $('.annotation-lines').index(evt.target);
+          let newSpan=document.createElement('span');
+          newSpan.setAttribute('data-stime', this.notes[segmentId].begin);
+          newSpan.setAttribute('data-etime', this.notes[segmentId].end);
+          newSpan.className = 'transcriptor';
+          newSpan.id = `o-${segmentId}`;
+          newSpan.prepend(evt.target.childNodes[0]);
+          evt.target.prepend(newSpan);
+        }
       });
        function tag(popup) {
         console.log(popup, popup.find('input'));
