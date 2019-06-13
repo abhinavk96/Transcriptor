@@ -13,6 +13,7 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](https://ember-cli.com/)
 * [Google Chrome](https://google.com/chrome/)
 * [Yarn](https://yarnpkg.com/en/)
+
 ## Installation
 
 * `git clone <repository-url>` this repository
