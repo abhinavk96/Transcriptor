@@ -1,6 +1,8 @@
 # Transcriptor
 
-A web based transcription editor.
+A web based transcription editor with wordlevel highlighting support along with speaker tagging.
+
+
 
 ## Prerequisites
 
@@ -19,7 +21,6 @@ You will need the following things properly installed on your computer.
 * cp config/.env.example config/.env
 * Ensure `API_HOST` variable is refactored to point to the server where [api server](https://github.com/CosmicCoder96/transcription-server) is running.
 ## Running / Development
-* export FASTBOOT_DISABLED=false
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
@@ -46,4 +47,11 @@ Make use of the many generators for code, try `ember help generate` for more det
 ### Deploying
 
 Ember build files are stored inside a static directory `dist` located in the root directory of the project.
-The `index.html` can be served by a server like Nginx 
+The `index.html` can be served by a server like Nginx. 
+
+## Important note
+The project uses a customised version of the npm package [waveform playlist](https://github.com/naomiaro/waveform-playlist). The source code of the customized package is stored [here](https://github.com/CosmicCoder96/waveform-playlist).
+Changes which require modification of the library, should be made to this fork. The package then needs to be republished, and reinstalled to reflect the changes.
+
+
+
