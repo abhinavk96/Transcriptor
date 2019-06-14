@@ -12,9 +12,15 @@ export default Component.extend({
     this.send('loadWaveFile');
   },
 
+  didDestroyElement() {
+    var ee = this.playlist.getEventEmitter();
+    ee.emit('clear');
+  },
+
   currentSegment: null,
   currentSegmentStartTime: null,
   currentSegmentEndTime: null,
+  playlist: null,
   segmentTimes: [],
   segmentBoxList: [],
   isLooping : false,
@@ -49,6 +55,7 @@ export default Component.extend({
           fadeColor: 'black'
         }
       });
+      this.set('playlist', playlist);
       playlist.load([
         {
           "src": `${ENV.APP.apiHost}${this.get('data.transcription.fileAddress')}`,
@@ -223,14 +230,16 @@ export default Component.extend({
             ee.emit('pause');
             ee.emit('select', parseFloat(nextSegment['start']), parseFloat(nextSegment['end']));
             $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex+1]).position().left-100);
-            for(let i=0; i< this.fileNames.length; i++) {
-              if(`Segment :: ${currentSegmentIndex+2}.wav` === this.fileNames[i].iname) {
-                $(this.audioFileArray[i]).show();
-                $(this.fileNames[i]).show();
-              }
-              else {
-                $(this.audioFileArray[i]).hide();
-                $(this.fileNames[i]).hide();
+            if(this.fileNames && this.fileNames.length) {
+              for(let i=0; i< this.fileNames.length; i++) {
+                if(`Segment :: ${currentSegmentIndex+2}.wav` === this.fileNames[i].iname) {
+                  $(this.audioFileArray[i]).show();
+                  $(this.fileNames[i]).show();
+                }
+                else {
+                  $(this.audioFileArray[i]).hide();
+                  $(this.fileNames[i]).hide();
+                }
               }
             }
           }
@@ -243,17 +252,17 @@ export default Component.extend({
             ee.emit('pause');
             ee.emit('select', parseFloat(previousSegment['start']), parseFloat(previousSegment['end']));
             $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex-1]).position().left-100);
-            for(let i=0; i< this.fileNames.length; i++) {
-              if(`Segment :: ${currentSegmentIndex}.wav` === this.fileNames[i].iname) {
-                $(this.audioFileArray[i]).show();
-                $(this.fileNames[i]).show();
-              }
-              else {
-                $(this.audioFileArray[i]).hide();
-                $(this.fileNames[i]).hide();
+            if(this.fileNames && this.fileNames.length) {
+              for (let i = 0; i < this.fileNames.length; i++) {
+                if (`Segment :: ${currentSegmentIndex}.wav` === this.fileNames[i].iname) {
+                  $(this.audioFileArray[i]).show();
+                  $(this.fileNames[i]).show();
+                } else {
+                  $(this.audioFileArray[i]).hide();
+                  $(this.fileNames[i]).hide();
+                }
               }
             }
-
           }
         };
         let findCurrentSegment = () => {

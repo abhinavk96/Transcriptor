@@ -2,6 +2,9 @@ import Route from '@ember/routing/route';
 import convert from 'npm:xml-js'
 import { inject as service } from '@ember/service';
 export default Route.extend({
+  beforeModel() {
+    $(document).add('*').off();
+  },
   async model(params) {
     const transcription = await this.store.findRecord('transcription', params.transcription_id);
     const rawXML = transcription.rawXml;
@@ -26,6 +29,9 @@ export default Route.extend({
       else {
         return '';
       }
+    }
+    if (!segmentsList.length) {
+      segmentsList= [segmentsList];
     }
     segmentsList = segmentsList.sort(function(a,b) {
       return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));

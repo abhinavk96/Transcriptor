@@ -2,6 +2,9 @@ import Route from '@ember/routing/route';
 import convert from 'npm:xml-js';
 import { inject } from '@ember/service';
 export default Route.extend({
+  beforeModel() {
+    $(document).add('*').off();
+  },
   recorder: inject(),
   init() {
     let recorder = this.get('recorder');
@@ -113,14 +116,25 @@ export default Route.extend({
       } else if (e.which === 75 && keys[17] || e.which === 74 & keys[17]) {
         e.preventDefault();
       }
-      this.send('handleKeys', keys);
+      try {
+        this.send('handleKeys', keys);
+      }
+      catch (e) {
+      }
     });
     $(document).keyup((e) => {
       delete keys[e.which];
-      this.send('handleKeys', keys);
+      try {
+        this.send('handleKeys', keys);
+      }
+      catch (e) {
+      }
 
     });
     var segmentsList = obj.AudioDoc.SegmentList.SpeechSegment;
+    if (!segmentsList.length) {
+      segmentsList= [segmentsList];
+    }
     segmentsList = segmentsList.sort(function(a,b) {
       return (parseFloat(a['_attributes']['stime']) - parseFloat(b['_attributes']['stime']));
     });
