@@ -2,11 +2,12 @@ import Route from '@ember/routing/route';
 import convert from 'npm:xml-js';
 import { inject } from '@ember/service';
 export default Route.extend({
-  beforeModel() {
-    $(document).add('*').off();
-  },
+  // beforeModel() {
+  //   $(document).add('*').off();
+  // },
   recorder: inject(),
   init() {
+
     let recorder = this.get('recorder');
   },
   setupController(controller) {
@@ -38,6 +39,7 @@ export default Route.extend({
       }
     },
     async record() {
+      console.log('recording begins');
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
       this.get('controller').set('recordingSegmentStartTime', this.get('controller').currentSegmentStartTime);
       this.get('controller').set('recordingSegmentEndTime', this.get('controller').currentSegmentEndTime);
@@ -45,6 +47,7 @@ export default Route.extend({
       //console.log('Record', this.get('controller').recordingSegment + 1);
       let recorder = this.get('recorder');
       await recorder.start();
+      console.log('recording begins');
 
 
     },

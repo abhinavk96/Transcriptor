@@ -118,9 +118,11 @@ export default Component.extend({
 
           segmentBox.addEventListener("click",  ()=> {
             ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
+            this.set('currentSegmentStartTime', parseFloat(segment._attributes.stime));
+            this.set('currentSegmentEndTime', parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
 
             $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
-            if(this.fileNames.length) {
+            if(this.fileNames && this.fileNames.length) {
               for(let i = 0; i < this.fileNames.length; i++) {
                 console.log(this.fileNames);
 
