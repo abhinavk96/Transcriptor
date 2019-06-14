@@ -43,7 +43,7 @@ export default Controller.extend({
         for(let i = 0; i < this.audioFileArray.length; i++) {
           finalJson[listOfFileNames[i]] = listOfUrls[i];
         }
-        // console.log(finalJson, "Final JSON");
+        console.log(finalJson, "Final JSON");
         finalJson = JSON.stringify(finalJson);
         transcription.set('respeakFiles', finalJson);
         transcription.save()
