@@ -108,11 +108,13 @@ export default Component.extend({
         let segmentBoxes = [];
         $('#segment-container').css({"width": waveFormOuterWidth + "px"});
         let startTimeSegments = [];
+        let globalStartTimeSegments = [];
         let segArrays = {};
         let segElements = {};
         this.data.segmentsList.forEach((segment, index) => {
           //console.log(segment._attributes);
           startTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
+          globalStartTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
           let segmentBox = document.createElement('div');
           segmentBox.classList.add("segment", "box");
           segmentBox.innerHTML = index+1;
@@ -189,6 +191,30 @@ export default Component.extend({
         // todo more UI effects
         });
 
+        function updateSelected() {
+          globalStartTimeSegments.sort((a,b) => parseFloat(a['start']) - parseFloat(b['start']));
+          let $children = $('#segment-container').children();
+          $children.sort((a, b) => parseFloat($(a).css('left')) - parseFloat($(b).css('left')));
+          console.log($children);
+          $children.each(function(){
+            $('#segment-container').append(this);
+          });
+          console.log(($('#segment-container')));
+
+          let queryObj = {"start": parseFloat(startTime), "end": parseFloat(endTime)};
+          let obtainedIndex = -1;
+
+          for(var i=0; i < globalStartTimeSegments.length; i++) {
+            if (globalStartTimeSegments[i]['start'] === startTime) {
+              obtainedIndex = i;
+              break;
+            }
+          }
+
+          $('.segment.box').removeClass('current');
+          $('.segment.box').eq(obtainedIndex).addClass('current');
+        }
+
         function getSubSegmentIndex(parentIndex) {
           let queryArray = segArrays[parentIndex];
           let selectedTime = that.currentTime;
@@ -236,6 +262,27 @@ export default Component.extend({
             segArrays[currIndex].splice(subSegmentIndex, 1);
           }
 
+          // REMOVING FROM THE GLOBAL ARRAY WHICH WOULD BE USED IN UpdateSelected() method
+          let queryTimeObj = {'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)};
+          let queryIndex = -1;
+          console.log('business');
+          console.log(queryTimeObj);
+          console.log(globalStartTimeSegments);
+          console.log('business end');
+
+          globalStartTimeSegments.forEach((el, index) => {
+            if (el['start'] === prevSegStart && el['end'] === prevSegEnd) {
+              queryIndex = index;
+            }
+          });
+
+
+          if (queryIndex > -1) {
+            console.log('DELETED');
+            globalStartTimeSegments.splice(queryIndex, 1);
+            console.log('Element ' + queryIndex + ' successfully deleted');
+          }
+          // END OF REMOVAL ELEMENT
 
 
           let newStartTimeObj = {'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime)};
@@ -247,7 +294,14 @@ export default Component.extend({
           segArrays[currIndex].push(newMiddleTimeObj);
           segArrays[currIndex].push(newEndTimeObj);
 
+          //PUSHING THE SAME ELEMENTS IN GLOBAL START TIME SEGMENTS AS WELL
+          globalStartTimeSegments.push(newStartTimeObj);
+          globalStartTimeSegments.push(newMiddleTimeObj);
+          globalStartTimeSegments.push(newEndTimeObj);
+          //END OF PUSHING
+
           updateSegments();
+          updateSelected();
         }
 
 
