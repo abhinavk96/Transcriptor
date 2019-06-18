@@ -49,6 +49,21 @@
       </div>
     </div>
     <div class="twelve wide column">
+
+
+      <div class="playlist-toolbar ui-sticky">
+        <div class="ui  basic icon buttons">
+          <button title="Play" class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
+            <i class="play green icon"></i>
+          </button>
+          <button title="Pause" class="btn-pause ui  orange  button">
+            <i class="ui pause orange icon"></i>
+          </button>
+        </div>
+      </div>
+
+
+
       <div class="ui very relaxed container">
         <div id = "visualizer">
           {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames}}

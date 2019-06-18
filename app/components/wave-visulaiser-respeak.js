@@ -25,6 +25,7 @@ export default Component.extend({
   segmentBoxList: [],
   isLooping : false,
   allowMouseUpEvent: false,
+  playlistCursor: 0,
 
 
 
@@ -39,7 +40,9 @@ export default Component.extend({
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(index).addClass('current');
         }
-      })
+        this.set('playlistCursor', time);
+      });
+      console.log(time);
     },
     loadWaveFile() {
       this.set('isPlayerLoading', true);
@@ -53,7 +56,8 @@ export default Component.extend({
           waveOutlineColor: 'white',
           timeColor: 'grey',
           fadeColor: 'black'
-        }
+        },
+
       });
       this.set('playlist', playlist);
       playlist.load([
@@ -74,17 +78,31 @@ export default Component.extend({
 
 
         let recursivePlay = (start,end, segment) => {
+          console.log('in the recursive play');
+          console.log(start, end, segment);
           if (this.currentSegment!==segment) {
             return;
           }
           ee.emit('play',start,end);
+          updateSelected();
         };
 
+        // let playStatus = false;
+
+        // if (playStatus && this.playlistCursor === endTime) {
+        //   recursivePlay(startTime, endTime, this.currentSegment);
+        // }
 
         let duration = parseFloat(playlist.duration);
         $('body').on("click", ".btn-play",  ()=>{
-          recursivePlay(this.currentTime, this.segmentTimes[this.currentSegment]['end'], this.currentSegment);
+          console.log('clicked on play');
+          console.log(startTime, endTime, this.currentSegment);
+          recursivePlay(startTime, endTime, this.currentSegment);
+          // playStatus = true;
+          // console.log(startTime, endTime, that.playlistCursor);
         });
+
+
         $('body').on("click", ".btn-pause", ()=> {
           if(this.isLooping) {
             this.set('isLooping', false);
@@ -103,7 +121,7 @@ export default Component.extend({
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
         let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
 
-        let DIVISION_THRESHOLD = timePixel * 0.5;
+        let DIVISION_THRESHOLD = 1;
 
         let segmentBoxes = [];
         $('#segment-container').css({"width": waveFormOuterWidth + "px"});
@@ -129,6 +147,8 @@ export default Component.extend({
             ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
             this.set('currentSegmentStartTime', parseFloat(segment._attributes.stime));
             this.set('currentSegmentEndTime', parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
+            updateSelected();
+
 
             $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
             if(this.fileNames && this.fileNames.length) {
@@ -191,6 +211,9 @@ export default Component.extend({
         // todo more UI effects
         });
 
+
+
+
         function updateSelected() {
           globalStartTimeSegments.sort((a,b) => parseFloat(a['start']) - parseFloat(b['start']));
           let $children = $('#segment-container').children();
@@ -203,6 +226,17 @@ export default Component.extend({
 
           let queryObj = {"start": parseFloat(startTime), "end": parseFloat(endTime)};
           let obtainedIndex = -1;
+
+          //todo remove duplicates
+          globalStartTimeSegments = globalStartTimeSegments.reduce((acc, current) => {
+            const x = acc.find(item => item.start === current.start);
+            if (!x) {
+              return acc.concat([current]);
+            } else {
+              return acc;
+            }
+          }, []);
+
 
           for(var i=0; i < globalStartTimeSegments.length; i++) {
             if (globalStartTimeSegments[i]['start'] === startTime) {
@@ -273,6 +307,7 @@ export default Component.extend({
           globalStartTimeSegments.forEach((el, index) => {
             if (el['start'] === prevSegStart && el['end'] === prevSegEnd) {
               queryIndex = index;
+
             }
           });
 
@@ -289,16 +324,38 @@ export default Component.extend({
           let newMiddleTimeObj = {'start': parseFloat(newSegStartTime), 'end': parseFloat(newSegEndTime)};
           let newEndTimeObj = {'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)};
 
+          //todo handle smaller in the boundary cases
 
-          segArrays[currIndex].push(newStartTimeObj);
-          segArrays[currIndex].push(newMiddleTimeObj);
-          segArrays[currIndex].push(newEndTimeObj);
+          if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD && parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
+            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)});
+            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)});
+          }
 
-          //PUSHING THE SAME ELEMENTS IN GLOBAL START TIME SEGMENTS AS WELL
-          globalStartTimeSegments.push(newStartTimeObj);
-          globalStartTimeSegments.push(newMiddleTimeObj);
-          globalStartTimeSegments.push(newEndTimeObj);
-          //END OF PUSHING
+          else if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD) {
+            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime)});
+            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime)});
+
+            segArrays[currIndex].push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)});
+            globalStartTimeSegments.push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)});
+          }
+
+          else if (parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
+            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime)});
+            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime)});
+
+            segArrays[currIndex].push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd)});
+            globalStartTimeSegments.push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd)});
+          }
+
+          else {
+            segArrays[currIndex].push(newStartTimeObj);
+            segArrays[currIndex].push(newMiddleTimeObj);
+            segArrays[currIndex].push(newEndTimeObj);
+
+            globalStartTimeSegments.push(newStartTimeObj);
+            globalStartTimeSegments.push(newMiddleTimeObj);
+            globalStartTimeSegments.push(newEndTimeObj);
+          }
 
           updateSegments();
           updateSelected();
@@ -353,7 +410,9 @@ export default Component.extend({
         function addSegment(parentIndex, subIndex, startEndObj) {
           let segmentBox = document.createElement('div');
           segmentBox.classList.add("segment", "box");
-          segmentBox.innerHTML = (parseInt(parentIndex) + 1).toString() + "." + (parseInt(subIndex) + 1).toString();
+          if (segArrays[parentIndex].length < 2) segmentBox.innerHTML = (parseInt(parentIndex) + 1).toString();
+          else segmentBox.innerHTML = (parseInt(parentIndex) + 1).toString() + "." + (parseInt(subIndex) + 1).toString();
+
           segmentBox.style.left = `${timePixel * parseFloat(startEndObj['start'])}px`;
           segmentBox.style.width = `${timePixel * (parseFloat(startEndObj['end']) - parseFloat(startEndObj['start']))}px`;
 
@@ -362,41 +421,14 @@ export default Component.extend({
 
           segmentBox.addEventListener("click", () => {
             ee.emit("select", parseFloat(startEndObj['start']), parseFloat(startEndObj['end']));
-            this.set('currentSegmentStartTime', parseFloat(startEndObj['start']));
-            this.set('currentSegmentEndTime', parseFloat(startEndObj['end']));
+            that.currentSegmentStartTime = parseFloat(startEndObj['start']);
+            that.currentSegmentEndTime = parseFloat(startEndObj['end']);
+            updateSelected();
           });
 
           $('#segment-container').append(segmentBox);
           console.log('the length is: ' + segElements[parentIndex].length);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // $('#visualizer').mousedown((e) => {
         //
@@ -411,9 +443,15 @@ export default Component.extend({
 
         ee.on("select", updateSelect);
         ee.on("timeupdate", updateTime);
-        ee.on('finished', function () {
-          console.log("The cursor has reached the end of the selection !");
 
+        function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        ee.on('finished', async function () {
+          console.log("The cursor has reached the end of the selection !");
+          await sleep(10);
+          $('.btn-play').click();
         });
         let keys = {};
         $(document).keydown(function (e) {
