@@ -102,9 +102,14 @@ export default Component.extend({
         });
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
         let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
+
+        let DIVISION_THRESHOLD = timePixel * 0.5;
+
         let segmentBoxes = [];
         $('#segment-container').css({"width": waveFormOuterWidth + "px"});
         let startTimeSegments = [];
+        let segArrays = {};
+        let segElements = {};
         this.data.segmentsList.forEach((segment, index) => {
           //console.log(segment._attributes);
           startTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
@@ -115,6 +120,8 @@ export default Component.extend({
           segmentBox.style.width=`${timePixel*parseFloat(segment._attributes.dur)}px`;
           //console.log(segmentBox.style.width);
           segmentBoxes.push(segmentBox);
+          segArrays[index] = [{'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)}];
+          segElements[index] = [segmentBox];
 
           segmentBox.addEventListener("click",  ()=> {
             ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
@@ -176,18 +183,166 @@ export default Component.extend({
           this.set('currentSegmentStartTime', startTime);
           this.set('currentSegmentEndTime', endTime);
           console.log(startTimeSegments);
-
-
-
-
-
           // ee.emit("statechange", "cursor");
           e.preventDefault();
           $('.segment.box').removeClass('current');
         // todo more UI effects
-
-
         });
+
+        function getSubSegmentIndex(parentIndex) {
+          let queryArray = segArrays[parentIndex];
+          let selectedTime = that.currentTime;
+          let subIndex = -1;
+
+          queryArray.forEach((times, index) => {
+            if(selectedTime>=times.start && selectedTime<=times.end) {
+              subIndex = index;
+              //todo there will be some funny cases here; need to break once it's done
+
+              //  todo update this function to set selected classes
+              // $('.segment.box').removeClass('current');
+              // $('.segment.box').eq(index).addClass('current');
+              console.log('the subIndex is: ' + subIndex);
+            }
+          });
+
+          return subIndex;
+        }
+
+
+        function handleDivision() {
+          console.log('in handleDivision()');
+
+          const currIndex = that.currentSegment;
+
+          console.log('the current index in handleDivision() is: ' + currIndex);
+
+          let newSegStartTime = startTime;
+          let newSegEndTime = endTime;
+
+          let subSegmentIndex = getSubSegmentIndex(currIndex);
+          console.log('the subSegmentIndex is: ' + subSegmentIndex);
+
+          segArrays[currIndex].sort((a, b) =>
+            parseFloat(a['start']) - parseFloat(b['start'])
+          );
+          // NEW SEGMENTS'S BOUNDARIES:
+          let prevSegStart = segArrays[currIndex][subSegmentIndex]['start'];
+          let prevSegEnd = segArrays[currIndex][subSegmentIndex]['end'];
+
+          //todo ignoring the threshold thing for now -> needs discussion
+
+          if (subSegmentIndex >= 0) {
+            segArrays[currIndex].splice(subSegmentIndex, 1);
+          }
+
+
+
+          let newStartTimeObj = {'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime)};
+          let newMiddleTimeObj = {'start': parseFloat(newSegStartTime), 'end': parseFloat(newSegEndTime)};
+          let newEndTimeObj = {'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)};
+
+
+          segArrays[currIndex].push(newStartTimeObj);
+          segArrays[currIndex].push(newMiddleTimeObj);
+          segArrays[currIndex].push(newEndTimeObj);
+
+          updateSegments();
+        }
+
+
+        function handleMerging() {
+          const currIndex = that.currentSegment;
+
+          let querySegStartTime = startTime;
+          let querySegEndTime = endTime;
+
+          let queryTimeObj = {'start': parseFloat(querySegStartTime), 'end': parseFloat(querySegEndTime)};
+          let queryIndex = segArrays[currIndex].indexOf(queryTimeObj);
+
+          // todo delete the required segment
+          if (queryIndex > -1) {
+            segArrays[currIndex].splice(queryIndex, 1);
+            console.log('Element ' + queryIndex + ' successfully deleted');
+          }
+
+          updateSegments();
+        }
+
+        function updateSegments() {
+          const currIndex = that.currentSegment;
+
+          console.log('the current index in updateSegments is : ' + currIndex);
+
+
+          //todo remove previous all children of the segments
+
+          segElements[currIndex].forEach((el) => {
+            el.parentNode.removeChild(el);
+          });
+
+        //  emptying the earlier segElements[currIndex] array
+          segElements[currIndex] = [];
+
+        //  todo first sort the elements so that segment names are in order
+          segArrays[currIndex].sort((a, b) =>
+            parseFloat(a['start']) - parseFloat(b['start'])
+          );
+
+          console.log(segArrays[currIndex]);
+
+          segArrays[currIndex].forEach((startEndObj, index) => {
+            addSegment(currIndex, index, startEndObj);
+          })
+        }
+
+        function addSegment(parentIndex, subIndex, startEndObj) {
+          let segmentBox = document.createElement('div');
+          segmentBox.classList.add("segment", "box");
+          segmentBox.innerHTML = (parseInt(parentIndex) + 1).toString() + "." + (parseInt(subIndex) + 1).toString();
+          segmentBox.style.left = `${timePixel * parseFloat(startEndObj['start'])}px`;
+          segmentBox.style.width = `${timePixel * (parseFloat(startEndObj['end']) - parseFloat(startEndObj['start']))}px`;
+
+          //todo push new DOM element in the corresponding array
+          segElements[parentIndex].push(segmentBox);
+
+          segmentBox.addEventListener("click", () => {
+            ee.emit("select", parseFloat(startEndObj['start']), parseFloat(startEndObj['end']));
+            this.set('currentSegmentStartTime', parseFloat(startEndObj['start']));
+            this.set('currentSegmentEndTime', parseFloat(startEndObj['end']));
+          });
+
+          $('#segment-container').append(segmentBox);
+          console.log('the length is: ' + segElements[parentIndex].length);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // $('#visualizer').mousedown((e) => {
         //
@@ -215,6 +370,15 @@ export default Component.extend({
           }
           else if(e.which  === 75 && keys[17] || e.which === 74 & keys[17]) {
             e.preventDefault();
+          }
+          else if(e.which === 68 &&  keys[17]) {
+            e.preventDefault();
+            console.log('Ctrl + D');
+          }
+
+          else if(e.which === 77 &&  keys[17]) {
+            e.preventDefault();
+            console.log('Ctrl + M');
           }
 
           handleKeys();
@@ -300,6 +464,13 @@ export default Component.extend({
               .then(()=>{
                 moveToNextSegment();
               });
+          }
+          else if(keys[17] && keys[68]) {
+            handleDivision();
+          }
+
+          else if(keys[17] && keys[77]) {
+            handleMerging();
           }
         }
       });
