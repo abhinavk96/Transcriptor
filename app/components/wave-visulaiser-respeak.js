@@ -37,12 +37,12 @@ export default Component.extend({
             this.set('currentSegment', index);
           // this.set('currentSegmentStartTime', times.start);
           // this.set('currentSegmentEndTime', times.end);
-          $('.segment.box').removeClass('current');
-          $('.segment.box').eq(index).addClass('current');
+          // $('.segment.box').removeClass('current');
+          // $('.segment.box').eq(index).addClass('current');
         }
         this.set('playlistCursor', time);
       });
-      console.log(time);
+      // console.log(time);
     },
     loadWaveFile() {
       this.set('isPlayerLoading', true);
@@ -84,7 +84,7 @@ export default Component.extend({
             return;
           }
           ee.emit('play',start,end);
-          updateSelected();
+          // updateSelected();
         };
 
         // let playStatus = false;
@@ -97,6 +97,7 @@ export default Component.extend({
         $('body').on("click", ".btn-play",  ()=>{
           console.log('clicked on play');
           console.log(startTime, endTime, this.currentSegment);
+          updateSelected();
           recursivePlay(startTime, endTime, this.currentSegment);
           // playStatus = true;
           // console.log(startTime, endTime, that.playlistCursor);
@@ -207,7 +208,7 @@ export default Component.extend({
           console.log(startTimeSegments);
           // ee.emit("statechange", "cursor");
           e.preventDefault();
-          $('.segment.box').removeClass('current');
+          // $('.segment.box').removeClass('current');
         // todo more UI effects
         });
 
@@ -247,6 +248,7 @@ export default Component.extend({
 
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(obtainedIndex).addClass('current');
+          console.log('the obtained index is: ' + obtainedIndex);
         }
 
         function getSubSegmentIndex(parentIndex) {
