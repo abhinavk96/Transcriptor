@@ -79,7 +79,7 @@ export default Component.extend({
 
         let recursivePlay = (start,end, segment) => {
           console.log('in the recursive play');
-          console.log(start, end, segment);
+          // console.log(start, end, segment);
           if (this.currentSegment!==segment) {
             return;
           }
@@ -96,7 +96,7 @@ export default Component.extend({
         let duration = parseFloat(playlist.duration);
         $('body').on("click", ".btn-play",  ()=>{
           console.log('clicked on play');
-          console.log(startTime, endTime, this.currentSegment);
+          // console.log(startTime, endTime, this.currentSegment);
           updateSelected();
           recursivePlay(startTime, endTime, this.currentSegment);
           // playStatus = true;
@@ -198,14 +198,14 @@ export default Component.extend({
 
         $('#visualizer').mouseup((e) => {
 
-          console.log("CHECK");
+          // console.log("CHECK");
 
           if (!that.allowMouseUpEvent) return;
           that.allowMouseUpEvent = false;
 
           this.set('currentSegmentStartTime', startTime);
           this.set('currentSegmentEndTime', endTime);
-          console.log(startTimeSegments);
+          // console.log(startTimeSegments);
           // ee.emit("statechange", "cursor");
           e.preventDefault();
           // $('.segment.box').removeClass('current');
@@ -219,11 +219,11 @@ export default Component.extend({
           globalStartTimeSegments.sort((a,b) => parseFloat(a['start']) - parseFloat(b['start']));
           let $children = $('#segment-container').children();
           $children.sort((a, b) => parseFloat($(a).css('left')) - parseFloat($(b).css('left')));
-          console.log($children);
+          // console.log($children);
           $children.each(function(){
             $('#segment-container').append(this);
           });
-          console.log(($('#segment-container')));
+          // console.log(($('#segment-container')));
 
           let queryObj = {"start": parseFloat(startTime), "end": parseFloat(endTime)};
           let obtainedIndex = -1;
@@ -248,7 +248,7 @@ export default Component.extend({
 
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(obtainedIndex).addClass('current');
-          console.log('the obtained index is: ' + obtainedIndex);
+          // console.log('the obtained index is: ' + obtainedIndex);
         }
 
         function getSubSegmentIndex(parentIndex) {
@@ -264,7 +264,7 @@ export default Component.extend({
               //  todo update this function to set selected classes
               // $('.segment.box').removeClass('current');
               // $('.segment.box').eq(index).addClass('current');
-              console.log('the subIndex is: ' + subIndex);
+              // console.log('the subIndex is: ' + subIndex);
             }
           });
 
@@ -273,17 +273,17 @@ export default Component.extend({
 
 
         function handleDivision() {
-          console.log('in handleDivision()');
+          // console.log('in handleDivision()');
 
           const currIndex = that.currentSegment;
 
-          console.log('the current index in handleDivision() is: ' + currIndex);
+          // console.log('the current index in handleDivision() is: ' + currIndex);
 
           let newSegStartTime = startTime;
           let newSegEndTime = endTime;
 
           let subSegmentIndex = getSubSegmentIndex(currIndex);
-          console.log('the subSegmentIndex is: ' + subSegmentIndex);
+          // console.log('the subSegmentIndex is: ' + subSegmentIndex);
 
           segArrays[currIndex].sort((a, b) =>
             parseFloat(a['start']) - parseFloat(b['start'])
@@ -301,10 +301,10 @@ export default Component.extend({
           // REMOVING FROM THE GLOBAL ARRAY WHICH WOULD BE USED IN UpdateSelected() method
           let queryTimeObj = {'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)};
           let queryIndex = -1;
-          console.log('business');
-          console.log(queryTimeObj);
-          console.log(globalStartTimeSegments);
-          console.log('business end');
+          // console.log('business');
+          // console.log(queryTimeObj);
+          // console.log(globalStartTimeSegments);
+          // console.log('business end');
 
           globalStartTimeSegments.forEach((el, index) => {
             if (el['start'] === prevSegStart && el['end'] === prevSegEnd) {
@@ -315,9 +315,9 @@ export default Component.extend({
 
 
           if (queryIndex > -1) {
-            console.log('DELETED');
+            // console.log('DELETED');
             globalStartTimeSegments.splice(queryIndex, 1);
-            console.log('Element ' + queryIndex + ' successfully deleted');
+            // console.log('Element ' + queryIndex + ' successfully deleted');
           }
           // END OF REMOVAL ELEMENT
 
@@ -366,26 +366,97 @@ export default Component.extend({
 
         function handleMerging() {
           const currIndex = that.currentSegment;
-
+          let subSegments = segArrays[currIndex];
           let querySegStartTime = startTime;
           let querySegEndTime = endTime;
 
-          let queryTimeObj = {'start': parseFloat(querySegStartTime), 'end': parseFloat(querySegEndTime)};
-          let queryIndex = segArrays[currIndex].indexOf(queryTimeObj);
+          let beginIndex = -1;
+          let endIndex = -1;
 
-          // todo delete the required segment
-          if (queryIndex > -1) {
-            segArrays[currIndex].splice(queryIndex, 1);
-            console.log('Element ' + queryIndex + ' successfully deleted');
+          let globalBeginIndex = -1;
+          let globalEndIndex = -1;
+
+          subSegments.sort((a, b) =>
+            parseFloat(a['start']) - parseFloat(b['start'])
+          );
+
+
+          subSegments.forEach((el, index) => {
+            if (querySegStartTime >= el.start && querySegStartTime <= el.end) beginIndex = index;
+            if (querySegEndTime >= el.start && querySegEndTime <= el.end) endIndex = index;
+          });
+
+          console.log(JSON.stringify(subSegments));
+          console.log('the indices: ' + beginIndex.toString() + ' ' + endIndex.toString());
+
+          // new merged segment
+          let newMergedSegment = {'start': subSegments[beginIndex].start, 'end': subSegments[endIndex].end};
+          console.log('merged Segment: ' + JSON.stringify(newMergedSegment));
+
+
+          // ##################### Start of deletion from globalStartTimeSegments
+
+          //sorting
+          globalStartTimeSegments.sort((a, b) => parseFloat(a['start']) - parseFloat(b['start']));
+          //remove duplicates
+
+
+          globalStartTimeSegments = globalStartTimeSegments.reduce((acc, current) => {
+            const x = acc.find(item => item.start === current.start);
+            if (!x) {
+              return acc.concat([current]);
+            } else {
+              return acc;
+            }
+          }, []);
+          //todo something wrong
+          console.log(globalStartTimeSegments);
+
+          //find indices which are to be removed
+          globalStartTimeSegments.forEach((el, index) => {
+            if (el['start'] === subSegments[beginIndex].start && el['end'] === subSegments[beginIndex].end) {
+              globalBeginIndex = index;
+            }
+          });
+          globalStartTimeSegments.forEach((element, index) => {
+            if (element.start === subSegments[endIndex].start && element.end === subSegments[endIndex].end) {
+              globalEndIndex = index;
+            }
+          });
+
+          //splice one by one
+          for (var j = globalEndIndex; j >= globalBeginIndex; j--) {
+            globalStartTimeSegments.splice(j, 1);
           }
 
+          // delete previous segments from segArrays
+          for (var i = endIndex; i >= beginIndex; i--) {
+            segArrays[currIndex].splice(i, 1);
+          }
+
+          console.log('after deleting: ' + JSON.stringify(segArrays[currIndex]));
+          // ##################### End of deletion from globalStartTimeSegments
+
+
+          // ##################### Push new merged segment to both the local and global house0keeping arrays
+
+          segArrays[currIndex].push(newMergedSegment);
+          globalStartTimeSegments.push(newMergedSegment);
+
+          // #################### End of pushing of the new segments
+
+          startTime = newMergedSegment.start;
+          endTime = newMergedSegment.end;
+
           updateSegments();
+          ee.emit("select", parseFloat(startTime),parseFloat(endTime));
+          updateSelected();
         }
 
         function updateSegments() {
           const currIndex = that.currentSegment;
 
-          console.log('the current index in updateSegments is : ' + currIndex);
+          // console.log('the current index in updateSegments is : ' + currIndex);
 
 
           //todo remove previous all children of the segments
@@ -402,7 +473,7 @@ export default Component.extend({
             parseFloat(a['start']) - parseFloat(b['start'])
           );
 
-          console.log(segArrays[currIndex]);
+          // console.log(segArrays[currIndex]);
 
           segArrays[currIndex].forEach((startEndObj, index) => {
             addSegment(currIndex, index, startEndObj);
@@ -429,7 +500,7 @@ export default Component.extend({
           });
 
           $('#segment-container').append(segmentBox);
-          console.log('the length is: ' + segElements[parentIndex].length);
+          // console.log('the length is: ' + segElements[parentIndex].length);
         }
 
         // $('#visualizer').mousedown((e) => {
