@@ -196,21 +196,23 @@ export default Component.extend({
 
         }
 
-        $('#visualizer').mouseup((e) => {
+        //todo complete change of functionality
 
-          // console.log("CHECK");
-
-          if (!that.allowMouseUpEvent) return;
-          that.allowMouseUpEvent = false;
-
-          this.set('currentSegmentStartTime', startTime);
-          this.set('currentSegmentEndTime', endTime);
-          // console.log(startTimeSegments);
-          // ee.emit("statechange", "cursor");
-          e.preventDefault();
-          // $('.segment.box').removeClass('current');
-        // todo more UI effects
-        });
+        // $('#visualizer').mouseup((e) => {
+        //
+        //   // console.log("CHECK");
+        //
+        //   if (!that.allowMouseUpEvent) return;
+        //   that.allowMouseUpEvent = false;
+        //
+        //   this.set('currentSegmentStartTime', startTime);
+        //   this.set('currentSegmentEndTime', endTime);
+        //   // console.log(startTimeSegments);
+        //   // ee.emit("statechange", "cursor");
+        //   e.preventDefault();
+        //   // $('.segment.box').removeClass('current');
+        // // todo more UI effects
+        // });
 
 
 
@@ -225,7 +227,6 @@ export default Component.extend({
           });
           // console.log(($('#segment-container')));
 
-          let queryObj = {"start": parseFloat(startTime), "end": parseFloat(endTime)};
           let obtainedIndex = -1;
 
           //todo remove duplicates
@@ -246,8 +247,16 @@ export default Component.extend({
             }
           }
 
+
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(obtainedIndex).addClass('current');
+
+          that.set('currentSegmentStartTime', globalStartTimeSegments[obtainedIndex].start);
+          that.set('currentSegmentEndTime', globalStartTimeSegments[obtainedIndex].end);
+          ee.emit("select", parseFloat(globalStartTimeSegments[obtainedIndex].start),parseFloat(globalStartTimeSegments[obtainedIndex].end));
+
+
+
           // console.log('the obtained index is: ' + obtainedIndex);
         }
 
