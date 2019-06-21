@@ -8487,7 +8487,14 @@ jquery-deferred@^0.3.0:
   resolved "https://registry.yarnpkg.com/jquery-deferred/-/jquery-deferred-0.3.1.tgz#596eca1caaff54f61b110962b23cafea74c35355"
   integrity sha1-WW7KHKr/VPYbEQlisjyv6nTDU1U=
 
-jquery@^3.3.1, jquery@x.*:
+jquery-resizable-dom@^0.32.0:
+  version "0.32.0"
+  resolved "https://registry.yarnpkg.com/jquery-resizable-dom/-/jquery-resizable-dom-0.32.0.tgz#85269fdc604fce3e0b15fe65f2ebb7ca7d4dd247"
+  integrity sha512-xohe50mzkN7VZ3YWHZ9B/Ntr/jv/IEK/17CkebRkTtE1yHgqn/0UKPCQ38O15dkWmDnkh/6D7k+o3sJnarbfIg==
+  dependencies:
+    jquery "~3.3.1"
+
+jquery@^3.3.1, jquery@x.*, jquery@~3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==

@@ -130,10 +130,15 @@ export default Component.extend({
         let globalStartTimeSegments = [];
         let segArrays = {};
         let segElements = {};
+        let segWrappers = [];
         this.data.segmentsList.forEach((segment, index) => {
           //console.log(segment._attributes);
           startTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
           globalStartTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
+
+          let segmentWrapper = document.createElement('div');
+          segmentWrapper.classList.add("segment-wrapper");
+
           let segmentBox = document.createElement('div');
           segmentBox.classList.add("segment", "box");
           segmentBox.innerHTML = index+1;
@@ -143,6 +148,9 @@ export default Component.extend({
           segmentBoxes.push(segmentBox);
           segArrays[index] = [{'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)}];
           segElements[index] = [segmentBox];
+
+          $(segmentWrapper).append(segmentBox);
+          segWrappers.push(segmentWrapper);
 
           segmentBox.addEventListener("click",  ()=> {
             ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
@@ -168,10 +176,19 @@ export default Component.extend({
             }
           });
         });
+
+        $(".panel-left").resizable({
+          handleSelector: ".splitter",
+          resizeHeight: false
+        });
+
         //console.log(segmentBoxes);
         this.set('segmentTimes', startTimeSegments);
-        segmentBoxes.forEach(segmentBox => {
-          $('#segment-container').append(segmentBox);
+        // segmentBoxes.forEach(segmentBox => {
+        //   $('#segment-container').append(segmentBox);
+        // });
+        segWrappers.forEach(segmentWrapper => {
+          $('#segment-container').append(segmentWrapper);
         });
         this.set('segmentBoxList', segmentBoxes);
         //can do stuff with the playlist.
@@ -498,6 +515,22 @@ export default Component.extend({
           segmentBox.style.left = `${timePixel * parseFloat(startEndObj['start'])}px`;
           segmentBox.style.width = `${timePixel * (parseFloat(startEndObj['end']) - parseFloat(startEndObj['start']))}px`;
 
+          //todo should be some workaround
+          // $(segmentBox).css({position: "relative"});
+
+          $(segmentBox).prepend("<div class = 'resizer'></div>")
+            .resizable({
+            resizeHeight: false,
+            resizeWidthFrom: 'right',
+            handleSelector: '',
+            onDragStart: function (e, $el, opt) {
+              let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]);
+              manageMovableSide(subSegmentIndex);
+              console.log('the handler is: ' + opt.handleSelector);
+              return $(e.target).hasClass("resizer");
+            }
+          });
+
           //todo push new DOM element in the corresponding array
           segElements[parentIndex].push(segmentBox);
 
@@ -508,8 +541,45 @@ export default Component.extend({
             updateSelected();
           });
 
-          $('#segment-container').append(segmentBox);
+          // $(segmentBox).resizable({
+          //   // handleSelector: ".splitter",
+          //   resizeHeight: false
+          // });
+          $(segWrappers[parentIndex]).append(segmentBox);
+          // $('#segment-container').append(segmentBox);
+
           // console.log('the length is: ' + segElements[parentIndex].length);
+        }
+
+        function manageMovableSide(subSegmentIndex) {
+          const currSegment = that.currentSegment;
+          console.log('the  ' + currSegment);
+          if (subSegmentIndex + 1 <= segElements[currSegment].length - 1) {
+            $(segElements[currSegment][subSegmentIndex + 1]).resizable({
+              resizeHeight: false,
+              resizeWidth: true,
+              resizeWidthFrom: 'left',
+              handleSelector: '',
+              onDragStart: function (e, $el, opt) {
+                return $(e.target).hasClass("resizer");
+              },
+              onDragEnd: function (e, $el, opt) {
+                $(segElements[currSegment][subSegmentIndex + 1]).resizable({
+                  resizeHeight: false,
+                  resizeWidthFrom: 'right',
+                  handleSelector: '',
+                  onDragStart: function (e, $el, opt) {
+                    let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]);
+                    manageMovableSide(subSegmentIndex);
+                    return $(e.target).hasClass("resizer");
+                  }
+                })
+              }
+            })
+          }
+          // console.log('drag start');
+          // console.log(getSubSegmentIndex(currSegment));
+
         }
 
         // $('#visualizer').mousedown((e) => {

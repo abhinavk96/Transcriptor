@@ -378,6 +378,13 @@ body ::-webkit-scrollbar-thumb
   text-align: center;
   /*float:left;*/
 }
+
+.segment-wrapper {
+  display: flex;
+  flex-direction: row;
+
+}
+
 .segment.box.current {
   border-color: dodgerblue;
   border-style: solid;
@@ -398,4 +405,15 @@ body ::-webkit-scrollbar-thumb
 
 #recorded-segments {
   margin-top: 25px;
+}
+
+.resizer {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  bottom: 0;
+  left: auto;
+  width: 16px;
+  cursor: col-resize;
+  z-index: 1000;
 }
