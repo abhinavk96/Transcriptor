@@ -172,7 +172,7 @@ export default Component.extend({
               for(let i = 0; i < this.fileNames.length; i++) {
                 console.log(this.fileNames);
 
-                if(`Segment :: ${index+1}.wav` === this.fileNames[i].iname) {
+                if(`${startTime.toString()}-${endTime.toString()}.wav` === this.fileNames[i].iname) {
                   $(this.audioFileArray[i]).show();
                   $(this.fileNames[i]).show();
                 }
@@ -271,6 +271,8 @@ export default Component.extend({
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(obtainedIndex).addClass('current');
 
+          console.log($('.segment.box'));
+
           console.log('the obtained index is: ' + obtainedIndex);
           that.set('currentSegmentStartTime', globalStartTimeSegments[obtainedIndex].start);
           that.set('currentSegmentEndTime', globalStartTimeSegments[obtainedIndex].end);
@@ -322,6 +324,7 @@ export default Component.extend({
           }
           catch (e) {
             that.notify.error(`Division possible only within a Segment.` );
+            return;
           }
 
           let subSegmentIndex = getSubSegmentIndex(currIndex);
@@ -336,6 +339,7 @@ export default Component.extend({
           }
           catch (e) {
             that.notify.error(`Division possible only within a Segment.` );
+            return;
           }
 
           let prevSegStart = segArrays[currIndex][subSegmentIndex]['start'];
@@ -685,6 +689,7 @@ export default Component.extend({
                   globalStartTimeSegments.push(affectedObject);
 
                   startTime = movedObject.start;
+                  endTime = movedObject.end;
 
                   updateSegments();
                   updateSelected();
@@ -702,6 +707,22 @@ export default Component.extend({
             startTime = parseFloat(startEndObj['start']);
             endTime = parseFloat(startEndObj['end']);
             updateSelected();
+
+            $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
+            if(that.fileNames && that.fileNames.length) {
+              for(let i = 0; i < that.fileNames.length; i++) {
+                console.log(that.fileNames);
+
+                if(`${startTime.toString()}-${endTime.toString()}.wav` === that.fileNames[i].iname) {
+                  $(that.audioFileArray[i]).show();
+                  $(that.fileNames[i]).show();
+                }
+                else {
+                  $(that.audioFileArray[i]).hide();
+                  $(that.fileNames[i]).hide();
+                }
+              }
+            }
           });
 
           // $(segmentBox).resizable({
