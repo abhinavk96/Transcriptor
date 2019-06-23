@@ -1,11 +1,11 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import {computed} from '@ember/object';
 import ENV from 'transcriptor/config/environment';
-
-import convert from 'npm:xml-js'
+import {inject as service} from '@ember/service';
 import WaveformPlaylist from 'npm:waveform-playlist';
 
 export default Component.extend({
+  notify: service(),
   isPlayerLoading: false,
   didInsertElement() {
     this._super(...arguments);
@@ -20,6 +20,7 @@ export default Component.extend({
   currentSegment: null,
   currentSegmentStartTime: null,
   currentSegmentEndTime: null,
+  currentSubSegment: null,
   playlist: null,
   segmentTimes: [],
   segmentBoxList: [],
@@ -80,9 +81,9 @@ export default Component.extend({
         let recursivePlay = (start,end, segment) => {
           console.log('in the recursive play');
           // console.log(start, end, segment);
-          if (this.currentSegment!==segment) {
-            return;
-          }
+          // if (this.currentSegment!==segment) {
+          //   return;
+          // }
           ee.emit('play',start,end);
           // updateSelected();
         };
@@ -97,8 +98,13 @@ export default Component.extend({
         $('body').on("click", ".btn-play",  ()=>{
           console.log('clicked on play');
           // console.log(startTime, endTime, this.currentSegment);
-          updateSelected();
-          recursivePlay(startTime, endTime, this.currentSegment);
+          // updateSelected();
+          if (startTime === endTime) {
+                let tempEndTime = globalStartTimeSegments[globalStartTimeSegments.length - 1].end;
+                recursivePlay(startTime, tempEndTime, this.currentSegment);
+          } else {
+            recursivePlay(startTime, endTime, this.currentSegment);
+          }
           // playStatus = true;
           // console.log(startTime, endTime, that.playlistCursor);
         });
@@ -153,9 +159,11 @@ export default Component.extend({
           segWrappers.push(segmentWrapper);
 
           segmentBox.addEventListener("click",  ()=> {
-            ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
-            this.set('currentSegmentStartTime', parseFloat(segment._attributes.stime));
-            this.set('currentSegmentEndTime', parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
+            // ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
+            // this.set('currentSegmentStartTime', parseFloat(segment._attributes.stime));
+            // this.set('currentSegmentEndTime', parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
+            startTime = parseFloat(segment._attributes.stime);
+            endTime = parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur);
             updateSelected();
 
 
@@ -263,8 +271,10 @@ export default Component.extend({
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(obtainedIndex).addClass('current');
 
+          console.log('the obtained index is: ' + obtainedIndex);
           that.set('currentSegmentStartTime', globalStartTimeSegments[obtainedIndex].start);
           that.set('currentSegmentEndTime', globalStartTimeSegments[obtainedIndex].end);
+          console.log(globalStartTimeSegments[obtainedIndex].start + ' : ' + globalStartTimeSegments[obtainedIndex].end);
           ee.emit("select", parseFloat(globalStartTimeSegments[obtainedIndex].start),parseFloat(globalStartTimeSegments[obtainedIndex].end));
 
 
@@ -297,11 +307,22 @@ export default Component.extend({
           // console.log('in handleDivision()');
 
           const currIndex = that.currentSegment;
+          // if (currIndex === null) {
+          //   that.notify.error(`Division possible only within a Segment.` );
+          // }
 
           // console.log('the current index in handleDivision() is: ' + currIndex);
 
+
           let newSegStartTime = startTime;
           let newSegEndTime = endTime;
+
+          try {
+            let subSegmentIndex = getSubSegmentIndex(currIndex);
+          }
+          catch (e) {
+            that.notify.error(`Division possible only within a Segment.` );
+          }
 
           let subSegmentIndex = getSubSegmentIndex(currIndex);
           // console.log('the subSegmentIndex is: ' + subSegmentIndex);
@@ -310,6 +331,13 @@ export default Component.extend({
             parseFloat(a['start']) - parseFloat(b['start'])
           );
           // NEW SEGMENTS'S BOUNDARIES:
+          try {
+            let prevSegStart = segArrays[currIndex][subSegmentIndex]['start'];
+          }
+          catch (e) {
+            that.notify.error(`Division possible only within a Segment.` );
+          }
+
           let prevSegStart = segArrays[currIndex][subSegmentIndex]['start'];
           let prevSegEnd = segArrays[currIndex][subSegmentIndex]['end'];
 
@@ -352,6 +380,10 @@ export default Component.extend({
           if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD && parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
             segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)});
             globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)});
+
+            startTime = parseFloat(prevSegStart);
+            endTime = parseFloat(prevSegEnd);
+
           }
 
           else if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD) {
@@ -360,6 +392,9 @@ export default Component.extend({
 
             segArrays[currIndex].push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)});
             globalStartTimeSegments.push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)});
+
+            startTime = parseFloat(prevSegStart);
+            endTime = parseFloat(newSegEndTime);
           }
 
           else if (parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
@@ -368,6 +403,9 @@ export default Component.extend({
 
             segArrays[currIndex].push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd)});
             globalStartTimeSegments.push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd)});
+
+            startTime = parseFloat(newSegStartTime);
+            endTime = parseFloat(prevSegEnd);
           }
 
           else {
@@ -378,6 +416,9 @@ export default Component.extend({
             globalStartTimeSegments.push(newStartTimeObj);
             globalStartTimeSegments.push(newMiddleTimeObj);
             globalStartTimeSegments.push(newEndTimeObj);
+
+            startTime = newMiddleTimeObj.start;
+            endTime = newMiddleTimeObj.end;
           }
 
           updateSegments();
@@ -482,6 +523,9 @@ export default Component.extend({
 
           //todo remove previous all children of the segments
 
+          console.log('segArrays');
+          console.log(segArrays[currIndex]);
+
           segElements[currIndex].forEach((el) => {
             el.parentNode.removeChild(el);
           });
@@ -507,6 +551,7 @@ export default Component.extend({
         let InitialLeft;
         let InitialRightWidth;
         let InitialLeftForLeft;
+        let leftForNextSeg;
 
         function addSegment(parentIndex, subIndex, startEndObj) {
           let segmentBox = document.createElement('div');
@@ -520,89 +565,142 @@ export default Component.extend({
           console.log('WIDTHS for each one: ' + `${timePixel * (parseFloat(startEndObj['end']) - parseFloat(startEndObj['start']))}px`);
 
           // $(segmentBox).css({position: "relative"});
+          if (segArrays[parentIndex].length - 1 !== subIndex) {
+            $(segmentBox).prepend("<div class = 'resizer'></div>")
+              .resizable({
+                resizeHeight: false,
+                resizeWidthFrom: 'right',
+                handleSelector: '',
+                onDragStart: function (e, $el, opt) {
+                  let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]) - 1;
+                  let currSegment = parseInt($el[0].textContent.split('.')[0]) - 1;
 
-          $(segmentBox).prepend("<div class = 'resizer'></div>")
-            .resizable({
-            resizeHeight: false,
-            resizeWidthFrom: 'right',
-            handleSelector: '',
-            onDragStart: function (e, $el, opt) {
-              let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]) - 1;
-              let currSegment = parseInt($el[0].textContent.split('.')[0]) - 1;
+                  console.log('The current Segment is: ' + currSegment + '.' + subSegmentIndex);
 
-              console.log('The current Segment is: ' + currSegment + '.' + subSegmentIndex);
+                  InitialWidthSum = $(segElements[currSegment][subSegmentIndex])[0].getBoundingClientRect().width + $(segElements[currSegment][subSegmentIndex + 1])[0].getBoundingClientRect().width;
+                  // InitialRightPosition = $(segElements[currSegment[subSegmentIndex + 1]]).position();
+                  CurrentlyMovedSubElement = subSegmentIndex;
 
-              InitialWidthSum = $(segElements[currSegment][subSegmentIndex])[0].getBoundingClientRect().width + $(segElements[currSegment][subSegmentIndex + 1])[0].getBoundingClientRect().width;
-              // InitialRightPosition = $(segElements[currSegment[subSegmentIndex + 1]]).position();
-              CurrentlyMovedSubElement = subSegmentIndex;
-
-              console.log('The total Width: ' + InitialWidthSum);
-              console.log('Initial Left for next sub-segment (using CSS method): ' + $(segElements[currSegment][subSegmentIndex + 1]).css(['left']).left);
-              console.log('Initial Left for next sub-segment (using Rect() method): ' + $(segElements[currSegment][CurrentlyMovedSubElement + 1])[0].getBoundingClientRect().left);
-              console.log('Initial Width for next Element: ' + $(segElements[currSegment][CurrentlyMovedSubElement + 1])[0].getBoundingClientRect().width);
-              console.log('Initial Left for Left Element (using CSS method): ' + $(segElements[currSegment][subSegmentIndex]).css(["left", "width"]).left);
-              console.log('Initial Left for Left Element (using Rect() method): ' + $(segElements[currSegment][subSegmentIndex])[0].getBoundingClientRect().left);
-
-
-
-              // InitialLeft = $(segElements[currSegment][CurrentlyMovedSubElement + 1])[0].getBoundingClientRect().left;
-              InitialLeft = $(segElements[currSegment][subSegmentIndex + 1]).css(['left']).left;
-
-              InitialRightWidth = $(segElements[currSegment][subSegmentIndex + 1])[0].getBoundingClientRect().width;
-              // InitialLeftForLeft = $(segElements[currSegment][subSegmentIndex])[0].getBoundingClientRect().left;
-              InitialLeftForLeft = $(segElements[currSegment][subSegmentIndex]).css(["left", "width"]).left;
-
-              document.body.style.cursor = "col-resize";
-
-              // let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]);
-              // console.log($el.children()[0]);
-              // let selector = $el.find('div');
-              // console.log(selector[0]);
-              // manageMovableSide(subSegmentIndex, selector);
-              // console.log('the handler is: ' + opt.handleSelector);
-              return $(e.target).hasClass("resizer");
-            },
-              onDrag: function (e, $el, newWidth, newHeight, opt) {
-                let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]) - 1;
-                let currSegment = parseInt($el[0].textContent.split('.')[0]) - 1;
-
-                let cssObj = $($el).css(["left", "width"]);
-                console.log('....... Beginning with OnDrag():');
-                console.log(' (for $el) new width that onDrag() gives: ' + newWidth);
-                console.log('new width that onDrag()\'s $el gives using Rect():' ,parseFloat($($el)[0].getBoundingClientRect().width));
-                console.log('new Width that .CSS gives using $el: ' +  cssObj.width);
-                console.log('Left using $el: in CSS' +  cssObj.left);
-                console.log('The offset() in $el: ' +  JSON.stringify($(segElements[currSegment][subSegmentIndex]).offset()));
-
-                console.log('Left for Next Seg using Rect(): ' + parseFloat(InitialLeftForLeft + parseFloat($(segElements[currSegment][CurrentlyMovedSubElement])[0].getBoundingClientRect().width)));
-
-                console.log('newWidth: ' + newWidth);
+                  console.log('The total Width: ' + InitialWidthSum);
+                  console.log('Initial Left for next sub-segment (using CSS method): ' + $(segElements[currSegment][subSegmentIndex + 1]).css(['left']).left);
+                  console.log('Initial Left for next sub-segment (using Rect() method): ' + $(segElements[currSegment][CurrentlyMovedSubElement + 1])[0].getBoundingClientRect().left);
+                  console.log('Initial Width for next Element: ' + $(segElements[currSegment][CurrentlyMovedSubElement + 1])[0].getBoundingClientRect().width);
+                  console.log('Initial Left for Left Element (using CSS method): ' + $(segElements[currSegment][subSegmentIndex]).css(["left", "width"]).left);
+                  console.log('Initial Left for Left Element (using Rect() method): ' + $(segElements[currSegment][subSegmentIndex])[0].getBoundingClientRect().left);
 
 
-                // let leftForNextSeg =  InitialLeftForLeft + parseFloat($(segElements[currSegment][CurrentlyMovedSubElement])[0].getBoundingClientRect().width);
-                let leftForNextSeg =  parseFloat(parseFloat(InitialLeftForLeft) + newWidth);
-                // let leftForNextSeg =  parseFloat(parseFloat(InitialLeftForLeft) + newWidth);
+                  // InitialLeft = $(segElements[currSegment][CurrentlyMovedSubElement + 1])[0].getBoundingClientRect().left;
+                  InitialLeft = $(segElements[currSegment][subSegmentIndex + 1]).css(['left']).left;
+
+                  InitialRightWidth = $(segElements[currSegment][subSegmentIndex + 1])[0].getBoundingClientRect().width;
+                  // InitialLeftForLeft = $(segElements[currSegment][subSegmentIndex])[0].getBoundingClientRect().left;
+                  InitialLeftForLeft = $(segElements[currSegment][subSegmentIndex]).css(["left", "width"]).left;
+
+                  // document.body.style.cursor = "col-resize";
+
+                  // let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]);
+                  // console.log($el.children()[0]);
+                  // let selector = $el.find('div');
+                  // console.log(selector[0]);
+                  // manageMovableSide(subSegmentIndex, selector);
+                  // console.log('the handler is: ' + opt.handleSelector);
+                  return $(e.target).hasClass("resizer");
+                },
+                onDrag: function (e, $el, newWidth, newHeight, opt) {
+                  let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]) - 1;
+                  let currSegment = parseInt($el[0].textContent.split('.')[0]) - 1;
+
+                  that.set('currentSegment', currSegment);
+                  that.set('currentSubSegment', subSegmentIndex);
 
 
-                console.log('Left for Next Seg using width that we get from $el from method: ' + leftForNextSeg);
-                let test = newWidth;
+                  let cssObj = $($el).css(["left", "width"]);
+                  console.log('....... Beginning with OnDrag():');
+                  console.log(' (for $el) new width that onDrag() gives: ' + newWidth);
+                  console.log('new width that onDrag()\'s $el gives using Rect():', parseFloat($($el)[0].getBoundingClientRect().width));
+                  console.log('new Width that .CSS gives using $el: ' + cssObj.width);
+                  console.log('Left using $el: in CSS' + cssObj.left);
+                  console.log('The offset() in $el: ' + JSON.stringify($(segElements[currSegment][subSegmentIndex]).offset()));
+
+                  console.log('Left for Next Seg using Rect(): ' + parseFloat(InitialLeftForLeft + parseFloat($(segElements[currSegment][CurrentlyMovedSubElement])[0].getBoundingClientRect().width)));
+
+                  console.log('newWidth: ' + newWidth);
 
 
+                  // let leftForNextSeg =  InitialLeftForLeft + parseFloat($(segElements[currSegment][CurrentlyMovedSubElement])[0].getBoundingClientRect().width);
+                  leftForNextSeg = parseFloat(parseFloat(InitialLeftForLeft) + newWidth);
+                  // let leftForNextSeg =  parseFloat(parseFloat(InitialLeftForLeft) + newWidth);
 
-                manageDrag(subSegmentIndex, newWidth, leftForNextSeg, test);
-              },
-              onDragEnd: function (e, $el, opt) {
-                document.body.style.cursor = "default";
-              //  todo complete this function
-              }
-          });
 
+                  console.log('Left for Next Seg using width that we get from $el from method: ' + leftForNextSeg);
+                  let test = newWidth;
+
+
+                  manageDrag(subSegmentIndex, newWidth, leftForNextSeg, test);
+                  if (newWidth < DIVISION_THRESHOLD) {
+                    newWidth = DIVISION_THRESHOLD;
+                  }
+                },
+                onDragEnd: function (e, $el, opt) {
+                  document.body.style.cursor = "default";
+                  let movedObject = segArrays[that.currentSegment][that.currentSubSegment];
+                  let affectedObject = segArrays[that.currentSegment][that.currentSubSegment + 1];
+
+                  let movedGlobalIndex = -1;
+
+                  globalStartTimeSegments.forEach((el, index) => {
+                    if (el['start'] === movedObject.start && el['end'] === movedObject.end) {
+                      movedGlobalIndex = index;
+                    }
+                  });
+
+
+                  movedObject.end = parseFloat(leftForNextSeg / timePixel);
+                  affectedObject.start = movedObject.end;
+
+                  console.log(movedObject);
+                  console.log(affectedObject);
+
+                  console.log('in the drag but before splicing');
+                  console.log(segArrays[that.currentSegment]);
+                  console.log('subSegIndex: ' + that.currentSubSegment);
+
+                  segArrays[that.currentSegment].splice(that.currentSubSegment + 1, 1);
+                  segArrays[that.currentSegment].splice(that.currentSubSegment, 1);
+                  globalStartTimeSegments.splice(movedGlobalIndex + 1, 1);
+                  globalStartTimeSegments.splice(movedGlobalIndex, 1);
+
+                  console.log('in the drag');
+                  console.log(segArrays[that.currentSegment]);
+
+
+                  segArrays[that.currentSegment].push(movedObject);
+                  segArrays[that.currentSegment].push(affectedObject);
+
+                  console.log('after pushing');
+                  console.log(segArrays[that.currentSegment]);
+
+
+                  globalStartTimeSegments.push(movedObject);
+                  globalStartTimeSegments.push(affectedObject);
+
+                  startTime = movedObject.start;
+
+                  updateSegments();
+                  updateSelected();
+
+                  //  todo complete this function
+                }
+              });
+          }
           segElements[parentIndex].push(segmentBox);
 
           segmentBox.addEventListener("click", () => {
-            ee.emit("select", parseFloat(startEndObj['start']), parseFloat(startEndObj['end']));
-            that.currentSegmentStartTime = parseFloat(startEndObj['start']);
-            that.currentSegmentEndTime = parseFloat(startEndObj['end']);
+            // ee.emit("select", parseFloat(startEndObj['start']), parseFloat(startEndObj['end']));
+            // that.set('currentSegmentStartTime', parseFloat(startEndObj['start']));
+            // that.set('currentSegmentEndTime', parseFloat(startEndObj['end']));
+            startTime = parseFloat(startEndObj['start']);
+            endTime = parseFloat(startEndObj['end']);
             updateSelected();
           });
 
