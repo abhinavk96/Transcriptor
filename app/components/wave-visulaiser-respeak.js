@@ -614,6 +614,15 @@ export default Component.extend({
                   let subSegmentIndex = parseInt($el[0].textContent.split('.')[1]) - 1;
                   let currSegment = parseInt($el[0].textContent.split('.')[0]) - 1;
 
+                  //todo WIP
+                  let pixelDIVISIONTHRESHOLD = timePixel * DIVISION_THRESHOLD;
+                  if (newWidth < pixelDIVISIONTHRESHOLD || parseFloat(InitialRightWidth - (parseFloat(parseFloat(InitialLeftForLeft) + newWidth) - parseFloat(InitialLeft))) < pixelDIVISIONTHRESHOLD) {
+                    return false;
+                  }
+                  //todo End of WIP
+
+
+
                   that.set('currentSegment', currSegment);
                   that.set('currentSubSegment', subSegmentIndex);
 
@@ -641,9 +650,40 @@ export default Component.extend({
 
 
                   manageDrag(subSegmentIndex, newWidth, leftForNextSeg, test);
-                  if (newWidth < DIVISION_THRESHOLD) {
-                    newWidth = DIVISION_THRESHOLD;
-                  }
+                  //todo WIP
+                  // if (newWidth < pixelDIVISIONTHRESHOLD) {
+                  //   console.error('IN THE IF');
+                  //
+                  //   let tempNewWidth = pixelDIVISIONTHRESHOLD;
+                  //   $el.width(tempNewWidth);
+                  //   let tempLeftForNextSeg = parseFloat(parseFloat(InitialLeftForLeft) + tempNewWidth);
+                  //   let currSegment = that.currentSegment;
+                  //   let subSegmentIndex = that.currentSubSegment;
+                  //
+                  //   $(segElements[currSegment][subSegmentIndex + 1]).css({left: tempLeftForNextSeg});
+                  //   let newTempRightWidth = parseFloat(InitialRightWidth - (tempLeftForNextSeg - parseFloat(InitialLeft)));
+                  //   $(segElements[currSegment][subSegmentIndex + 1]).width(newTempRightWidth);
+                  //   return false;
+                  //
+                  // } else if (parseFloat(InitialRightWidth - (leftForNextSeg - parseFloat(InitialLeft))) < pixelDIVISIONTHRESHOLD) {
+                  //   console.error('in the else if');
+                  //
+                  //   let tempNewWidth = pixelDIVISIONTHRESHOLD;
+                  //   $el.width(parseFloat(InitialRightWidth) - pixelDIVISIONTHRESHOLD);
+                  //   let tempLeftForNextSeg = parseFloat(parseFloat(InitialLeftForLeft) + parseFloat(InitialRightWidth) - pixelDIVISIONTHRESHOLD);
+                  //   let currSegment = that.currentSegment;
+                  //   let subSegmentIndex = that.currentSubSegment;
+                  //
+                  //   $(segElements[currSegment][subSegmentIndex + 1]).css({left: tempLeftForNextSeg});
+                  //   let newTempRightWidth = parseFloat(pixelDIVISIONTHRESHOLD);
+                  //   $(segElements[currSegment][subSegmentIndex + 1]).width(newTempRightWidth);
+                  //   return false;
+                  // } else {
+                  //   manageDrag(subSegmentIndex, newWidth, leftForNextSeg, test);
+                  //   console.warn('in here');
+                  // }
+
+                //  todo endWIP
                 },
                 onDragEnd: function (e, $el, opt) {
                   document.body.style.cursor = "default";
