@@ -203,6 +203,16 @@ export default Component.extend({
 
         const that = this;
 
+        $('.playlist-overlay').click((el) => {
+          let qIndex= - 1;
+          globalStartTimeSegments.forEach((el, index) => {
+            if ( that.currentTime >= el['start']  && that.currentTime <=  el['end']) {
+              qIndex = index;
+            }
+          });
+          $('.segment.box').removeClass('current');
+          $('.segment.box').eq(qIndex).addClass('current');
+        });
 
         function updateSelect(start, end) {
           startTime = start;
