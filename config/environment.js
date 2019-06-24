@@ -19,8 +19,10 @@ module.exports = function(environment) {
 
     APP: {
       // Here you can pass flags/options to your application instance
-      // when it is created
+      // when it is created todo change here for local/prod
       apiHost      : process.env.API_HOST || 'https://transcriptor.southeastasia.cloudapp.azure.com:5000',
+      // apiHost      : process.env.API_HOST || 'http://localhost:5000',
+
 
     },
     ASR: {

@@ -9,6 +9,8 @@ module.exports = function(defaults) {
 
   });
 
+  app.import('node_modules/jquery-resizable-dom/src/jquery-resizable.js');
+  app.import('node_modules/jquery-resizable-dom/src/jquery-resizableTableColumns.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

@@ -22,8 +22,12 @@
           {{#if model.transcription.respeakFiles}}
             {{respeakFileKeys}}
           {{/if}}
+          <br>
+          {{#if fileNames}}
+            <div class="ui mini header center aligned">Recorded Now:</div>
+          {{/if}}
           {{#each fileNames as |fileName|}}
-            <div class="item">
+            <div class="item" id="recorded-segments">
               <div class="content">
                 <div class="ui tiny disabled header"><i class="tiny music icon"></i> {{fileName.innerHTML}}</div>
                 <div class="ui hidden divider"></div>
@@ -45,12 +49,29 @@
       </div>
     </div>
     <div class="twelve wide column">
+
+
+      <div class="playlist-toolbar ui-sticky">
+        <div class="ui  basic icon buttons">
+          <button title="Play" class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
+            <i class="play green icon"></i>
+          </button>
+          <button title="Pause" class="btn-pause ui  orange  button">
+            <i class="ui pause orange icon"></i>
+          </button>
+        </div>
+      </div>
+
+
+
       <div class="ui very relaxed container">
+        <div id = "visualizer">
           {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames}}
           <div class="ui inline outer audio segment basic" id="outer-segment-container">
             <div class="audio segments" id="segment-container">
             </div>
           </div>
+        </div>
 
         <div class="ui hidden divider"></div>
         <div class="ui hidden divider"></div>

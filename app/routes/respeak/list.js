@@ -2,11 +2,12 @@ import Route from '@ember/routing/route';
 import convert from 'npm:xml-js';
 import { inject } from '@ember/service';
 export default Route.extend({
-  beforeModel() {
-    $(document).add('*').off();
-  },
+  // beforeModel() {
+  //   $(document).add('*').off();
+  // },
   recorder: inject(),
   init() {
+
     let recorder = this.get('recorder');
   },
   setupController(controller) {
@@ -38,6 +39,7 @@ export default Route.extend({
       }
     },
     async record() {
+      console.log('recording begins');
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
       this.get('controller').set('recordingSegmentStartTime', this.get('controller').currentSegmentStartTime);
       this.get('controller').set('recordingSegmentEndTime', this.get('controller').currentSegmentEndTime);
@@ -45,6 +47,7 @@ export default Route.extend({
       //console.log('Record', this.get('controller').recordingSegment + 1);
       let recorder = this.get('recorder');
       await recorder.start();
+      console.log('recording begins');
 
 
     },
@@ -64,8 +67,8 @@ export default Route.extend({
       au.src = audioURL;
       au.blob = blob;
       au.controls = true;
-      au.iname = `Segment :: ${this.get('controller').recordingSegment}.wav`;
       au.name= `${parseFloat(this.get('controller').recordingSegmentStartTime).toFixed(2)}-${parseFloat(this.get('controller').recordingSegmentEndTime).toFixed(2)}`;
+      au.iname = `${this.get('controller').recordingSegmentStartTime}-${this.get('controller').recordingSegmentEndTime}.wav`;
       var fileName = document.createElement('div');
       fileName.innerHTML = au.name;
       fileName.iname = au.iname;
@@ -73,9 +76,11 @@ export default Route.extend({
       document.getElementById("storeFile").appendChild(au);
        document.getElementById("storeFile").appendChild(fileName);
        //console.log($('.segment.box').eq(this.get('controller').recordingSegment),this.get('controller').recordingSegment);
-       $('.segment.box').eq(this.get('controller').recordingSegment-1).addClass(
-         'recorded'
-       );
+
+      //todo mold this for the new use-case!
+      // $('.segment.box').eq(this.get('controller').recordingSegment-1).addClass(
+      //    'recorded'
+      //  );
       this.set('controller.audioFileArray', $('.audio-file'));
       this.set('controller.fileNames', $('.file-name'));
       var lengthOfFiles = $('.audio-file').length;
