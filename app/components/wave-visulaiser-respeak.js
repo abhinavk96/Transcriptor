@@ -659,6 +659,9 @@ export default Component.extend({
                   let test = newWidth;
 
 
+                  ee.emit('select', parseFloat(startEndObj.start), parseFloat(leftForNextSeg / timePixel));
+
+
                   manageDrag(subSegmentIndex, newWidth, leftForNextSeg, test);
                   //todo WIP
                   // if (newWidth < pixelDIVISIONTHRESHOLD) {
