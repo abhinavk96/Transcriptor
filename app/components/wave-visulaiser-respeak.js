@@ -203,6 +203,16 @@ export default Component.extend({
 
         const that = this;
 
+        $('.playlist-overlay').click((el) => {
+          let qIndex= - 1;
+          globalStartTimeSegments.forEach((el, index) => {
+            if ( that.currentTime >= el['start']  && that.currentTime <=  el['end']) {
+              qIndex = index;
+            }
+          });
+          $('.segment.box').removeClass('current');
+          $('.segment.box').eq(qIndex).addClass('current');
+        });
 
         function updateSelect(start, end) {
           startTime = start;
@@ -647,6 +657,9 @@ export default Component.extend({
 
                   console.log('Left for Next Seg using width that we get from $el from method: ' + leftForNextSeg);
                   let test = newWidth;
+
+
+                  ee.emit('select', parseFloat(startEndObj.start), parseFloat(leftForNextSeg / timePixel));
 
 
                   manageDrag(subSegmentIndex, newWidth, leftForNextSeg, test);
