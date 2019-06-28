@@ -371,11 +371,15 @@ body ::-webkit-scrollbar-thumb
 }
 .segment.box {
   display:inline-block;
+  /*top: -25px;*/
   margin: 0 auto !important;
   border: 1px dashed dodgerblue;
   overflow:hidden;
   position: absolute;
   text-align: center;
+  height: 30px;
+  line-height: 30px;
+  font-size: 15px;
   /*float:left;*/
 }
 
@@ -404,7 +408,7 @@ body ::-webkit-scrollbar-thumb
 }
 
 #recorded-segments {
-  margin-top: 25px;
+  margin-top: 0px;
 }
 
 .resizer {
@@ -416,4 +420,18 @@ body ::-webkit-scrollbar-thumb
   width: 22px;
   cursor: col-resize;
   z-index: 1000;
+}
+
+#separator {
+  border-right: 1px dashed orange !important;
+  position: absolute;
+  top: 30px !important;
+  bottom: 10px;
+  height: 30px;
+  left: 150px;
+  /*left:0px;*/
+}
+
+.ui .segment {
+  /*margin: -10px;*/
 }
