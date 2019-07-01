@@ -20,6 +20,7 @@ export default Route.extend({
     controller.set('recordingSegment', null);
     controller.set('currentSegment', null);
     controller.set('recordingSegmentStartTime', null);
+    controller.set('recordingSegmentLabel', null);
     controller.set('recordingSegmentEndTime', null);
     controller.set('currentSegmentStartTime', null);
     controller.set('currentSegmentEndTime', null);
@@ -39,12 +40,13 @@ export default Route.extend({
       }
     },
     async record() {
-      console.log('recording begins');
+      console.log('recording begins: ' + this.get('controller').testVar + 1);
+      this.get('controller').set('recordingSegmentLabel', this.get('controller').currentSegmentLabel);
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
       this.get('controller').set('recordingSegmentStartTime', this.get('controller').currentSegmentStartTime);
       this.get('controller').set('recordingSegmentEndTime', this.get('controller').currentSegmentEndTime);
       this.get('controller').set('isRecording', true);
-      //console.log('Record', this.get('controller').recordingSegment + 1);
+      // console.log('in the recored Record', this.get('controller').recordingSegmentLabel);
       let recorder = this.get('recorder');
       await recorder.start();
       console.log('recording begins');
@@ -67,10 +69,11 @@ export default Route.extend({
       au.src = audioURL;
       au.blob = blob;
       au.controls = true;
-      au.name= `${parseFloat(this.get('controller').recordingSegmentStartTime).toFixed(2)}-${parseFloat(this.get('controller').recordingSegmentEndTime).toFixed(2)}`;
+      // au.name= `${parseFloat(this.get('controller').recordingSegmentStartTime).toFixed(2)}-${parseFloat(this.get('controller').recordingSegmentEndTime).toFixed(2)}`;
+      au.name= this.get('controller').recordingSegmentLabel;
       au.iname = `${this.get('controller').recordingSegmentStartTime}-${this.get('controller').recordingSegmentEndTime}.wav`;
       var fileName = document.createElement('div');
-      fileName.innerHTML = au.name;
+      fileName.innerHTML = 'Segment ' + au.name;
       fileName.iname = au.iname;
       fileName.setAttribute('class', 'file-name');
       document.getElementById("storeFile").appendChild(au);

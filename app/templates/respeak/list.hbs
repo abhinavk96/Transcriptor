@@ -11,8 +11,8 @@
   </button>
 </div>
 {{respeak-modal}}
-<div class="ui divider hidden"></div>
-<div class="ui divider hidden"></div>
+<!--<div class="ui divider hidden"></div>-->
+<!--<div class="ui divider hidden"></div>-->
 <div class="ui relaxed grid">
   <div class="row">
     <div class="four wide column">
@@ -51,30 +51,30 @@
     <div class="twelve wide column">
 
 
-      <div class="playlist-toolbar ui-sticky">
-        <div class="ui  basic icon buttons">
-          <button title="Play" class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
-            <i class="play green icon"></i>
-          </button>
-          <button title="Pause" class="btn-pause ui  orange  button">
-            <i class="ui pause orange icon"></i>
-          </button>
-        </div>
-      </div>
+<!--      <div class="playlist-toolbar ui-sticky">-->
+<!--        <div class="ui  basic icon buttons">-->
+<!--          <button title="Play" class="btn-play ui  positive  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">-->
+<!--            <i class="play green icon"></i>-->
+<!--          </button>-->
+<!--          <button title="Pause" class="btn-pause ui  orange  button">-->
+<!--            <i class="ui pause orange icon"></i>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
 
 
 
       <div class="ui very relaxed container">
         <div id = "visualizer">
-          {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames}}
+          {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentLabel=currentSegmentLabel currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames}}
           <div class="ui inline outer audio segment basic" id="outer-segment-container">
             <div class="audio segments" id="segment-container">
             </div>
           </div>
         </div>
 
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
+<!--        <div class="ui hidden divider"></div>-->
+<!--        <div class="ui hidden divider"></div>-->
         <div class="ui stackable five column doubling centered grid">
           <div class="column">
             {{#if isRecording}}
@@ -82,8 +82,15 @@
                 <i class="loading circle notch icon"></i>
             {{/if}}
             <div class="ui icon massive buttons">
+              <button title="Play" class="ui basic btn-play  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
+                <i class="play green icon"></i>
+              </button>
+              <button title="Pause" class="ui basic  button btn-pause">
+                <i class="ui pause orange icon"></i>
+              </button>
+<!--              <div id="separator"></div>-->
               {{#unless isRecording}}
-                <button class="ui  basic  ompact button" {{action 'record'}} title="Record">
+                <button class="ui  basic  ompact button record" {{action 'record'}} title="Record">
                   <i class="orange microphone icon"></i>
                 </button>
               {{/unless}}
