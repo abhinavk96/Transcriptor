@@ -1,13 +1,19 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import {inject as service} from '@ember/service';
+
 export default Controller.extend({
+  notify: service(),
   modalOffset: 200,
   respeakFileKeys: computed('model.transcription.respeakFiles', function() {
     let keys = [];
    for (const key in JSON.parse(this.model.transcription.respeakFiles)) {
      keys.push(key);
    }
-   return keys
+    console.log('about to print keys...');
+    console.log(keys);
+
+    return keys;
   }),
   actions: {
     openModal: function(name) {
@@ -48,6 +54,9 @@ export default Controller.extend({
         transcription.set('respeakFiles', finalJson);
         transcription.save()
           .then(() => {
+            this.notify.success(`Segment(s) successfully re-spoken. Re-transcription is being done now`, {
+              closeAfter: 10000, classNames: ['notify-class'] // this part may be explored
+            });
             console.log("Final JSON saved");
           })
           .catch(e => {
