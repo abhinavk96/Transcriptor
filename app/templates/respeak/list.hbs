@@ -66,7 +66,7 @@
 
       <div class="ui very relaxed container">
         <div id = "visualizer">
-          {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames}}
+          {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentLabel=currentSegmentLabel currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames}}
           <div class="ui inline outer audio segment basic" id="outer-segment-container">
             <div class="audio segments" id="segment-container">
             </div>
@@ -90,7 +90,7 @@
               </button>
 <!--              <div id="separator"></div>-->
               {{#unless isRecording}}
-                <button class="ui  basic  ompact button" {{action 'record'}} title="Record">
+                <button class="ui  basic  ompact button record" {{action 'record'}} title="Record">
                   <i class="orange microphone icon"></i>
                 </button>
               {{/unless}}

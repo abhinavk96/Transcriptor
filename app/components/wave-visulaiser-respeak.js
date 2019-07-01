@@ -19,6 +19,7 @@ export default Component.extend({
 
   currentSegment: null,
   currentSegmentStartTime: null,
+  currentSegmentLabel: null,
   currentSegmentEndTime: null,
   currentSubSegment: null,
   playlist: null,
@@ -119,6 +120,11 @@ export default Component.extend({
             ee.emit("pause");
           }
         });
+
+        $('body').on("click", ".record", ()=> {
+            ee.emit("pause");
+        });
+
         $('.playlist-tracks').on('scroll', (e) => {
           $('#outer-segment-container').scrollLeft($(e.target).scrollLeft());
         });
@@ -286,6 +292,12 @@ export default Component.extend({
           console.log('the obtained index is: ' + obtainedIndex);
           that.set('currentSegmentStartTime', globalStartTimeSegments[obtainedIndex].start);
           that.set('currentSegmentEndTime', globalStartTimeSegments[obtainedIndex].end);
+          that.set('currentSegmentLabel',  (($('.segment.box').eq(obtainedIndex))[0].textContent).toString());
+
+          // that.set('currentSegmentLabel',  (($('.segment.box').eq(obtainedIndex))[0].textContent).toString());
+
+          console.log(that.currentSegmentLabel);
+          console.log('printing the real label: ' + (($('.segment.box').eq(obtainedIndex))[0].textContent).toString());
           console.log(globalStartTimeSegments[obtainedIndex].start + ' : ' + globalStartTimeSegments[obtainedIndex].end);
           ee.emit("select", parseFloat(globalStartTimeSegments[obtainedIndex].start),parseFloat(globalStartTimeSegments[obtainedIndex].end));
 
