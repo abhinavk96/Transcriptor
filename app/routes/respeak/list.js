@@ -24,10 +24,15 @@ export default Route.extend({
     controller.set('recordingSegmentEndTime', null);
     controller.set('currentSegmentStartTime', null);
     controller.set('currentSegmentEndTime', null);
+    controller.set('metaSegment', null);
 
     controller.set('isRecording', false);
   },
   actions: {
+    submitMeta() {
+      console.log('submitData called');
+      this.get('controller').set('metaSegment', this.get('controller').metaSegment);
+    },
     handleKeys (keys) {
       //console.log(keys);
       if(keys[17] && keys[38]) {

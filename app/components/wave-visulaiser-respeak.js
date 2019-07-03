@@ -28,6 +28,8 @@ export default Component.extend({
   isLooping : false,
   allowMouseUpEvent: false,
   playlistCursor: 0,
+  reSpokenKeys: null,
+  metaSegment: {},
 
 
 
@@ -192,6 +194,9 @@ export default Component.extend({
         });
 
 
+        this.set('metaSegment', {data: segArrays});
+
+
         //console.log(segmentBoxes);
         this.set('segmentTimes', startTimeSegments);
         // segmentBoxes.forEach(segmentBox => {
@@ -251,6 +256,60 @@ export default Component.extend({
         // });
 
 
+        //todo begins the LOGIC of updating segments based on reSpokenKeys #################
+        for (const key in this.reSpokenKeys) {
+          if (this.reSpokenKeys.hasOwnProperty(key) && this.reSpokenKeys[key].length > 1) {
+            const oldSegArray = segArrays[key];
+            segArrays[key] = this.reSpokenKeys[key];
+            updateSegments(true, parseInt(key));
+
+            oldSegArray.forEach((element, indexP) => {
+              let queryIndex = -1;
+
+              globalStartTimeSegments.forEach((el, index) => {
+                if (el['start'] === element['start'] && el['end'] === element['end']) {
+                  queryIndex = index;
+                }
+              });
+
+              if (queryIndex > -1) {
+                globalStartTimeSegments.splice(queryIndex, 1);
+              }
+            });
+
+            segArrays[key].forEach((element, indexP) => {
+              globalStartTimeSegments.push(element);
+            });
+          }
+        }
+
+        // this.reSpokenKeys.forEach((el, index) => {
+        //   let sTime = parseFloat(el.toString().split("-")[0]);
+        //   let eTime = parseFloat(el.toString().split("-")[1]);
+        //   let autoSegment = 0;
+        //
+        //   this.segmentTimes.forEach((times, index) => {
+        //     if(sTime>=times.start && eTime<=times.end) {
+        //       autoSegment = index
+        //     }
+        //   });
+        //
+        //   handleDivision(true, sTime, eTime, autoSegment);
+        // });
+
+
+
+
+
+
+
+
+
+
+
+
+        //todo end ###########################################################################
+
 
 
         function updateSelected() {
@@ -306,10 +365,14 @@ export default Component.extend({
           // console.log('the obtained index is: ' + obtainedIndex);
         }
 
-        function getSubSegmentIndex(parentIndex) {
+        function getSubSegmentIndex(parentIndex, auto=false, autoSTime=0) {
           let queryArray = segArrays[parentIndex];
           let selectedTime = that.currentTime;
           let subIndex = -1;
+
+          if (auto) {
+            selectedTime = autoSTime;
+          }
 
           queryArray.forEach((times, index) => {
             if(selectedTime>=times.start && selectedTime<=times.end) {
@@ -327,10 +390,10 @@ export default Component.extend({
         }
 
 
-        function handleDivision() {
+        function handleDivision(auto = false, autoStart = 0, autoEnd = 0, autoSegment = 0) {
           // console.log('in handleDivision()');
 
-          const currIndex = that.currentSegment;
+          let currIndex = that.currentSegment;
           // if (currIndex === null) {
           //   that.notify.error(`Division possible only within a Segment.` );
           // }
@@ -341,6 +404,14 @@ export default Component.extend({
           let newSegStartTime = startTime;
           let newSegEndTime = endTime;
 
+          if (auto) {
+            newSegStartTime = autoStart;
+            newSegEndTime = autoEnd;
+            currIndex = autoSegment;
+
+            console.log(newSegStartTime + ' ' + newSegEndTime + ' ' + currIndex);
+          }
+
           try {
             let subSegmentIndex = getSubSegmentIndex(currIndex);
           }
@@ -350,6 +421,9 @@ export default Component.extend({
           }
 
           let subSegmentIndex = getSubSegmentIndex(currIndex);
+          if (auto) {
+            subSegmentIndex = getSubSegmentIndex(currIndex, true, newSegStartTime);
+          }
           // console.log('the subSegmentIndex is: ' + subSegmentIndex);
 
           segArrays[currIndex].sort((a, b) =>
@@ -357,6 +431,8 @@ export default Component.extend({
           );
           // NEW SEGMENTS'S BOUNDARIES:
           try {
+            console.log(segArrays);
+            console.log(currIndex + ' ' + subSegmentIndex);
             let prevSegStart = segArrays[currIndex][subSegmentIndex]['start'];
           }
           catch (e) {
@@ -447,8 +523,13 @@ export default Component.extend({
             endTime = newMiddleTimeObj.end;
           }
 
-          updateSegments();
-          updateSelected();
+          if (!auto) {
+            updateSegments();
+            updateSelected();
+          }
+          else {
+            updateSegments(true, currIndex);
+          }
         }
 
 
@@ -541,8 +622,12 @@ export default Component.extend({
           updateSelected();
         }
 
-        function updateSegments() {
-          const currIndex = that.currentSegment;
+        function updateSegments(auto = false, autoSegment = 0) {
+          let currIndex = that.currentSegment;
+
+          if (auto) {
+            currIndex = autoSegment;
+          }
 
           // console.log('the current index in updateSegments is : ' + currIndex);
 
