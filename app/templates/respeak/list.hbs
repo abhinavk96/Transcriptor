@@ -75,12 +75,17 @@
 
 <!--        <div class="ui hidden divider"></div>-->
 <!--        <div class="ui hidden divider"></div>-->
+        {{#if isRecording}}
+        <div class="recording-message">
+          Recording
+          <i class="loading circle notch icon"></i>
+        </div>
+        {{/if}}
         <div class="ui stackable five column doubling centered grid">
           <div class="column">
-            {{#if isRecording}}
-                Recording
-                <i class="loading circle notch icon"></i>
-            {{/if}}
+
+
+
             <div class="ui icon massive buttons">
               <button title="Play" class="ui basic btn-play  {{if disablePlay 'active' }} button" onclick="{{action (mut disablePlay)}}">
                 <i class="play green icon"></i>
@@ -89,11 +94,9 @@
                 <i class="ui pause orange icon"></i>
               </button>
 <!--              <div id="separator"></div>-->
-              {{#unless isRecording}}
-                <button class="ui  basic  ompact button record" {{action 'record'}} title="Record">
+                <button class="ui  basic  ompact button record" {{action 'record'}} title="Record" disabled={{isRecording}}>
                   <i class="orange microphone icon"></i>
                 </button>
-              {{/unless}}
               <button class="ui basic button {{unless isRecording 'disabled' }}" {{action 'stop'}} title="Stop">
                 <i class="red stop icon"></i>
               </button>
@@ -104,8 +107,8 @@
     </div>
   </div>
 </div>
-<div class="ui container">
-  <div class="ui raised white segment">
+<div class="ui container" style="text-align: center">
+  <div class="ui raised white segment recorded-container">
     <div class="ui feed">
       <div class="content" id="storeFile">
       </div>
