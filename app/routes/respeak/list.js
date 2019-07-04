@@ -93,7 +93,7 @@ export default Route.extend({
 
       // todo mold this for the new use-case!
       $('.segment.box').eq(this.get('controller').globalRecordIndex).addClass(
-         'recorded-grey'
+         'recorded-light-grey'
        );
       this.set('controller.audioFileArray', $('.audio-file'));
       this.set('controller.fileNames', $('.file-name'));

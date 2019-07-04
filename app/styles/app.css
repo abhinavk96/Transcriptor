@@ -446,5 +446,9 @@ body ::-webkit-scrollbar-thumb
 }
 
 .recorded-grey {
+  background-color: darkgray;
+}
+
+.recorded-light-grey {
   background-color: lightgray;
 }
