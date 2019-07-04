@@ -435,3 +435,20 @@ body ::-webkit-scrollbar-thumb
 .ui .segment {
   /*margin: -10px;*/
 }
+
+.recorded-container {
+  width: 350px;
+  left: 380px;
+}
+
+.recording-message {
+  margin-left: 520px !important;
+}
+
+.recorded-grey {
+  background-color: darkgray;
+}
+
+.recorded-light-grey {
+  background-color: lightgray;
+}

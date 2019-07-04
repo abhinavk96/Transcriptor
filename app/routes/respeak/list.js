@@ -24,10 +24,18 @@ export default Route.extend({
     controller.set('recordingSegmentEndTime', null);
     controller.set('currentSegmentStartTime', null);
     controller.set('currentSegmentEndTime', null);
+    controller.set('metaSegment', null);
+    controller.set('globalRecordIndex', null);
+    controller.set('recordedSegs', []);
+
 
     controller.set('isRecording', false);
   },
   actions: {
+    submitMeta() {
+      console.log('submitData called');
+      this.get('controller').set('metaSegment', this.get('controller').metaSegment);
+    },
     handleKeys (keys) {
       //console.log(keys);
       if(keys[17] && keys[38]) {
@@ -40,12 +48,13 @@ export default Route.extend({
       }
     },
     async record() {
-      console.log('recording begins: ' + this.get('controller').testVar + 1);
+      // console.log('recording begins: ' + this.get('controller').testVar + 1);
       this.get('controller').set('recordingSegmentLabel', this.get('controller').currentSegmentLabel);
       this.get('controller').set('recordingSegment', this.get('controller').currentSegment + 1);
       this.get('controller').set('recordingSegmentStartTime', this.get('controller').currentSegmentStartTime);
       this.get('controller').set('recordingSegmentEndTime', this.get('controller').currentSegmentEndTime);
       this.get('controller').set('isRecording', true);
+      this.get('controller').set('globalRecordIndex', this.get('controller').globalRecordIndex);
       // console.log('in the recored Record', this.get('controller').recordingSegmentLabel);
       let recorder = this.get('recorder');
       await recorder.start();
@@ -77,13 +86,15 @@ export default Route.extend({
       fileName.iname = au.iname;
       fileName.setAttribute('class', 'file-name');
       document.getElementById("storeFile").appendChild(au);
-       document.getElementById("storeFile").appendChild(fileName);
-       //console.log($('.segment.box').eq(this.get('controller').recordingSegment),this.get('controller').recordingSegment);
+      document.getElementById("storeFile").appendChild(fileName);
+      this.get('controller.recordedSegs').push({'start': this.get('controller').recordingSegmentStartTime, 'end': this.get('controller').recordingSegmentEndTime});
 
-      //todo mold this for the new use-case!
-      // $('.segment.box').eq(this.get('controller').recordingSegment-1).addClass(
-      //    'recorded'
-      //  );
+      //console.log($('.segment.box').eq(this.get('controller').recordingSegment),this.get('controller').recordingSegment);
+
+      // todo mold this for the new use-case!
+      $('.segment.box').eq(this.get('controller').globalRecordIndex).addClass(
+         'recorded-light-grey'
+       );
       this.set('controller.audioFileArray', $('.audio-file'));
       this.set('controller.fileNames', $('.file-name'));
       var lengthOfFiles = $('.audio-file').length;
