@@ -30,6 +30,8 @@ export default Component.extend({
   playlistCursor: 0,
   reSpokenKeys: null,
   metaSegment: {},
+  globalRecordIndex: null,
+  testVar: null,
 
 
 
@@ -125,6 +127,8 @@ export default Component.extend({
 
         $('body').on("click", ".record", ()=> {
             ee.emit("pause");
+            console.log('weired test');
+            console.log(that.recordedSegs);
         });
 
         $('.playlist-tracks').on('scroll', (e) => {
@@ -160,7 +164,7 @@ export default Component.extend({
           segmentBox.style.width=`${timePixel*parseFloat(segment._attributes.dur)}px`;
           //console.log(segmentBox.style.width);
           segmentBoxes.push(segmentBox);
-          segArrays[index] = [{'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)}];
+          segArrays[index] = [{'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur), 'reSpoken': false}];
           segElements[index] = [segmentBox];
 
           $(segmentWrapper).append(segmentBox);
@@ -258,10 +262,12 @@ export default Component.extend({
 
         //todo begins the LOGIC of updating segments based on reSpokenKeys #################
         for (const key in this.reSpokenKeys) {
-          if (this.reSpokenKeys.hasOwnProperty(key) && this.reSpokenKeys[key].length > 1) {
+          if (this.reSpokenKeys.hasOwnProperty(key)) {
             const oldSegArray = segArrays[key];
             segArrays[key] = this.reSpokenKeys[key];
-            updateSegments(true, parseInt(key));
+            if (this.reSpokenKeys[key].length > 1) {
+              updateSegments(true, parseInt(key));
+            }
 
             oldSegArray.forEach((element, indexP) => {
               let queryIndex = -1;
@@ -282,6 +288,53 @@ export default Component.extend({
             });
           }
         }
+
+        globalStartTimeSegments.sort((a,b) => parseFloat(a['start']) - parseFloat(b['start']));
+
+
+        //todo for adding the recorded classes
+        // console.warn('attention');
+        // console.log(globalStartTimeSegments);
+        // globalStartTimeSegments.forEach((el, index) => {
+        //   if (el.reSpoken) {
+        //     $('.segment.box').eq(index).addClass(
+        //       'recorded-grey'
+        //     );
+        //   }
+        // });
+
+        console.log('I ere');
+        console.log(this.reSpokenKeys);
+
+        for (const key in this.reSpokenKeys) {
+          if (this.reSpokenKeys.hasOwnProperty(key)) {
+            let newSegArray = this.reSpokenKeys[key];
+
+            newSegArray.forEach((element, indexP) => {
+              if (element.reSpoken) {
+                console.log(key);
+
+                let queryIndex = -1;
+
+
+                globalStartTimeSegments.forEach((el, index) => {
+                  if (el['start'] === element['start'] && el['end'] === element['end']) {
+                    queryIndex = index;
+                    console.log(queryIndex);
+                  }
+                });
+
+                $('.segment.box').eq(queryIndex).addClass(
+                  'recorded-grey'
+                );
+
+              }
+            });
+          }
+        }
+
+
+
 
         // this.reSpokenKeys.forEach((el, index) => {
         //   let sTime = parseFloat(el.toString().split("-")[0]);
@@ -345,7 +398,7 @@ export default Component.extend({
 
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(obtainedIndex).addClass('current');
-
+          that.set('globalRecordIndex',  obtainedIndex);
           console.log($('.segment.box'));
 
           console.log('the obtained index is: ' + obtainedIndex);
@@ -480,8 +533,8 @@ export default Component.extend({
           //todo handle smaller in the boundary cases
 
           if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD && parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
-            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)});
-            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd)});
+            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
+            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
 
             startTime = parseFloat(prevSegStart);
             endTime = parseFloat(prevSegEnd);
@@ -489,22 +542,22 @@ export default Component.extend({
           }
 
           else if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD) {
-            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime)});
-            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime)});
+            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime), 'reSpoken': false});
+            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime), 'reSpoken': false});
 
-            segArrays[currIndex].push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)});
-            globalStartTimeSegments.push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd)});
+            segArrays[currIndex].push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
+            globalStartTimeSegments.push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
 
             startTime = parseFloat(prevSegStart);
             endTime = parseFloat(newSegEndTime);
           }
 
           else if (parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
-            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime)});
-            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime)});
+            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime), 'reSpoken': false});
+            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime), 'reSpoken': false});
 
-            segArrays[currIndex].push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd)});
-            globalStartTimeSegments.push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd)});
+            segArrays[currIndex].push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
+            globalStartTimeSegments.push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
 
             startTime = parseFloat(newSegStartTime);
             endTime = parseFloat(prevSegEnd);
@@ -559,7 +612,7 @@ export default Component.extend({
           console.log('the indices: ' + beginIndex.toString() + ' ' + endIndex.toString());
 
           // new merged segment
-          let newMergedSegment = {'start': subSegments[beginIndex].start, 'end': subSegments[endIndex].end};
+          let newMergedSegment = {'start': subSegments[beginIndex].start, 'end': subSegments[endIndex].end, 'reSpoken': false};
           console.log('merged Segment: ' + JSON.stringify(newMergedSegment));
 
 
@@ -634,8 +687,8 @@ export default Component.extend({
 
           //todo remove previous all children of the segments
 
-          console.log('segArrays');
-          console.log(segArrays[currIndex]);
+          // console.log('segArrays');
+          // console.log(segArrays[currIndex]);
 
           segElements[currIndex].forEach((el) => {
             el.parentNode.removeChild(el);
@@ -676,7 +729,7 @@ export default Component.extend({
           segmentBox.style.left = `${timePixel * parseFloat(startEndObj['start'])}px`;
           segmentBox.style.width = `${timePixel * (parseFloat(startEndObj['end']) - parseFloat(startEndObj['start']))}px`;
 
-          console.log('WIDTHS for each one: ' + `${timePixel * (parseFloat(startEndObj['end']) - parseFloat(startEndObj['start']))}px`);
+          // console.log('WIDTHS for each one: ' + `${timePixel * (parseFloat(startEndObj['end']) - parseFloat(startEndObj['start']))}px`);
 
           // $(segmentBox).css({position: "relative"});
           if (segArrays[parentIndex].length - 1 !== subIndex) {
@@ -813,7 +866,11 @@ export default Component.extend({
 
 
                   movedObject.end = parseFloat(leftForNextSeg / timePixel);
+                  movedObject.reSpoken = false;
+
                   affectedObject.start = movedObject.end;
+                  affectedObject.reSpoken = false;
+
 
                   console.log(movedObject);
                   console.log(affectedObject);
@@ -877,6 +934,13 @@ export default Component.extend({
               }
             }
           });
+
+          //tackling the case when it was re-spoken
+          if (startEndObj.hasOwnProperty('reSpoken') && startEndObj.reSpoken) {
+            $(segmentBox).addClass(
+              'recorded-grey'
+            );
+          }
 
           // $(segmentBox).resizable({
           //   // handleSelector: ".splitter",

@@ -444,3 +444,7 @@ body ::-webkit-scrollbar-thumb
 .recording-message {
   margin-left: 520px !important;
 }
+
+.recorded-grey {
+  background-color: lightgray;
+}

@@ -7,10 +7,10 @@ export default Controller.extend({
   modalOffset: 200,
   respeakFileKeys: computed('model.transcription.respeakFiles', function() {
     let keys = [];
-    console.log(JSON.stringify(this.model.transcription.respeakFiles));
+    // console.log(JSON.stringify(this.model.transcription.respeakFiles));
     let tempVar = JSON.parse(this.model.transcription.respeakFiles);
     let segArrays = tempVar["data"];
-    console.log(tempVar["data"]);
+    // console.log(tempVar["data"]);
     return segArrays;
    for (const key in JSON.parse(this.model.transcription.respeakFiles)) {
      keys.push(key);
@@ -52,6 +52,25 @@ export default Controller.extend({
       xhr.send(formData);
     },
     uploadFiles(transcription) {
+      let newRecordedSegs = this.recordedSegs;
+      let metaSegment = this.metaSegment;
+      console.log(metaSegment);
+
+
+      //todo optimization may be done by changing this (and hence other implementations)
+      newRecordedSegs.forEach((eln, indexn) => {
+        for (const key in metaSegment['data']) {
+          console.log(key);
+          metaSegment['data'][key].forEach((elm, indexm) => {
+            if (elm.start === eln.start && elm.end === eln.end) {
+              metaSegment['data'][key][indexm].reSpoken = true
+            }
+          })
+        }
+
+
+      });
+
       let listOfFileNames = [];
       // let previousRespokenSegments = transcription.get('respeakFiles');
       // previousRespokenSegments = JSON.parse(previousRespokenSegments);
@@ -83,7 +102,8 @@ export default Controller.extend({
         console.log(finalJson, "Final JSON");
         finalJson = JSON.stringify(finalJson);
         // transcription.set('respeakFiles', finalJson);
-        let metaSegment = (JSON.stringify(this.metaSegment));
+        // let metaSegment = (JSON.stringify(this.metaSegment));
+        metaSegment = (JSON.stringify(metaSegment));
         transcription.set('respeakFiles', metaSegment);
 
         transcription.save()
