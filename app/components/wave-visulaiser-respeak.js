@@ -653,7 +653,10 @@ export default Component.extend({
 
           segArrays[currIndex].forEach((startEndObj, index) => {
             addSegment(currIndex, index, startEndObj);
-          })
+          });
+          if (!auto) {
+            $(".submit-update").click();
+          }
         }
 
         let InitialWidthSum;

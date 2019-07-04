@@ -25,6 +25,32 @@ export default Controller.extend({
       //console.log(name);
       $('.ui.' + name + '.modal').modal({ detachable:false, observeChanges:true, offset:this.modalOffset }).modal('show').modal('refresh');
     },
+    submitUpdates(transcription) {
+      console.log('submitUpdates  called');
+      var xhr = new XMLHttpRequest();
+      var formData = new FormData();
+      formData.append('transcription', transcription.id);
+      xhr.onload = (r)=>{
+        console.log('sent',r);
+        let metaSegment = (JSON.stringify(this.metaSegment));
+        transcription.set('respeakFiles', metaSegment);
+        console.log('inside xhr');
+        console.log(this.metaSegment);
+
+        transcription.save()
+          .then(() => {
+            console.log("Update pushed");
+          })
+          .catch(e => {
+            console.log('could not save');
+            console.warn(e);
+          })
+    };
+      // xhr.open("POST", "http://localhost:5000/upload/files/multi", true);
+      xhr.open("POST", "https://transcriptor.southeastasia.cloudapp.azure.com:5000/upload/files/multi", true);
+      xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+      xhr.send(formData);
+    },
     uploadFiles(transcription) {
       let listOfFileNames = [];
       // let previousRespokenSegments = transcription.get('respeakFiles');
