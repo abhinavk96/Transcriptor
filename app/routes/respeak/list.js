@@ -82,7 +82,7 @@ export default Route.extend({
       // au.name= this.get('controller').recordingSegmentLabel;
       au.iname = `${this.get('controller').recordingSegmentStartTime}-${this.get('controller').recordingSegmentEndTime}.wav`;
       var fileName = document.createElement('div');
-      fileName.innerHTML = 'Segment ' + au.name;
+      fileName.innerHTML = 'Segment ' + this.get('controller').recordingSegmentLabel;
       fileName.iname = au.iname;
       fileName.setAttribute('class', 'file-name');
       document.getElementById("storeFile").appendChild(au);
