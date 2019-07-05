@@ -19,33 +19,40 @@
       <div class="ui mini header center aligned">Recorded Segments:</div>
       <div class="ui list">
         <center>
-          {{#if model.transcription.respeakFiles}}
-            {{respeakFileKeys}}
-          {{/if}}
-          <br>
+          <div style="font-size: 2em; display: inline">{{totalNoRecordedSegs}}</div> <div style="display: inline; font-size: 1.5em">/</div>  <div style="display: inline; font-size: 2em">{{totalNoSegs}}</div>
+          <br><br>
           {{#if fileNames}}
-            <div class="ui mini header center aligned">Recorded Now:</div>
-          {{/if}}
-          {{#each fileNames as |fileName|}}
-            <div class="item" id="recorded-segments">
-              <div class="content">
-                <div class="ui tiny disabled header"><i class="tiny music icon"></i> {{fileName.innerHTML}}</div>
-                <div class="ui hidden divider"></div>
-              </div>
-            </div>
-          {{else}}
-            <div class="ui hidden container">
-              <div class="ui tiny disabled header">
-                No re-spoken segments yet
-              </div>
-            </div>
-          {{/each}}
-          {{#if fileNames}}
-            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles' model.transcription}} {{action 'submitMeta'}}>
+            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles' model.transcription}} {{action 'submitMeta'}} style="display: block">
               <i class="check icon"></i>
             </button>
+            Submit
           {{/if}}
         </center>
+
+<!--        <center>-->
+<!--          {{#if model.transcription.respeakFiles}}-->
+<!--            {{respeakFileKeys}}-->
+<!--          {{/if}}-->
+<!--          <br>-->
+<!--          {{#if fileNames}}-->
+<!--            <div class="ui mini header center aligned">Recorded Now:</div>-->
+<!--          {{/if}}-->
+<!--          {{#each fileNames as |fileName|}}-->
+<!--            <div class="item" id="recorded-segments">-->
+<!--              <div class="content">-->
+<!--                <div class="ui tiny disabled header"><i class="tiny music icon"></i> {{fileName.innerHTML}}</div>-->
+<!--                <div class="ui hidden divider"></div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          {{else}}-->
+<!--            <div class="ui hidden container">-->
+<!--              <div class="ui tiny disabled header">-->
+<!--                No re-spoken segments yet-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          {{/each}}-->
+
+<!--        </center>-->
       </div>
     </div>
     <div class="twelve wide column">
@@ -66,7 +73,7 @@
 
       <div class="ui very relaxed container">
         <div id = "visualizer">
-          {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentLabel=currentSegmentLabel currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames reSpokenKeys=respeakFileKeys metaSegment=metaSegment globalRecordIndex=globalRecordIndex recordedSegs=recordedSegs}}
+          {{wave-visulaiser-respeak currentSegment=currentSegment currentSegmentLabel=currentSegmentLabel currentSegmentStartTime=currentSegmentStartTime currentSegmentEndTime=currentSegmentEndTime data=model audioFileArray=audioFileArray fileNames=fileNames reSpokenKeys=respeakFileKeys metaSegment=metaSegment globalRecordIndex=globalRecordIndex recordedSegs=recordedSegs totalNoSegs=totalNoSegs totalNoRecordedSegs=totalNoRecordedSegs}}
           <div class="ui inline outer audio segment basic" id="outer-segment-container">
             <div class="audio segments" id="segment-container">
             </div>
