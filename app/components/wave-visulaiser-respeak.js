@@ -32,6 +32,8 @@ export default Component.extend({
   metaSegment: {},
   globalRecordIndex: null,
   testVar: null,
+  totalNoSegs: null,
+  totalNoRecordedSegs: null,
 
 
 
@@ -149,6 +151,7 @@ export default Component.extend({
         let segArrays = {};
         let segElements = {};
         let segWrappers = [];
+        this.set('totalNoSegs', this.data.segmentsList.length);
         this.data.segmentsList.forEach((segment, index) => {
           //console.log(segment._attributes);
           startTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
@@ -261,6 +264,10 @@ export default Component.extend({
 
 
         //todo begins the LOGIC of updating segments based on reSpokenKeys #################
+        // if (this.reSpokenKeys === null) {
+        this.set('totalNoRecordedSegs', 0);
+        // }
+
         for (const key in this.reSpokenKeys) {
           if (this.reSpokenKeys.hasOwnProperty(key)) {
             const oldSegArray = segArrays[key];
@@ -309,6 +316,8 @@ export default Component.extend({
         for (const key in this.reSpokenKeys) {
           if (this.reSpokenKeys.hasOwnProperty(key)) {
             let newSegArray = this.reSpokenKeys[key];
+            let rStatus = false;
+
 
             newSegArray.forEach((element, indexP) => {
               if (element.reSpoken) {
@@ -327,11 +336,17 @@ export default Component.extend({
                 $('.segment.box').eq(queryIndex).addClass(
                   'recorded-grey'
                 );
-
+                rStatus = true;
               }
             });
+            if (rStatus) {
+              this.set('totalNoRecordedSegs', this.get('totalNoRecordedSegs') + 1);
+            }
           }
         }
+
+        console.log('is set required');
+        console.log(this.totalNoRecordedSegs);
 
 
 

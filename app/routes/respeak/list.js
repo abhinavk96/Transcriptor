@@ -27,6 +27,8 @@ export default Route.extend({
     controller.set('metaSegment', null);
     controller.set('globalRecordIndex', null);
     controller.set('recordedSegs', []);
+    controller.set('totalNoSegs', null);
+    controller.set('totalNoRecordedSegs', null);
 
 
     controller.set('isRecording', false);
@@ -59,6 +61,7 @@ export default Route.extend({
       let recorder = this.get('recorder');
       await recorder.start();
       console.log('recording begins');
+      console.log('in the recored Record', this.get('controller').totalNoSegs);
 
 
     },
@@ -88,10 +91,42 @@ export default Route.extend({
       document.getElementById("storeFile").appendChild(au);
       document.getElementById("storeFile").appendChild(fileName);
       this.get('controller.recordedSegs').push({'start': this.get('controller').recordingSegmentStartTime, 'end': this.get('controller').recordingSegmentEndTime});
+      //todo checking if newly recorded subSegment has it's parent recorded -> wip
+      let qStart = this.get('controller').recordingSegmentStartTime;
+      let qEnd = this.get('controller').recordingSegmentEndTime;
+      let curSegArrays = this.get('controller').metaSegment['data'][(this.get('controller').currentSegment).toString()];
+      let previouslyRecorded = false;
+
+      console.log(this.get('controller.recordedSegs'));
+      console.log(curSegArrays);
+
+      function containsObject(obj, list) {
+        var i;
+        for (i = 0; i < list.length; i++) {
+          if (list[i] === obj) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+      let overlapCount = 0;
+      curSegArrays.forEach((el, index) => {
+        var i;
+        let qArray = this.get('controller.recordedSegs');
+        for(i=0; i<qArray.length; i++) {
+          if (qArray[i].start === el.start && qArray[i].end === el.end) {
+            overlapCount += 1;
+          }
+        }
+
+        if(el.reSpoken) previouslyRecorded = true;
+      });
+      if (!previouslyRecorded && overlapCount < 2) this.set('controller.totalNoRecordedSegs', this.get('controller').totalNoRecordedSegs + 1);
 
       //console.log($('.segment.box').eq(this.get('controller').recordingSegment),this.get('controller').recordingSegment);
 
-      // todo mold this for the new use-case!
+      // todo mold this for the new use-case! -> done
       $('.segment.box').eq(this.get('controller').globalRecordIndex).addClass(
          'recorded-light-grey'
        );
