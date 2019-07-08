@@ -9,10 +9,13 @@ export default Controller.extend({
     let keys = [];
     // console.log(JSON.stringify(this.model.transcription.respeakFiles));
     let tempVar = JSON.parse(this.model.transcription.respeakFiles);
-    let segArrays = tempVar["data"];
-    if (!segArrays) {
-      return null
-    }
+    let segArrays;
+      try {
+        segArrays = tempVar["data"];
+      }
+      catch (e) {
+        segArrays = null;
+      }
     // console.log(tempVar["data"]);
     return segArrays;
    for (const key in JSON.parse(this.model.transcription.respeakFiles)) {
