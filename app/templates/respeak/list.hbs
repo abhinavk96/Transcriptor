@@ -22,7 +22,7 @@
           <div style="font-size: 2em; display: inline">{{totalNoRecordedSegs}}</div> <div style="display: inline; font-size: 1.5em">/</div>  <div style="display: inline; font-size: 2em">{{totalNoSegs}}</div>
           <br><br>
           {{#if fileNames}}
-            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles' model.transcription}} {{action 'submitMeta'}} style="display: block">
+            <button class="ui basic blue icon button" title="Submit" {{action 'uploadFiles' model.transcription}} {{action 'submitMeta'}} style="display: block" disabled={{recordingSubmit}}>
               <i class="check icon"></i>
             </button>
             Submit

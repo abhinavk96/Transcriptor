@@ -58,6 +58,9 @@ export default Controller.extend({
       xhr.send(formData);
     },
     uploadFiles(transcription) {
+      //disabling the submit button
+      this.set('recordingSubmit', true);
+
       let newRecordedSegs = this.recordedSegs;
       let metaSegment = this.metaSegment;
       console.log(metaSegment);
@@ -135,6 +138,7 @@ export default Controller.extend({
           console.log(file, this.audioFileArray);
           fileBlob.name = `${file.name}.wav`;
           formData.append("files[]", fileBlob, `${this.audioFileArray[file].name}.wav`);
+          console.log(this.audioFileArray[file].name);
           console.log(formData);
         }
       }
