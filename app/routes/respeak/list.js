@@ -29,9 +29,9 @@ export default Route.extend({
     controller.set('recordedSegs', []);
     controller.set('totalNoSegs', null);
     controller.set('totalNoRecordedSegs', null);
-
-
     controller.set('isRecording', false);
+    controller.set('recordingSubmit', false);
+
   },
   actions: {
     submitMeta() {
