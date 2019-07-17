@@ -25,7 +25,7 @@ export default Component.extend({
   playlist: null,
   segmentTimes: [],
   segmentBoxList: [],
-  isLooping : false,
+  isLooping: false,
   allowMouseUpEvent: false,
   playlistCursor: 0,
   reSpokenKeys: null,
@@ -34,14 +34,14 @@ export default Component.extend({
   testVar: null,
   totalNoSegs: null,
   totalNoRecordedSegs: null,
-
+  playing: false,
 
 
   actions: {
     setCurrentSegment(time) {
       this.segmentTimes.forEach((times, index) => {
-        if(time>=times.start && time<=times.end) {
-          if(this.currentSegment !== index)
+        if (time >= times.start && time <= times.end) {
+          if (this.currentSegment !== index)
             this.set('currentSegment', index);
           // this.set('currentSegmentStartTime', times.start);
           // this.set('currentSegmentEndTime', times.end);
@@ -85,13 +85,13 @@ export default Component.extend({
         var endTime = 0;
 
 
-        let recursivePlay = (start,end, segment) => {
+        let recursivePlay = (start, end, segment) => {
           console.log('in the recursive play');
           // console.log(start, end, segment);
           // if (this.currentSegment!==segment) {
           //   return;
           // }
-          ee.emit('play',start,end);
+          ee.emit('play', start, end);
           // updateSelected();
         };
 
@@ -102,13 +102,14 @@ export default Component.extend({
         // }
 
         let duration = parseFloat(playlist.duration);
-        $('body').on("click", ".btn-play",  ()=>{
+        $('body').on("click", ".btn-play", () => {
           console.log('clicked on play');
+          this.set('playing', true);
           // console.log(startTime, endTime, this.currentSegment);
           // updateSelected();
           if (startTime === endTime) {
-                let tempEndTime = globalStartTimeSegments[globalStartTimeSegments.length - 1].end;
-                recursivePlay(startTime, tempEndTime, this.currentSegment);
+            let tempEndTime = globalStartTimeSegments[globalStartTimeSegments.length - 1].end;
+            recursivePlay(startTime, tempEndTime, this.currentSegment);
           } else {
             recursivePlay(startTime, endTime, this.currentSegment);
           }
@@ -117,30 +118,30 @@ export default Component.extend({
         });
 
 
-        $('body').on("click", ".btn-pause", ()=> {
-          if(this.isLooping) {
+        $('body').on("click", ".btn-pause", () => {
+          this.set('playing', false);
+          if (this.isLooping) {
             this.set('isLooping', false);
             ee.emit("pause");
-          }
-          else {
+          } else {
             ee.emit("pause");
           }
         });
 
-        $('body').on("click", ".record", ()=> {
-            ee.emit("pause");
-            console.log('weired test');
-            console.log(that.recordedSegs);
+        $('body').on("click", ".record", () => {
+          ee.emit("pause");
+          console.log('weired test');
+          console.log(that.recordedSegs);
         });
 
         $('.playlist-tracks').on('scroll', (e) => {
           $('#outer-segment-container').scrollLeft($(e.target).scrollLeft());
         });
         $('#outer-segment-container').on('scroll', (e) => {
-          $('.playlist-tracks' ).scrollLeft($(e.target).scrollLeft());
+          $('.playlist-tracks').scrollLeft($(e.target).scrollLeft());
         });
         let waveFormOuterWidth = $('.playlist-overlay').outerWidth();
-        let timePixel =(parseFloat(waveFormOuterWidth/duration).toFixed(2));
+        let timePixel = (parseFloat(waveFormOuterWidth / duration).toFixed(2));
 
         let DIVISION_THRESHOLD = 1;
 
@@ -154,26 +155,36 @@ export default Component.extend({
         this.set('totalNoSegs', this.data.segmentsList.length);
         this.data.segmentsList.forEach((segment, index) => {
           //console.log(segment._attributes);
-          startTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
-          globalStartTimeSegments.push({'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)});
+          startTimeSegments.push({
+            'start': parseFloat(segment._attributes.stime),
+            'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)
+          });
+          globalStartTimeSegments.push({
+            'start': parseFloat(segment._attributes.stime),
+            'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur)
+          });
 
           let segmentWrapper = document.createElement('div');
           segmentWrapper.classList.add("segment-wrapper");
 
           let segmentBox = document.createElement('div');
           segmentBox.classList.add("segment", "box");
-          segmentBox.innerHTML = index+1;
-          segmentBox.style.left=`${timePixel*parseFloat(segment._attributes.stime)}px`;
-          segmentBox.style.width=`${timePixel*parseFloat(segment._attributes.dur)}px`;
+          segmentBox.innerHTML = index + 1;
+          segmentBox.style.left = `${timePixel * parseFloat(segment._attributes.stime)}px`;
+          segmentBox.style.width = `${timePixel * parseFloat(segment._attributes.dur)}px`;
           //console.log(segmentBox.style.width);
           segmentBoxes.push(segmentBox);
-          segArrays[index] = [{'start' :parseFloat(segment._attributes.stime), 'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur), 'reSpoken': false}];
+          segArrays[index] = [{
+            'start': parseFloat(segment._attributes.stime),
+            'end': parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur),
+            'reSpoken': false
+          }];
           segElements[index] = [segmentBox];
 
           $(segmentWrapper).append(segmentBox);
           segWrappers.push(segmentWrapper);
 
-          segmentBox.addEventListener("click",  ()=> {
+          segmentBox.addEventListener("click", () => {
             // ee.emit("select", parseFloat(segment._attributes.stime),parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
             // this.set('currentSegmentStartTime', parseFloat(segment._attributes.stime));
             // this.set('currentSegmentEndTime', parseFloat(segment._attributes.stime) + parseFloat(segment._attributes.dur));
@@ -182,16 +193,15 @@ export default Component.extend({
             updateSelected();
 
 
-            $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
-            if(this.fileNames && this.fileNames.length) {
-              for(let i = 0; i < this.fileNames.length; i++) {
+            $('.playlist-tracks').scrollLeft($(segmentBox).position().left - 100);
+            if (this.fileNames && this.fileNames.length) {
+              for (let i = 0; i < this.fileNames.length; i++) {
                 console.log(this.fileNames);
 
-                if(`${startTime.toString()}-${endTime.toString()}.wav` === this.fileNames[i].iname) {
+                if (`${startTime.toString()}-${endTime.toString()}.wav` === this.fileNames[i].iname) {
                   $(this.audioFileArray[i]).show();
                   $(this.fileNames[i]).show();
-                }
-                else {
+                } else {
                   $(this.audioFileArray[i]).hide();
                   $(this.fileNames[i]).hide();
                 }
@@ -222,9 +232,9 @@ export default Component.extend({
         const that = this;
 
         $('.playlist-overlay').click((el) => {
-          let qIndex= - 1;
+          let qIndex = -1;
           globalStartTimeSegments.forEach((el, index) => {
-            if ( that.currentTime >= el['start']  && that.currentTime <=  el['end']) {
+            if (that.currentTime >= el['start'] && that.currentTime <= el['end']) {
               qIndex = index;
             }
           });
@@ -238,7 +248,6 @@ export default Component.extend({
 
           if (start === end) return;
           that.allowMouseUpEvent = true;
-
 
 
           let segIndex = that.currentSegment;
@@ -296,7 +305,7 @@ export default Component.extend({
           }
         }
 
-        globalStartTimeSegments.sort((a,b) => parseFloat(a['start']) - parseFloat(b['start']));
+        globalStartTimeSegments.sort((a, b) => parseFloat(a['start']) - parseFloat(b['start']));
 
 
         //todo for adding the recorded classes
@@ -349,8 +358,6 @@ export default Component.extend({
         console.log(this.totalNoRecordedSegs);
 
 
-
-
         // this.reSpokenKeys.forEach((el, index) => {
         //   let sTime = parseFloat(el.toString().split("-")[0]);
         //   let eTime = parseFloat(el.toString().split("-")[1]);
@@ -366,26 +373,15 @@ export default Component.extend({
         // });
 
 
-
-
-
-
-
-
-
-
-
-
         //todo end ###########################################################################
 
 
-
         function updateSelected() {
-          globalStartTimeSegments.sort((a,b) => parseFloat(a['start']) - parseFloat(b['start']));
+          globalStartTimeSegments.sort((a, b) => parseFloat(a['start']) - parseFloat(b['start']));
           let $children = $('#segment-container').children();
           $children.sort((a, b) => parseFloat($(a).css('left')) - parseFloat($(b).css('left')));
           // console.log($children);
-          $children.each(function(){
+          $children.each(function () {
             $('#segment-container').append(this);
           });
           // console.log(($('#segment-container')));
@@ -403,7 +399,7 @@ export default Component.extend({
           }, []);
 
 
-          for(var i=0; i < globalStartTimeSegments.length; i++) {
+          for (var i = 0; i < globalStartTimeSegments.length; i++) {
             if (globalStartTimeSegments[i]['start'] === startTime) {
               obtainedIndex = i;
               break;
@@ -413,27 +409,26 @@ export default Component.extend({
 
           $('.segment.box').removeClass('current');
           $('.segment.box').eq(obtainedIndex).addClass('current');
-          that.set('globalRecordIndex',  obtainedIndex);
+          that.set('globalRecordIndex', obtainedIndex);
           console.log($('.segment.box'));
 
           console.log('the obtained index is: ' + obtainedIndex);
           that.set('currentSegmentStartTime', globalStartTimeSegments[obtainedIndex].start);
           that.set('currentSegmentEndTime', globalStartTimeSegments[obtainedIndex].end);
-          that.set('currentSegmentLabel',  (($('.segment.box').eq(obtainedIndex))[0].textContent).toString());
+          that.set('currentSegmentLabel', (($('.segment.box').eq(obtainedIndex))[0].textContent).toString());
 
           // that.set('currentSegmentLabel',  (($('.segment.box').eq(obtainedIndex))[0].textContent).toString());
 
           console.log(that.currentSegmentLabel);
           console.log('printing the real label: ' + (($('.segment.box').eq(obtainedIndex))[0].textContent).toString());
           console.log(globalStartTimeSegments[obtainedIndex].start + ' : ' + globalStartTimeSegments[obtainedIndex].end);
-          ee.emit("select", parseFloat(globalStartTimeSegments[obtainedIndex].start),parseFloat(globalStartTimeSegments[obtainedIndex].end));
-
+          ee.emit("select", parseFloat(globalStartTimeSegments[obtainedIndex].start), parseFloat(globalStartTimeSegments[obtainedIndex].end));
 
 
           // console.log('the obtained index is: ' + obtainedIndex);
         }
 
-        function getSubSegmentIndex(parentIndex, auto=false, autoSTime=0) {
+        function getSubSegmentIndex(parentIndex, auto = false, autoSTime = 0) {
           let queryArray = segArrays[parentIndex];
           let selectedTime = that.currentTime;
           let subIndex = -1;
@@ -443,7 +438,7 @@ export default Component.extend({
           }
 
           queryArray.forEach((times, index) => {
-            if(selectedTime>=times.start && selectedTime<=times.end) {
+            if (selectedTime >= times.start && selectedTime <= times.end) {
               subIndex = index;
               //todo there will be some funny cases here; need to break once it's done
 
@@ -457,6 +452,19 @@ export default Component.extend({
           return subIndex;
         }
 
+        function handleDivisionWhilePlaying() {
+          if (!that.playing) {
+            that.notify.error(`'"ENTER" Shortcut only works when dividing while playing`);
+          } else {
+            let currIndex = that.currentSegment;
+            let subSegmentIndex = getSubSegmentIndex(currIndex);
+            let newSegStart = segArrays[currIndex][subSegmentIndex]['start'];
+            let newSegEnd = that.playlistCursor;
+
+            handleDivision(true, newSegStart, newSegEnd, currIndex);
+          }
+
+        }
 
         function handleDivision(auto = false, autoStart = 0, autoEnd = 0, autoSegment = 0) {
           // console.log('in handleDivision()');
@@ -482,9 +490,8 @@ export default Component.extend({
 
           try {
             let subSegmentIndex = getSubSegmentIndex(currIndex);
-          }
-          catch (e) {
-            that.notify.error(`Division possible only within a Segment.` );
+          } catch (e) {
+            that.notify.error(`Division possible only within a Segment.`);
             return;
           }
 
@@ -502,9 +509,8 @@ export default Component.extend({
             console.log(segArrays);
             console.log(currIndex + ' ' + subSegmentIndex);
             let prevSegStart = segArrays[currIndex][subSegmentIndex]['start'];
-          }
-          catch (e) {
-            that.notify.error(`Division possible only within a Segment.` );
+          } catch (e) {
+            that.notify.error(`Division possible only within a Segment.`);
             return;
           }
 
@@ -547,38 +553,97 @@ export default Component.extend({
 
           //todo handle smaller in the boundary cases
 
-          if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD && parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
-            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
-            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
+          if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD && parseFloat(prevSegEnd) - parseFloat(newSegEndTime) < DIVISION_THRESHOLD) {
+            segArrays[currIndex].push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
+            globalStartTimeSegments.push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
 
             startTime = parseFloat(prevSegStart);
             endTime = parseFloat(prevSegEnd);
 
-          }
+          } else if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD) {
+            segArrays[currIndex].push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(newSegEndTime),
+              'reSpoken': false
+            });
+            globalStartTimeSegments.push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(newSegEndTime),
+              'reSpoken': false
+            });
 
-          else if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD) {
-            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime), 'reSpoken': false});
-            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegEndTime), 'reSpoken': false});
-
-            segArrays[currIndex].push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
-            globalStartTimeSegments.push({'start': parseFloat(newSegEndTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
+            segArrays[currIndex].push({
+              'start': parseFloat(newSegEndTime),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
+            globalStartTimeSegments.push({
+              'start': parseFloat(newSegEndTime),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
 
             startTime = parseFloat(prevSegStart);
             endTime = parseFloat(newSegEndTime);
-          }
+          } else if (parseFloat(prevSegEnd) - parseFloat(newSegEndTime) < DIVISION_THRESHOLD) {
+            segArrays[currIndex].push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(newSegStartTime),
+              'reSpoken': false
+            });
+            globalStartTimeSegments.push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(newSegStartTime),
+              'reSpoken': false
+            });
 
-          else if (parseFloat(prevSegEnd) - parseFloat(newSegEndTime)  < DIVISION_THRESHOLD) {
-            segArrays[currIndex].push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime), 'reSpoken': false});
-            globalStartTimeSegments.push({'start': parseFloat(prevSegStart), 'end': parseFloat(newSegStartTime), 'reSpoken': false});
-
-            segArrays[currIndex].push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
-            globalStartTimeSegments.push({'start': parseFloat(newSegStartTime), 'end': parseFloat(prevSegEnd), 'reSpoken': false});
+            segArrays[currIndex].push({
+              'start': parseFloat(newSegStartTime),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
+            globalStartTimeSegments.push({
+              'start': parseFloat(newSegStartTime),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
 
             startTime = parseFloat(newSegStartTime);
             endTime = parseFloat(prevSegEnd);
-          }
+          } else if (parseFloat(newSegEndTime) - parseFloat(newSegStartTime) < DIVISION_THRESHOLD) {
+            segArrays[currIndex].push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(newSegStartTime),
+              'reSpoken': false
+            });
+            globalStartTimeSegments.push({
+              'start': parseFloat(prevSegStart),
+              'end': parseFloat(newSegStartTime),
+              'reSpoken': false
+            });
 
-          else {
+            segArrays[currIndex].push({
+              'start': parseFloat(newSegStartTime),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
+            globalStartTimeSegments.push({
+              'start': parseFloat(newSegStartTime),
+              'end': parseFloat(prevSegEnd),
+              'reSpoken': false
+            });
+
+            startTime = parseFloat(newSegStartTime);
+            endTime = parseFloat(prevSegEnd);
+          } else {
             segArrays[currIndex].push(newStartTimeObj);
             segArrays[currIndex].push(newMiddleTimeObj);
             segArrays[currIndex].push(newEndTimeObj);
@@ -594,8 +659,7 @@ export default Component.extend({
           if (!auto) {
             updateSegments();
             updateSelected();
-          }
-          else {
+          } else {
             updateSegments(true, currIndex);
           }
         }
@@ -627,7 +691,11 @@ export default Component.extend({
           console.log('the indices: ' + beginIndex.toString() + ' ' + endIndex.toString());
 
           // new merged segment
-          let newMergedSegment = {'start': subSegments[beginIndex].start, 'end': subSegments[endIndex].end, 'reSpoken': false};
+          let newMergedSegment = {
+            'start': subSegments[beginIndex].start,
+            'end': subSegments[endIndex].end,
+            'reSpoken': false
+          };
           console.log('merged Segment: ' + JSON.stringify(newMergedSegment));
 
 
@@ -686,7 +754,7 @@ export default Component.extend({
           endTime = newMergedSegment.end;
 
           updateSegments();
-          ee.emit("select", parseFloat(startTime),parseFloat(endTime));
+          ee.emit("select", parseFloat(startTime), parseFloat(endTime));
           updateSelected();
         }
 
@@ -709,10 +777,10 @@ export default Component.extend({
             el.parentNode.removeChild(el);
           });
 
-        //  emptying the earlier segElements[currIndex] array
+          //  emptying the earlier segElements[currIndex] array
           segElements[currIndex] = [];
 
-        //  todo first sort the elements so that segment names are in order
+          //  todo first sort the elements so that segment names are in order
           segArrays[currIndex].sort((a, b) =>
             parseFloat(a['start']) - parseFloat(b['start'])
           );
@@ -800,7 +868,6 @@ export default Component.extend({
                   //todo End of WIP
 
 
-
                   that.set('currentSegment', currSegment);
                   that.set('currentSubSegment', subSegmentIndex);
 
@@ -864,7 +931,7 @@ export default Component.extend({
                   //   console.warn('in here');
                   // }
 
-                //  todo endWIP
+                  //  todo endWIP
                 },
                 onDragEnd: function (e, $el, opt) {
                   document.body.style.cursor = "default";
@@ -933,16 +1000,15 @@ export default Component.extend({
             endTime = parseFloat(startEndObj['end']);
             updateSelected();
 
-            $('.playlist-tracks' ).scrollLeft($(segmentBox).position().left - 100);
-            if(that.fileNames && that.fileNames.length) {
-              for(let i = 0; i < that.fileNames.length; i++) {
+            $('.playlist-tracks').scrollLeft($(segmentBox).position().left - 100);
+            if (that.fileNames && that.fileNames.length) {
+              for (let i = 0; i < that.fileNames.length; i++) {
                 console.log(that.fileNames);
 
-                if(`${startTime.toString()}-${endTime.toString()}.wav` === that.fileNames[i].iname) {
+                if (`${startTime.toString()}-${endTime.toString()}.wav` === that.fileNames[i].iname) {
                   $(that.audioFileArray[i]).show();
                   $(that.fileNames[i]).show();
-                }
-                else {
+                } else {
                   $(that.audioFileArray[i]).hide();
                   $(that.fileNames[i]).hide();
                 }
@@ -963,6 +1029,7 @@ export default Component.extend({
           // });
           $(segWrappers[parentIndex]).append(segmentBox);
         }
+
         function manageDrag(subSegmentIndex, newWidth, leftForNextSeg, test) {
           let currSegment = that.currentSegment;
           // let newRightElWidth = InitialWidthSum - newWidth;
@@ -1033,22 +1100,22 @@ export default Component.extend({
         });
         let keys = {};
         $(document).keydown(function (e) {
-          if(e.which!==18)
-          {keys[e.which] = true}
-          if(e.which  === 69 && keys[17]) {
-            e.preventDefault();
+          if (e.which !== 18) {
+            keys[e.which] = true
           }
-          else if(e.which  === 75 && keys[17] || e.which === 74 & keys[17]) {
+          if (e.which === 69 && keys[17]) {
             e.preventDefault();
-          }
-          else if(e.which === 68 &&  keys[17]) {
+          } else if (e.which === 75 && keys[17] || e.which === 74 & keys[17]) {
+            e.preventDefault();
+          } else if (e.which === 68 && keys[17]) {
             e.preventDefault();
             console.log('Ctrl + D');
-          }
-
-          else if(e.which === 77 &&  keys[17]) {
+          } else if (e.which === 77 && keys[17]) {
             e.preventDefault();
             console.log('Ctrl + M');
+          } else if (e.which === 13) {
+            e.preventDefault();
+            console.log('Enter key pressed');
           }
 
           handleKeys();
@@ -1058,21 +1125,20 @@ export default Component.extend({
           handleKeys();
 
         });
-        let  moveToNextSegment = () => {
+        let moveToNextSegment = () => {
           let currentSegmentIndex = findCurrentSegment();
           //console.log(currentSegmentIndex);
           let nextSegment = this.segmentTimes[currentSegmentIndex + 1];
-          if(nextSegment) {
+          if (nextSegment) {
             ee.emit('pause');
             ee.emit('select', parseFloat(nextSegment['start']), parseFloat(nextSegment['end']));
-            $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex+1]).position().left-100);
-            if(this.fileNames && this.fileNames.length) {
-              for(let i=0; i< this.fileNames.length; i++) {
-                if(`Segment :: ${currentSegmentIndex+2}.wav` === this.fileNames[i].iname) {
+            $('.playlist-tracks').scrollLeft($(this.segmentBoxList[currentSegmentIndex + 1]).position().left - 100);
+            if (this.fileNames && this.fileNames.length) {
+              for (let i = 0; i < this.fileNames.length; i++) {
+                if (`Segment :: ${currentSegmentIndex + 2}.wav` === this.fileNames[i].iname) {
                   $(this.audioFileArray[i]).show();
                   $(this.fileNames[i]).show();
-                }
-                else {
+                } else {
                   $(this.audioFileArray[i]).hide();
                   $(this.fileNames[i]).hide();
                 }
@@ -1081,14 +1147,14 @@ export default Component.extend({
           }
         };
 
-        let moveToPreviousSegment =() => {
+        let moveToPreviousSegment = () => {
           let currentSegmentIndex = findCurrentSegment();
           let previousSegment = this.segmentTimes[currentSegmentIndex - 1];
-          if(previousSegment) {
+          if (previousSegment) {
             ee.emit('pause');
             ee.emit('select', parseFloat(previousSegment['start']), parseFloat(previousSegment['end']));
-            $('.playlist-tracks' ).scrollLeft($(this.segmentBoxList[currentSegmentIndex-1]).position().left-100);
-            if(this.fileNames && this.fileNames.length) {
+            $('.playlist-tracks').scrollLeft($(this.segmentBoxList[currentSegmentIndex - 1]).position().left - 100);
+            if (this.fileNames && this.fileNames.length) {
               for (let i = 0; i < this.fileNames.length; i++) {
                 if (`Segment :: ${currentSegmentIndex}.wav` === this.fileNames[i].iname) {
                   $(this.audioFileArray[i]).show();
@@ -1105,7 +1171,7 @@ export default Component.extend({
           var result = -1;
           this.segmentTimes.forEach((segment, i) => {
             // console.log(note, i);
-            if(this.currentTime >= parseFloat(segment['start']) && this.currentTime <= parseFloat(segment['end'])) {
+            if (this.currentTime >= parseFloat(segment['start']) && this.currentTime <= parseFloat(segment['end'])) {
               //console.log("found!",segment, i);
               result = i;
             }
@@ -1116,31 +1182,27 @@ export default Component.extend({
 
         function handleKeys() {
           //console.log(keys);
-          if(keys[17] && keys[32]) {
+          if (keys[17] && keys[32]) {
             ee.emit('play');
-          }
-          else if(keys[17] && keys[190]) {
+          } else if (keys[17] && keys[190]) {
             ee.emit('pause');
-          }
-          else if(keys[17] && keys[37]) {
+          } else if (keys[17] && keys[37]) {
             // console.log(playlist);
             playlist.pause()
               .then(() => {
                 moveToPreviousSegment();
               });
-          }
-          else if(keys[17] && keys[39]) {
+          } else if (keys[17] && keys[39]) {
             playlist.pause()
-              .then(()=>{
+              .then(() => {
                 moveToNextSegment();
               });
-          }
-          else if(keys[17] && keys[68]) {
+          } else if (keys[17] && keys[68]) {
             handleDivision();
-          }
-
-          else if(keys[17] && keys[77]) {
+          } else if (keys[17] && keys[77]) {
             handleMerging();
+          } else if (keys[13]) {
+            handleDivisionWhilePlaying();
           }
         }
       });

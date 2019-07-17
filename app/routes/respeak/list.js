@@ -99,17 +99,6 @@ export default Route.extend({
 
       console.log(this.get('controller.recordedSegs'));
       console.log(curSegArrays);
-
-      function containsObject(obj, list) {
-        var i;
-        for (i = 0; i < list.length; i++) {
-          if (list[i] === obj) {
-            return true;
-          }
-        }
-
-        return false;
-      }
       let overlapCount = 0;
       curSegArrays.forEach((el, index) => {
         var i;
