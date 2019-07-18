@@ -118,8 +118,11 @@ export default Controller.extend({
         transcription.save()
           .then(() => {
             this.notify.success(`Segment(s) successfully re-spoken. Re-transcription is being done now`, {
-              closeAfter: 10000, classNames: ['notify-class'] // this part may be explored
+              closeAfter: 1000, classNames: ['notify-class'] // this part may be explored
             });
+            setTimeout(() => {
+              this.set('recordingSubmit', false);
+            }, 1000);
             console.log("Final JSON saved");
           })
           .catch(e => {
