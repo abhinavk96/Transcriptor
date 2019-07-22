@@ -468,7 +468,7 @@ export default Component.extend({
         }
 
         function handleDivisionWhilePlaying() {
-          if (!that.playing && that.playlistCursor === 0) {
+          if (!that.playing) {
             that.notify.error(`'"ENTER" Shortcut only works when dividing while playing`);
           } else {
             let currIndex = that.currentSegment;
@@ -476,7 +476,10 @@ export default Component.extend({
             let newSegStart = segArrays[currIndex][subSegmentIndex]['start'];
             let newSegEnd = that.playlistCursor;
 
+
+
             handleDivision(true, newSegStart, newSegEnd, currIndex, true);
+
           }
 
         }
