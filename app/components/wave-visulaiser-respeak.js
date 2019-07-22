@@ -35,6 +35,7 @@ export default Component.extend({
   totalNoSegs: null,
   totalNoRecordedSegs: null,
   playing: false,
+  toggleStatus: false,
 
 
   actions: {
@@ -452,6 +453,20 @@ export default Component.extend({
           return subIndex;
         }
 
+        function togglePlayPause() {
+          if (that.playlistCursor === 0) {
+            that.notify.error(`'"SPACE-BAR" Shortcut only works when audio cursor is active`);
+          } else {
+            if (!that.toggleStatus) {
+              $('.btn-play').click();
+              that.set('toggleStatus', true);
+            } else {
+              $('.btn-pause').click();
+              that.set('toggleStatus', false);
+            }
+          }
+        }
+
         function handleDivisionWhilePlaying() {
           if (!that.playing) {
             that.notify.error(`'"ENTER" Shortcut only works when dividing while playing`);
@@ -461,12 +476,15 @@ export default Component.extend({
             let newSegStart = segArrays[currIndex][subSegmentIndex]['start'];
             let newSegEnd = that.playlistCursor;
 
-            handleDivision(true, newSegStart, newSegEnd, currIndex);
+
+
+            handleDivision(true, newSegStart, newSegEnd, currIndex, true);
+
           }
 
         }
 
-        function handleDivision(auto = false, autoStart = 0, autoEnd = 0, autoSegment = 0) {
+        function handleDivision(auto = false, autoStart = 0, autoEnd = 0, autoSegment = 0, dueToPlay = false) {
           // console.log('in handleDivision()');
 
           let currIndex = that.currentSegment;
@@ -554,6 +572,8 @@ export default Component.extend({
           //todo handle smaller in the boundary cases
 
           if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD && parseFloat(prevSegEnd) - parseFloat(newSegEndTime) < DIVISION_THRESHOLD) {
+            console.warn('parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD && parseFloat(prevSegEnd) - parseFloat(newSegEndTime) < DIVISION_THRESHOLD');
+
             segArrays[currIndex].push({
               'start': parseFloat(prevSegStart),
               'end': parseFloat(prevSegEnd),
@@ -569,6 +589,8 @@ export default Component.extend({
             endTime = parseFloat(prevSegEnd);
 
           } else if (parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD) {
+            console.warn('parseFloat(newSegStartTime) - parseFloat(prevSegStart) < DIVISION_THRESHOLD ' + newSegStartTime.toString() + ' ' + prevSegStart.toString());
+
             segArrays[currIndex].push({
               'start': parseFloat(prevSegStart),
               'end': parseFloat(newSegEndTime),
@@ -594,6 +616,8 @@ export default Component.extend({
             startTime = parseFloat(prevSegStart);
             endTime = parseFloat(newSegEndTime);
           } else if (parseFloat(prevSegEnd) - parseFloat(newSegEndTime) < DIVISION_THRESHOLD) {
+            console.warn('parseFloat(prevSegEnd) - parseFloat(newSegEndTime) < DIVISION_THRESHOLD');
+
             segArrays[currIndex].push({
               'start': parseFloat(prevSegStart),
               'end': parseFloat(newSegStartTime),
@@ -619,6 +643,7 @@ export default Component.extend({
             startTime = parseFloat(newSegStartTime);
             endTime = parseFloat(prevSegEnd);
           } else if (parseFloat(newSegEndTime) - parseFloat(newSegStartTime) < DIVISION_THRESHOLD) {
+            console.warn('seeeeee');
             segArrays[currIndex].push({
               'start': parseFloat(prevSegStart),
               'end': parseFloat(newSegStartTime),
@@ -660,7 +685,7 @@ export default Component.extend({
             updateSegments();
             updateSelected();
           } else {
-            updateSegments(true, currIndex);
+            updateSegments(true, currIndex, dueToPlay);
           }
         }
 
@@ -758,7 +783,7 @@ export default Component.extend({
           updateSelected();
         }
 
-        function updateSegments(auto = false, autoSegment = 0) {
+        function updateSegments(auto = false, autoSegment = 0, dueToPlay = false) {
           let currIndex = that.currentSegment;
 
           if (auto) {
@@ -790,7 +815,7 @@ export default Component.extend({
           segArrays[currIndex].forEach((startEndObj, index) => {
             addSegment(currIndex, index, startEndObj);
           });
-          if (!auto) {
+          if (!auto || dueToPlay) {
             $(".submit-update").click();
           }
         }
@@ -1116,6 +1141,9 @@ export default Component.extend({
           } else if (e.which === 13) {
             e.preventDefault();
             console.log('Enter key pressed');
+          } else if (e.which === 32) {
+            e.preventDefault();
+            console.log('Spacebar key pressed')
           }
 
           handleKeys();
@@ -1203,6 +1231,8 @@ export default Component.extend({
             handleMerging();
           } else if (keys[13]) {
             handleDivisionWhilePlaying();
+          } else if (keys[32]) {
+            togglePlayPause();
           }
         }
       });
