@@ -75,7 +75,7 @@
     "ember-simple-auth": "^1.8.1",
     "ember-truth-helpers": "^2.1.0",
     "jquery-resizable-dom": "^0.32.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.23",
     "object-to-formdata": "^1.6.4",
     "waveform-playlist": "https://github.com/CosmicCoder96/waveform-playlist#production",
     "xml-js": "^1.6.11"
